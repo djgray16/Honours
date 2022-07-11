@@ -109,6 +109,10 @@ def plot_G(G):
     plt.show()
     
     
+
+    
+    
+    
     
 def SF(n, target_min, target_avg):
     
