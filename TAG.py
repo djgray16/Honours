@@ -115,6 +115,13 @@ def plot_G(G):
     
     
 def SF(n, target_min, target_avg):
+    '''to do
+    make plot with log distribution
+    consider if we can overestimate average degree
+    can we make a lot and check that the average degree is fair
+    when output, say if it is connected/average degree, minimum degree
+    KS test to see if it scale-free
+    check regression coefficient on log-plot'''
     
     G = nx.scale_free_graph(n )
     
@@ -224,26 +231,3 @@ def make_exp(n, lam, minimum):
     
     return A    
 
-    a =  rd.default_rng().pareto(power-1, n)
-    
-    scale = (avg-minimum)/(np.mean(a) )
-    
-    a = minimum + scale*a
-    a  =[round(i) for i in a]
-    print(np.mean(a))
-    
-    if divmod(sum(a),2)[1] >0.5:
-        a[0] +=1
-        
-        
-    G = nx.configuration_model(a)
-    print(nx.number_of_selfloops(G))    
-    for i in nx.selfloop_edges(G):
-        G.remove_edge(*i)
-        
-    print(nx.number_of_selfloops(G)) 
-    A = G.to_undirected()
-    
-    bb = np.mean([i[1] for i in A.degree])
-    print(bb)
-    return A
