@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import itertools
 import numpy.random as rd
+import pandas as pd
 
 def TAG(N,K,alpha):
     ''' N is the number of nodes, K is the required mean degree, and alpha is the proportion of spatial vs degree driven links added. Alpha=1 implies totally degree given (BA). Currently, minor problem is that if there are no nodes that are not neighbors with at least 1 connection, it will fail to take the BA step and pass on that link. At the moment, the fix is to choose from so far unconnected nodes in the non-neighbor set. Other problem is when everything is already neighbors with a point, what to do? '''
@@ -80,7 +81,7 @@ def adequate_coop(x):
     return  tprop 
 
 
-def plot_G(G):
+def plot_G(G, ln = False):
 
 
     
@@ -94,6 +95,11 @@ def plot_G(G):
 
     
     ax1 = fig.add_subplot(axgrid[3:, :2])
+    if ln:
+        print('warning - dropping 0s')
+        degree_sequence = [i for i in degree_sequence if i >0]
+        degree_sequence = np.log(degree_sequence)
+        
     ax1.plot(degree_sequence, "b-", marker="o")
     ax1.set_title("Degree Rank Plot")
     ax1.set_ylabel("Degree")
@@ -178,28 +184,54 @@ def SF(n, target_min, target_avg):
 def make_sf(n,power,minimum,avg):
     
 
-    a =  rd.default_rng().pareto(power-1, n)
+    a =  rd.default_rng().pareto(power-1, n) #making a scale-free distribution
+    #with the right scale
     
-    scale = (avg-minimum)/(np.mean(a) )
+    scale = (avg-minimum)/(np.mean(a) ) #
     
     a = minimum + scale*a
-    a  =[round(i) for i in a]
+    a  =[round(i+0.01) for i in a]
+    print(len(a))
     print(np.mean(a))
     
+    ## adding in poisson rv i/N for each node, to estiamte the number of 
+    #selfloops and add them now. 
+    
+    
+    total = sum(a) 
+    #params = [(i\total) for i in a]
+    
+    params = [(2*i/total) for i in range(len(a))]
+    print(len(params))
+    #params = 5
+    poissons = [random.poisson(i) for i in params]
+    
+    print('estimated number of self-loops is', sum(poissons))
+    
+    a = [a[i]+poissons[i] for i in range(len(a))]
+    print(len(a))
+    print('passing degree sequence with mean',np.mean(a))
     if divmod(sum(a),2)[1] >0.5:
+        print('trigger 1')
         a[0] +=1
         
-        
+    
     G = nx.configuration_model(a)
-    print(nx.number_of_selfloops(G))    
-    for i in nx.selfloop_edges(G):
-        G.remove_edge(*i)
+    G = nx.Graph(G)
+    bb = np.mean([i[1] for i in G.degree])
+    print(' mean degree, want to get to', avg, bb)
+    
+    print(', number of self-loops', nx.number_of_selfloops(G))    
+    G.remove_edges_from(nx.selfloop_edges(G))
         
-    print(nx.number_of_selfloops(G)) 
+    #print('this number should be 0, remaining self-loops',
+          #nx.number_of_selfloops(G)) 
+    
+    
     A = G.to_undirected()
     
     bb = np.mean([i[1] for i in A.degree])
-    print(bb)
+    print(' mean degree, want to get to', avg, bb)
     return A
 
 
@@ -229,5 +261,59 @@ def make_exp(n, lam, minimum):
     
     A = G.to_undirected()
     
-    return A    
+    return A   
+
+    
+
+def est_degree_graph(n, power, minimum, avg, log = False):
+    '''
+    this is currently the closest, and works well at hitting the targeted aver
+    age except for the power law distribution, which needs work I think. 
+    '''
+        
+
+    a =  rd.default_rng().pareto(power, n)*(power+1)/power
+    #a = rd.default_rng().normal(0,power,n)#making a scale-free distribution
+    #with the right scale
+    
+    scale = (avg-minimum)/(np.mean(a) ) #
+    
+    a = minimum + scale*a
+    print(min(a))
+    a  =[round(i) for i in a]
+    #print(len(a))
+    passed_degree_mean = np.mean(a)
+    if log:
+        print(passed_degree_mean)
+    
+    
+    G = nx.expected_degree_graph(a, selfloops = False)
+    
+    bb = np.mean([i[1] for i in G.degree])
+    if log:
+        print(' mean degree, want to get to', avg, bb)
+    
+    G = nx.Graph(G)
+    final = np.mean([i[1] for i in G.degree])
+    if log:
+        print(', number of self-loops', nx.number_of_selfloops(G)) 
+        print(' mean degree, want to get to', avg, final)
+    return G
+    #return passed_degree_mean, bb, final
+
+'''
+sampling = {}
+
+nn = 400
+for i in range(nn):
+    sampling[i] = est_degree_graph(1000, 2.5, 2, 6)
+    
+    
+df = pd.DataFrame.from_dict(sampling).T
+
+print(df.mean())
+'''
+
+
+
 

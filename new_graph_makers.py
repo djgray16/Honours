@@ -89,6 +89,7 @@ def BA2(n,target_min,target_avg):
         for i in to_be_removed:
             G.remove_node(i)
         degree_vals =  [i[1] for i in list(G.degree)]
+        print('popped one')
         print(min(degree_vals))
     
         print(sum(degree_vals)/len(degree_vals))
