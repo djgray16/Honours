@@ -15,54 +15,28 @@ class WealthModel(ap.Model):
 
     """ A simple model of random wealth transfers """
     
+    def __init__(self,graphType,**kwargs):
+        super().__init__(**kwargs)
+        print(graphType)
 
-
-    def setup(self, **kwargs):
-        #print(kwargs)
-        self.gtype = kwargs['graphType']
-        self.atype = kwargs['agentType']
-        
-
+    def setup(self):
         
         
-        self.agents = ap.AgentList(self,self.p.AT, self.atype)
+        self.agents = ap.AgentList(self,self.p.AT, AT)
         #self.agents +=ap.AgentList(self, self.p.selfish_agents, Selfish)
         #self.current_coffers = 0
         #self.per_agent = 0
         self.prop_contributors = sum(agent.contribute for agent in self.agents)
         
-        
-        
         n = len(self.agents)
         m = self.p.graph_m
-               
-        ### setup graph here###
+        #graph=nx.generators.random_graphs.barabasi_albert_graph(n, m, seed=None, initial_graph=None)
         
-        if self.gtype == 'WS':
-            ## we have a connected-watts strogatz graph
-            ## check the right parameters are given
-            graph = nx.connected_watts_strogatz_graph(n,m,0.5)
-        elif self.gtype == 'BA':
-            
-            ## we have a BA graph
-            graph=nx.generators.random_graphs.barabasi_albert_graph(n, m,
-                                                                    seed=None, 
-                                                                    initial_graph=None)
-        
-            
-        elif self.gtype == 'TAG':
-            
-            ## we have a tomassani antonioni graph
-            graph = TAG(n,m,self.p.graph_alpha)
-        else:
-            print('no idea what graph you want')
-            return
-        
-        plot_G(graph)
-        
-        
-
-        
+        #graph = TAG(n,m,self.p.graph_alpha) ##this is the line to change to change graphs
+        #nx.draw(graph)
+        #graph = nx.star_graph(n)
+        #graph = nx.gnm_random_graph(n,m*n/2)
+        graph = nx.connected_watts_strogatz_graph(n,m,0.5)
         self.network = self.agents.network = ap.Network(self, graph)
         self.network.add_agents(self.agents, self.network.nodes)
         

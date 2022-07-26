@@ -17,9 +17,85 @@ class BaseAgent(ap.Agent):
 
         self.last_receive = 1 #how much they last received
         self.last_give = 1 #how much they last gave
+        
+    def host_game(self):
+        players = self.network.neighbors(self).to_list()
+
+        players.append(self)
+
+        contribution = sum(a.contribute for a in players)
+        payout = self.model.p.phi*contribution/len(players)
+        
+        
+        for a in players:
+            a.record_game(payout)
+        #nx.draw(self.network)
+        
+
+        
+    def record_game(self,payout):
+        self.games +=1
+        self.receipts.append(payout)
+        #self.last_receive = sum(self.receipts)
+        
+        #games = len(self.receipts)
+
+        #if games != self.games:
+        #    print('number of games error', self.games, games)
+
+        #this is the updated profit from correspondance
+        #self.pi = self.last_receive
 
 
+class ReplicatorLocal(BaseAgent):
+    ''' 
+    agent that follows replicator dynamics. Iniitally chooses random contr
+    '''
+    
+    def setup(self):
+        super().setup()
+        self.agent_class = 6
+        self.games = 0
+        self.choices = [0,0.25,0.5,0.75,1]
+        
+        self.last_give = random.choice(self.choices)
+        self.contribute = self.last_give 
+        #self.last_receive = random.choice(self.choices)
+        self.receipts = []
+        
+    def contribute_choice(self):
+        self.last_receive = sum(self.receipts)
+        games = len(self.receipts)
+        self.pi = self.last_receive
 
+        
+        neighbours = self.network.neighbors(self).to_list()
+        #print(self.pi)
+        #print([ i.pi for i in neighbours])
+        scale= max(i.pi for i in neighbours)
+        
+        neighbour = random.choice(neighbours)
+        self.last_give = self.contribute
+        self.contribute  = 1
+        self.receipts = []
+        if neighbour.pi> self.pi:
+            ## we are a chance of changing strat
+            prob = (neighbour.pi - self.pi)/scale
+            if prob>random.random():
+                self.contribute = 1
+                pass
+            
+                ''' we need to make a new_contribute, and not change that 
+                until the end of the round, so we are copying properly'''
+                
+                self.contribute = neighbour.contribute
+        else:
+            pass
+        
+        self.receipts = []
+            
+        
+    
         
         
 class AT(BaseAgent):
@@ -36,22 +112,7 @@ class AT(BaseAgent):
         self.last_receive = 0
         self.receipts = []
         
-    def host_game(self):
-        players = self.network.neighbors(self).to_list()
 
-        players.append(self)
-
-        contribution = sum(a.contribute for a in players)
-        payout = self.model.p.phi*contribution/len(players)
-        
-        
-        for a in players:
-            a.record_game(payout)
-        #nx.draw(self.network)
-        
-    def record_game(self,payout):
-        self.games +=1
-        self.receipts.append(payout)
         
         
     def contribute_choice(self):
