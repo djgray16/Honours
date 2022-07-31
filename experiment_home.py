@@ -21,19 +21,14 @@ import matplotlib.pyplot as plt
 random.seed(2)
 
 parameters = {
-    'satisfaction_agents': 0,
     'steps': 40, #number of time periods
-    #'seed': 41, #random seed
-    'follower_agents': 0, 
-    'momentum_agents': 0,
-    'selfish_agents': 0,
-    'AT': 150,
+    'agent_n': 150,
     'phi':ap.Values(1.2,1.8,2.0,2.2,2.4,2.6,3.0,4.0), #multiplier for common contributions
-    #'pi': 2.8, #minimum acceptable contribution for satisfaction agents
-    #'rho': 0.5, #minimum proportion of contributing agents for follower agents
     'graph_m' : 6,
-    'graph_alpha': 0.3
-    #'per_game_switch': 1 #applies if we want to normalise profit per game
+    'graph_alpha': 0.3,
+    'gtype': 'BA',
+    'atype': AT,
+    'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
 
@@ -45,7 +40,7 @@ sample = ap.Sample(
 
 
 exp = ap.Experiment(WealthModel, sample, iterations=30,
-                    record = True, agentType = AT, graphType = 'BA')
+                    record = True)
 results = exp.run()
 
 
@@ -68,7 +63,10 @@ for i in phis.unique():
     plt.plot(ts,y)
     
 plt.legend(phis.unique())
-plt.title('Effect of Changing phi- 50 agents,graph: connected WS, p = 0.5 ')
+plt.title(f'Effect of Changing phi- {parameters["agent_n"]} agents, \
+graph: {parameters["gtype"]}, agents: {parameters["atype"]} '
+          )
+    
     
 
             

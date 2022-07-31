@@ -13,27 +13,28 @@ from Agents import *
 from TAG import *
 class WealthModel(ap.Model):
 
-    """ A simple model of random wealth transfers """
+    """ This is the PGG model I am using """
     
 
 
     def setup(self, **kwargs):
-        #print(kwargs)
-        self.gtype = kwargs['graphType']
-        self.atype = kwargs['agentType']
+
+        self.gtype = self.p.gtype #what graph type for this model
+
+        self.atype = self.p.atype #what agent type
+
         
 
         
         
-        self.agents = ap.AgentList(self,self.p.AT, self.atype)
-        #self.agents +=ap.AgentList(self, self.p.selfish_agents, Selfish)
-        #self.current_coffers = 0
-        #self.per_agent = 0
-        self.prop_contributors = sum(agent.contribute for agent in self.agents)
+        self.agents = ap.AgentList(self,self.p.agent_n, self.atype) #initialise agents
+        #self.agents += ap.AgentList(self, self.p.agent2_n, self.a2type)#
+        # line above is for adding multiple agents in one model
         
         
         
-        n = len(self.agents)
+        n = len(self.agents) #this is useful as counts all agents,
+        
         m = self.p.graph_m
                
         ### setup graph here###
@@ -57,54 +58,38 @@ class WealthModel(ap.Model):
         else:
             print('no idea what graph you want')
             return
-        
-        plot_G(graph)
+        if self.p.plot_G: #plotting tool
+            plot_G(graph)
         
         
 
         
         self.network = self.agents.network = ap.Network(self, graph)
-        self.network.add_agents(self.agents, self.network.nodes)
-        
-    def wealth_calculation(self):
-        contribution = sum(agent.contribute for agent in self.agents)
-        
-        count_contributors = sum(agent.contribute>0.1 for agent in self.agents)
-        self.prop_contributors = count_contributors/len(self.agents)
-        contribution = contribution*self.p.phi
-        self.current_coffers = contribution
-        agent_payment = contribution/len(self.agents)
-        self.per_agent = agent_payment
-        
-        
+        self.network.add_agents(self.agents, self.network.nodes)# puts agents on nodes
+           
         
         
 
-    def step(self):
-        self.agents.games = 0
+    def step(self): #process that happens in order for every timestep
+        
         self.agents.host_game()
+        self.agents.calculate_pi()
+        
         self.agents.contribute_choice()
+        self.agents.update_contribute()
 
-        
-        
-        
-        
+    def update(self): #happens after every timestep
 
-    def update(self):
 
-        #self.record('Gini Coefficient', gini(self.agents.wealth))
         self.record('Cooperation_Level', adequate_coop(self.agents.contribute))
-        #self.record('per_agent')
-        #self.record('Number Cooperators', self.agents.)
-        #self.agents.record('wealth')
-        #self.report('Current_Cooperation',adequate_coop(self.agents.contribute) )        
+       
         self.agents.record('contribute')
         self.agents.record('last_give')
         self.agents.record('last_receive')
 
         self.agents.record('agent_class')
 
-    def end(self):
+    def end(self): #end of experiment
         self.report('Final_Cooperation', adequate_coop(self.agents.contribute))
         #self.record('Current_Cooperation2',adequate_coop(self.agents.contribute) )
         pass
