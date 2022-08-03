@@ -42,15 +42,21 @@ class WealthModel(ap.Model):
         if self.gtype == 'WS':
             ## we have a connected-watts strogatz graph
             ## check the right parameters are given
-            graph = nx.connected_watts_strogatz_graph(n,m,0.5)
+            graph = nx.connected_watts_strogatz_graph(n,m,self.p.graph_p)
         elif self.gtype == 'BA':
             
             ## we have a BA graph
             graph=nx.generators.random_graphs.barabasi_albert_graph(n, m,
                                                                     seed=None, 
-                                                                    initial_graph=None)
+                                                                   initial_graph=None)
         
+        elif self.gtype == 'RRG':
+            graph = nx.random_regular_graph(m, n)
             
+        elif self.gtype == 'CCG': #connected caveman
+            l, rem = divmod(n,m+1)
+            #print(f'warning, might be changing graph n by at most {rem}')
+            graph = nx.connected_caveman_graph(l, m+1)
         elif self.gtype == 'TAG':
             
             ## we have a tomassani antonioni graph

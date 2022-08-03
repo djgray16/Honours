@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = empty-project-type
-recent_files = ['new_graph_makers.py', 'ws_and_ba_hists.py', 'TAG.py', 'experiment_home.py']
+recent_files = ['new_graph_makers.py', 'ws_and_ba_hists.py', 'TAG.py', 'experiment_home.py', 'Agents.py', 'Models.py']
 
 [main]
 version = 0.2.0
