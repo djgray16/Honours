@@ -42,6 +42,8 @@ class BaseAgent(ap.Agent):
         self.receipts = []
         self.games = 0
         self.contribute = random.choice(self.choices)
+        self.next_contribute= self.contribute
+        self.profit = 0
         
     def host_game(self):
         '''
@@ -76,6 +78,8 @@ class BaseAgent(ap.Agent):
         '''
         self.last_receive = sum(self.receipts)
         self.pi = self.last_receive
+        self.profit = self.pi - self.games*self.contribute
+        
 
     
     def contribute_choice(self):
@@ -114,35 +118,53 @@ class ReplicatorLocal(BaseAgent):
         return 'Replicator'
     def setup(self):
         super().setup()
-        self.agent_class = 6     
+        self.agent_class = 6  
+        self.choices = [0,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
         self.last_give = random.choice(self.choices)
         self.contribute = self.last_give 
-
+        self.last_receive = 0
+    '''
+    def contribute_choice(self):
+        neighbours = self.network.neighbors(self).to_list()
+        neighbours += [self]
+        possibilities = [(i.pi - i.contribute*i.games, i.contribute)
+                         for i in neighbours if i.]
+        assert all(i>0 for i in weights)
         
+        draw = random.choices(neighbours, weights = weights)
+        self.next_contribute = draw[0].contribute
+        #print(self.contribute, self.next_contribute)
+    '''
+        
+      
     def contribute_choice(self):       
         neighbours = self.network.neighbors(self).to_list()
         #print(self.pi)
         #print([ i.pi for i in neighbours])
-        scale= max(i.pi for i in neighbours)
+        scale= max(i.profit for i in neighbours)
         
         neighbour = random.choice(neighbours)
-        self.last_give = self.contribute
-        self.contribute  = 1
-        if neighbour.pi> self.pi:
+        #self.last_give = self.contribute
+        #self.contribute  = 1
+
+        if neighbour.profit> self.profit:
             ## we are a chance of changing strat
             prob = (neighbour.pi - self.pi)/scale
             if prob>random.random():
-                self.contribute = 1
-                pass
-            
-                ''' we need to make a new_contribute, and not change that 
-                until the end of the round, so we are copying properly'''
+                self.next_contribute = neighbour.contribute
                 
-                self.contribute = neighbour.contribute
+            
+                # we need to make a new_contribute, and not change that 
+               # until the end of the round, so we are copying properly
+                
+                #self.contribute = neighbour.contribute
         else:
-            pass
+            self.next_contribute = self.contribute
         
             
+
+
+
         
     
         

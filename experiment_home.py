@@ -21,14 +21,14 @@ import matplotlib.pyplot as plt
 random.seed(2)
 
 parameters = {
-    'steps': 40, #number of time periods
+    'steps': 60, #number of time periods
     'agent_n': 500,
     'phi':ap.Values(1.2,1.8,2.0,2.2,2.4,2.6,3.0,4.0), #multiplier for common contributions
-    'graph_m' : 12,
-    'graph_alpha': 0.0,
+    'graph_m' : 6,
+    'graph_alpha': 0.3,
     'graph_p':0.02,
-    'gtype': 'TAG',
-    'atype': AT,
+    'gtype': 'BA',
+    'atype': ReplicatorLocal,
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
@@ -40,7 +40,7 @@ sample = ap.Sample(
 )
 
 
-exp = ap.Experiment(WealthModel, sample, iterations=40,
+exp = ap.Experiment(WealthModel, sample, iterations=20,
                     record = True)
 results = exp.run()
 
@@ -64,8 +64,8 @@ for i in phis.unique():
     plt.plot(ts,y)
     
 plt.legend(phis.unique())
-plt.title(f'Effect of Changing phi- {parameters["agent_n"]} agents, \
-graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters["graph_alpha"]} '
+plt.title(f'Parameters: {parameters["agent_n"]} agents, \
+graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters["graph_alpha"]}, m: {parameters["graph_m"]} '
           )
     
     
