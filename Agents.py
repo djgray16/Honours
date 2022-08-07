@@ -45,20 +45,26 @@ class BaseAgent(ap.Agent):
         self.next_contribute= self.contribute
         self.profit = 0
         
+    def network_setup(self):
+        self.neighbours = self.network.neighbors(self).to_list() 
+        self.neighbours.append(self)
+        self.true_neighbours = self.network.neighbors(self).to_list()
+        #print(self.id, [i for i in self.neighbours])
+        self.degree = len(self.true_neighbours)
     def host_game(self):
         '''
         finds the players neighbours, sums their contribution and multiplies
         by phi, and then tells each player their payout
         '''
-        players = self.network.neighbors(self).to_list() 
+        #players = self.network.neighbors(self).to_list() 
 
-        players.append(self)
-
-        contribution = sum(a.contribute for a in players)
-        payout = self.model.p.phi*contribution/len(players)
+        #players.append(self)
+        #print('hosting',self.id, [i.id for i in self.neighbours])
+        contribution = sum(a.contribute for a in self.neighbours)
+        payout = self.model.p.phi*contribution/(self.degree + 1)
         
         
-        for a in players:
+        for a in self.neighbours:
             a.record_game(payout)
         #nx.draw(self.network)
         
@@ -113,13 +119,17 @@ class BaseAgent(ap.Agent):
 class ReplicatorLocal(BaseAgent):
     ''' 
     agent that follows replicator dynamics. Iniitally chooses random contr
+    
+    This is the replicator dynamics specified by the bipartite graph paper, 
+    Pena and Rochat. I couldn't emulate their paper as it is too large in timestep. '
     '''
     def __str__(self):
         return 'Replicator'
     def setup(self):
         super().setup()
+        
         self.agent_class = 6  
-        self.choices = [0,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+        self.choices = [0,1]#[0,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
         self.last_give = random.choice(self.choices)
         self.contribute = self.last_give 
         self.last_receive = 0
@@ -138,10 +148,13 @@ class ReplicatorLocal(BaseAgent):
         
       
     def contribute_choice(self):       
-        neighbours = self.network.neighbors(self).to_list()
+        neighbours = self.true_neighbours
+        
+        #print(self.id, [i.id for i in neighbours])
+        #neighbours.remove(self)
         #print(self.pi)
         #print([ i.pi for i in neighbours])
-        scale= max(i.profit for i in neighbours)
+        scale= max(i.profit for i in neighbours) - self.profit
         
         neighbour = random.choice(neighbours)
         #self.last_give = self.contribute

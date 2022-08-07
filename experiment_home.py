@@ -21,14 +21,14 @@ import matplotlib.pyplot as plt
 #random.seed(2)
 
 parameters = {
-    'steps': 40, #number of time periods
-    'agent_n': 500,
-    'phi':ap.Values(1.2,1.8,2.0,2.2,2.4,2.6,3.0,4.0), #multiplier for common contributions
-    'graph_m' : 4,
+    'steps': 400, #number of time periods
+    'agent_n': 600,
+    'phi':ap.Values(1.2,1.8,2.0,2.2,2.4,2.6,3.0,4.0,6,8,10), #multiplier for common contributions
+    'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.02,
     'gtype': 'TAG',
-    'atype': AT,
+    'atype': ReplicatorLocal,
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 

@@ -16,7 +16,7 @@ import pandas as pd
 def TAG(N,K,alpha):
     ''' N is the number of nodes, K is the required mean degree, and alpha is the proportion of spatial vs degree driven links added. Alpha=1 implies totally degree given (BA). Currently, minor problem is that if there are no nodes that are not neighbors with at least 1 connection, it will fail to take the BA step and pass on that link. At the moment, the fix is to choose from so far unconnected nodes in the non-neighbor set. Other problem is when everything is already neighbors with a point, what to do? '''
     if N<K+1:
-        print('Too few nodes, setting N = K=1')
+        print('Too few nodes, setting N = K+1')
     G = nx.Graph()
     G.add_node(0, pos = random.uniform(0.45,0.55,2))
 

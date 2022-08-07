@@ -26,14 +26,13 @@ class WealthModel(ap.Model):
         
 
         
-        
-        self.agents = ap.AgentList(self,self.p.agent_n, self.atype) #initialise agents
+        self.agents = ap.AgentList(self,self.p.agent_n, self.atype) 
         #self.agents += ap.AgentList(self, self.p.agent2_n, self.a2type)#
         # line above is for adding multiple agents in one model
         
         
         
-        n = len(self.agents) #this is useful as counts all agents,
+        n = self.p.agent_n #this is useful as counts all agents,
         
         m = self.p.graph_m
                
@@ -71,8 +70,10 @@ class WealthModel(ap.Model):
 
         
         self.network = self.agents.network = ap.Network(self, graph)
+       #initialise agents
+        
         self.network.add_agents(self.agents, self.network.nodes)# puts agents on nodes
-           
+        self.agents.network_setup() 
         
         
 
@@ -89,14 +90,14 @@ class WealthModel(ap.Model):
 
         self.record('Cooperation_Level', adequate_coop(self.agents.contribute))
        
-        self.agents.record('contribute')
-        self.agents.record('last_give')
-        self.agents.record('last_receive')
+        #self.agents.record('contribute')
+        #self.agents.record('last_give')
+        #self.agents.record('last_receive')
 
-        self.agents.record('agent_class')
+        #self.agents.record('agent_class')
 
     def end(self): #end of experiment
-        self.report('Final_Cooperation', adequate_coop(self.agents.contribute))
+        #self.report('Final_Cooperation', adequate_coop(self.agents.contribute))
         #self.record('Current_Cooperation2',adequate_coop(self.agents.contribute) )
         pass
 
