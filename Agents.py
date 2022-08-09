@@ -225,3 +225,86 @@ class AT(BaseAgent):
             self.next_contribute = max(0,self.contribute-0.25)
             #self.receipts = []
             #print('down', self.last_give, self.contribute)
+            
+            
+class Nau(ap.Agent):
+    def setup(self):
+        d,_ = divmod(self.model.p.agents,6)
+        if self.id <=d:
+            self.strategy = 'SS'
+        elif self.id <= 2*d:
+            self.strategy = 'RR'
+        elif self.id<=3*d:
+            self.strategy = 'RS'
+        elif self.id <=4*d:
+            self.strategy = 'SR'
+        elif self.id <=5*d:
+            self.strategy = 'RwS'
+        elif self.id <=6*d:
+            self.strategy = 'RwR'
+        else:
+            print('agent id error')
+            
+            
+        
+    def play_game(self):
+        prob = 1-self.model.p.lottery_p
+        if self.strategy == 'SS':
+            self.pi = 8
+        elif self.strategy == 'RR':
+            self.pi = 8*int(random.random()>prob) + 8*int(random.random()>prob)
+            return
+        elif self.strategy == 'RS':
+            self.pi = 8*int(random.random()>prob) + 4
+            return
+        elif self.strategy == 'SR':
+            self.pi = 8*int(random.random()>prob) +4 
+            return
+        elif self.strategy == 'RwS':
+            self.pi = 8*int(random.random()>prob)
+            if self.pi>3:
+                self.pi +=4
+            else:
+                self.pi += 8*int(random.random()>prob)
+                return
+            return
+        elif self.strategy == 'RwR':
+            self.pi = 8*int(random.random()>prob)
+            if self.pi>3:
+                self.pi += 8*int(random.random()>prob)
+                return
+            else:
+                self.pi += 4
+                return
+            return
+        else:
+            print('screwed up strategies')
+            
+        
+        pass
+    def contribute_choice(self):
+        delta = 16-self.pi
+        delta = 16
+        if self.pi ==16:
+            self.new_strategy = self.strategy
+            
+        
+        observed = random.choice(self.model.agents)
+        a = self.model.p.alpha
+        q = ((observed.pi - self.pi)/delta)**a
+        if (observed.pi - self.pi)>0 and q>=random.random():
+            #print('changing strat', self.pi, observed.pi,q,self.strategy, observed.strategy)
+            self.new_strategy = observed.strategy
+            return
+        else:
+            self.new_strategy = self.strategy
+            return
+        
+        
+        
+        
+        
+    def update_contribute(self):
+        self.strategy= self.new_strategy
+        self.new_strategy = 0
+    

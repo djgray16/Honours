@@ -101,3 +101,24 @@ class WealthModel(ap.Model):
         #self.record('Current_Cooperation2',adequate_coop(self.agents.contribute) )
         pass
 
+
+class LotteryModel(ap.Model):
+    def setup(self):
+        self.atype = self.p.atype
+        self.agents = ap.AgentList(self,self.p.agents, self.atype)
+        
+    def step(self):
+        self.agents.play_game()
+        self.agents.contribute_choice()
+        self.agents.update_contribute()
+        
+    def update(self):
+        strategy_space = ['SS', 'RR', 'SR', 'RS', 'RwS', 'RwR']
+        for i,c in enumerate(strategy_space):
+            n_agents = len(self.agents.select(self.agents.strategy == c))
+            self[c] = n_agents
+            self.record(c)
+            
+        self.record('SS', )
+    def end(self):
+        pass
