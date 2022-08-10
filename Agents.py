@@ -154,7 +154,8 @@ class ReplicatorLocal(BaseAgent):
         #neighbours.remove(self)
         #print(self.pi)
         #print([ i.pi for i in neighbours])
-        scale= max(i.profit for i in neighbours) - self.profit
+        a =self.model.p.replicator_alpha
+        scale= max(i.profit for i in neighbours)
         
         neighbour = random.choice(neighbours)
         #self.last_give = self.contribute
@@ -162,7 +163,7 @@ class ReplicatorLocal(BaseAgent):
 
         if neighbour.profit> self.profit:
             ## we are a chance of changing strat
-            prob = (neighbour.pi - self.pi)/scale
+            prob = ((neighbour.pi - self.pi)/scale)**a
             if prob>random.random():
                 self.next_contribute = neighbour.contribute
                 
@@ -285,6 +286,7 @@ class Nau(ap.Agent):
     def contribute_choice(self):
         delta = 16-self.pi
         delta = 16
+        
         if self.pi ==16:
             self.new_strategy = self.strategy
             

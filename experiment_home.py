@@ -27,8 +27,9 @@ parameters = {
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.02,
-    'gtype': 'TAG',
+    'gtype': 'WS',
     'atype': ReplicatorLocal,
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
@@ -65,7 +66,7 @@ for i in phis.unique():
     
 plt.legend(phis.unique())
 plt.title(f'Parameters: {parameters["agent_n"]} agents, \
-graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters["graph_alpha"]}, m: {parameters["graph_m"]} '
+graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters["graph_alpha"]}, m: {parameters["graph_m"]}: alpha: {parameters["replicator_alpha"]} '
           )
     
     

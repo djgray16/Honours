@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 parameters = {'steps': 500,
               'agents': 6000,
               'alpha': 0.0,
-              'lottery_p': 0.55,
+              'lottery_p': 0.4,
               'atype': Nau}
 
 
