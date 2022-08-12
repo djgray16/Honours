@@ -16,10 +16,10 @@ from Models import *
 
 import matplotlib.pyplot as plt
 
-parameters = {'steps': 500,
+parameters = {'steps': 200,
               'agents': 6000,
-              'alpha': 0.0,
-              'lottery_p': 0.4,
+              'alpha': 1.0,
+              'lottery_p': 0.3,
               'atype': Nau}
 
 

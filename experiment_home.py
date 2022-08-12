@@ -23,13 +23,13 @@ import matplotlib.pyplot as plt
 parameters = {
     'steps': 400, #number of time periods
     'agent_n': 600,
-    'phi':ap.Values(1.2,1.8,2.0,2.2,2.4,2.6,3.0,4.0,6,8,10), #multiplier for common contributions
+    'phi':ap.Values(2,3,4,5,6,7,8), #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
-    'graph_p':0.02,
+    'graph_p':0.05,
     'gtype': 'WS',
     'atype': ReplicatorLocal,
-    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
+    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
@@ -41,7 +41,7 @@ sample = ap.Sample(
 )
 
 
-exp = ap.Experiment(WealthModel, sample, iterations=40,
+exp = ap.Experiment(WealthModel, sample, iterations=10,
                     record = True)
 results = exp.run()
 
@@ -66,7 +66,7 @@ for i in phis.unique():
     
 plt.legend(phis.unique())
 plt.title(f'Parameters: {parameters["agent_n"]} agents, \
-graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters["graph_alpha"]}, m: {parameters["graph_m"]}: alpha: {parameters["replicator_alpha"]} '
+graph: {parameters["gtype"]}, agents: {parameters["atype"]}, graph_alpha: {parameters["graph_alpha"]}, m: {parameters["graph_m"]}: replicator_alpha: {parameters["replicator_alpha"]} '
           )
     
     
