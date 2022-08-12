@@ -95,7 +95,7 @@ for i in range(len(phis.unique())):
         #axs[axesx[i], axesy[i]].legend()
         
         
-handles, labels = ax.get_legend_handles_labels()
+handles, labels = axs[-1][-1].get_legend_handles_labels()
 fig.legend(handles, labels, loc='lower left')
 
 
