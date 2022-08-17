@@ -1,0 +1,627 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Unified definitions file.  Pulled together from various  %
+% papers, the handbook, and so on.  Needs more work.       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{startarabicpagination}
+{
+	\setcounter{page}{1}
+	\pagenumbering{arabic}
+}
+{}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\rho}{\varrho}
+
+\renewcommand{\ln}{\log}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+\def\qed{\halmos}
+
+\def\gm{\gamma}
+\def\eps{\varepsilon}
+
+\newcommand{\gr}{\mbox{$\nabla$}}
+
+\newcommand{\graphCap}[4]{\begin{figure}  [hbt!]  \centering \includegraphics[scale = #2]{#1} \caption{#3}  \label{#4} \end{figure}} 
+
+% e.g. \graphNoCap{birdDiag.jpg}{0.15}
+\newcommand{\graphNoCap}[2]{\FloatBarrier \includegraphics[scale = #2]{#1} \FloatBarrier}
+
+\newcommand{\dotsim}{\stackrel{\centerdot}{\sim}}
+
+\def\acro#1#2{\vskip4pt\hbox to\textwidth{\normalsize
+\hbox to5pc{#1\hfill}\vtop{\advance\hsize by
+-5pc\raggedright\noindent#2}}}
+
+\def\symbols{
+\chapter*{List of Symbols}
+\markboth{Symbols}{Symbols}
+\addcontentsline{toc}{chapter}{\protect\numberline{\ }List of Symbols}}
+
+\def\symbol#1#2{\vskip4pt\hbox to\textwidth{\normalsize
+\hbox to5pc{#1\hfill}\vtop{\advance\hsize by
+-5pc\raggedright\noindent#2}}}
+
+\def\ack{\noindent {\bf Acknowledgements.\ }}
+
+\newenvironment{proof}{ {\em \noindent Proof:} }{ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define new theorem environments                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{algorithm}{Algorithm}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\newtheorem{Def}{Definition}
+\newtheorem{Thm}[Def]{Theorem}
+\newtheorem{Lem}[Def]{Lemma}
+\newtheorem{Cor}[Def]{Corollary}
+\newtheorem{Prop}[Def]{Proposition}
+
+\newtheorem{defin}{Definition}
+\newtheorem{alg}{Algorithm}
+\newtheorem{ass}{Assumption}
+
+\newcounter{exctr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define abbreviated begin and end commands                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\balg}{\begin{algorithm}}
+\newcommand{\ealg}{\end{algorithm}}
+
+\newcommand{\ben}{\begin{enumerate}}
+\newcommand{\een}{\end{enumerate}}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+
+\newcommand{\eit}{\end{itemize}}
+\newcommand{\bit}{\begin{itemize}}
+
+\newcommand{\bex}{\begin{example}}
+\newcommand{\eex}{\end{example}}
+
+\newcommand{\blem}{\begin{lem}}
+\newcommand{\elem}{\end{lem}}
+
+\newcommand{\bthm}{\begin{theorem}}
+\newcommand{\ethm}{\end{theorem}}
+
+\newcommand{\bdsc}{\begin{description}}
+\newcommand{\edsc}{\end{description}}
+
+
+\newcommand{\brem}{\begin{remark}}
+\newcommand{\erem}{\end{remark}}
+
+\newcommand{\bprop}{\begin{proposition}}
+\newcommand{\eprop}{\end{proposition}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\st}{\: : \:} % such that
+
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+
+\newcommand{\Shan}{\EuScript{H}}
+\newcommand{\KL}{\EuScript{D}}
+\newcommand{\El}{{\EuScript{E}}}
+\newcommand{\MI}{\EuScript{M}} % mutual information
+\newcommand{\Lh}{\EuScript{L}} % likelihood
+\newcommand{\LR}{\EuScript{W}} % likelihood ratio
+\newcommand{\Fish}{\EuScript{I}}
+\newcommand{\Sc}{\EuScript{S}} % score function
+\newcommand{\bigO}{\EuScript{O}}
+\newcommand{\lito}{$o$}
+
+\newcommand{\pf}{L} % performance function
+
+%\newcommand{\D}{\mathfrak{D}}
+
+\newcommand{\bincof}[2]{{{#1} \choose {#2}}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define \b? as \mathbf{?}                                 %
+% Exception: \bff for \mathbf{f}                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bg}{\mathbf{g}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bm}{\mathbf{m}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bo}{\mathbf{o}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bs}{\mathbf{s}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bt}{\mathbf{t}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bz}{\mathbf{z}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define \vect{}, and \b* for \vect{*} with Greek letters  %
+% Exception: \bfeta for \vect{\eta}                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\vect}[1]{\boldsymbol #1}
+
+\newcommand{\balpha}{\vect{\alpha}}
+\newcommand{\bAlpha}{\vect{\Alpha}}
+\newcommand{\bbeta}{\vect{\beta}}
+\newcommand{\bBeta}{\vect{\Beta}}
+\newcommand{\bgamma}{\vect{\gamma}}
+\newcommand{\bGamma}{\vect{\Gamma}}
+\newcommand{\bdelta}{\vect{\delta}}
+\newcommand{\bDelta}{\vect{\Delta}}
+\newcommand{\bepsilon}{\vect{\epsilon}}
+\newcommand{\bEpsilon}{\vect{\Epsilon}}
+\newcommand{\bzeta}{\vect{\zeta}}
+\newcommand{\bZeta}{\vect{\Zeta}}
+\newcommand{\bfeta}{\vect{\eta}}
+\newcommand{\bEta}{\vect{\Eta}}
+\newcommand{\btheta}{\vect{\theta}}
+\newcommand{\bTheta}{\vect{\Theta}}
+\newcommand{\biota}{\vect{\iota}}
+\newcommand{\bIota}{\vect{\Iota}}
+\newcommand{\bkappa}{\vect{\kappa}}
+\newcommand{\bKappa}{\vect{\Kappa}}
+\newcommand{\blambda}{\vect{\lambda}}
+\newcommand{\bLambda}{\vect{\Lambda}}
+\newcommand{\bmu}{\vect{\mu}}
+\newcommand{\bMu}{\vect{\Mu}}
+\newcommand{\bnu}{\vect{\nu}}
+\newcommand{\bNu}{\vect{\Nu}}
+\newcommand{\bxi}{\vect{\xi}}
+\newcommand{\bXi}{\vect{\Xi}}
+\newcommand{\bomricon}{\vect{\omricon}}
+\newcommand{\bOmricon}{\vect{\Omricon}}
+\newcommand{\bpi}{\vect{\pi}}
+\newcommand{\bPi}{\vect{\Pi}}
+\newcommand{\brho}{\vect{\rho}}
+\newcommand{\bRho}{\vect{\Rho}}
+\newcommand{\bsigma}{\vect{\sigma}}
+\newcommand{\bSigma}{\vect{\Sigma}}
+\newcommand{\btau}{\vect{\tau}}
+\newcommand{\bTau}{\vect{\Tau}}
+\newcommand{\bupsilon}{\vect{\upsilon}}
+\newcommand{\bUpsilon}{\vect{\Upsilon}}
+\newcommand{\bphi}{\vect{\phi}}
+\newcommand{\bPhi}{\vect{\Phi}}
+\newcommand{\bchi}{\vect{\chi}}
+\newcommand{\bChi}{\vect{\Chi}}
+\newcommand{\bpsi}{\vect{\psi}}
+\newcommand{\bPsi}{\vect{\Psi}}
+\newcommand{\bomega}{\vect{\omega}}
+\newcommand{\bOmega}{\vect{\Omega}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define \v? for \mathcal{?}                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define \sc? for \mathscr{?}                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\scA}{\mathscr{A}}
+\newcommand{\scB}{\mathscr{B}}
+\newcommand{\scC}{\mathscr{C}}
+\newcommand{\scD}{\mathscr{D}}
+\newcommand{\scE}{\mathscr{E}}
+\newcommand{\scF}{\mathscr{F}}
+\newcommand{\scG}{\mathscr{G}}
+\newcommand{\scH}{\mathscr{H}}
+\newcommand{\scI}{\mathscr{I}}
+\newcommand{\scJ}{\mathscr{J}}
+\newcommand{\scK}{\mathscr{K}}
+\newcommand{\scL}{\mathscr{L}}
+\newcommand{\scM}{\mathscr{M}}
+\newcommand{\scN}{\mathscr{N}}
+\newcommand{\scO}{\mathscr{O}}
+\newcommand{\scP}{\mathscr{P}}
+\newcommand{\scQ}{\mathscr{Q}}
+\newcommand{\scR}{\mathscr{R}}
+\newcommand{\scS}{\mathscr{S}}
+\newcommand{\scT}{\mathscr{T}}
+\newcommand{\scU}{\mathscr{U}}
+\newcommand{\scV}{\mathscr{V}}
+\newcommand{\scW}{\mathscr{W}}
+\newcommand{\scX}{\mathscr{X}}
+\newcommand{\scY}{\mathscr{Y}}
+\newcommand{\scZ}{\mathscr{Z}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define \d? for \text{d}? and \db? for \text{d}\b?        %
+% Runs from r to z and \br to \bz                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\dr}{{\text{d}r}}
+\newcommand{\ds}{{\text{d}s}}
+\newcommand{\dt}{{\text{d}t}}
+\newcommand{\du}{{\text{d}u}}
+\newcommand{\dv}{{\text{d}v}}
+\newcommand{\dw}{{\text{d}w}}
+\newcommand{\dx}{{\text{d}x}}
+\newcommand{\dy}{{\text{d}y}}
+\newcommand{\dz}{{\text{d}z}}
+
+\newcommand{\dF}{{\text{d}F}}
+\newcommand{\dG}{{\text{d}G}}
+
+\newcommand{\dbr}{{\text{d}\br}}
+\newcommand{\dbs}{{\text{d}\bs}}
+\newcommand{\dbt}{{\text{d}\bt}}
+\newcommand{\dbu}{{\text{d}\bu}}
+\newcommand{\dbv}{{\text{d}\bv}}
+\newcommand{\dbw}{{\text{d}\bw}}
+\newcommand{\dbx}{{\text{d}\bx}}
+\newcommand{\dby}{{\text{d}\by}}
+\newcommand{\dbz}{{\text{d}\bz}}
+
+
+
+
+
+
+\newcommand{\rfp}[1]{(\ref{#1})}
+\newcommand{\refp}[1]{(\ref{#1})}
+\newcommand{\refs}[1]{(\ref{#1})}
+\newcommand{\refds}[2]{({#1}.\ref{#2})}
+
+
+
+\newcommand{\halmos}{\vspace{3mm} \hfill \mbox{$\Box$}}
+
+
+
+\newcommand{\widetildeS}{\widetilde{S}}
+\newcommand{\vvv}[1]{\mbox{\boldmath$#1$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define common \text{} typeset elements for mathmode      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Var}{\text{Var}}
+\newcommand{\var}{\Var}
+\newcommand{\Std}{\text{Std}}
+\newcommand{\std}{\Std}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\cov}{\Cov}
+\newcommand{\Supp}{\text{Supp}}
+\newcommand{\supp}{\Supp}
+\newcommand{\SCV}{\text{SCV}}
+\newcommand{\RE}{\text{RE}}
+%\renewcommand{\skew}{\text{Skew}}
+
+\newcommand{\I}{\text{I}}
+
+\newcommand{\indicator}[1]{\mbox{{\rm I}}_{\{#1\}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define new \mathops                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\argmax}{\mathop{\rm argmax}}
+\newcommand{\argmin}{\mathop{\rm argmin}}
+\newcommand{\elite}{\mathop{\rm elite}}
+\newcommand{\diag}{\mathop{\rm diag}}
+\newcommand{\nondiag}{\mathop{\rm nondiag}}
+\newcommand{\fin}{\mathop{\rm fin}}
+\newcommand{\start}{\mathop{\rm start}}
+\newcommand{\tot}{\mathop{\rm tot}}
+\newcommand{\difr}{\mathop{\rm difr}}
+
+\newcommand{\iid}{\text{iid }}
+
+\newcommand{\sgn}{\text{sgn}}
+
+\newcommand{\tr}{\text{tr}}
+
+%\newcommand{\cas}{{\stackrel{\text{a.s.}}{\longrightarrow}\: }}
+
+\newcommand{\Ito}{It\^{o}}
+
+\newcommand{\obs}{\mathop{\rm obs}}
+\newcommand{\mis}{\mathop{\rm mis}}
+\newcommand{\Conv}{\mathop{\mathbf{Conv}}}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define statistical distributions                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Ber}{{\sf Ber}}
+\newcommand{\ber}{\Ber}
+\newcommand{\Bin}{{\sf Bin}}
+\newcommand{\bin}{\Bin}
+
+\newcommand{\Dir}{{\sf Dir}}
+\newcommand{\Erl}{{\sf Erl}}
+
+\newcommand{\Geo}{{\sf Geom}}
+\newcommand{\geo}{\Geo}
+
+\newcommand{\G}{\Geo}
+
+\newcommand{\Poi}{{\sf Poi}}
+\newcommand{\poi}{\Poi}
+
+\newcommand{\Bet}{{\sf Beta}}
+\newcommand{\bet}{\Bet}
+\newcommand{\Cauchy}{{\sf Cauchy}}
+\newcommand{\cauchy}{\Cauchy}
+\newcommand{\Ex}{{\sf Exp}}
+\newcommand{\ex}{\Ex}
+\newcommand{\Gam}{{\sf Gam}}
+\newcommand{\gam}{\Gam}
+\newcommand{\Nor}{{\sf N}}
+\newcommand{\nor}{\Nor}
+\newcommand{\U}{{\sf U}}
+%\newcommand{\u}{\U}
+\newcommand{\Weib}{{\sf Weib}}
+\newcommand{\weib}{\Weib}
+
+%\newcommand{\NE}{\sf NE}
+%\newcommand{\Hyp}{\sf Hyp}
+%\newcommand{\pareto}{\sf Pareto} % pareto
+%\newcommand{\DU}{\sf DU}
+%\newcommand{\SE}{\sf SExp} % shifted exponential
+%\newcommand{\DE}{\sf DExp} % double exponential
+%\newcommand{\nbin}{\sf NBin}
+
+%\newcommand{\negbin}{{\sf NegBin}}
+%\newcommand{\mnom}{{\sf Mnom}}
+%\newcommand{\NE}{{\sf NE}}
+%\newcommand{\Hyp}{{\sf Hyp}}
+%\newcommand{\pareto}{{\sf Pareto}} % pareto
+%\newcommand{\NegHyp}{{\sf NegHyp}}
+%\newcommand{\DiscPhase}{{\sf PH}}
+%\newcommand{\ContPhase}{{\sf PH}}
+%\newcommand{\DExp}{{\sf DExp}}
+%\newcommand{\F}{{\sf F}}
+%\newcommand{\EVI}{{\sf ExValueI}}
+%\newcommand{\EVII}{{\sf ExValueII}}
+%\newcommand{\EVIII}{{\sf ExValueIII}}
+%\newcommand{\IGauss}{{\sf InvGauss}}
+%\newcommand{\logistic}{{\sf Logistic}}
+\newcommand{\LogN}{{\sf LogN}}
+%\newcommand{\Pareto}{{\sf Pareto}}
+%\newcommand{\Ray}{{\sf Rayleigh}}
+%\newcommand{\Stable}{{\sf Stable}}
+%\newcommand{\student}{{\sf t}}
+%\newcommand{\vonMises}{{\sf vonMises}}
+%\newcommand{\Dirichlet}{{\sf Dirichlet}}
+%\newcommand{\DU}{{\sf DU}}
+%\newcommand{\SE}{{\sf SExp}} % shifted exponential
+%\newcommand{\DE}{{\sf DExp}} % double exponential
+%\newcommand{\nbin}{{\sf NBin}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define special symbols, such as expectation operator,    %
+% probability measure, the reals, &c.                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Em}{\mathbb E}
+\newcommand{\X}{\mathbb E}
+\newcommand{\Pm}{\mathbb P}
+\newcommand{\Qm}{\mathbb Q}
+\newcommand{\Um}{\mathbb U}
+
+\newcommand{\Prob}{\Pm}
+
+\newcommand{\convdistr}{\stackrel{\cal D}{\rightarrow}}
+
+\newcommand{\IZ}[1]{I_{\{\M(Z)>#1\}}}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\B}{\cal B}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+
+\newcommand{\Rbar}{\overline{\R}}
+
+
+\newcommand{\gvn}{\,|\,}
+\newcommand{\biggvn}{\,\right|\left.\,}
+\newcommand{\e}{\mbox{e}}
+\renewcommand{\i}{\mbox{i}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\fb}{\rule[-2pt]{4pt}{8pt}}
+\newcommand{\HS}[1][1.]{\hspace{\stretch{#1}}}
+
+\newcommand{\chg}{\marginpar{*}}
+
+\newcommand{\margref}[1]{\marginpar{{\quad {\large \ding{43}}
+\pageref{#1}}}}
+
+\newenvironment{codebox}{ \small \bigskip \breakbox
+\verbatim \leftskip=8pt \vskip-10pt
+}{ \endverbatim \vskip-8pt \endbreakbox \bigskip}
+
+\newcommand{\term}[2]{\vskip2pt{\bf #1}\hskip1em #2}
+
+\newcommand{\intrusion}[1]{\begin{list}{}%
+{\leftmargin\parindent\rightmargin0pt\listparindent0pt\parsep1ex%
+\labelwidth0pt\labelsep0pt}\item[]\small\sf$\maltese$~#1 \end{list}}
+
+
+
+%%%%%%%%
+
+%\newcommand{\xo}{\ensuremath{x_{\mathrm{eq}}}}
+\newcommand{\xo}{\ensuremath{\bx_{\mathrm{eq}}}}
+%\newcommand{\xs}{\ensuremath{x_{\mathrm{st}}}}
+\newcommand{\xs}{\ensuremath{\bx_{\mathrm{st}}}}
+
+\newcommand\myprime{\ensuremath{\,\prime}}
+
+\def\OU{Ornstein-Uhlenbeck}
+
+
+\newcommand{\Uppsi}{\Psi}
+\newcommand{\mbf}[1]{\mathbf #1}
+
+\newcommand{\littleo}{o}
+
+\newcommand{\D}[2]{\mathcal{D}(#1\to#2)}
+\newcommand{\Dtwo}[3]{\mathcal{D}_{#1}(#2\to#3)}
+\newcommand{\Dphi}[2]{\mathcal{D}_\phi(#1\to#2)}
+
+\newcommand{\tick}{\ding{51}}
+
+\newcommand{\cross}{\ding{55}}
+
+\newcommand{\LDlim}{\lim_{n\to\infty}\frac 1n \log}
+\newcommand{\LDlimsup}{\limsup_{n\to\infty}\frac 1n \log}
+\newcommand{\LDliminf}{\liminf_{n\to\infty}\frac 1n \log}
+\newcommand{\isindist}{\stackrel{\rm d}{=}}
+\newcommand{\defis}{\stackrel{\rm def}{=}}
+
+\newcommand{\LDlimg}{\lim_{\gamma\to\infty}\frac 1\gamma \log}
+\newcommand{\LDlimsupg}{\limsup_{\gamma\to\infty}\frac 1\gamma \log}
+\newcommand{\LDliminfg}{\liminf_{\gamma\to\infty}\frac 1\gamma \log}
+
+
+\newcommand{\Nset}{\N}
+\newcommand{\Rset}{\R}
+
+\newcommand{\di}{{\rm d}}
+
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+ \clearpage
+{\pagestyle{empty}\origdoublepage}%
+}
+
+\let\cleardoublepage\clearemptydoublepage
+
+
+\newcommand{\cas}{{\stackrel{\mathrm{a.s.}}{\longrightarrow}\: }}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\da}{\downarrow}
+\newcommand{\Da}{\Downarrow}
+
+
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+\newcommand{\m}[1]{\mathbf{#1}}
+\renewcommand{\c}[1]{\mathcal{#1}}
+\newcommand{\s}[1]{\mathscr{#1}}
+\newcommand{\iidsim}{\stackrel{\mathrm{iid}}{\sim}}
+\newcommand{\simiid}{\iidsim}
+\newcommand{\simiidt}{{\:{\sim}_{\mathrm{iid}}\:}}
+%\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\cp}{\stackrel{\bb {P}}{\longrightarrow}}
+\newcommand{\cd}{\stackrel{\mathrm{d}}{\longrightarrow}}
+
+\newcommand{\T}{\top} 
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%

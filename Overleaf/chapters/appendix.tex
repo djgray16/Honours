@@ -1,0 +1,34 @@
+% \subsubsection{Proof of Existence of Nash Equlibrium}
+
+% The modern proof of the existence of a NE in any $n$-player game relies on Brouwer's fixed point theorem, although Nash also published a paper with Kakutani's fixed point theorem. To prove the existence of a NE, first note that the space of mixed strategy profiles is compact, as it is the cross product of bounded compact sets, \\
+% \begin{align*}
+%     \{ \mathbf{s}, \forall i, \sum_{j \in S_i} \alpha_j^i = 1 \}
+% \end{align*}
+% Given a mixed strategy profile $\mathbf{s}$, then the payoff to player $i$ is \\
+% \begin{align*}
+%     \pi_i(\mathbf{s}) = \sum_{k = 1}^n \sum_{s_k^j \in S_j} \alpha_k^j \pi_i(\mathbf{s_k}) \text{Need thomas check}
+% \end{align*}
+% This is the expanded sum of playing every pure strategy combination, weighted by its probability. \\
+% We can also write the payoff if player $i$ were to play pure strategy $s \in S_i$. \\
+% \begin{align*}
+%     \pi_i((s,\mathbf{s^{-i}})) = \sum_{k = 1, k \neq i}^n \sum_{s_k^j \in S_j} \alpha_k^j \pi_i((s,\mathbf{s_k^{-i}}))
+% \end{align*}
+
+% Then for every pure strategy of player $i$, $s_j^i \in s_i$, denote the function $p_i(s_j^i,\mathbf(s)) = \pi_i((s_j^i,\mathbf{s^{-i}})) - \pi_i(\mathbf(s))$. This can be seen as the advantage of moving to pure strategy $s_j^i$ from the current allocation. Then we can write a continuous function $\Phi$ to shift player $i$'s allocation to improve their utility, \\
+% \begin{align*}
+%     \Phi(\mathbf{s}) = \mathbf{s`} 
+% \end{align*}
+    
+% \begin{align*}
+%     s'_i(s_j^i) = \frac{s_i(s_j^i) + \max{(0,p_i(s_j^i,\mathbf{s^{-i}}) )} }{1 + \sum_{s_k^i \in S_i} \max{(0,p_i(s_k^i,\mathbf{s^{-i}}) )}}
+% \end{align*}
+
+% The function $\Phi$ is clearly continuous, and over the compact space Brouwer's Fixed Point Theorem ensures the existence of a stationary point $\mathbf{s^*}$. Therefore, \\
+% \begin{align*}
+%     \Phi(\mathbf{s^*}) = \mathbf{s^*}. \\
+% \end{align*}
+% For all players $i$, take the sum over their allocations, \\
+% \begin{align*}
+%      \sum_{s_j^i \in S_i} s_i^*(s_j^i) = \sum_{s_j^i \in S_i} \frac{s_i^*(s_j^i) + \max{(0,p_i(s_j^i,\mathbf{s^{*-i}}) )}}{1 + \sum_{s_k^i \in S_i} \max{(0,p_i(s_k^i,\mathbf{{s^{*-i}}) )}} } \implies p_i(s_j^i,\mathbf{s^{-i}}) = 0
+% \end{align*}
+% This is precisely the definition of a NE, and its existence is proven. \\

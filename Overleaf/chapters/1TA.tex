@@ -1,0 +1,105 @@
+\section{Tomassini Antonioni Models}
+
+\subsubsection{Introduction}
+This chapter will discuss the analysis of PGGs on networks using the model developed by Marco Tomassini and Alberto Antonioni. First, their model is replicated, and the replicated results are compared to the published results. After that, the analysis is extended to further graph types to analyse the effect of graph structure on cooperation. \\
+
+\subsection{Payoff Satisfaction Model}
+This model is described in \cite{RN49} and emulates an agent who increases their contribution when they are \emph{satisfied}. The goal is to accurately reflect results observed in human experiments. This differs strongly from evolutionary dynamics, which will be discussed in a later chapter. The payoff $\pi_i$ of an individual $i$ enrolled in $g_i$ groups each with size $|N_j|$ is \\
+\begin{align} 
+    \pi_i(c_i) = g_i(1-c_i) - g_ic_i + \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|}, \quad c_i \in C:= \{0.0, 0.25, 0.50, 0.75, 1.0\}. 
+\end{align}
+
+It is enforced that each player contributes a constant $c_i$ to each group, and is initially endowed with $g_i$ units. The first term is their endowment after contribution, the second term is their contribution and the last term represents the enhanced return earnt from all the games. \\
+
+Each agent's initial contribution is randomly chosen from the set $C$. The choice set qualitatively emulates a lab experiment, where players are given tokens and choose how many to contribute. \\
+
+The agents' update rule is simple. If they receive, from the common pools, at least as much as they contribute, they are \emph{satisfied}, and increase their contribution by 0.25 with probability 0.5, otherwise remain unchanged. In the case where they are \emph{unsatisfied}, their contribution always decreases by 0.25. Obviously an agent playing $c_i =1$ cannot increase their contribution, and similarly an agent playing $c_0$ cannot decrease their contribution. This model does not claim to simulate evolutionary dynamics, instead to replicate results observed in human trials. \\
+
+
+\subsection{Network Structure}
+Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two--dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in \ref{BA}, a growing mechanism is used to create the graph. The parameters are $N$, the population size, $k$, the targeted mean degree, and $\alpha$, a proportion ?? parameter. \\
+
+The graph is initialised with a clique of $k+1$ nodes distributed in $[0.45, 0.55]^2$. Then each new node is added randomly in $[0,1]^2$ and prescribed a number of links drawn from $U(1,2k-1)$ \textbf{NEED TO ASK THOMAS HOW TO SPECIFY THAT IT IS INTEGER}. For each link, a uniform random number is compared to the parameter $\alpha$. If the random number is greater than $\alpha$, the node is then joined to an existing node by preferential attachment as in a Barab\'{a}si--Albert model. Otherwise, the node is joined to the closest existing node that is not already linked. \\
+
+The paper \cite{RN51} compares graphs built using this model to real--world graphs, and finds it exhibits the common features for a social network. Relative to a Barab\'{a}si--Albert model, the clustering coefficient is higher due to the spatial dimension. It also preserves the right-skewed degree distribution and low path lengths. \\
+
+This network model serves as the structure for the game in \cite{RN49}, with agents stationed at nodes.
+
+\subsection{Results Comparison}
+The results obtained were compared to the results reported in the paper \cite{RN49}. The comparison is shown in \ref{TAfig2}. Evidently, increasing the enhancement factor $r$ increases cooperation. It is interesting to note that equilibrium is reached relatively quickly ($\sim$ 20 rounds). In \cite{RN49}, the authors note that even in the case of low $r$, zero cooperation is not observed. This agrees with experimentally reported results, but disagrees with classical and evolutionary game theory predictions. In fact, the minimum contribution amount 0.835 can be shown analytically as a steady state. An agent contributing 0 will be \emph{satisfied}, so increases their contribution to 0.25 with probability 0.5. If they are \emph{unsatisfied}, they reduce their contribution to 0. In fact, this is a Markov process for states 0, 0.25. The transition matrix $\mathbf{P}$, is $$\mathbf P = \begin{bmatrix} 0.5& 0.5 \\
+1& 0 \\
+\end{bmatrix}. $$ The stationary distribution solves $\pi \mathbf{P} = \pi$. For $\mathbf{P}$ defined above, $\pi = [\tfrac{2}{3}, \tfrac{1}{3}]$, which corresponds exactly to a mean degree of 0.833. 
+
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/TAfig2_real.png}
+    \caption{Figure 2 from \cite{RN49}. }
+    \label{TAfig2_real}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.25\textwidth]{images/TAfig2.png}
+    \caption{Replication of \ref{TAfig2_real}. }
+    \label{TAfig2}
+  \end{subfigure}
+  \caption{Comparison of reported results from \cite{RN49} and replicated results. They appear almost identical, indicating that the replication is successful.}
+\end{figure}
+\FloatBarrier
+
+For further confirmation, Figures 5a and b from the paper were also replicated. These correspond to modifying the underlying graph to a purely spatial ($\alpha = 0$), or preferential attachment ($\alpha = 1)$ model. 
+
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/TAfig4a_real.png}
+    \caption{Figure 5a from \cite{RN49}. $\alpha = 0$ }
+    \label{TAfig4a_real}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.35\textwidth]{images/TAfig4a.png}
+    \caption{Replication of \ref{TAfig4a_real}. }
+    \label{TAfig4a}
+  \end{subfigure}
+  \caption{Comparison of reported results from \cite{RN49} and replicated results. Once again, the replication is successful. }
+\end{figure}
+\FloatBarrier
+
+
+
+
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/TAfig4b_real.png}
+    \caption{Figure 5b from \cite{RN49}. $\alpha = 1$ }
+    \label{TAfig4b_real}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.35\textwidth]{images/TAfig4b.png}
+    \caption{Replication of \ref{TAfig4b_real}. }
+    \label{TAfig4b}
+  \end{subfigure}
+  \caption{Comparison of reported results from \cite{RN49} for $\alpha = 1$. }
+\end{figure}
+\FloatBarrier
+
+They key results from \cite{RN49} have been reproduced. Other results from their paper, where the mean degree is varied, have also been reproduced, but are not included for the sake of brevity.\\
+
+
+\subsection{Robustness}
+The robustness of results was discussed qualititatively in \cite{RN49}, and the authors demonstrated consistency in results. The image below applies the Central Limit Theorem to the cooperation level, and plots a $95\%$ confidence interval for the mean for each series. The Central Limit Theorem is applicable, as there are more than 30 samples for each series. \\
+
+The image shows that the means are stable, and the results are robust. Finally, the empirical $2.5\%, 97.5\%$ quantiles for each series are plotted. This shows the width of the distribution. The empirical quantiles were chosen in case the assumption of normality was violated. The empirical quantiles are less smooth than the parametric model. In some cases, it is quite wide, due to the randomness of the network and of the agents. 
+
+Now they will be extended further to other network models, to study the effect of network structure on cooperation levels. \\
+
+\subsection{Extension to Other Network Models}
+
+In \ref{RG}, three main network models are discussed. These are the Erd\H{o}s--R\'enyi graph, \emph{small-world} network, and also the Barab\'{a}si--Albert model. In the following analysis, $G(n,r)$ graphs are used, and denoted RRG (random regular graphs). This is to be able to control the mean degree. All three of these network models are implemented using the \verb+networkx+ Python package. For comparison, the model described by Tomassini and Antonioni in \cite{RN51} is included, and denoted Tomassini Antonioni Graph (TAG). \\
+
+
+
+

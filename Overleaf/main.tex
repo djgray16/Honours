@@ -1,0 +1,95 @@
+\documentclass[12pt,twoside]{report}
+\input{exam_definitions.tex}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+%\usepackage{fullpage}
+%\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\let\proof\relax
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\let\endproof\relax
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{dirtytalk}
+\usepackage{fancyhdr}
+\usepackage[section]{placeins}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{Games on Random Graphs}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{Chapter \thechapter}
+\fancyfoot[CO,RE]{Daniel Gray}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\parindent}{0pt}
+\usepackage[backend=biber,style=ieee,sorting=ynt, isbn=false, url = false]{biblatex} %best style is ieee, sorting = ynt
+\usepackage{changepage}
+\newenvironment{ltab}{\begin{adjustwidth}{2cm}{}}{\end{adjustwidth}}
+\addbibresource{final3.bib} 
+
+%workklow for bib is: store them in endnote, then export as .bib. Open in jabref and do unabbreviate journals, then export out as bib and import here
+
+\title{Games on Random Graphs}
+\author{Daniel Gray}
+\date{\today}
+
+\begin{document}
+
+\input{titlepage}
+
+%\input{abstract}
+
+%\chapter*{Dedication}
+%To mum and dad
+
+%\chapter*{Declaration}
+%I declare that..
+
+%\chapter*{Acknowledgements}
+%I want to thank...
+
+\tableofcontents
+
+%\listoffigures
+
+%\listoftables
+
+%\chapter{Literature Review and Background}
+%\input{chapters/0litreview}
+\chapter{Tomassini--Antonioni Models} \label{TA}
+
+\input{chapters/1TA}
+%\chapter{PGG on Graphs: An Analysis} 
+\label{ME}
+
+%\chapter{Mean-Field Theory} 
+\label{MFT}
+%\input{chapters/chapter03}
+
+%\chapter{Games as Cellular Automaton (maybe)} 
+\label{CA}
+%\input{chapters/chapter04}
+
+%\chapter{Conclusion}
+%\input{chapters/conclusion}
+
+%\appendix
+%\chapter{Appendix Title}
+%\input{chapters/appendix}
+
+\printbibliography
+
+\end{document}
