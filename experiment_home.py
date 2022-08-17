@@ -22,44 +22,49 @@ import matplotlib.pyplot as plt
 #random.seed(2)
 '''
 parameters = {
-    'steps': 400, #number of time periods
-    'agent_n': 600,
-    'phi':ap.Values(2,3,4,5,6,7,8), #multiplier for common contributions
+    'seed': 82,
+    'steps': 40, #number of time periods
+    'agent_n': 500,
+    'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4,2.6, 3.0,4.0), #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.05,
-    'gtype': 'WS',
-    'atype': ReplicatorLocal,
-    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+    'gtype': 'TAG',
+    'atype': AT,
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
 
 sample = ap.Sample(
     parameters,
-    n=4,
+    n=1,
     method='linspace'
 )
 
-
-exp = ap.Experiment(WealthModel, sample, iterations=40,
+reps = 40
+exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 results = exp.run()
 
 
 
-'''
 
 ### PLotting 
+'''
 
 
 
+CI = False #true is when assume normal distribution
 
-CI = True #whether to do parametric CI or empirical quantiles at 5% LOS
+MeansOnly = False
 
 phis = results.parameters.sample.phi
 
-colours = ['b', 'g', 'r', 'y', 'k', 'c', 'm']
+colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
+           'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
+    
+markers = ['v', '.','1','8','^','s','p','X','h','d']
 colours = colours[:len(phis)]
 
 
@@ -67,11 +72,11 @@ coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id
 
 pct_up = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).quantile(0.975)
 if CI:
-    pct_up = coops + 1/math.sqrt(40)*1.96*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
+    pct_up = coops + 1/math.sqrt(reps)*1.96*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
 pct_up = pct_up.rename('q_up')
 pct_down = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).quantile(0.025)
 if CI:
-    pct_down = coops - 1/math.sqrt(40)*1.96*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
+    pct_down = coops - 1/math.sqrt(reps)*1.96*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
 
 pct_down = pct_down.rename('q_down')
 
@@ -84,27 +89,36 @@ coops2 = coops.to_frame().join(df).join(pct_up).join(pct_down)
 phi_graph = coops2.groupby(['t', 'phi']).mean()
 
 #m_graph = coops2.groupby(['t', 'graph_m']).mean()
-plt.figure(figsize = (8,8))
+#plt.figure(figsize = (8,8))
 for i in range(len(phis)):
     y1 = phi_graph.Cooperation_Level.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     y2 = phi_graph.q_down.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     x = phis.index
     #plt.legend(phis.unique())
-    plt.plot(ts,y1, colours[i], label = f'r = {phis[i]}')
-    plt.plot(ts,y2,  colours[i] + ':', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
-    plt.plot(ts,y3,  colours[i] + ':', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
+    plt.plot(ts,y1, c=colours[i], label = f'r = {phis[i]}')
+    if not MeansOnly:
+        plt.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
+        plt.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
     
 
-plt.legend( loc='upper left')
+plt.legend( loc='upper right')
+plt.ylabel('Mean Cooperation')
+plt.xlabel('Round')
+plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
+
+plt.title(f"Sensitivity Analysis; N: {parameters['agent_n']} "\
+          f"k: {parameters['graph_m']},Repetitions: {reps}, alpha: {parameters['graph_alpha']} ")
+    
+'''   
 plt.title(f' {parameters["agent_n"]} agents,' \
 f'graph: {parameters["gtype"]}, agents: {parameters["atype"]}, graph_alpha: ' \
     f'{parameters["graph_alpha"]}, m: {parameters["graph_m"]}: replicator_alpha:'\
         f' {parameters["replicator_alpha"]}, CI: {CI}'
           )
     
-    
+'''    
 
             

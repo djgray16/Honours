@@ -205,7 +205,7 @@ class AT(BaseAgent):
     def contribute_choice(self):
 
 
-        if self.pi>2*self.games*self.contribute:
+        if self.pi>=2*self.games*self.contribute:
             
             #happy to increase or stay the same
             if random.random()>0.5:
