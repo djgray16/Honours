@@ -23,14 +23,14 @@ import matplotlib.pyplot as plt
 #random.seed(2)
 
 parameters = {
-    'seed':43,
-    'steps': 60, #number of time periods
+    'seed':42,
+    'steps': 40, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.9,1.95,2.0,2.05), #multiplier for common contributions
+    'phi':ap.Values(1.6,1.7,1.8,1.9), #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
-    'graph_p':ap.Values(0,0.05,0.1,0.15,0.2),
-    'gtype': ap.Values('WS'),
+    'graph_p':0.1,
+    'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': AT,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
@@ -48,6 +48,9 @@ exp = ap.Experiment(WealthModel, sample, iterations=80,
                     record = True)
 results = exp.run()
 
+save = True #save the figure
+
+filename = 'graphs1'
 
 phis = results.parameters.sample.phi
 coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).mean()
@@ -57,7 +60,7 @@ ts = ts.get_level_values(0).unique()
 df = results.parameters.sample
 coops2 = coops.to_frame().join(df)
 
-phi_graph = coops2.groupby(['t', 'phi', 'graph_p']).mean() #change here
+phi_graph = coops2.groupby(['t', 'phi', 'gtype']).mean() #change here
 '''
 #m_graph = coops2.groupby(['t', 'graph_m']).mean()
 
@@ -77,10 +80,10 @@ graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters[
 
 
 phi_graph = phi_graph.reset_index()
-graphs = results.parameters.sample.graph_p
+graphs = results.parameters.sample.gtype
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f' N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]} ')
+fig.suptitle(f'Comparing Graph Models; N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]} ')
 
 axesx = [0,0,0,1,1,1]
 axesy = [0,1,2,0,1,2]
@@ -91,9 +94,9 @@ for i in range(len(phis.unique())):
     #i=1.8
     testing =phi_graph[phi_graph.phi ==phis.unique()[i]]
     for j in graphs.unique():
-        tt = testing.groupby(['t','graph_p']).mean()
-        ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('graph_p')==j]
-        axs[axesx[i], axesy[i]].set_title(f' phi: {phis.unique()[i]}')
+        tt = testing.groupby(['t','gtype']).mean()
+        ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('gtype')==j]
+        axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
         
         axs[axesx[i], axesy[i]].plot(ts,ys, label = j)
         #axs[axesx[i], axesy[i]].legend()
@@ -107,11 +110,13 @@ for ax in axs.flat:
     ax.set(xlabel = 'Steps')
     ax.set(ylabel = 'Cooperation')
     ax.label_outer()
+    ax.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
     
-fig.set_size_inches(6,4)
+fig.set_size_inches(7,5)
 
 
-
+if save: 
+    plt.savefig(f'Overleaf/images/{filename}.png')
 
         
         

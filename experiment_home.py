@@ -20,9 +20,9 @@ import math
 
 import matplotlib.pyplot as plt
 #random.seed(2)
-'''
+
 parameters = {
-    'seed': 82,
+    'seed': 42,
     'steps': 40, #number of time periods
     'agent_n': 500,
     'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4,2.6, 3.0,4.0), #multiplier for common contributions
@@ -51,17 +51,17 @@ results = exp.run()
 
 
 ### PLotting 
-'''
 
 
 
-CI = False #true is when assume normal distribution
+
+CI = True #true is when assume normal distribution
 
 MeansOnly = False
 
 save = True #save the figure
 
-filename = 'sensitivity2'
+filename = 'sensitivity1'
 
 phis = results.parameters.sample.phi
 
