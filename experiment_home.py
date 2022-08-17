@@ -59,6 +59,10 @@ CI = False #true is when assume normal distribution
 
 MeansOnly = False
 
+save = True #save the figure
+
+filename = 'sensitivity2'
+
 phis = results.parameters.sample.phi
 
 colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
@@ -119,6 +123,10 @@ f'graph: {parameters["gtype"]}, agents: {parameters["atype"]}, graph_alpha: ' \
         f' {parameters["replicator_alpha"]}, CI: {CI}'
           )
     
-'''    
+'''   
+
+
+if save: 
+    plt.savefig(f'Overleaf/images/{filename}.png')
 
             
