@@ -26,7 +26,7 @@ parameters = {
     'seed':42,
     'steps': 40, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.6,1.7,1.8,1.9), #multiplier for common contributions
+    'phi':ap.Values(1.6,1.7,1.8,1.9), #ap.Values(2.0,2.1,2.2,2.3), #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.1,
@@ -39,18 +39,18 @@ parameters = {
 
 sample = ap.Sample(
     parameters,
-    n=4,
+    n=1,
     method='linspace'
 )
 
-
-exp = ap.Experiment(WealthModel, sample, iterations=80,
+reps = 80
+exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 results = exp.run()
 
 save = True #save the figure
 
-filename = 'graphs1'
+filename = 'graphs11'
 
 phis = results.parameters.sample.phi
 coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).mean()
@@ -83,7 +83,7 @@ phi_graph = phi_graph.reset_index()
 graphs = results.parameters.sample.gtype
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Graph Models; N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]} ')
+fig.suptitle(f'Comparing Graph Models; N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps} ')
 
 axesx = [0,0,0,1,1,1]
 axesy = [0,1,2,0,1,2]
@@ -110,9 +110,9 @@ for ax in axs.flat:
     ax.set(xlabel = 'Steps')
     ax.set(ylabel = 'Cooperation')
     ax.label_outer()
-    ax.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
+    ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
     
-fig.set_size_inches(7,5)
+#fig.set_size_inches(7,5)
 
 
 if save: 
