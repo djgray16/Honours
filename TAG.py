@@ -81,7 +81,7 @@ def adequate_coop(x):
     return  tprop 
 
 
-def plot_G(G, title 'Unnamed',ln = False):
+def plot_G(G, title ='Unnamed',ln = False):
 
 
     
