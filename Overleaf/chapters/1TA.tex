@@ -111,8 +111,13 @@ Small--world networks actually describe a family of graphs, depending on the par
 
 Similarly, TAG is a family of graphs. In the plots below, the proportion parameter $\alpha$ is set to 0.3, as recommended by \cite{RN49}. Firstly, a sample of 100 graphs for each model were taken, and their descriptive statistics were computed. \\
 
+
 \FloatBarrier
-\begin{table}[]
+
+    
+
+\begin{table}[!h]
+\begin{center}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
 Graph Type & Mean Degree & $l$ & $C_\Delta$ & Degree Variance \\ \hline
@@ -122,19 +127,22 @@ TAG        & 5.99        & 3.84                         & 0.22                  
 WS         & 6           & 5.39                         & 0.44                   & 0.57            \\ \hline
 \end{tabular}
 \caption{Computed characteristics for BA, RRG, TAG, and WS models. The characteristics were computed over 100 samples of each graph, and then averaged. } \label{graph_stats}
-\end{table} 
+\end{center}
+\end{table}
+
 \FloatBarrier
+
 One of the goals of the TAG was to preserve a higher clustering coefficient than BA graphs, while remaining approximately scale--free. Table \ref{graph_stats} emphasises this effect. From these descriptive statistics, it appears that BA and RRG can be considered similar except for their degree variance. It is important to note that they have vastly different degree distributions, because the BA model is scale-free and the RRG has a constant degree distribution, which influences the computed variance. \\
 
 \FloatBarrier
-\graphCap{graphs11.png}{0.8}{Comparing Graphs}{graphs11}
+\graphCap{graphs1.png}{0.8}{Comparing Models, $1.85 \leq r \leq 2.0$. For $r<1.85$, minimal cooperation is observed. It is observed that first RRG, then BA, then TAG, then WS achieve non--trivial cooperation. This corresponds to the order of increasing $C_\Delta$. }{graphs11}
 \FloatBarrier
 
-The BA graph induces cooperation for a lower enhancement factor $r$. The WS graph generally has the lowest cooperation. Interestingly, for $\alpha = 0.3$, 30\% of the TAG graph are nodes added in BA style. Yet the TAG graph follows the trend of the WS model more than the BA model.
+It appears that $C_\Delta$ dictates the value for $r$ for which non--trivial cooperation is observed. Interestingly, for $\alpha = 0.3$, 30\% of the TAG graph are nodes added in BA style. Yet the TAG graph follows the trend of the WS model more than the BA model.
 \FloatBarrier
-\graphCap{graphs1.png}{0.8}{Comparing Graph models, $2\leq r \leq 2.3$. For $r=2.4$, only the BA model did not achieve full cooperation, and for $r\geq 2.5$, all models achieved full cooperation, so they are not included in the report. }{graphs1}
+\graphCap{graphs2.png}{0.8}{Comparing Graph models, $2.25\leq r \leq 2.4$. For $2.0<r<2.25$, the cooperation levels were very similar around 0.5.  It is an almost perfect trend reversal, as WS is the first graph to achieve full cooperation, then TAG, then BA and finally RRG. For $r>2.4$, full cooperation was always achieved. \\ }{graphs1}
 \FloatBarrier
-For higher ranges of $r$, it is more interesting. The WS and TAG trends achieve full cooperation earlier. This seems to indicate that the agents are more uniform under this graph structure. For the WS and TAG graphs, the degree distributions are also \emph{flatter}. 
+For higher ranges of $r$, it is more interesting. The WS and TAG trends achieve full cooperation earlier. This seems to indicate that the agents are more uniform under this graph structure. Both the WS and RRG model have very low degree variance, yet behave quite differently. It appears that the degree distribution does not impact the cooperation level for Tomassini Antonioni style agents. \\
 
 \subsection{Summary}
 
