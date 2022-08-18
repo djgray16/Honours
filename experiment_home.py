@@ -42,7 +42,7 @@ sample = ap.Sample(
     method='linspace'
 )
 
-reps = 120
+reps = 40
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 results = exp.run()
@@ -55,9 +55,9 @@ results = exp.run()
 
 
 
-CI = True #true is when assume normal distribution, false is empirical quantiles
+CI = False #true is when assume normal distribution, false is empirical quantiles
 
-MeansOnly = False
+MeansOnly = True
 
 save = False #save the figure
 
@@ -113,7 +113,7 @@ plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
 
-plt.title(f"Sensitivity Analysis; N: {parameters['agent_n']} "\
+plt.title(f"TITLE HERE; N: {parameters['agent_n']} "\
           f"k: {parameters['graph_m']},Repetitions: {reps}, alpha: {parameters['graph_alpha']} ")
     
 '''   
