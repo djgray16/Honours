@@ -26,7 +26,7 @@ parameters = {
     'seed':42,
     'steps': 40, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.6,1.7,1.8,1.9), #ap.Values(2.0,2.1,2.2,2.3), #multiplier for common contributions
+    'phi':ap.Values(2.25,2.30,2.35,2.40), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.1,
@@ -48,9 +48,9 @@ exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 results = exp.run()
 
-save = True #save the figure
+save = False #save the figure
 
-filename = 'graphs11'
+filename = 'graphs1'
 
 phis = results.parameters.sample.phi
 coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).mean()

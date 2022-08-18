@@ -42,7 +42,7 @@ sample = ap.Sample(
     method='linspace'
 )
 
-reps = 40
+reps = 120
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 results = exp.run()
@@ -55,13 +55,13 @@ results = exp.run()
 
 
 
-CI = True #true is when assume normal distribution
+CI = True #true is when assume normal distribution, false is empirical quantiles
 
 MeansOnly = False
 
-save = True #save the figure
+save = False #save the figure
 
-filename = 'sensitivity1'
+filename = 'sensitivity2'
 
 phis = results.parameters.sample.phi
 

@@ -45,7 +45,7 @@ class WealthModel(ap.Model):
         elif self.gtype == 'BA':
             
             ## we have a BA graph
-            graph=nx.generators.random_graphs.barabasi_albert_graph(n, m,
+            graph=nx.generators.random_graphs.barabasi_albert_graph(n, int(m/2),
                                                                     seed=None, 
                                                                    initial_graph=None)
         

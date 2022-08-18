@@ -81,16 +81,16 @@ def adequate_coop(x):
     return  tprop 
 
 
-def plot_G(G, ln = False):
+def plot_G(G, title 'Unnamed',ln = False):
 
 
     
     degree_sequence = sorted((d for n, d in G.degree()), reverse=True)
     dmax = max(degree_sequence)
     
-    fig = plt.figure("Degree of a random graph", figsize=(8, 8))
+    fig = plt.figure("Degree of a random graph", figsize=(8,8))
     # Create a gridspec for adding subplots of different sizes
-    axgrid = fig.add_gridspec(5, 4)
+    axgrid = fig.add_gridspec(5,4)
     
 
     
@@ -101,7 +101,7 @@ def plot_G(G, ln = False):
         degree_sequence = np.log(degree_sequence)
         
     ax1.plot(degree_sequence, "b-", marker="o")
-    ax1.set_title("Degree Rank Plot")
+    ax1.set_title("Degree Rank Plot of" + title + ' Graph')
     ax1.set_ylabel("Degree")
     ax1.set_xlabel("Rank")
     
@@ -112,6 +112,7 @@ def plot_G(G, ln = False):
     ax2.set_ylabel("# of Nodes")
     
     fig.tight_layout()
+    #fig.suptitle(title + str(ln))
     plt.show()
     
     
