@@ -1,7 +1,7 @@
 \section{Tomassini Antonioni Models}
 
 \subsubsection{Introduction}
-This chapter will discuss the analysis of PGGs on networks using the model developed by Marco Tomassini and Alberto Antonioni. First, their model is replicated, and the replicated results are compared to the published results. After that, the analysis is extended to further graph types to analyse the effect of graph structure on cooperation. \\
+This chapter will discuss the analysis of PGGs on networks using the model developed by Marco Tomassini and Alberto Antonioni in \cite{RN49}. First, their model is replicated, and the replicated results are compared to the published results. After that, the analysis is extended to further graph types to analyse the effect of graph structure on cooperation. \\
 
 \subsection{Payoff Satisfaction Model}
 This model is described in \cite{RN49} and emulates an agent who increases their contribution when they are \emph{satisfied}. The goal is to accurately reflect results observed in human experiments. This differs strongly from evolutionary dynamics, which will be discussed in a later chapter. The payoff $\pi_i$ of an individual $i$ enrolled in $g_i$ groups each with size $|N_j|$ is \\
@@ -9,7 +9,7 @@ This model is described in \cite{RN49} and emulates an agent who increases their
     \pi_i(c_i) = g_i(1-c_i) - g_ic_i + \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|}, \quad c_i \in C:= \{0.0, 0.25, 0.50, 0.75, 1.0\}. 
 \end{align}
 
-It is enforced that each player contributes a constant $c_i$ to each group, and is initially endowed with $g_i$ units. The first term is their endowment after contribution, the second term is their contribution and the last term represents the enhanced return earnt from all the games. \\
+It is enforced that each player contributes a constant $c_i$ to each group, and is initially endowed with $g_i$ units. The first term is their endowment after contribution, the second term is their contribution and the last term represents the enhanced return earned from all the games. \\
 
 Each agent's initial contribution is randomly chosen from the set $C$. The choice set qualitatively emulates a lab experiment, where players are given tokens and choose how many to contribute. \\
 
@@ -19,7 +19,7 @@ The agents' update rule is simple. If they receive, from the common pools, at le
 \subsection{Network Structure}
 Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two--dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in \ref{BA}, a growing mechanism is used to create the graph. The parameters are $N$, the population size, $k$, the targeted mean degree, and $\alpha$, a proportion HELP parameter. \\
 
-The graph is initialised with a clique of $k+1$ nodes distributed in $[0.45, 0.55]^2$. Then each new node is added randomly in $[0,1]^2$ and prescribed a number of links drawn from $U(1,2k-1)$ \textbf{NEED TO ASK THOMAS HOW TO SPECIFY THAT IT IS INTEGER}. For each link, a uniform random number is compared to the parameter $\alpha$. If the random number is less than $\alpha$, the node is then joined to an existing node by preferential attachment as in a Barab\'{a}si--Albert model. Otherwise, the node is joined to the closest existing node that is not already linked. \\
+The graph is initialised with a clique of $k+1$ nodes distributed in $[0.45, 0.55]^2$. Then each new node is added randomly in $[0,1]^2$ and prescribed a number of links drawn from $\mathsf{DU}(1,2k-1)$. For each link, a uniform random number is compared to the parameter $\alpha$. If the random number is less than $\alpha$, the node is then joined to an existing node by preferential attachment as in a Barab\'{a}si--Albert model. Otherwise, the node is joined to the closest existing node that is not already linked. \\
 
 The paper \cite{RN51} compares graphs built using this model to real--world graphs, and finds it exhibits the common features for a social network. Relative to a Barab\'{a}si--Albert model, the clustering coefficient is higher due to the spatial dimension. It also preserves the right-skewed degree distribution and low path lengths. \\
 
@@ -30,7 +30,7 @@ The results obtained were compared to the results reported in the paper \cite{RN
 1& 0 \\
 \end{bmatrix}. $$ The stationary distribution solves $\pi \mathbf{P} = \pi$. For $\mathbf{P}$ defined above, $\pi = [\tfrac{2}{3}, \tfrac{1}{3}]$, which corresponds exactly to a mean degree of 0.833. 
 
-\FloatBarrier
+\FloatBarrier 
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/TAfig2_real.png}
@@ -43,14 +43,14 @@ The results obtained were compared to the results reported in the paper \cite{RN
     \caption{Replication of \ref{TAfig2_real}. }
     \label{TAfig2}
   \end{subfigure}
-  \caption{Comparison of reported results from \cite{RN49} and replicated results. They appear almost identical, indicating that the replication is successful.}
-\end{figure}
+  \caption{Comparison of reported results from \cite{RN49} and replicated results. They appear almost identical, indicating that the replication is successful.} \label{comp0}
+\end{figure} 
 \FloatBarrier
 
 For further confirmation, Figures 5a and b from the paper were also replicated. These correspond to modifying the underlying graph to a purely spatial ($\alpha = 0$), or preferential attachment ($\alpha = 1)$ model. 
 
 \FloatBarrier
-\begin{figure}[!h]
+\begin{figure}[!h] 
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/TAfig4a_real.png}
     \caption{Figure 5a from \cite{RN49}. $\alpha = 0$ }
@@ -62,15 +62,15 @@ For further confirmation, Figures 5a and b from the paper were also replicated. 
     \caption{Replication of \ref{TAfig4a_real}. }
     \label{TAfig4a}
   \end{subfigure}
-  \caption{Comparison of reported results from \cite{RN49} and replicated results. Once again, the replication is successful. }
-\end{figure}
+  \caption{Comparison of reported results from \cite{RN49} and replicated results. Once again, the replication is successful. } \label{comp1}
+\end{figure} 
 \FloatBarrier
 
 
 
 
 \FloatBarrier
-\begin{figure}[!h]
+\begin{figure}[!h] 
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/TAfig4b_real.png}
     \caption{Figure 5b from \cite{RN49}. $\alpha = 1$ }
@@ -82,8 +82,8 @@ For further confirmation, Figures 5a and b from the paper were also replicated. 
     \caption{Replication of \ref{TAfig4b_real}. }
     \label{TAfig4b}
   \end{subfigure}
-  \caption{Comparison of reported results from \cite{RN49} for $\alpha = 1$. }
-\end{figure}
+  \caption{Comparison of reported results from \cite{RN49} for $\alpha = 1$. } \label{comp2}
+\end{figure} 
 \FloatBarrier
 
 They key results from \cite{RN49} have been reproduced. Other results from their paper, where the mean degree is varied, have also been reproduced, but are not included for the sake of brevity.\\
@@ -109,15 +109,36 @@ In \ref{RG}, three main network models are discussed. These are the Erd\H{o}s--R
 
 Small--world networks actually describe a family of graphs, depending on the parameter $p$. For this analysis, $p$ was set to 0.1, which preserves local clustering and reduces the average shortest path length. Importantly, only connected WS graphs are used. If the graph generated is not connected, then a new one with the same parameter is generated until they are connected. This is convention to allow strategies to propagate throughout the graph. \\
 
-Similarly, TAG is a family of graphs. In the plots below, the proportion parameter $\alpha$ is set to 0.3, as recommended by \cite{RN49}. 
+Similarly, TAG is a family of graphs. In the plots below, the proportion parameter $\alpha$ is set to 0.3, as recommended by \cite{RN49}. Firstly, a sample of 100 graphs for each model were taken, and their descriptive statistics were computed. \\
+
+\FloatBarrier
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Graph Type & Mean Degree & $l$ & $C_\Delta$ & Degree Variance \\ \hline
+BA         & 5.96        & 3.24                         & 0.05                   & 40.80           \\ \hline
+RRG        & 6           & 3.75                         & 0.01                   & 0               \\ \hline
+TAG        & 5.99        & 3.84                         & 0.22                   & 16.95           \\ \hline
+WS         & 6           & 5.39                         & 0.44                   & 0.57            \\ \hline
+\end{tabular}
+\caption{Computed characteristics for BA, RRG, TAG, and WS models. The characteristics were computed over 100 samples of each graph, and then averaged. } \label{graph_stats}
+\end{table} 
+\FloatBarrier
+One of the goals of the TAG was to preserve a higher clustering coefficient than BA graphs, while remaining approximately scale--free. Table \ref{graph_stats} emphasises this effect. From these descriptive statistics, it appears that BA and RRG can be considered similar except for their degree variance. It is important to note that they have vastly different degree distributions, because the BA model is scale-free and the RRG has a constant degree distribution, which influences the computed variance. \\
+
 \FloatBarrier
 \graphCap{graphs11.png}{0.8}{Comparing Graphs}{graphs11}
 \FloatBarrier
 
-The BA graph induces cooperation for a lower enhancement factor $r$. The WS graph generally has the lowest cooperation. Interestingly, the TAG graph should be similar to the BA graph, because, for $\alpha = 0.3$, $30\%$ of the nodes are added in BA style. This is not observed in the results for this range of $r$. \\
+The BA graph induces cooperation for a lower enhancement factor $r$. The WS graph generally has the lowest cooperation. Interestingly, for $\alpha = 0.3$, 30\% of the TAG graph are nodes added in BA style. Yet the TAG graph follows the trend of the WS model more than the BA model.
 \FloatBarrier
-\graphCap{graphs1.png}{0.8}{Testing}{graphs1}
+\graphCap{graphs1.png}{0.8}{Comparing Graph models, $2\leq r \leq 2.3$. For $r=2.4$, only the BA model did not achieve full cooperation, and for $r\geq 2.5$, all models achieved full cooperation, so they are not included in the report. }{graphs1}
 \FloatBarrier
+For higher ranges of $r$, it is more interesting. The WS and TAG trends achieve full cooperation earlier. This seems to indicate that the agents are more uniform under this graph structure. For the WS and TAG graphs, the degree distributions are also \emph{flatter}. 
+
+\subsection{Summary}
+
+This chapter focussed exclusively on agents defined by Tomassini and Antonioni in \cite{RN49}. Tomassini and Antonioni demonstrated that these agents are a good proxy for human interactions, and simulated the Public Goods Game on a custom network model. These results were perfectly replicated, and both plots are shown in Figures \ref{comp0}, \ref{comp1}, \ref{comp2}. The robustness of these results were also examined. It is shown that 40 repititions were sufficient to estimate the mean of each series, however the empirical quantile plots showed that there is quite high variance in distribution for the series corresponding to $r=2.2$.  
 
 
 
