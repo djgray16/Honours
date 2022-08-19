@@ -17,7 +17,7 @@ The agents' update rule is simple. If they receive, from the common pools, at le
 
 
 \subsection{Network Structure}
-Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two--dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in \ref{BA}, a growing mechanism is used to create the graph. The parameters are $N$, the population size, $k$, the targeted mean degree, and $\alpha$, a proportion HELP parameter. \\
+Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two--dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in \ref{BA}, a growing mechanism is used to create the graph. The parameters are $N$, the population size, $k$, the targeted mean degree, and $\alpha$, a mixing parameter. \\
 
 The graph is initialised with a clique of $k+1$ nodes distributed in $[0.45, 0.55]^2$. Then each new node is added randomly in $[0,1]^2$ and prescribed a number of links drawn from $\mathsf{DU}(1,2k-1)$. For each link, a uniform random number is compared to the parameter $\alpha$. If the random number is less than $\alpha$, the node is then joined to an existing node by preferential attachment as in a Barab\'{a}si--Albert model. Otherwise, the node is joined to the closest existing node that is not already linked. \\
 
@@ -26,9 +26,9 @@ The paper \cite{RN51} compares graphs built using this model to real--world grap
 This network model serves as the structure for the game in \cite{RN49}, with agents stationed at nodes.
 
 \subsection{Results Comparison}
-The results obtained were compared to the results reported in the paper \cite{RN49}. The comparison is shown in \ref{TAfig2}. Evidently, increasing the enhancement factor $r$ increases cooperation. It is interesting to note that equilibrium is reached relatively quickly ($\sim$ 20 rounds). In \cite{RN49}, the authors note that even in the case of low $r$, zero cooperation is not observed. This agrees with experimentally reported results, but disagrees with classical and evolutionary game theory predictions. In fact, the minimum contribution amount 0.835 can be shown analytically as a steady state. An agent contributing 0 will be \emph{satisfied}, so increases their contribution to 0.25 with probability 0.5. If they are \emph{unsatisfied}, they reduce their contribution to 0. In fact, this is a Markov process for states 0, 0.25. The transition matrix $\mathbf{P}$, is $$\mathbf P = \begin{bmatrix} 0.5& 0.5 \\
+The results obtained were compared to the results reported in the paper \cite{RN49}. The comparison is shown in \ref{TAfig2}. Evidently, increasing the enhancement factor $r$ increases cooperation. It is interesting to note that equilibrium is reached relatively quickly ($\sim$ 20 rounds). In \cite{RN49}, the authors note that even in the case of low $r$, zero cooperation is not observed. This agrees with experimentally reported results, but disagrees with classical and evolutionary game theory predictions. In fact, the minimum contribution amount 0.0835 can be shown analytically as a steady state. An agent contributing 0 will be \emph{satisfied}, so increases their contribution to 0.25 with probability 0.5. If they are \emph{unsatisfied}, they reduce their contribution to 0. In fact, this is a Markov process for states 0, 0.25. The transition matrix $\mathbf{P}$, is $$\mathbf P = \begin{bmatrix} 0.5& 0.5 \\
 1& 0 \\
-\end{bmatrix}. $$ The stationary distribution solves $\pi \mathbf{P} = \pi$. For $\mathbf{P}$ defined above, $\pi = [\tfrac{2}{3}, \tfrac{1}{3}]$, which corresponds exactly to a mean degree of 0.833. 
+\end{bmatrix}. $$ The stationary distribution solves $\pi \mathbf{P} = \pi$. For $\mathbf{P}$ defined above, $\pi = [\tfrac{2}{3}, \tfrac{1}{3}]$, which corresponds exactly to a mean degree of 0.0833. 
 
 \FloatBarrier 
 \begin{figure}[!h]
