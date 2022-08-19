@@ -22,11 +22,20 @@ from Models import *
 import matplotlib.pyplot as plt
 #random.seed(2)
 
+
+#### control box
+save = 1 #save the figure
+run = 0
+
+filename = 'graphs2'
+
+
+
 parameters = {
     'seed':42,
-    'steps': 40, #number of time periods
+    'steps': 60, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(2.25,2.30,2.35,2.40), # #multiplier for common contributions
+    'phi':ap.Values(2.25,2.3,2.35,2.4), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.1,
@@ -46,11 +55,17 @@ sample = ap.Sample(
 reps = 80
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
-results = exp.run()
 
-save = False #save the figure
+if run:
+    results = exp.run()
 
-filename = 'graphs1'
+colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
+           'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
+    
+markers = ['2', '3','1','8','^','s','p','X','h','d']
+markers =['o', '*', 'x', 'p', 's', 'd', 'p', 'h']
+colours = colours[:len(phis)]
+
 
 phis = results.parameters.sample.phi
 coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).mean()
@@ -83,7 +98,7 @@ phi_graph = phi_graph.reset_index()
 graphs = results.parameters.sample.gtype
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Graph Models; N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps} ')
+fig.suptitle(f'Comparing Graph Models ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
 
 axesx = [0,0,0,1,1,1]
 axesy = [0,1,2,0,1,2]
@@ -98,12 +113,12 @@ for i in range(len(phis.unique())):
         ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('gtype')==j]
         axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
         
-        axs[axesx[i], axesy[i]].plot(ts,ys, label = j)
+        axs[axesx[i], axesy[i]].plot(ts,ys,marker ='',ms = 5,linewidth = 1.75, label = j)
         #axs[axesx[i], axesy[i]].legend()
         
         
 handles, labels = axs[-1][-1].get_legend_handles_labels()
-fig.legend(handles, labels, loc='lower left')
+#fig.legend(handles, labels, loc='lower left')
 
 
 for ax in axs.flat:

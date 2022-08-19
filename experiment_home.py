@@ -21,17 +21,28 @@ import math
 import matplotlib.pyplot as plt
 #random.seed(2)
 
+## Control board
+
+run = 1
+CI = False #true is when assume normal distribution, false is empirical quantiles
+
+MeansOnly = True
+
+save = 0 #save the figure
+
+filename = 'TAfig4b'
+
 parameters = {
     'seed': 42,
     'steps': 40, #number of time periods
     'agent_n': 500,
     'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4,2.6, 3.0,4.0), #multiplier for common contributions
     'graph_m' : 6,
-    'graph_alpha': 0.3,
+    'graph_alpha': 1.0,
     'graph_p':0.05,
     'gtype': 'TAG',
     'atype': AT,
-    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
+    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
@@ -45,7 +56,10 @@ sample = ap.Sample(
 reps = 40
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
-results = exp.run()
+
+if run:
+
+    results = exp.run()
 
 
 
@@ -55,20 +69,15 @@ results = exp.run()
 
 
 
-CI = False #true is when assume normal distribution, false is empirical quantiles
 
-MeansOnly = True
-
-save = False #save the figure
-
-filename = 'sensitivity2'
 
 phis = results.parameters.sample.phi
 
 colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
            'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
     
-markers = ['v', '.','1','8','^','s','p','X','h','d']
+markers = ['2', '3','1','8','^','s','p','X','h','d']
+markers =['o', '*', 'x', 'p', 's', 'd', 'p', 'h']
 colours = colours[:len(phis)]
 
 
@@ -100,28 +109,28 @@ for i in range(len(phis)):
     y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     x = phis.index
     #plt.legend(phis.unique())
-    plt.plot(ts,y1, c=colours[i], label = f'r = {phis[i]}')
+    plt.plot(ts,y1, c=colours[i],marker = markers[i],ms = 4,linewidth = 0.6, label = f'r = {phis[i]}') #
     if not MeansOnly:
         plt.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
         plt.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
     
 
-plt.legend( loc='upper right')
+#plt.legend( loc='upper right')
 plt.ylabel('Mean Cooperation')
 plt.xlabel('Round')
 plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
 
-plt.title(f"TITLE HERE; N: {parameters['agent_n']} "\
-          f"k: {parameters['graph_m']},Repetitions: {reps}, alpha: {parameters['graph_alpha']} ")
+plt.title(f"Replication of Figure 4b") #"; N: {parameters['agent_n']} "\
+          #f"k: {parameters['graph_m']}, T: {reps}, alpha: {parameters['graph_alpha']} ")
     
 '''   
 plt.title(f' {parameters["agent_n"]} agents,' \
 f'graph: {parameters["gtype"]}, agents: {parameters["atype"]}, graph_alpha: ' \
     f'{parameters["graph_alpha"]}, m: {parameters["graph_m"]}: replicator_alpha:'\
         f' {parameters["replicator_alpha"]}, CI: {CI}'
-          )
+          )No 
     
 '''   
 
