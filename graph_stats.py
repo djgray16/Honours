@@ -15,7 +15,7 @@ graphs_dict = {}
 results = {}
 graph_choices = ['BA', 'TAG'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
 
-N = 500
+N = int(500)
 
 m = 6
 WS_p = 0.1
@@ -24,7 +24,7 @@ TAG_alpha = 0.3
 
 ln = 0
 
-run = 0
+run = 1
 
 
 
