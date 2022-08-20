@@ -23,10 +23,10 @@ import matplotlib.pyplot as plt
 
 ## Control board
 
-run = 1
+run = 0
 CI = False #true is when assume normal distribution, false is empirical quantiles
 
-MeansOnly = True
+MeansOnly = False
 
 save = 0 #save the figure
 
@@ -36,9 +36,9 @@ parameters = {
     'seed': 42,
     'steps': 40, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4,2.6, 3.0,4.0), #multiplier for common contributions
+    'phi':ap.Values(2.2,2.24,2.28,2.32,2.36,2.40), #multiplier for common contributions
     'graph_m' : 6,
-    'graph_alpha': 1.0,
+    'graph_alpha': 0.3,
     'graph_p':0.05,
     'gtype': 'TAG',
     'atype': AT,
@@ -53,7 +53,7 @@ sample = ap.Sample(
     method='linspace'
 )
 
-reps = 40
+reps = 120
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 
@@ -115,14 +115,14 @@ for i in range(len(phis)):
         plt.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
     
 
-#plt.legend( loc='upper right')
+plt.legend( loc='lower right')
 plt.ylabel('Mean Cooperation')
 plt.xlabel('Round')
 plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
 
-plt.title(f"Replication of Figure 4b") #"; N: {parameters['agent_n']} "\
+plt.title(f"Testing CI") #"; N: {parameters['agent_n']} "\
           #f"k: {parameters['graph_m']}, T: {reps}, alpha: {parameters['graph_alpha']} ")
     
 '''   

@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 
 
 #### control box
-save = 1 #save the figure
+save = 0     #save the figure
 run = 0
 
 filename = 'graphs2'
