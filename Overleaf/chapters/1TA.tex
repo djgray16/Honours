@@ -134,10 +134,13 @@ WS         & 6           & 5.39                         & 0.44                  
 
 \FloatBarrier
 
-The degree variance does not accurately describe all the facets of the degree distribution, so a histogram for each model is plotted below. For each graph model, 10 graphs were created and their degree counts summed to create the histograms. \\
-
-
-One of the goals of the TAG was to preserve a higher clustering coefficient than BA graphs, while remaining approximately scale--free. Table \ref{graph_stats} emphasises this effect. From these descriptive statistics, it appears that BA and RRG can be considered similar except for their degree variance. It is important to note that they have vastly different degree distributions, because the BA model is scale-free and the RRG has a constant degree distribution, which influences the computed variance. The mean cooperation level for each graph was plotted. Because this is novel analysis, the number of trials $T$ was set to 80, and each trial observes 60 steps. \\
+The degree variance does not accurately describe all the facets of the degree distribution, so a histogram for each model is plotted below. For each graph model, 10 graphs were created according to the previously described parameters and their degree counts summed to create the histograms. \\
+\FloatBarrier
+\graphCap{hist1.png}{0.7}{Degree Histogram for WS and RRG models. The RRG model enforces a degree of 6 for every node. The WS model starts from a lattice, then rewires each link with probability $p$.}{hist1}
+\FloatBarrier
+\graphCap{hist2.png}{0.7}{Degree Histogram for BA and TAG models, on a logarithmic scale. The logarithmic scale clearly shows the counts for higher degrees. Because the TAG model uses preferential attachment only $\alpha = 0.3$ proportion of the time, it is not a true scale--free distribution. }{hist2}
+\FloatBarrier
+One of the goals of the TAG was to preserve a higher clustering coefficient than BA graphs, while remaining approximately scale--free. Table \ref{graph_stats} emphasises this effect. From these descriptive statistics, it appears that BA and RRG can be considered similar except for their degree distributions. The mean cooperation level for each graph was plotted. Because this is novel analysis, the number of trials $T$ was set to 80, and each trial observes 60 steps. \\
 
 \FloatBarrier
 \graphCap{graphs1.png}{0.8}{Comparing Models, $1.85 \leq r \leq 2.0$. In each graph, the blue, orange, green, red lines correspond to the WS model, TAG model, BA model, and RRG model respectively. For $r<1.85$, minimal cooperation is observed, so these plots are not shown. It is observed that first RRG, then BA, then TAG, then WS achieve non--trivial cooperation. This corresponds to the order of increasing $C_\Delta$. }{graphs11}
