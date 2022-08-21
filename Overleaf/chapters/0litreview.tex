@@ -346,7 +346,7 @@ An esoteric population update rule is a conformity chasing agent, modelled in \c
 \end{align*}
 
 \subsubsection{Example: Imitation Dynamics} \label{Lottery}
-To iterate the importance of the specified update dynamics, Nau and Roos \cite{RN30} developed the following example of a 2-stage lottery game. Each play consists of two lotteries, where agents can choose to play $S$, the safe lottery with guaranteed reward $4$, or $R$, the risky lottery with $50\%$ chance of $0$, and $50\%$ chance of $8$. Importantly, they are allowed to condition their second lottery on the result of the first. This leads to 6 pure strategies. 
+To iterate the importance of the specified update dynamics, Nau and Roos \cite{RN30} developed the following example of a 2-stage lottery game. Each play consists of two lotteries, where agents can choose to play $S$, the safe lottery with guaranteed reward $4$, or $R$, the risky lottery with $1-p$ chance of $0$, and $p$ chance of $8$. Importantly, they are allowed to condition their second lottery on the result of the first. This leads to 6 pure strategies, so $C = \{\textrm{SS, RR, SR, RS, R--WR, R--WS} \}$. 
 \begin{itemize}
     \item SS: safe both times. 
     \item RR: risky both times. 
@@ -355,7 +355,7 @@ To iterate the importance of the specified update dynamics, Nau and Roos \cite{R
     \item R--WR: risky in the first round, and if it is a win then risky again, otherwise safe.
     \item R--WS: risky in the first round, and if it is a win then safe, otherwise risky.
 \end{itemize}
-Obviously these strategies all have the same expected value. Under replicator dynamics, the expected growth rate $\pi_i - \pi_j = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation of the best, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
+Obviously these strategies all have the same expected value for $p=0.5$. Under replicator dynamics, the expected growth rate $\pi_i - \pi_j = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation of the best, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
 \begin{align*}
     \mathbb P(\textrm{R--WS}> \textrm{SS}) &= \mathbb P(W_1) = 0.5, \\
     \mathbb P(\textrm{SS}>\textrm{R--WS}) &= \mathbb P(L_1 \cap L_2) = 0.25, \\
