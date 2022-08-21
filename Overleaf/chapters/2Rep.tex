@@ -1,0 +1,29 @@
+\section{PGG on Graphs}
+\subsection{Proof of Concept: Replicator and Imitation Dynamics}
+
+The paper chosen to replicate imitation and replicator dynamics was \cite{RN30}, which models a two-stage lottery game. Refer to \ref{Lottery} for a description of the game and the strategy space $C$. \\
+
+The paper implemented agent--based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_i$, \\
+
+$$q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.$$
+
+In the formulation, $\Delta$ scales the difference so that $0 \leq q_i \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_i \geq r_i,$ $r_i \sim \mathsf{U}(0,1)$. \\
+
+The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and are shown below. \\
+
+\FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/lottery1.png}
+    \caption{Figure 5a from \cite{RN30}. }
+    \label{lottery1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.25\textwidth]{images/lottery1_me.png}
+    \caption{Replication of \ref{lottery1}. }
+    \label{lottery1_me}
+  \end{subfigure}
+  \caption{Caption and legend} \label{lottery_comp0}
+\end{figure} 
+\FloatBarrier
