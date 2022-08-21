@@ -23,14 +23,14 @@ run = 1
 
 
 save = 0
-filename = 'lottery1_me'
+filename = 'lotteryp04_me'
 
 parameters = {
     'seed': 482,
     'steps': 500,
               'agents': 6000,
               'alpha': 1.0,
-              'lottery_p': 0.5,
+              'lottery_p': 0.4,
               'atype': Nau}
 
 
@@ -61,7 +61,7 @@ for i in range(len(props.columns)):
 plt.xlabel('Generation')
 plt.ylabel('Count of Agents')
 plt.ylim(0,parameters['agents'])
-plt.title(f'Replication of Lottery Game: Imitation Dynamics')
+plt.title(f'Replicator Dynamics, p=0.4')
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.png')
