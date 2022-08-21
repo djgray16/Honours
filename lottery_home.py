@@ -16,33 +16,52 @@ from Models import *
 
 import matplotlib.pyplot as plt
 
-parameters = {'steps': 200,
+
+reps = 20
+
+run = 1
+
+
+save = 0
+filename = 'lottery1_me'
+
+parameters = {
+    'seed': 482,
+    'steps': 500,
               'agents': 6000,
               'alpha': 1.0,
-              'lottery_p': 0.3,
+              'lottery_p': 0.5,
               'atype': Nau}
 
 
 sample = ap.Sample(
     parameters,
-    n=4,
+    n=1,
     method='linspace'
 )
 
 
-exp = ap.Experiment(LotteryModel, sample, iterations=20,
+exp = ap.Experiment(LotteryModel, sample, iterations=reps,
                     record = True)
-results = exp.run()
+if run:
+    results = exp.run()
 
 props = results.variables.LotteryModel.groupby(['t']).mean()
 
-for i in props.columns:
-    y = props[str(i)]
+colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
+           'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
+markers =['o', '*', 'x', 'p', 's', 'd', 'p', 'h']
+
+for i in range(len(props.columns)):
+    y = props[props.columns[i]]
     x = props.index
-    plt.plot(x,y)
+    plt.plot(x,y, c= colours[i], marker = markers[i], markevery = 0.05, ms = 4, linewidth = 1.5)
     
-plt.legend(props.columns)
+#plt.legend(props.columns)
 plt.xlabel('Generation')
 plt.ylabel('Count of Agents')
 plt.ylim(0,parameters['agents'])
-plt.title(f'Lottery Game with update alpha {parameters["alpha"]} and lottery win prob {parameters["lottery_p"]}')
+plt.title(f'Replication of Lottery Game: Imitation Dynamics')
+
+if save: 
+    plt.savefig(f'Overleaf/images/{filename}.png')
