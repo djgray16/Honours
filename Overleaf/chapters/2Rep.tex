@@ -73,7 +73,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/lotteryp4.png}
-    \caption{Figure 6b from \cite{RN30}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
+    \caption{Figure 6b from \cite{RN30}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by a solid line, crosses, plusses, dashes, dots and diamonds respectively.}
     \label{lotteryp4}
   \end{subfigure}
   \hfill
@@ -90,7 +90,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/lotteryp055.png}
-    \caption{Figure 6c from \cite{RN30}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
+    \caption{Figure 6c from \cite{RN30}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by a solid line, crosses, plusses, dashes, dots and diamonds respectively.}
     \label{lotteryp055}
   \end{subfigure}
   \hfill
@@ -118,13 +118,15 @@ In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation-
 Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, $j \prec i$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the example above, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. In \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. The image in \ref{lotteryp4_me} is aggregated over 20 trials, and the time to elimination is quite variable. The empirical quantiles are shown below, instead computed over 120 trials.  \\
 
 \FloatBarrier
-\graphCap{lotteryp4_me_quantiles_empirical.png}{1}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is is the dashed line. }{lottery_quantiles_empirical}
+\graphCap{lotteryp4_me_quantiles_empirical.png}{0.75}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is the dashed line. }{lottery_quantiles_empirical}
 \FloatBarrier
+Figure \ref{lottery_quantiles_empirical} shows how great the variance of certain series are, particularly SS and R--WS. When R--WS is prominent and the strategies SR, RS are not extinct, SR, RS are able to grow. This occurs around the 200th generation. The strategy SS, which outperforms SR and RS, then dominates them. SS is dominated by R--WS, and this cycle continues until SR and RS are eliminated. The reason that they are eliminated is because the highest rate of dominance is SS over SR, RS. \\
+\FloatBarrier
+\graphCap{lotteryp4_me_quantiles.png}{0.75}{95\% Confidence Interval for the Mean, Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The confidence interval for each series is the dashed line. }{lottery_quantiles}
+\FloatBarrier
+ The computed confidence intervals assume a normal distribution of the mean under the Central Limit Theorem. The computed standard deviation of each point in the time series is used as an estimate of the true standard deviation. Because the number of trials $T=120$, the confidence interval is tight around the sample mean. The original paper uses $T=20$, which results in a confidence interval four times as wide Figure \ref{lottery_quantiles}. Therefore it is suggested that more than 20 trials are used for future samples. \\
 
-\FloatBarrier
-\graphCap{lotteryp4_me_quantiles.png}{1}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is is the dashed line. }{lottery_quantiles}
-\FloatBarrier
-Figure \ref{lottery_quantiles} extends the number of generations to 1000, to fully investigate the dynamics. 
+
 
 \subsection{Summary}
 The purpose of replicating \cite{RN30} was to demonstrate replicator and imitation dynamics. This demonstration was achieved, and now these dynamics can be applied to the PGG. A cycle of strategies was demonstrated for imitation dynamics under a $p=0.4$ regime. Although the original paper did not investigate the distribution of results, they are discussed above. The paper \cite{RN30} did not use an underlying network structure, but the dynamics can easily be transposed onto a graph by limiting the sample space of agents to neighbours. \\
@@ -132,5 +134,10 @@ The purpose of replicating \cite{RN30} was to demonstrate replicator and imitati
 
 \section{Local Replicator Dynamics for Public Good Games}
 \subsection{Intro}
-The following section investigates the effect of graph model on cooperation under local replicator dynamics. The graph models from \ref{TA} are also investigated here, and sample characteristics are given in Table \ref{graph_stats}. The game is played by a population of 500 agents, where each agents hosts a play of the PGG with their neighbours. After every agent has hosted, the agent--based replicator dynamics from \eqref{rep} are implemented on each agent's neighbourhood. \\
+The following section investigates the effect of graph model on cooperation under local replicator dynamics. The graph models from \ref{other_networks} are also investigated here, and sample characteristics are given in Table \ref{graph_stats}. The game is played by a population of 500 agents, where each agents hosts a play of the PGG with their neighbours. After every agent has hosted, the agent--based replicator dynamics from \eqref{rep} are implemented on each agent's neighbourhood. Each plot aggregates the mean of each series over 80 trials.  \\
+\subsection{Results}
+\graphCap{replicator_graphs_low}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_low}
+
+The trend of these graphs is high contribution from 
+
 
