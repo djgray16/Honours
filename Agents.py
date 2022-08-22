@@ -174,6 +174,67 @@ class ReplicatorLocal(BaseAgent):
                 #self.contribute = neighbour.contribute
         else:
             self.next_contribute = self.contribute
+            
+            
+class ReplicatorGlobal(BaseAgent):
+    ''' 
+    agent that follows global replicator dynamics. Iniitally chooses random contr
+    
+    This is the replicator dynamics specified by the bipartite graph paper, 
+    Pena and Rochat. I couldn't emulate their paper as it is too large in timestep. '
+    '''
+    def __str__(self):
+        return 'ReplicatorGlobal'
+    def setup(self):
+        super().setup()
+        
+        self.agent_class = 7  
+        self.choices = [0,1]#[0,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+        self.last_give = random.choice(self.choices)
+        self.contribute = self.last_give 
+        self.last_receive = 0
+    '''
+    def contribute_choice(self):
+        neighbours = self.network.neighbors(self).to_list()
+        neighbours += [self]
+        possibilities = [(i.pi - i.contribute*i.games, i.contribute)
+                         for i in neighbours if i.]
+        assert all(i>0 for i in weights)
+        
+        draw = random.choices(neighbours, weights = weights)
+        self.next_contribute = draw[0].contribute
+        #print(self.contribute, self.next_contribute)
+    '''
+        
+      
+    def contribute_choice(self):       
+        #neighbours = self.true_neighbours
+        neighbours = self.model.agents
+        
+        #print(self.id, [i.id for i in neighbours])
+        #neighbours.remove(self)
+        #print(self.pi)
+        #print([ i.pi for i in neighbours])
+        a =self.model.p.replicator_alpha
+        scale= max(i.profit for i in neighbours)
+        
+        neighbour = random.choice(neighbours)
+        #self.last_give = self.contribute
+        #self.contribute  = 1
+
+        if neighbour.profit> self.profit:
+            ## we are a chance of changing strat
+            prob = ((neighbour.pi - self.pi)/scale)**a
+            if prob>random.random():
+                self.next_contribute = neighbour.contribute
+                
+            
+                # we need to make a new_contribute, and not change that 
+               # until the end of the round, so we are copying properly
+                
+                #self.contribute = neighbour.contribute
+        else:
+            self.next_contribute = self.contribute
         
             
 

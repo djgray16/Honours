@@ -24,7 +24,7 @@ run = 0
 MeansOnly = 0
 
 CI = 0
-save = 1
+save = 0
 filename = 'lotteryp4_me_quantiles_empirical'
 
 parameters = {

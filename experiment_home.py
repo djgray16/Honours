@@ -30,7 +30,7 @@ MeansOnly = True
 
 save = 0 #save the figure
 
-filename = 'TAfig4b'
+filename = 're'
 
 parameters = {
     'seed': 42,
