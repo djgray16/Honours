@@ -355,7 +355,7 @@ To iterate the importance of the specified update dynamics, Nau and Roos \cite{R
     \item R--WR: risky in the first round, and if it is a win then risky again, otherwise safe.
     \item R--WS: risky in the first round, and if it is a win then safe, otherwise risky.
 \end{itemize}
-Obviously these strategies all have the same expected value for $p=0.5$. Under replicator dynamics, the expected growth rate $\pi_i - \pi_j = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation of the best, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
+Obviously these strategies all have the same expected value for $p=0.5$. Under replicator dynamics, the expected growth rate $\mathbb E[\pi_i - \pi_j] = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation of the best, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
 \begin{align*}
     \mathbb P(\textrm{R--WS}> \textrm{SS}) &= \mathbb P(W_1) = 0.5, \\
     \mathbb P(\textrm{SS}>\textrm{R--WS}) &= \mathbb P(L_1 \cap L_2) = 0.25, \\
@@ -364,7 +364,7 @@ Obviously these strategies all have the same expected value for $p=0.5$. Under r
 So R--WS is imitated twice as often as SS under pairwise comparison (in the case of a tie, the winner is chosen by a coin flip). The other combinations are not computed here, but one can verify that SS, RR, and R--WR should go extinct. This was verified under simulation, and is plotted in Figure \ref{Nau} from \cite{RN24}, which was a conference presentation before the paper \cite{RN30}. 
 \graphCap{Nau.png}{1}{Imitation Dynamics of Two--Stage Lottery Game, from \cite{RN24}.}{Nau} 
 
-In the paper \cite{RN30}, the authors proved that R--WS is an ESS. In fact, for the risky lottery with $p \neq 0.5$, R--WS is an ESS against the expected value maximising strategy for a range of $p$. \\
+In the paper \cite{RN30}, the authors proved that R--WS is an ESS. In fact, for the risky lottery with $p \neq 0.5$, R--WS is an ESS against the expected value maximising strategy for a range of $p$. This example is replicated in Chapter \ref{Lottery_Me}. \\
 
 
 As early as 1984, Axelrod described an agent-based model for playing the repeated PD on a grid \cite{RN63}. Each agent plays with their von Neumann neighbours. The update rule considered by these agents was imitation of the best strategy amongst an agent's neighbours. This model was extended by Nowak and May, 1992 and defines a cellular automaton, \cite{RN63}, \cite{RN70}. \\
