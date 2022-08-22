@@ -1,14 +1,16 @@
-\section{PGG on Graphs}
-\subsection{Proof of Concept: Replicator and Imitation Dynamics} \label{Lottery_Me}
 
+\section{Proof of Concept: Replicator and Imitation Dynamics} \label{Lottery_Me}
+\subsection{Abstract/Intro}
 The paper chosen to replicate imitation and replicator dynamics was \cite{RN30}, which models a two-stage lottery game. Refer to \ref{Lottery} for a description of the game and the strategy space $C$. \\
 
 The paper implemented agent--based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_i$, \\
 
-$$q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.$$
+\begin{align} \label{rep}
+q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{align} 
 
 In the formulation, $\Delta$ scales the difference so that $0 \leq q_i \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_i \geq r_i,$ $r_i \sim \mathsf{U}(0,1)$. \\
 
+\subsection{Results Comparison}
 The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and are shown below. \\
 
 \FloatBarrier 
@@ -21,7 +23,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=1.25\textwidth]{images/lottery1_me.png}
-    \caption{Replication of \ref{lottery1}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, purple squares, and brown diamonds respectively.}
+    \caption{Replication of \ref{lottery1}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively.}
     \label{lottery1_me}
   \end{subfigure}
   \caption{Replication of Figure 5a from \cite{RN30}. The replication is successful, but these conditions do not provide anything interesting regarding replicator dynamics.} \label{lottery_comp0}
@@ -38,7 +40,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=1.25\textwidth]{images/lottery2_me.png}
-    \caption{Replication of \ref{lottery2}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, purple squares, and brown diamonds respectively. }
+    \caption{Replication of \ref{lottery2}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively.}
     \label{lottery2_me}
   \end{subfigure}
   \caption{Replication of Figure 5b from \cite{RN30}. The results are well replicated, and this model for imitation dynamics can be explored on other games.} \label{lottery_comp1}
@@ -57,11 +59,69 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=1.25\textwidth]{images/lottery3_me.png}
-    \caption{Replication of \ref{lottery3}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, purple squares, and brown diamonds respectively. }
+    \caption{Replication of \ref{lottery3}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
     \label{lottery3_me}
   \end{subfigure}
   \caption{Replication of Figure 5c from \cite{RN30}. This is neither true imitation or replicator dynamic, but provides an intermediary case.} \label{lottery_comp2}
 \end{figure} 
 \FloatBarrier
 
- It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, but for imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population.
+
+ It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, but for imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population. \\
+ 
+ \FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/lotteryp4.png}
+    \caption{Figure 6b from \cite{RN30}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
+    \label{lotteryp4}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.25\textwidth]{images/lotteryp4_me.png}
+    \caption{Replication of \ref{lotteryp4}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
+    \label{lotteryp4_me}
+  \end{subfigure}
+  \caption{Replication of Figure 6b from \cite{RN30}. Although SS is the expectation--maximising strategy, it is not an ESS, and R--WS has the evolutionary advantage.} \label{lottery_comp4}
+\end{figure} 
+\FloatBarrier
+
+ \FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/lotteryp055.png}
+    \caption{Figure 6c from \cite{RN30}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
+    \label{lotteryp055}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.25\textwidth]{images/lotteryp055_me.png}
+    \caption{Replication of \ref{lotteryp055}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
+    \label{lotteryp4_me}
+  \end{subfigure}
+  \caption{Replication of Figure 6c from \cite{RN30}. In this case, RR is expectation--maximising, but R--WS still wins out.} \label{lottery_comp5}
+\end{figure} 
+\FloatBarrier
+
+\subsection{Extension}
+In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. Consider the three strategies RS, SS, R--WS under the $p=0.4$ regime. Their distributions are shown below. \\
+\begin{align*}
+    \mathbb P_{\text{RS}}(x = \pi)  &= \begin{cases} 0.4 \quad \pi = 12 \\
+    0.6 \quad \pi =4 
+    \end{cases}, \\
+        \mathbb P_{\text{R--WS}}(x = \pi)  &= \begin{cases} 0.4 \quad \pi = 12 \\
+    0.24 \quad \pi =8 \\
+    0.36 \quad \pi = 0\\
+    \end{cases}, \\
+    \mathbb P_{\text{SS}}(x = \pi)  &= \mathbbm{1}_{\pi = 8}.
+\end{align*}
+Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, $j \prec i$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the example above, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. In \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. The image in \ref{lotteryp4_me} is aggregated over 20 trials, and the time to elimination is quite variable. The empirical quantiles are shown below. \\
+
+\subsection{Summary}
+The purpose of replicating \cite{RN30} was to demonstrate replicator and imitation dynamics. This demonstration was achieved, and now these dynamics can be applied to the PGG. A cycle of strategies was demonstrated for imitation dynamics under a $p=0.4$ regime. Although the original paper did not investigate the distribution of results, they are discussed above. The paper \cite{RN30} did not use an underlying network structure, but the dynamics can easily be transposed onto a graph by limiting the sample space of agents to neighbours. \\
+
+
+\section{Local Replicator Dynamics for Public Good Games}
+\subsection{Intro}
+The following section investigates the effect of graph model on cooperation under local replicator dynamics. The graph models from \ref{TA} are also investigated here, and sample characteristics are given in Table \ref{graph_stats}. The game is played by a population of 500 agents, where each agents hosts a play of the PGG with their neighbours. After every agent has hosted, the agent--based replicator dynamics from \eqref{rep} are implemented on each agent's neighbourhood. \\
+
