@@ -41,7 +41,7 @@ parameters = {
     'graph_p':0.1,
     'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
-    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
+    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 

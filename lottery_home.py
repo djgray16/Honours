@@ -19,11 +19,13 @@ import matplotlib.pyplot as plt
 
 reps = 120
 
-run = 1
+run = 0
 
-MeansOnly = False
-save = 0
-filename = 'lotteryp04_me'
+MeansOnly = 0
+
+CI = 0
+save = 1
+filename = 'lotteryp4_me_quantiles_empirical'
 
 parameters = {
     'seed': 16,
@@ -50,6 +52,10 @@ props = results.variables.LotteryModel.groupby(['t']).mean()
 
 pct_up = results.variables.LotteryModel.groupby(['t']).quantile(0.975)
 pct_down = results.variables.LotteryModel.groupby(['t']).quantile(0.025)
+
+if CI:
+    pct_up = props + 1/math.sqrt(reps)*1.96*results.variables.LotteryModel.groupby(['t']).std()
+    pct_down = props - 1/math.sqrt(reps)*1.96*results.variables.LotteryModel.groupby(['t']).std()
 #pct_up = pct_up.rename('q_up')
 #pct_down = pct_up.rename('q_down')
 colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
@@ -60,10 +66,10 @@ markers =['o', '*', 'x', 'p', 's', 'd', 'p', 'h']
 
 
 for i in range(len(props.columns)):
-    y = props[props.columns[i]]
-    y1 = pct_up[props.columns[i]]
-    y2 = pct_down[props.columns[i]]
-    x = props.index
+    y = props[props.columns[i]][0:500]
+    y1 = pct_up[props.columns[i]][0:500]
+    y2 = pct_down[props.columns[i]][0:500]
+    x = props.index[0:500]
     plt.plot(x,y, c= colours[i], marker = markers[i], markevery = 0.05, ms = 4, linewidth = 1.5)
     if not MeansOnly:
         plt.plot(x,y1, c = colours[i], linestyle = 'dashed', marker = markers[i], markevery = 0.1,ms = 4, alpha = 0.6)
@@ -72,7 +78,7 @@ for i in range(len(props.columns)):
 plt.xlabel('Generation')
 plt.ylabel('Count of Agents')
 plt.ylim(0,parameters['agents'])
-plt.title(f'Imitation Dynamics, 2.5%, 97.5% Empirical Quantiles, p={parameters["lottery_p"]}')
+plt.title(f'Imitation Dynamics, Empirical 2.5%, 97.5% Quantiles, p={parameters["lottery_p"]}')
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.png')
