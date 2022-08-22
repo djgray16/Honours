@@ -1,9 +1,9 @@
-\section{Tomassini Antonioni Models}
 
-\subsubsection{Abstract (BETTER NAME)}
+
+\subsection{Abstract (BETTER NAME)}
 This chapter will discuss the analysis of PGGs on networks using the model developed by Marco Tomassini and Alberto Antonioni in \cite{RN49}. First, their model is replicated, and the replicated results are compared to the published results. Then the replicated results are examined for robustness. After that, the analysis is extended to further graph types to analyse the effect of graph structure on cooperation. Under the Tomassini Antonioni model, network models with high clustering coefficient $C_\Delta$ induce lower cooperation for low values of $r$ and higher cooperation for higher values of $r$ relative to models with low $C_\Delta$, regardless of degree distribution. \\
 
-\subsection{Payoff Satisfaction Model}
+\section{Payoff Satisfaction Model}
 This model is described in \cite{RN49} and emulates an agent who increases their contribution when they are \emph{satisfied}. The goal is to accurately reflect results observed in human experiments. This differs strongly from evolutionary dynamics, which will be discussed in a later chapter. The payoff $\pi_i$ of an individual $i$ enrolled in $g_i$ groups each with size $|N_j|$ is \\
 \begin{align} 
     \pi_i(c_i) = g_i(1-c_i) - g_ic_i + \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|}, \quad c_i \in C:= \{0.0, 0.25, 0.50, 0.75, 1.0\}. 
@@ -16,7 +16,7 @@ Each agent's initial contribution is randomly chosen from the set $C$. The choic
 The agents' update rule is simple. If they receive, from the common pools, at least as much as they contribute, they are \emph{satisfied}, and increase their contribution by 0.25 with probability 0.5, otherwise remain unchanged. In the case where they are \emph{unsatisfied}, their contribution always decreases by 0.25. Obviously an agent playing $c_i =1$ cannot increase their contribution, and similarly an agent playing $c_0$ cannot decrease their contribution. This model does not claim to simulate evolutionary dynamics, instead to replicate results observed in human trials. \\
 
 
-\subsection{Network Structure}
+\section{Network Structure}
 Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two--dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in \ref{BA}, a growing mechanism is used to create the graph. The parameters are $N$, the population size, $k$, the targeted mean degree, and $\alpha$, a mixing parameter. \\
 
 The graph is initialised with a clique of $k+1$ nodes distributed in $[0.45, 0.55]^2$. Then each new node is added randomly in $[0,1]^2$ and prescribed a number of links drawn from $\mathsf{DU}(1,2k-1)$. For each link, a uniform random number is compared to the parameter $\alpha$. If the random number is less than $\alpha$, the node is then joined to an existing node chosen by preferential attachment as in a Barab\'{a}si--Albert model. Otherwise, the node is joined to the geometrically closest existing node that is not already linked. \\
@@ -25,7 +25,7 @@ The paper \cite{RN51} compares graphs built using this model to real--world grap
 
 This network model serves as the structure for the game in \cite{RN49}, with agents stationed at nodes.
 
-\subsection{Results Comparison}
+\section{Results Comparison}
 The results obtained were compared to the results reported in the paper \cite{RN49}. The comparison is shown in Figure \ref{comp0}. Evidently, increasing the enhancement factor $r$ increases cooperation. It is interesting to note that equilibrium is reached relatively quickly ($\sim$ 20 rounds). In \cite{RN49}, the authors note that even in the case of low $r$, zero cooperation is not observed. This agrees with experimentally reported results, but disagrees with classical and evolutionary game theory predictions. In fact, the minimum contribution amount 0.0835 can be shown analytically as a steady state. For simplification, assume the agent is playing $g=7$ games, each with $|N_j|=7$, $j=1, \dots, 7$ agents in a game. If the population is contributing 0.0835 on average, then  an agent contributing 0 will have expected return $$ \mathbb E \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|} =   7*\frac{1.8*0.0835*6 + 0*1}{7} =  0.90 >7*0,$$ so they will be \emph{satisfied}, and increase their contribution to 0.25 with probability 0.5. If they are contributing 0.25, their expected return is 
 $$ \mathbb E \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|} =7* \frac{1.8*0.0835*6 + 0.25}{7} = 1.152< 0.25*g  =1.75, $$
  and hence they will be\emph{unsatisfied}, and reduce their contribution to 0. This is a Markov process for states 0, 0.25. The transition matrix $\mathbf{P}$, is $$\mathbf P = \begin{bmatrix} 0.5& 0.5 \\
@@ -91,7 +91,7 @@ For further confirmation, Figures 5a and b from the paper were also replicated, 
 They key results from \cite{RN49} have been reproduced. Other results from their paper, where the mean degree is varied, have also been reproduced, but are not included for the sake of brevity.\\
 
 
-\subsection{Robustness}
+\section{Robustness}
 The robustness of results was discussed qualititatively in \cite{RN49}, and the authors demonstrated consistency in results. However no quantitative analysis was provided. To examine the variance in the results, the number of trials, $T$ was increased to 120. The first plot examines the shape of the distribution for each of the series by plotting the empirical 2.5\% and 97.5\% quantiles. \\
 
 \FloatBarrier
@@ -105,7 +105,7 @@ The image shows that the means are stable, and the results are robust. The confi
 
 To investigate the effect of network structure on cooperation, the Tomassini Antonioni model will be extended to other network models. \\
 
-\subsection{Extension to Other Network Models}
+\section{Extension to Other Network Models}
 
 In \ref{RG}, three main network models are discussed. These are the Erd\H{o}s--R\'enyi graph, \emph{small-world} network (WS), and also the Barab\'{a}si--Albert (BA) model. In the following analysis, $G(n,r)$ graphs are chosen for Erd\H{o}s--R\'enyi graphs, and denoted RRG (random regular graphs). This is to be able to control the mean degree. All three of these network models are implemented using the \verb+networkx+ Python package. For comparison, the model described by Tomassini and Antonioni in \cite{RN51} is included, and denoted Tomassini Antonioni Graph (TAG). \\
 
@@ -152,7 +152,7 @@ It appears that $C_\Delta$ dictates the value for $r$ for which non--trivial coo
 \FloatBarrier
 For higher ranges of $r$, it is more interesting. The WS and TAG trends achieve full cooperation earlier. This seems to indicate that the agents are more uniform under this graph structure. The WS and TAG models have a small range of $r$ for which non--trivial cooperation is observed. These graph models also have high $C_\Delta$, which may propagate strategies through the population, and enforce homogeneity in contribution. Both the WS and RRG model have very low degree variance, yet behave quite differently. It appears that the degree distribution does not impact the cooperation level for Tomassini Antonioni style agents. \\
 
-\subsection{Summary}
+\section{Summary}
 
 This chapter focussed exclusively on agents defined by Tomassini and Antonioni in \cite{RN49}. Tomassini and Antonioni demonstrated that these agents are a good proxy for human interactions, and simulated the Public Goods Game on a custom network model. These results were perfectly replicated, and both plots are shown in Figures \ref{comp0}, \ref{comp1}, \ref{comp2}.  A lower bound for cooperation of 0.0835 was demonstrated analytically. The robustness of these results were also examined. It is shown that 120 repetitions were sufficient to estimate the mean of each series, however the empirical quantile plots showed that there is quite high variance in distribution for the series corresponding to $r=2.2$.\\ 
 
