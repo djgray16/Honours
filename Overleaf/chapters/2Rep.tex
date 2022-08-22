@@ -1,5 +1,5 @@
 \section{PGG on Graphs}
-\subsection{Proof of Concept: Replicator and Imitation Dynamics}
+\subsection{Proof of Concept: Replicator and Imitation Dynamics} \label{Lottery_Me}
 
 The paper chosen to replicate imitation and replicator dynamics was \cite{RN30}, which models a two-stage lottery game. Refer to \ref{Lottery} for a description of the game and the strategy space $C$. \\
 
@@ -64,4 +64,4 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
 \end{figure} 
 \FloatBarrier
 
-The replicator dynamics in Figure \ref{lottery_comp0} do not show any interesting trends, as each strategy has the same expected value, so $\mathbb E |\pi_i - \pi_j|^1 = 0$, for all $i,j \in C$. It is more interesting to examine the results when the lottery win probability $p$ is not 0.5. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population.
+ It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, but for imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population.
