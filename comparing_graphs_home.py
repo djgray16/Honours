@@ -35,7 +35,7 @@ parameters = {
     'seed':42,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(2,3,4,5), # #multiplier for common contributions
+    'phi':ap.Values(4,5,6,7), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.1,
