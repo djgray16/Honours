@@ -17,7 +17,7 @@ from Models import *
 import matplotlib.pyplot as plt
 
 
-reps = 20
+reps = 40
 
 run = 1
 
@@ -26,10 +26,10 @@ save = 0
 filename = 'lotteryp04_me'
 
 parameters = {
-    'seed': 482,
+    'seed': 16,
     'steps': 500,
               'agents': 6000,
-              'alpha': 1.0,
+              'alpha': 0.0,
               'lottery_p': 0.4,
               'atype': Nau}
 
@@ -61,7 +61,7 @@ for i in range(len(props.columns)):
 plt.xlabel('Generation')
 plt.ylabel('Count of Agents')
 plt.ylim(0,parameters['agents'])
-plt.title(f'Replicator Dynamics, p=0.4')
+plt.title(f'Imitation Dynamics, p={parameters["lottery_p"]}')
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.png')

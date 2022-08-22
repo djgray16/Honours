@@ -25,23 +25,23 @@ import matplotlib.pyplot as plt
 
 #### control box
 save = 0     #save the figure
-run = 0
+run = 1
 
-filename = 'graphs2'
+filename = 'imitation_graphs'
 
 
 
 parameters = {
     'seed':42,
-    'steps': 60, #number of time periods
+    'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(2.25,2.3,2.35,2.4), # #multiplier for common contributions
+    'phi':ap.Values(2,3,4,5), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
     'graph_p':0.1,
     'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
-    'atype': AT,
-    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+    'atype': ReplicatorLocal,
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
 }
 
@@ -63,7 +63,7 @@ colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:
            'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
     
 markers = ['2', '3','1','8','^','s','p','X','h','d']
-markers =['o', '*', 'x', 'p', 's', 'd', 'p', 'h']
+markers =['o','*', 'x', 'p', 's', 'd', 'p', 'h']
 colours = colours[:len(phis)]
 
 
@@ -98,7 +98,7 @@ phi_graph = phi_graph.reset_index()
 graphs = results.parameters.sample.gtype
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Graph Models ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
+fig.suptitle(f'Comparing Graph Models: Imitation Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
 
 axesx = [0,0,0,1,1,1]
 axesy = [0,1,2,0,1,2]
@@ -108,12 +108,12 @@ axesy = [0,1,0,1]
 for i in range(len(phis.unique())):
     #i=1.8
     testing =phi_graph[phi_graph.phi ==phis.unique()[i]]
-    for j in graphs.unique():
+    for j in range(len(graphs.unique())):
         tt = testing.groupby(['t','gtype']).mean()
-        ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('gtype')==j]
+        ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('gtype')==graphs.unique()[j]]
         axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
         
-        axs[axesx[i], axesy[i]].plot(ts,ys,marker ='',ms = 5,linewidth = 1.75, label = j)
+        axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, label = graphs.unique()[j])
         #axs[axesx[i], axesy[i]].legend()
         
         
