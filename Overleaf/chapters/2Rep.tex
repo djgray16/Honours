@@ -104,7 +104,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and a
 \FloatBarrier
 
 \subsection{Extension}
-In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. Consider the three strategies RS, SS, R--WS under the $p=0.4$ regime. Their distributions are shown below. \\
+In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. Consider the three strategies RS, SS, R--WS under the $p=0.4$ regime. The strategy RS is the same as SR, because the order of the lottery does not matter. Their distributions are shown below. \\
 \begin{align*}
     \mathbb P_{\text{RS}}(x = \pi)  &= \begin{cases} 0.4 \quad \pi = 12 \\
     0.6 \quad \pi =4 
@@ -115,7 +115,16 @@ In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation-
     \end{cases}, \\
     \mathbb P_{\text{SS}}(x = \pi)  &= \mathbbm{1}_{\pi = 8}.
 \end{align*}
-Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, $j \prec i$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the example above, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. In \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. The image in \ref{lotteryp4_me} is aggregated over 20 trials, and the time to elimination is quite variable. The empirical quantiles are shown below. \\
+Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, $j \prec i$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the example above, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. In \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. The image in \ref{lotteryp4_me} is aggregated over 20 trials, and the time to elimination is quite variable. The empirical quantiles are shown below, instead computed over 120 trials.  \\
+
+\FloatBarrier
+\graphCap{lotteryp4_me_quantiles_empirical.png}{1}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is is the dashed line. }{lottery_quantiles_empirical}
+\FloatBarrier
+
+\FloatBarrier
+\graphCap{lotteryp4_me_quantiles.png}{1}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is is the dashed line. }{lottery_quantiles}
+\FloatBarrier
+Figure \ref{lottery_quantiles} extends the number of generations to 1000, to fully investigate the dynamics. 
 
 \subsection{Summary}
 The purpose of replicating \cite{RN30} was to demonstrate replicator and imitation dynamics. This demonstration was achieved, and now these dynamics can be applied to the PGG. A cycle of strategies was demonstrated for imitation dynamics under a $p=0.4$ regime. Although the original paper did not investigate the distribution of results, they are discussed above. The paper \cite{RN30} did not use an underlying network structure, but the dynamics can easily be transposed onto a graph by limiting the sample space of agents to neighbours. \\
