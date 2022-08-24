@@ -24,10 +24,10 @@ import matplotlib.pyplot as plt
 
 
 #### control box
-save = 0    #save the figure
-run = 1
+save = 0  #save the figure
+run = 0
 
-filename = 'replicator_graphs_medium'
+filename = 'comparing_WS_replicator'
 
 
 
@@ -35,11 +35,11 @@ parameters = {
     'seed':42,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(4,4.5,5,5.5), # #multiplier for common contributions
+    'phi':ap.Values(3,4,5,6), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0.3,
-    'graph_p':0.1,
-    'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'graph_p':ap.Values(0.01,0.1,0.2,0.5),
+    'gtype': 'WS', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
@@ -52,7 +52,7 @@ sample = ap.Sample(
     method='linspace'
 )
 
-reps = 80
+reps = 40
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 
@@ -75,7 +75,7 @@ ts = ts.get_level_values(0).unique()
 df = results.parameters.sample
 coops2 = coops.to_frame().join(df)
 
-phi_graph = coops2.groupby(['t', 'phi', 'gtype']).mean() #change here
+phi_graph = coops2.groupby(['t', 'phi', 'graph_p']).mean() #change here
 '''
 #m_graph = coops2.groupby(['t', 'graph_m']).mean()
 
@@ -95,10 +95,10 @@ graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters[
 
 
 phi_graph = phi_graph.reset_index()
-graphs = results.parameters.sample.gtype
+graphs = results.parameters.sample.graph_p
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Graph Models: Replicator Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
+fig.suptitle(f'Comparing WS Rewiring p: Replicator Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
 
 axesx = [0,0,0,1,1,1]
 axesy = [0,1,2,0,1,2]
@@ -109,8 +109,8 @@ for i in range(len(phis.unique())):
     #i=1.8
     testing =phi_graph[phi_graph.phi ==phis.unique()[i]]
     for j in range(len(graphs.unique())):
-        tt = testing.groupby(['t','gtype']).mean()
-        ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('gtype')==graphs.unique()[j]]
+        tt = testing.groupby(['t','graph_p']).mean()
+        ys = tt.Cooperation_Level.iloc[tt.index.get_level_values('graph_p')==graphs.unique()[j]]
         axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
         
         axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, label = graphs.unique()[j])
