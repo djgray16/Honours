@@ -9,11 +9,11 @@ import numpy as np
 import pandas as pd
 ## measuring graphs
 from TAG import *
-tests = 10
+tests = 100
 
 graphs_dict = {}
 results = {}
-graph_choices = ['BA', 'TAG'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
+graph_choices = ['PL'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
 
 N = int(500)
 
@@ -22,11 +22,12 @@ WS_p = 0.1
 GNP_p = m/(N)
 TAG_alpha = 0.3
 
+power_p = 1
 ln = 0
 
-plotter = 1
+plotter = 0
 
-stats
+stats = 1
 
 degrees = [[]for j in graph_choices]
 
@@ -45,14 +46,14 @@ if plotter:
                 G  = TAG(N,m,TAG_alpha)
             elif graph_choices[j] =='GNP':
                 G = nx.generators.random_graphs.gnp_random_graph(N,GNP_p)
+            elif graph_choices[j]=='PL':
+                G=nx.powerlaw_cluster_graph(N,int(m/2),power_p)
             degrees[j] += [d for n,d in G.degree()]
             
             
     degree_sequence = [sorted(degrees[j], reverse=True) for j in range(len(graph_choices))]
 #dmax = max(degree_sequence)
 
-fig,axs = plt.subplots(1,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Graph Models Histograms')
 
 
 
@@ -61,17 +62,21 @@ axesy = [0,1,0,1]
 
 axesx = [0,1]
 axesy = [0]
-for i in range(len(graph_choices)):
-    
-    axs[i].set_title(f'{graph_choices[i]}')
+if plotter:
+    fig,axs = plt.subplots(1,2, sharex = True, sharey = True)
+    fig.suptitle(f'Comparing Graph Models Histograms')
+
+    for i in range(len(graph_choices)):
         
-    axs[i].hist(degree_sequence[i],density = False,log=True, rwidth = 1)
-for ax in axs.flat:
-    ax.set(xlabel = 'Degree')
-    ax.set(ylabel = 'Count')
-    ax.label_outer()
-        #axs[axesx[i], axesy[i]].legend()
-    
+        axs[i].set_title(f'{graph_choices[i]}')
+            
+        axs[i].hist(degree_sequence[i],density = False,log=True, rwidth = 1)
+    for ax in axs.flat:
+        ax.set(xlabel = 'Degree')
+        ax.set(ylabel = 'Count')
+        ax.label_outer()
+            #axs[axesx[i], axesy[i]].legend()
+        
     
 if stats:
     for i in range(tests):
@@ -88,6 +93,8 @@ if stats:
                 G  = TAG(N,m,TAG_alpha)
             elif j =='GNP':
                 G = nx.generators.random_graphs.gnp_random_graph(N,GNP_p)
+            elif j == "PL":
+                G = nx.powerlaw_cluster_graph(N,int(m/2),power_p)
             clus = nx.average_clustering(G)
             if nx.is_connected(G):
                 aspl = nx.average_shortest_path_length(G)
@@ -114,9 +121,9 @@ if stats:
     
     df =df.set_index('level_0')
     
-    df.groupby('level_0').mean()
+    df=df.groupby('level_0').mean()
 
-
+    print(df)
 
     
 

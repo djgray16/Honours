@@ -60,6 +60,8 @@ class WealthModel(ap.Model):
             
             ## we have a tomassani antonioni graph
             graph = TAG(n,m,self.p.graph_alpha)
+        elif self.gtype =='PL':
+            graph =nx.powerlaw_cluster_graph(n,int(m/2),self.p.power_p)
         else:
             print('no idea what graph you want')
             return
