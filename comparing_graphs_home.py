@@ -24,25 +24,26 @@ import matplotlib.pyplot as plt
 
 
 #### control box
-save = 0  #save the figure
-run = 1
-v2 = 'graph_m'
+save = 0 #save the figure
+run =1
+v2 = 'graph_p'
 
 
-filename = 'graph_m_low'
-
+filename = 'graph_p_high'
+ #TODO test phi large, then test WS p over phi, then examine cooperation
+ # of BA grouped by node degree. also rewrite the markov ODE part of before
 
 
 parameters = {
     'seed':42,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.75,2.0,2.25,2.5), # #multiplier for common contributions
-    'graph_m' : ap.Values(4,5,6,7,8),
+    'phi':ap.Values(5.0,5.5,6.0,6.5), # #multiplier for common contributions
+    'graph_m' : 6,#ap.Values(4,5,6,7,8),
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
-    'graph_p':0,
+    'graph_p':ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
-    'gtype': 'RRG', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'gtype': 'WS', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0 #gives the summary plot of the graph for each experiment
@@ -104,7 +105,7 @@ phi_graph = phi_graph.reset_index()
 graphs = results.parameters.sample[v2]
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Graph Degree: Replicator Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
+fig.suptitle(f'Comparing Rewiring p, WS model: Replicator Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
 
 
 

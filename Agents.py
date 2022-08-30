@@ -163,6 +163,8 @@ class ReplicatorLocal(BaseAgent):
 
         if neighbour.profit> self.profit:
             ## we are a chance of changing strat
+            if scale ==0:
+                scale = 1
             prob = ((neighbour.pi - self.pi)/scale)**a
             if prob>random.random():
                 self.next_contribute = neighbour.contribute
