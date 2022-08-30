@@ -1,6 +1,6 @@
 
 \section{Proof of Concept: Replicator and Imitation Dynamics} \label{Lottery_Me}
-\subsection{Abstract/Intro}
+\subsection{Outline}
 The paper chosen to replicate imitation and replicator dynamics was \cite{RN30}, which models a two-stage lottery game. Refer to \ref{Lottery} for a description of the game and the strategy space $C$. \\
 
 The paper implemented agent--based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_i$, \\
@@ -133,7 +133,7 @@ The purpose of replicating \cite{RN30} was to demonstrate replicator and imitati
 
 
 \section{Local Replicator Dynamics for Public Good Games}
-\subsection{Intro}
+\subsection{Outline}
 The following section investigates the effect of graph model on cooperation under local replicator dynamics. The graph models from \ref{other_networks} are also investigated here, and sample characteristics are given in Table \ref{graph_stats}. The game is played by a population of 500 agents, where each agents hosts a play of the PGG with their neighbours. After every agent has hosted, the agent--based replicator dynamics from \eqref{rep} are implemented on each agent's neighbourhood. Each plot aggregates the mean of each series over 80 trials.  \\
 \subsection{Results}
 \graphCap{replicator_graphs_low}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_low} 
@@ -142,6 +142,30 @@ The following section investigates the effect of graph model on cooperation unde
 
 \graphCap{replicator_graphs_large}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_large}
 
-It appears that degree distribution is a better indicator than $C_\Delta$. 
+Replicator dynamics result in slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 200, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 7.5$. It appears that graph models with a power law degree size distribution induce higher cooperation. In Chapter \ref{C1} it is hypothesised that the presence of high--degree nodes is sufficient to induce cooperation across the network, which corroborrates the trend observed here. \\
+
+\subsection{Controlling for Degree Size Distribution}
+To test the hypothesis that the average clustering coefficient $C_\Delta$ does not impact cooperation, the \verb+power_law+ package was used to create another graph model, denoted PL. It induces a degree distribution with power law shape, but the parameter $p$ dictates the clustering coefficient. After each node is connected, the parameter $p$ determines the probability that the next link joins two neighbours, completing the triangle. Two degree histograms are plotted below, which emphasise the degree size distribution. \\
+\graphCap{PL01BA.png}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.1$. The degree histograms are similar, so the only difference is the clustering coefficient.}{PL01BA}
+
+\graphCap{PL05BA.png}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Graph Type & Mean Degree & $l$ & $C_\Delta$ & Degree Variance \\ \hline
+PL: $p=0.1$        & 5.96        & 3.234                         & 0.10                   & 42.35           \\ \hline
+PL: $p=0.2$        & 5.96           & 3.24                         & 0.15                   & 44.07               \\ \hline
+PL: $p=0.4$       & 5.96        & 3.25                         & 0.25                   & 47.92           \\ \hline
+PL: $p=0.6$         & 5.96           & 3.30                         & 0.35                   & 49.92            \\ \hline
+\end{tabular}
+\caption{Computed characteristics for PL graph, varying cluster parameter $p$. The characteristics were computed over 100 samples of each graph, and then averaged. } \label{graph_stats}
+\end{center}
+\end{table}
+
+\graphCap{comparing_power_p_low.png}{0.5}{In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p=[0.1,0.2,0.3,0.4,0.5]$ respectively.}{power_p_low}
+
+\graphCap{comparing_power_p_high.png}{0.5}{In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p=[0.1,0.2,0.3,0.4,0.5]$ respectively.}{power_p_high}
 
 
