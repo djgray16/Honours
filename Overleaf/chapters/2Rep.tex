@@ -144,12 +144,17 @@ The following section investigates the effect of graph model on cooperation unde
 
 Replicator dynamics result in slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 200, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 7.5$. It appears that graph models with a power law degree size distribution induce higher cooperation. In Chapter \ref{C1} it is hypothesised that the presence of high--degree nodes is sufficient to induce cooperation across the network, which corroborrates the trend observed here. \\
 
-\subsection{Controlling for Degree Size Distribution}
+There is insufficient information to determine if the clustering coefficient $C_\Delta$ influences cooperation, because the graph models are too varied. Therefore, it will need to be tested in isolation.\\
+
+\subsection{Controlling for Degree Size Distribution: Power Law Distribution}
 To test the hypothesis that the average clustering coefficient $C_\Delta$ does not impact cooperation, the \verb+power_law+ package was used to create another graph model, denoted PL. It induces a degree distribution with power law shape, but the parameter $p$ dictates the clustering coefficient. After each node is connected, the parameter $p$ determines the probability that the next link joins two neighbours, completing the triangle. Two degree histograms are plotted below, which emphasise the degree size distribution. \\
+\FloatBarrier
 \graphCap{PL01BA.png}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.1$. The degree histograms are similar, so the only difference is the clustering coefficient.}{PL01BA}
-
+\FloatBarrier
 \graphCap{PL05BA.png}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
-
+\FloatBarrier
+The summary statistics are also reported. It is important to note the only statistic that noticeably changes is $C_\Delta$, as desired. \\
+\FloatBarrier
 \begin{table}[!h]
 \begin{center}
 \begin{tabular}{|l|l|l|l|l|}
@@ -163,9 +168,22 @@ PL: $p=0.6$         & 5.96           & 3.30                         & 0.35      
 \caption{Computed characteristics for PL graph, varying cluster parameter $p$. The characteristics were computed over 100 samples of each graph, and then averaged. } \label{graph_stats}
 \end{center}
 \end{table}
+\FloatBarrier
+\graphCap{comparing_power_p_low.png}{0.8}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p=[0.1,0.2,0.3,0.4,0.5]$ respectively. The observed trend is that higher $C_\Delta$ leads to marginally higher cooperation.}{power_p_low}
+\FloatBarrier
+\graphCap{comparing_power_p_high.png}{0.8}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p=[0.1,0.2,0.3,0.4,0.5]$ respectively. The trend is unclear here, because $r=2.75, 3.5$ indicate higher $C_\Delta$ leads to higher cooperation, but that trend is not observed in for $r=3.0,3.25$.}{power_p_high} \FloatBarrier
 
-\graphCap{comparing_power_p_low.png}{0.5}{In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p=[0.1,0.2,0.3,0.4,0.5]$ respectively.}{power_p_low}
+These tests indicate that, when controlling for degree size distribution, the clustering coefficient $C_\Delta$ may have a marginal effect. The correlation is marginally positive, and is much more evident for $1.75\leq r\leq 3.0$. It is also necessary to test the effect of $C_\Delta$ under a different degree size distribution. \\
 
-\graphCap{comparing_power_p_high.png}{0.5}{In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p=[0.1,0.2,0.3,0.4,0.5]$ respectively.}{power_p_high}
+\subsection{Controlling for Degree Size Distribution: Constant Distribution}
+The WS model is also a family of graphs, characterised by rewiring probability $p$. By increasing $p$, the $l$ statistic is reduced while $C_\Delta$ remains high. However there exists a region for $p$ where $C_\Delta$ decreases and $l$ does not move as much. It is this region that will be isolated to test the effect of local clustering on cooperation in graphs under a near--constant degree distribution regime. Recall that a WS graph starts with a circle of nodes, each node connected to its adjacent $\frac{m}{2}$ circular neighbours. Hence the initial degree is $m$ for each node, and this only varies marginally due to $p$. There is certainly no scale factors such as in the PL, BA, TAG models. \\
+
+\subsection{The Effect of Mean Degree}
+The initial experiments indicated that graphs with a power law degree distribution induced higher cooperation. This may be because they include nodes with higher degree. It is of interest to isolate the effect of higher degree on cooperation. To do this, a family of RRG are sampled, and the mean degree is varied between 4 and 8. The results are plotted below. \\
 
 
+\graphCap{graph_m_med.png}{0.8}{The effect of mean degree. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,5,6,7,8]$ respectively. }{graph_m_low} \FloatBarrier
+
+\graphCap{graph_m_high.png}{0.8}{The effect of mean degree. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,5,6,7,8]$ respectively. }{graph_m_low} \FloatBarrier
+
+The plots above dissect the effect of increasing average degree across the whole graph. The last effect to consider is stratifying the nodes by degree within a single graph model. To do this, the BA model was used, and the cooperation level recorded for each group of nodes, grouped by degree. 
