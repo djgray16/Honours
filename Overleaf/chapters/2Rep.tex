@@ -224,21 +224,31 @@ Figures \ref{graph_p_med} and \ref{graph_p_high} indicate that higher rewiring p
 The initial experiments indicated that graphs with a power law degree distribution induced higher cooperation. This may be because they include nodes with higher degree. It is of interest to isolate the effect of higher degree on cooperation. To do this, a family of RRG are sampled, and the mean degree is varied between 4 and 8. \\
 
 
-\graphCap{RRG_graph_m_med.png}{0.8}{The effect of mean degree. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,5,6,7,8]$ respectively. }{graph_m_low} \FloatBarrier
+\graphCap{RRG_graph_m_med.png}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m =  [4,6,8,10,12]$ respectively. }{graph_m_low} \FloatBarrier
 
-\graphCap{RRG_graph_m_high.png}{0.8}{The effect of mean degree. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,5,6,7,8]$ respectively. }{graph_m_med} \FloatBarrier
+\graphCap{RRG_graph_m_high.png}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m =  [4,6,8,10,12]$ respectively. }{graph_m_med} \FloatBarrier
 
 The plots above dissect the effect of increasing average degree across the whole graph. The trend is that higher degree leads to less cooperation. This trend is consistent across $3.0\leq r\leq6.5$. This indicates that the trend observed in Figure \ref{replicator_low} is not due to the power--law graphs having some nodes with higher degree, but must be explained in a different manner. These results can also be tested on a BA model. \\
 \FloatBarrier
-\graphCap{BA_graph_m_low.png}{0.8}{Capt. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,6,8,10,12]$ respectively.}{BA_graph_m_low}
+\graphCap{BA_graph_m_low.png}{0.8}{The effect of mean degree, BA model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,6,8,10,12]$ respectively.}{BA_graph_m_low}
 \FloatBarrier
-\graphCap{BA_graph_m_med.png}{0.8}{Capt. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,6,8,10,12]$ respectively.}{BA_graph_m_med}
+\graphCap{BA_graph_m_med.png}{0.8}{The effect of mean degree, BA model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $m = [4,6,8,10,12]$ respectively.}{BA_graph_m_med}
 \FloatBarrier
 Across Figures \ref{graph_m_low}, \ref{graph_m_med},\ref{BA_graph_m_low}, and \ref{BA_graph_m_med} there is a consistent trend that higher targeted mean degree $m$ leads to lower cooperation. This could be because there is a greater potential reward for defecting in a game of cooperators, increasing the fitness of defection. This trend is very consistent across both models and varying $r$. It also suggests that the increase in cooperation of the power--law graphs observed in Figures \ref{replicator_low}, \ref{replicator_medium}, and \ref{replicator_large} is not due to the high--degree nodes, but instead occurs because there exist a large proportion of nodes with degree lower than the common $m$.  \\
 
 The last effect to consider is stratifying the nodes by degree within a single graph model. To do this, the BA model was used, and the cooperation level recorded for each group of nodes, grouped by degree. \\
 
 \subsection{Cooperation Level Within a Single Graph Instance: BA model. }
+This experiment seeks to stratify the cooperation level of each point according to its degree. Earlier experiments indicated that increasing the targeted mean degree $m$ reduces cooperation, but that was measuring the whole--model cooperation. Instead, $m, r$ are fixed, and the cooperation level at the final step for each node is examined, and then aggregated over all nodes with that degree. \\
+\FloatBarrier
+\graphCap{BA_degree_groups_30.png}{0.8}{Cooperation vs Node Degree: BA Model, $r=3.0$. The bar chart, plotted on the left axis, is a histogram of the degree size. On the right axis, and plotted in black, is the final cooperation level of all nodes according to their degree. The mean cooperation is plotted as red horizontal line, for comparison. }{BA_groups_low}
+\FloatBarrier
+
+\FloatBarrier
+\graphCap{BA_degree_groups_45.png}{0.8}{Cooperation vs Node Degree: BA Model, $r=4.5$. The bar chart, plotted on the left axis, is a histogram of the degree size. On the right axis, and plotted in black, is the final cooperation level of all nodes according to their degree. The mean cooperation is plotted as red horizontal line, for comparison. }{BA_groups_med}
+\FloatBarrier
+
+These figures demonstrate that the lower degree nodes contribute a greater fraction than the mean. The higher nodes are incentivised to defect, as their gain from defection can be very high. It is notable that this strategy does not propagate well, and even for low $r$ high cooperation is achieved. These results corroborate the findings in Figures \ref{BA_graph_m_low} and \ref{BA_graph_m_med}, which show that there is higher cooperation amongst lower degrees. \\
 
 \subsection{Summary}
 Four graph models were examined under replicator dynamics, and the results are plotted in Figures \ref{replicator_low}, \ref{replicator_medium}, and \ref{replicator_large}. The trend of these plots was that the models with power--law degree size distribution, the BA and TAG models, induced higher cooperation. In an attempt to explain these results, several more experiments were carried out. \\
