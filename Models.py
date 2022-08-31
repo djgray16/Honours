@@ -91,7 +91,10 @@ class WealthModel(ap.Model):
 
 
         self.record('Cooperation_Level', adequate_coop(self.agents.contribute))
-       
+        if self.p.extended_reporting:
+            pass
+            #self.agents.record('contribute')
+            
         #self.agents.record('contribute')
         #self.agents.record('last_give')
         #self.agents.record('last_receive')
@@ -100,8 +103,11 @@ class WealthModel(ap.Model):
 
     def end(self): #end of experiment
         if self.p.extended_reporting:
-            self.record('Degree', len(self.agents.true_neighbours))
-            self.record('Neighbour_Cooperation', np.mean([i.contribute for i in self.agents.true_neighbours]))
+            self.agents.record('degree')
+            self.agents.record('next_contribute')
+            self.agents.record('mean_neighbour')
+            #self.agents.record('contribute')
+            #self.agents.record('Neighbour_Cooperation', np.mean([i.contribute for i in self.agents.true_neighbours]))
         #self.report('Final_Cooperation', adequate_coop(self.agents.contribute))
         #self.record('Current_Cooperation2',adequate_coop(self.agents.contribute) )
         pass

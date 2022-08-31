@@ -156,6 +156,9 @@ class ReplicatorLocal(BaseAgent):
         #print([ i.pi for i in neighbours])
         a =self.model.p.replicator_alpha
         scale= max(i.profit for i in neighbours)
+        if self.model.p.extended_reporting:
+            mean_neighbour = np.mean([i.contribute for i in neighbours])
+            self.mean_neighbour = mean_neighbour
         
         neighbour = random.choice(neighbours)
         #self.last_give = self.contribute

@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 
 
 #### control box
-save = 1 #save the figure
+save = 0 #save the figure
 run =1
 v2 = 'graph_m'
 
