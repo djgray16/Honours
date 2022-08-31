@@ -29,7 +29,7 @@ run =1
 v2 = 'graph_m'
 
 
-filename = 'RRG_graph_m_med'
+filename = 'RRG_graph_m_high'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -40,7 +40,7 @@ parameters = {
     'seed':42,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(3.0,3.5,4.0,4.5), # #multiplier for common contributions
+    'phi':ap.Values(5.0,5.5,6.0,6.5), # #multiplier for common contributions
     'graph_m' : ap.Values(4,6,8,10,12),
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
