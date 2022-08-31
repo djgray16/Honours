@@ -28,7 +28,7 @@ run =0
 
 
 
-filename = 'BA_degree_groups_30'
+filename = 'BA_degree_groups_45'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -39,7 +39,7 @@ parameters = {
     'seed':52,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':3.0,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
+    'phi':4.5,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
@@ -95,8 +95,10 @@ line_ax.set_ylabel('Final Cooperation')
 fig.suptitle('Final Cooperation vs Node Degree: BA Model')
 
 
-plt.show()
+#
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.png')
+    
+plt.show()
 
