@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Aug 10 14:18:59 2022
+Created on Wed Aug 31 09:32:47 2022
 
 @author: djgra
 """
-
 
 
 import agentpy as ap
@@ -29,7 +28,7 @@ run =1
 v2 = 'graph_m'
 
 
-filename = 'RRG_graph_m_med'
+filename = 'BA_graph_m_med'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -40,16 +39,16 @@ parameters = {
     'seed':42,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(3.0,3.5,4.0,4.5), # #multiplier for common contributions
+    'phi':ap.Values(4.0,4.5,5.0,5.5), # #multiplier for common contributions
     'graph_m' : ap.Values(4,6,8,10,12),
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
-    'gtype': 'RRG', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'gtype': 'BA', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
-    'extended_reporting':0
+    'extended_reporting': 1
 }
 
 
@@ -108,7 +107,7 @@ phi_graph = phi_graph.reset_index()
 graphs = results.parameters.sample[v2]
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'Comparing Mean Degree, RRG model: Replicator Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
+fig.suptitle(f'Comparing Mean Degree, BA model: Replicator Dynamics ') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
 
 
 

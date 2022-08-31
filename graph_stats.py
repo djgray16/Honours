@@ -18,14 +18,14 @@ graph_choices = ['PL'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
 N = int(500)
 
 m = 6
-WS_p = 0.1
+WS_p = 0.5
 GNP_p = m/(N)
 TAG_alpha = 0.3
 
-power_p = 1
+power_p = 0.5
 ln = 0
 
-plotter = 0
+plotter = 1
 
 stats = 1
 
