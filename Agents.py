@@ -298,17 +298,17 @@ class Nau(ap.Agent):
     def setup(self):
         d,_ = divmod(self.model.p.agents,6)
         if self.id <=d:
-            self.strategy = 'SS'
+            self.strategy = 'RwR'
         elif self.id <= 2*d:
             self.strategy = 'RR'
         elif self.id<=3*d:
             self.strategy = 'RS'
         elif self.id <=4*d:
-            self.strategy = 'SR'
-        elif self.id <=5*d:
             self.strategy = 'RwS'
+        elif self.id <=5*d:
+            self.strategy = 'SR'
         elif self.id <=6*d:
-            self.strategy = 'RwR'
+            self.strategy = 'SS'
         else:
             print('agent id error')
             

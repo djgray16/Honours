@@ -25,14 +25,14 @@ MeansOnly = 1
 
 CI = 0
 save = 0
-filename = 'lotteryp4_me_quantiles_empirical'
+filename = 'backups_talk_05'
 
 parameters = {
     'seed': 16,
     'steps': 500,
               'agents': 6000,
               'alpha': 0.0,
-              'lottery_p': 0.55,
+              'lottery_p': 0.4,
               'atype': Nau}
 
 
@@ -78,7 +78,7 @@ plt.legend(props.columns)
 plt.xlabel('Generation')
 plt.ylabel('Count of Agents')
 plt.ylim(0,parameters['agents'])
-plt.title(f'Imitation Dynamics, p={parameters["lottery_p"]}')
+plt.title(f'alpha = {parameters["alpha"]} Dynamics, p={parameters["lottery_p"]}')
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.png')

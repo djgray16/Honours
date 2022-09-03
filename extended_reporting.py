@@ -23,8 +23,8 @@ import matplotlib.pyplot as plt
 
 
 #### control box
-save = 1 #save the figure
-run =0
+save = 0 #save the figure
+run =1
 
 
 
@@ -39,7 +39,7 @@ parameters = {
     'seed':52,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':4.5,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
+    'phi':3.0,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
@@ -59,7 +59,7 @@ sample = ap.Sample(
 )
 #assert len(parameters['phi'])==4
 
-reps = 80
+reps = 1000
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 
@@ -84,7 +84,7 @@ log_counts = np.log(counts)
 fig, bar_ax = plt.subplots()
 
 
-bar_ax.hist(counts.index, weights = counts, log = 1, density = 0, alpha = 0.6, bins = 50)
+bar_ax.hist(counts.index, weights = counts, log = 1, density = 0, alpha = 0.6, bins  = len(counts.unique()+1))
 bar_ax.set_xlabel('Degree Size')
 bar_ax.set_ylabel('Count of Nodes')
 line_ax = bar_ax.twinx()

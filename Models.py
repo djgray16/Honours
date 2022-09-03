@@ -130,6 +130,6 @@ class LotteryModel(ap.Model):
             self[c] = n_agents
             self.record(c)
             
-        self.record('SS', )
+        #self.record('SS', )
     def end(self):
         pass
