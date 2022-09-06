@@ -296,13 +296,13 @@ class AT(BaseAgent):
             
 class Nau(ap.Agent):
     def setup(self):
-        d,_ = divmod(self.model.p.agents,6)
+        d,_ = divmod(self.model.p.agents,3)
         if self.id <=d:
-            self.strategy = 'RwR'
+            self.strategy = 'RwS'
         elif self.id <= 2*d:
-            self.strategy = 'RR'
-        elif self.id<=3*d:
             self.strategy = 'RS'
+        elif self.id<=3*d:
+            self.strategy = 'SS'
         elif self.id <=4*d:
             self.strategy = 'RwS'
         elif self.id <=5*d:

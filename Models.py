@@ -62,11 +62,13 @@ class WealthModel(ap.Model):
             graph = TAG(n,m,self.p.graph_alpha)
         elif self.gtype =='PL':
             graph =nx.powerlaw_cluster_graph(n,int(m/2),self.p.power_p)
+        elif self.gtype =='Star':
+            graph = nx.star_graph(n)
         else:
             print('no idea what graph you want')
             return
         if self.p.plot_G: #plotting tool
-            plot_G(graph)
+            plot_G(graph, title = self.gtype + str(n))
         
         
 

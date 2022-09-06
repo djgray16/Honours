@@ -23,27 +23,28 @@ import matplotlib.pyplot as plt
 
 ## Control board
 
-run = 0
+run = 1
 CI = True #true is when assume normal distribution, false is empirical quantiles
 
 MeansOnly = True
 
 save = 0 #save the figure
 
-filename = 're'
+filename = 'TAfig4b'
 
 parameters = {
     'seed': 42,
-    'steps': 200, #number of time periods
+    'steps': 40, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(2,2.5,3,3.5,4,4.5,5,5.5), #multiplier for common contributions
+    'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0), #multiplier for common contributions
     'graph_m' : 6,
-    'graph_alpha': 0.3,
+    'graph_alpha': 1.0,
     'graph_p':0.05,
     'gtype': 'TAG',
-    'atype': ReplicatorLocal,
+    'atype': AT,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
-    'plot_G': 0 #gives the summary plot of the graph for each experiment
+    'plot_G': 0, #gives the summary plot of the graph for each experiment
+    'extended_reporting': 0
 }
 
 
@@ -109,7 +110,7 @@ for i in range(len(phis)):
     y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     x = phis.index
     #plt.legend(phis.unique())
-    plt.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 10,ms = 4,linewidth = 0.6, label = f'r = {phis[i]}') #
+    plt.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 1,ms = 4,linewidth = 1.0, label = f'r = {phis[i]}') #
     if not MeansOnly:
         plt.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
         plt.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
@@ -122,7 +123,7 @@ plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
 
-plt.title(f"Local Replicator Dynamics") #"; N: {parameters['agent_n']} "\
+plt.title(f"Replication of Figure 5b") #"; N: {parameters['agent_n']} "\
           #f"k: {parameters['graph_m']}, T: {reps}, alpha: {parameters['graph_alpha']} ")
     
 '''   

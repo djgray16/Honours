@@ -44,7 +44,7 @@ parameters = {
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
-    'gtype': 'BA', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'gtype': 'Star', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
@@ -59,7 +59,7 @@ sample = ap.Sample(
 )
 #assert len(parameters['phi'])==4
 
-reps = 1000
+reps = 10
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 
@@ -89,6 +89,7 @@ bar_ax.set_xlabel('Degree Size')
 bar_ax.set_ylabel('Count of Nodes')
 line_ax = bar_ax.twinx()
 line_ax.plot(end_coop, marker = 'o', color = 'black')
+line_ax.set_ylim([0,1])
 line_ax.hlines(agg_coop_end,end_coop.index.min(), end_coop.index.max(), color = 'r', linewidth = 3, linestyle = 'dashed')
 line_ax.set_ylabel('Final Cooperation')
 
