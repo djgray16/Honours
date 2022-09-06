@@ -23,14 +23,14 @@ import matplotlib.pyplot as plt
 
 ## Control board
 
-run = 1
+run = 0
 CI = False #true is when assume normal distribution, false is empirical quantiles
 
 MeansOnly = True
 
 save = 0 #save the figure
 
-filename = 'TAfig4b'
+filename = 'TAfig4a'
 
 parameters = {
     'seed': 42,
@@ -38,7 +38,7 @@ parameters = {
     'agent_n': 500,
     'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4,2.6, 3.0,4.0), #multiplier for common contributions
     'graph_m' : 6,
-    'graph_alpha': 1.0,
+    'graph_alpha': 0.0,
     'graph_p':0.05,
     'gtype': 'TAG',
     'atype': AT,
@@ -122,7 +122,7 @@ plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
 
-plt.title(f"Replication of Figure 4b") #"; N: {parameters['agent_n']} "\
+plt.title(f"Replication of Figure 5a") #"; N: {parameters['agent_n']} "\
           #f"k: {parameters['graph_m']}, T: {reps}, alpha: {parameters['graph_alpha']} ")
     
 '''   
