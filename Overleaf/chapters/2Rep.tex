@@ -253,9 +253,9 @@ It also suggests that the increase in cooperation of the power--law graphs obser
 The last effect to consider is stratifying the nodes by degree within a single graph model. To do this, the BA model was used, and the cooperation level recorded for each nodes, then aggregated by degree. \\
 
 \subsection{Cooperation Level Within a Single Graph Instance: BA model }
-This experiment seeks to stratify the cooperation level of each point according to its degree. Earlier experiments indicated that increasing the targeted mean degree $m$ reduces cooperation, but that was measuring the whole--model cooperation. Instead, $m, r$ are fixed, and the cooperation level at the final step for each node is examined, and then aggregated over all nodes with that degree. \\
+This experiment seeks to stratify the cooperation level of each point according to its degree. Earlier experiments indicated that increasing the targeted mean degree $m$ reduces cooperation, but that was measuring the whole--model cooperation. Instead, $m, r$ are fixed, and the cooperation level at the final step for each node is examined, and then aggregated over all nodes with that degree. This experiment necessitated reducing the mean degree, $m$ to 4, to reduce the range for degree size and therefore the number of trials required. Also, degree sizes with less than 5 representations across all trials were removed, as there is insufficient data. The number of trials, $T$, was set to 1000 to ensure the data was representative of the underlying mechanism. \\
 \FloatBarrier
-\graphCap{BA_degree_groups_30.png}{0.8}{Cooperation vs Node Degree: BA Model, $r=3.0$. The bar chart, plotted on the left axis, is a histogram of the degree size. On the right axis, and plotted in black, is the final cooperation level of all nodes according to their degree. The mean cooperation is plotted as red horizontal line, for comparison. }{BA_groups_low}
+\graphCap{BA_degree_groups_30_1000_trimmed.png}{0.8}{Cooperation vs Node Degree: BA Model, $r=3.0$, $m=4$. The bar chart, plotted on the left axis, is a histogram of the degree size. On the right axis, and plotted in black, is the final cooperation level of all nodes according to their degree. The mean cooperation is plotted as red horizontal line, for comparison. }{BA_groups_low}
 \FloatBarrier
 
 \FloatBarrier
