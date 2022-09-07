@@ -34,15 +34,15 @@ filename = 'TAfig4b'
 
 parameters = {
     'seed': 42,
-    'steps': 40, #number of time periods
+    'steps': 1600, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0), #multiplier for common contributions
+    'phi':ap.Values(5.2,5.4,5.6,5.8,6.0), #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 1.0,
-    'graph_p':0.05,
-    'gtype': 'TAG',
-    'atype': AT,
-    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+    'graph_p':0.1,
+    'gtype': 'WS',
+    'atype': ReplicatorLocal,
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
     'extended_reporting': 0
 }

@@ -24,12 +24,12 @@ import matplotlib.pyplot as plt
 
 #### control box
 save = 0 #save the figure
-run =1
+run =0
 
-trim = 0
+trim = 1
 
 
-filename = 'BA_degree_groups_45_1000'
+filename = 'BA_degree_groups_45_1000_trimmed'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
