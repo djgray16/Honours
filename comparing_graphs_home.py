@@ -29,7 +29,7 @@ run =1
 v2 = 'gtype'
 
 
-filename = 'ID_1'
+filename = 'ID_2'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -38,16 +38,16 @@ filename = 'ID_1'
 
 parameters = {
     'seed':42,
-    'steps': 200, #number of time periods
+    'steps': 800, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
+    'phi':ap.Values(4.0,4.5,5.0,5.5), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
     'graph_alpha': 0.3,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0.1,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0.1,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
     'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
-    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
     'extended_reporting':0
 }

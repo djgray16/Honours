@@ -26,9 +26,10 @@ import matplotlib.pyplot as plt
 save = 0 #save the figure
 run =1
 
+trim = 0
 
 
-filename = 'BA_degree_groups_45'
+filename = 'BA_degree_groups_45_1000'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -39,12 +40,12 @@ parameters = {
     'seed':52,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':3.0,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
-    'graph_m' : 6,
+    'phi':4.5,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
+    'graph_m' : 4,
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
-    'gtype': 'Star', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'gtype': 'BA', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
@@ -59,7 +60,7 @@ sample = ap.Sample(
 )
 #assert len(parameters['phi'])==4
 
-reps = 10
+reps = 1000
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 
@@ -84,6 +85,13 @@ log_counts = np.log(counts)
 fig, bar_ax = plt.subplots()
 
 
+
+### trimming
+
+if trim:
+    new_counts = counts[counts>5]
+    end_coop = end_coop[counts>5]
+    counts = new_counts
 bar_ax.hist(counts.index, weights = counts, log = 1, density = 0, alpha = 0.6, bins  = len(counts.unique()+1))
 bar_ax.set_xlabel('Degree Size')
 bar_ax.set_ylabel('Count of Nodes')
@@ -93,7 +101,7 @@ line_ax.set_ylim([0,1])
 line_ax.hlines(agg_coop_end,end_coop.index.min(), end_coop.index.max(), color = 'r', linewidth = 3, linestyle = 'dashed')
 line_ax.set_ylabel('Final Cooperation')
 
-fig.suptitle('Final Cooperation vs Node Degree: BA Model')
+fig.suptitle('Final Cooperation vs Node Degree: BA Model, Trimmed')
 
 
 #
