@@ -63,7 +63,7 @@ class WealthModel(ap.Model):
         elif self.gtype =='PL':
             graph =nx.powerlaw_cluster_graph(n,int(m/2),self.p.power_p)
         elif self.gtype =='Star':
-            graph = nx.star_graph(n)
+            graph = nx.star_graph(n-1)
         elif self.gtype =='Complete':
             graph = nx.complete_graph(n)
             
@@ -96,7 +96,7 @@ class WealthModel(ap.Model):
 
 
         self.record('Cooperation_Level', adequate_coop(self.agents.contribute))
-        if self.p.extended_reporting:
+        if self.p.step_reporting:
             pass
             self.agents.record('contribute')
             
@@ -107,10 +107,10 @@ class WealthModel(ap.Model):
         #self.agents.record('agent_class')
 
     def end(self): #end of experiment
-        if self.p.extended_reporting:
+        if self.p.end_reporting:
             self.agents.record('degree')
             self.agents.record('next_contribute')
-            self.agents.record('mean_neighbour')
+            #self.agents.record('mean_neighbour')
             #self.agents.record('contribute')
             #self.agents.record('Neighbour_Cooperation', np.mean([i.contribute for i in self.agents.true_neighbours]))
         #self.report('Final_Cooperation', adequate_coop(self.agents.contribute))

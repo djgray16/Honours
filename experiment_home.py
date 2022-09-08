@@ -44,7 +44,8 @@ parameters = {
     'atype': ReplicatorLocal,
     'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
-    'extended_reporting': 0
+    'step_reporting': 0,
+    'end_reporting': 0
 }
 
 
@@ -138,6 +139,6 @@ f'graph: {parameters["gtype"]}, agents: {parameters["atype"]}, graph_alpha: ' \
 
 
 if save: 
-    plt.savefig(f'Overleaf/images/{filename}.png')
+    plt.savefig(f'Overleaf/images/{filename}.pdf')
 
             

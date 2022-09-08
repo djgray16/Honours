@@ -23,13 +23,13 @@ import matplotlib.pyplot as plt
 
 
 #### control box
-save = 0 #save the figure
-run =0
+save = 1 #save the figure
+run =1
 
 trim = 1
 
 
-filename = 'BA_degree_groups_45_1000_trimmed'
+filename = 'BA_degree_groups_45_1000_trimmed_6'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -41,7 +41,7 @@ parameters = {
     'steps': 200, #number of time periods
     'agent_n': 500,
     'phi':4.5,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
-    'graph_m' : 4,
+    'graph_m' : 6,
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
@@ -49,7 +49,8 @@ parameters = {
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
-    'extended_reporting': 1
+    'step_reporting': 0,
+    'end_reporting': 1
 }
 
 
@@ -107,7 +108,7 @@ fig.suptitle('Final Cooperation vs Node Degree: BA Model, Trimmed')
 #
 
 if save: 
-    plt.savefig(f'Overleaf/images/{filename}.png')
+    plt.savefig(f'Overleaf/images/{filename}.pdf')
     
 plt.show()
 
