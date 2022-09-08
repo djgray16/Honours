@@ -133,6 +133,7 @@ class ReplicatorLocal(BaseAgent):
         self.last_give = random.choice(self.choices)
         self.contribute = self.last_give 
         self.last_receive = 0
+        self.next_contribute = self.contribute
     '''
     def contribute_choice(self):
         neighbours = self.network.neighbors(self).to_list()
@@ -171,6 +172,12 @@ class ReplicatorLocal(BaseAgent):
             prob = ((neighbour.pi - self.pi)/scale)**a
             if prob>random.random():
                 self.next_contribute = neighbour.contribute
+                if self.next_contribute not in [0,1]:
+                    print('e1', self.next_contribute, neighbour.choices)
+            else:
+                self.next_contribute = self.contribute #if I can't replicate results, its because I only added
+                #this line on the 8Sep. Also need to change turn off self.next_contribute in ReplicatorLocal
+                
                 
             
                 # we need to make a new_contribute, and not change that 

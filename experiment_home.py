@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 
 ## Control board
 
-run = 1
+run = 0
 CI = True #true is when assume normal distribution, false is empirical quantiles
 
 MeansOnly = True
@@ -104,26 +104,27 @@ phi_graph = coops2.groupby(['t', 'phi']).mean()
 
 #m_graph = coops2.groupby(['t', 'graph_m']).mean()
 #plt.figure(figsize = (8,8))
+fig, ax = plt.subplots()
 for i in range(len(phis)):
     y1 = phi_graph.Cooperation_Level.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     y2 = phi_graph.q_down.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
     x = phis.index
     #plt.legend(phis.unique())
-    plt.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 1,ms = 4,linewidth = 1.0, label = f'r = {phis[i]}') #
+    ax.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 1,ms = 4,linewidth = 1.0, label = f'r = {phis[i]}') #
     if not MeansOnly:
-        plt.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
-        plt.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
+        ax.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
+        ax.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
     
 
-#plt.legend( loc='lower right')
-plt.ylabel('Mean Cooperation')
-plt.xlabel('Round')
-plt.yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
+ax.legend( loc='lower right')
+ax.set_ylabel('Mean Cooperation')
+ax.set_xlabel('Round')
+ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
 
 #plt.rcParams["figure.figsize"] = (10,10)
 
-plt.title(f"Replication of Figure 5b") #"; N: {parameters['agent_n']} "\
+fig.suptitle(f"WS Time to stability") #"; N: {parameters['agent_n']} "\
           #f"k: {parameters['graph_m']}, T: {reps}, alpha: {parameters['graph_alpha']} ")
     
 '''   

@@ -64,6 +64,9 @@ class WealthModel(ap.Model):
             graph =nx.powerlaw_cluster_graph(n,int(m/2),self.p.power_p)
         elif self.gtype =='Star':
             graph = nx.star_graph(n)
+        elif self.gtype =='Complete':
+            graph = nx.complete_graph(n)
+            
         else:
             print('no idea what graph you want')
             return
@@ -95,7 +98,7 @@ class WealthModel(ap.Model):
         self.record('Cooperation_Level', adequate_coop(self.agents.contribute))
         if self.p.extended_reporting:
             pass
-            #self.agents.record('contribute')
+            self.agents.record('contribute')
             
         #self.agents.record('contribute')
         #self.agents.record('last_give')
