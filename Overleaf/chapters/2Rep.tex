@@ -7,8 +7,8 @@ The paper chosen to replicate imitation and replicator dynamics was \cite{RN30},
 
 The paper implemented agent--based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_i$, \\
 
-\begin{align} \label{rep}
-q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{align} 
+\begin{equation} \label{rep}
+q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
 
 In the formulation, $\Delta$ scales the difference so that $0 \leq q_i \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_i \geq r_i,$ $r_i \sim \mathsf{U}(0,1)$. \\
 
@@ -259,7 +259,7 @@ This experiment seeks to stratify the cooperation level of each point according 
 \FloatBarrier
 
 \FloatBarrier
-\graphCap{BA_degree_groups_45_1000_trimmed_4.png}{0.8}{Cooperation vs Node Degree: BA Model, $r=4.5, m =4$. The bar chart, plotted on the left axis, is a histogram of the degree size. On the right axis, and plotted in black, is the final cooperation level of all nodes according to their degree. The mean cooperation is plotted as red horizontal line, for comparison. }{BA_groups_med}
+\graphCap{BA_degree_groups_45_1000_trimmed_4.pdf}{0.8}{Cooperation vs Node Degree: BA Model, $r=4.5, m =4$. The bar chart, plotted on the left axis, is a histogram of the degree size. On the right axis, and plotted in black, is the final cooperation level of all nodes according to their degree. The mean cooperation is plotted as red horizontal line, for comparison. }{BA_groups_med}
 \FloatBarrier
 
 \textbf{ADD IN M=6 HERE}
