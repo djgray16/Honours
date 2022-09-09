@@ -29,9 +29,9 @@ run =1
 v2 = 'power_p'
 
 
-filename = 'comparing_power_p_low'
+filename = 'comparing_power_p_high'
 
-title = 'Varying Rewiring p, WS model, Replicator Dynamics'
+title = 'Varying clustering p, PL model, Replicator Dynamics'
  #TODO test phi large, then test WS p over phi, then examine cooperation
  # of BA grouped by node degree. also rewrite the markov ODE part of before
 
@@ -42,7 +42,7 @@ parameters = {
     'seed':42,
     'steps': 200, #number of time periods
     'agent_n': 500,
-    'phi':ap.Values(1.75,2.0,2.25,2.5), # #multiplier for common contributions
+    'phi':ap.Values(2.75, 3.0, 3.25, 3.5), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
     'graph_alpha': 0.3,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
