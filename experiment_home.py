@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 
 ## Control board
 
-run = 0
+run = 1
 CI = True #true is when assume normal distribution, false is empirical quantiles
 
 MeansOnly = True
