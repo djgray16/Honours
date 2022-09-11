@@ -206,4 +206,66 @@ def compare_two(parameters, control_board):
     return
     
     
-
+def lottery(parameters, control_board):
+    run = control_board['run'] 
+    #v2 = control_board['v2'] 
+    save = control_board['save'] 
+    title = control_board['title'] 
+    filename = control_board['filename'] 
+    reps = control_board['reps']
+    CI = control_board['CI']
+    MeansOnly = control_board['MeansOnly']
+    legend = control_board['legend']
+    
+    assert legend*save <0.5
+    
+    
+    sample = ap.Sample(
+        parameters,
+        n=1,
+        method='linspace'
+    )
+    
+    
+    exp = ap.Experiment(LotteryModel, sample, iterations=reps,
+                        record = True)
+    if run:
+        results = exp.run()
+    
+    props = results.variables.LotteryModel.groupby(['t']).mean()
+    
+    pct_up = results.variables.LotteryModel.groupby(['t']).quantile(0.975)
+    pct_down = results.variables.LotteryModel.groupby(['t']).quantile(0.025)
+    
+    if CI:
+        pct_up = props + 1/math.sqrt(reps)*1.96*results.variables.LotteryModel.groupby(['t']).std()
+        pct_down = props - 1/math.sqrt(reps)*1.96*results.variables.LotteryModel.groupby(['t']).std()
+    #pct_up = pct_up.rename('q_up')
+    #pct_down = pct_up.rename('q_down')
+    colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
+               'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
+    markers =['o', '*', 'x', 'p', 's', 'd', 'p', 'h']
+    
+    
+    fig, ax = plt.subplots()
+    
+    for i in range(len(props.columns)):
+        y = props[props.columns[i]]
+        y1 = pct_up[props.columns[i]]
+        y2 = pct_down[props.columns[i]]
+        x = props.index
+        ax.plot(x,y, c= colours[i], marker = markers[i], markevery = 0.05, ms = 5, linewidth = 2.0)
+        if not MeansOnly:
+            ax.plot(x,y1, c = colours[i], linestyle = 'dashed', marker = markers[i], markevery = 0.1,ms = 5, alpha = 0.6)
+            ax.plot(x,y2,c = colours[i],linestyle = 'dashed', marker = markers[i], markevery = 0.1, ms = 5,alpha = 0.6)
+    if legend:
+        ax.legend(props.columns)
+    ax.set_xlabel('Generation')
+    ax.set_ylabel('Count of Agents')
+    ax.set_ylim(0,parameters['agents'])
+    fig.suptitle(f'{title}')
+    
+    if save: 
+        plt.savefig(f'Overleaf/images/{filename}.pdf')
+        print('saved',title, f'as {filename}' )
+    return 

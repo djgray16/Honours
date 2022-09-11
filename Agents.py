@@ -303,19 +303,19 @@ class AT(BaseAgent):
             
 class Nau(ap.Agent):
     def setup(self):
-        d,_ = divmod(self.model.p.agents,3)
+        d,_ = divmod(self.model.p.agents,6)
         if self.id <=d:
-            self.strategy = 'RwS'
+            self.strategy = 'SS'
         elif self.id <= 2*d:
-            self.strategy = 'RS'
+            self.strategy = 'RR'
         elif self.id<=3*d:
-            self.strategy = 'SS'
-        elif self.id <=4*d:
-            self.strategy = 'RwS'
-        elif self.id <=5*d:
             self.strategy = 'SR'
+        elif self.id <=4*d:
+            self.strategy = 'RS'
+        elif self.id <=5*d:
+            self.strategy = 'RwR'
         elif self.id <=6*d:
-            self.strategy = 'SS'
+            self.strategy = 'RwS'
         else:
             print('agent id error')
             
@@ -357,7 +357,7 @@ class Nau(ap.Agent):
         
         pass
     def contribute_choice(self):
-        delta = 16-self.pi
+        #delta = 16-self.pi
         delta = 16
         
         if self.pi ==16:

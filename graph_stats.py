@@ -13,7 +13,7 @@ tests = 100
 
 graphs_dict = {}
 results = {}
-graph_choices = ['PL'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
+graph_choices = ['PL', 'BA'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
 
 N = int(500)
 
@@ -22,12 +22,16 @@ WS_p = 0.5
 GNP_p = m/(N)
 TAG_alpha = 0.3
 
-power_p = 0.5
+power_p = 0.5   
 ln = 0
 
 plotter = 1
 
-stats = 1
+stats = 0
+
+save = 1
+
+filename = 'PL05BA'
 
 degrees = [[]for j in graph_choices]
 
@@ -76,6 +80,9 @@ if plotter:
         ax.set(ylabel = 'Count')
         ax.label_outer()
             #axs[axesx[i], axesy[i]].legend()
+            
+    if save: 
+        plt.savefig(f'Overleaf/images/{filename}.pdf')
         
     
 if stats:
