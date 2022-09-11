@@ -13,7 +13,7 @@ q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\
 In the formulation, $\Delta$ scales the difference so that $0 \leq q_i \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_i \geq r_i,$ $r_i \sim \mathsf{U}(0,1)$. \\
 
 \subsection{Results Comparison}
-The simulated results were compared to the paper for $\alpha = 0, 1, 0.5$, and are shown below. \\
+The simulated results were compared to the paper for $\alpha = 0, 1,$, and $ 0.5$, and are shown below. \\
 
 \FloatBarrier 
 \begin{figure}[!h]
@@ -166,11 +166,11 @@ Then the effect of targeted mean degree $m$ is examined for RRG and BA models. B
 \subsection{Results}
 These results examine the effect of network model on cooperation. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 200, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 7.5$. It appears that graph models with a power law degree size distribution induce higher cooperation. The results discussed in Chapter \ref{Chapter:Lit} corroborate this trend. \\
 \FloatBarrier
-\graphCap{replicator_graphs_low.png}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_low} 
+\graphCap{replicator_graphs_low.pdf}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_low} 
 \FloatBarrier
-\graphCap{replicator_graphs_medium}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4,4.5,5,5.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_medium}
+\graphCap{replicator_graphs_med.pdf}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4,4.5,5,5.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_medium}
 \FloatBarrier
-\graphCap{replicator_graphs_large}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_large}\FloatBarrier
+\graphCap{replicator_graphs_high.pdf}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_large}\FloatBarrier
 
 
 
@@ -179,9 +179,9 @@ There is insufficient information to determine if the clustering coefficient $C_
 \subsection{Isolating the Effect of Clustering Coefficient: Power Law Degree Size Distribution}
 To test the hypothesis that the average clustering coefficient $C_\Delta$ does not impact cooperation, the \verb+power_law+ model was used to create another graph model, denoted PL. It induces a degree distribution with power law shape, but the parameter $p$ dictates the clustering coefficient. After each node is connected, the parameter $p$ determines the probability that the next link joins two neighbours, completing the triangle. Two degree histograms are plotted below, which emphasise the degree size distribution. \\
 \FloatBarrier
-\graphCap{PL01BA.png}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.1$. The degree histograms are similar, so the only difference is the clustering coefficient.}{PL01BA}
+\graphCap{PL01BA.pdf}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.1$. The degree histograms are similar, so the only difference is the clustering coefficient.}{PL01BA}
 \FloatBarrier
-\graphCap{PL05BA.png}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
+\graphCap{PL05BA.pdf}{0.5}{Comparison of Power Law Clustering Graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
 \FloatBarrier
 The summary statistics are also reported. It is important to note the only statistic that noticeably changes is $C_\Delta$, as desired. \\
 \FloatBarrier
