@@ -31,14 +31,18 @@ def experiment(parameters, control_board):
     
     
     run = control_board['run'] 
-    v2 = control_board['v2'] 
+    #v2 = control_board['v2'] 
     save = control_board['save'] 
     title = control_board['title'] 
     filename = control_board['filename'] 
     reps = control_board['reps']
     CI = control_board['CI']
     MeansOnly = control_board['MeansOnly']
-        
+    legend = control_board['legend'] 
+    
+    assert save*legend <1
+    
+    
     sample = ap.Sample(
         parameters,
         n=1,
@@ -87,18 +91,20 @@ def experiment(parameters, control_board):
 
     fig, ax = plt.subplots()
     for i in range(len(phis)):
+        #print(i)
         y1 = phi_graph.Cooperation_Level.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
         y2 = phi_graph.q_down.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
         y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
         x = phis.index
         #plt.legend(phis.unique())
-        ax.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 1,ms = 4,linewidth = 1.0, label = f'r = {phis[i]}') #
+        #print(len(colours), len(markers), len(phis))
+        ax.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 0.05,ms = 5,linewidth = 1.75, label = f'r = {phis[i]}') #
         if not MeansOnly:
-            ax.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
-            ax.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
+            ax.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', markevery = 0.1, alpha = 0.6 )
+            ax.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' ,markevery = 0.1, alpha = 0.6)
         
-    
-    ax.legend( loc='lower right')
+    if legend:
+        ax.legend( loc='lower right')
     ax.set_ylabel('Mean Cooperation')
     ax.set_xlabel('Round')
     ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
@@ -121,6 +127,7 @@ def experiment(parameters, control_board):
     if save: 
         plt.savefig(f'Overleaf/images/{filename}.pdf')
         print(f'saved fig: {title} as {filename}')
+        #plt.close(fig)
     return 
 
 def compare_two(parameters, control_board):
@@ -203,6 +210,7 @@ def compare_two(parameters, control_board):
     if save: 
         plt.savefig(f'Overleaf/images/{filename}.pdf')
         print(f'saved fig: {title} as {filename}')
+        #plt.close(fig)
     return
     
     
@@ -268,4 +276,5 @@ def lottery(parameters, control_board):
     if save: 
         plt.savefig(f'Overleaf/images/{filename}.pdf')
         print('saved',title, f'as {filename}' )
+        #plt.close(fig)
     return 

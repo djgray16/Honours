@@ -28,7 +28,7 @@ legend = 0
 MeansOnly = 1
 
 CI = 0
-save = 0
+save = 1
 filename = 'lottery1_me'
 title = 'Replication of Lottery Game: Replicator Dynamics'
 control_board = {'run': run, 'reps': reps, 'save': save, 'filename': filename,
@@ -45,6 +45,78 @@ parameters = {
               'lottery_p': 0.5,
               'atype': Nau}
 
+lottery(parameters, control_board)
+
+
+####################################################
+
+control_board['title'] = 'Replication of Lottery Game: Imitation Dynamics'
+control_board['filename'] = 'lottery2_me'
+
+parameters['alpha'] = 0.0
+
+lottery(parameters, control_board)
+
+aa
+#######################################################
+
+control_board['title'] = 'Replication of Lottery Game: alpha = 0.5 Dynamics'
+control_board['filename'] = 'lottery3_me'
+
+parameters['alpha'] = 0.5
+
+lottery(parameters, control_board)
+
+
+##############################################################################
+
+control_board['title'] = 'Imitation Dynamics; p=0.4'
+control_board['filename'] = 'lotteryp4_me'
+
+parameters['alpha'] = 0.0
+
+parameters['lottery_p'] = 0.4
+
+
+lottery(parameters, control_board)
+
+
+##############################################################################
+
+control_board['title'] = 'Imitation Dynamics; p=0.55'
+control_board['filename'] = 'lotteryp055_me'
+
+parameters['alpha'] = 0.0
+
+parameters['lottery_p'] = 0.55
+parameters['steps'] = 200
+
+
+lottery(parameters, control_board)
+
+
+
+
+##############################################################################
+
+
+control_board['filename'] = 'lotteryp4_me_quantiles_empirical'
+
+control_board['title'] = 'Imitation Dynamics: Empirical 2.5%, 97.5% Quantiles, p=0.4'
+
+parameters['alpha'] = 0.0
+
+parameters['lottery_p'] = 0.4
+
+control_board['MeansOnly'] = 0
+
+control_board['CI'] = 0
+parameters['steps'] = 500
+lottery(parameters, control_board) 
+
+
+
+##############################################################################
 
 
 control_board['filename'] = 'lotteryp4_me_quantiles'

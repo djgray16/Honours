@@ -13,25 +13,25 @@ tests = 100
 
 graphs_dict = {}
 results = {}
-graph_choices = ['PL', 'BA'] #['WS', 'RRG']# 'BA', 'RRG', 'TAG']
+graph_choices = ['BA', 'TAG']# 'BA', 'RRG', 'TAG']
 
 N = int(500)
 
 m = 6
-WS_p = 0.5
+WS_p = 0.1
 GNP_p = m/(N)
 TAG_alpha = 0.3
 
 power_p = 0.5   
-ln = 0
+ln = 1
 
 plotter = 1
 
-stats = 0
+stats = 1
 
 save = 1
 
-filename = 'PL05BA'
+filename = 'hist1'
 
 degrees = [[]for j in graph_choices]
 
@@ -68,13 +68,13 @@ axesx = [0,1]
 axesy = [0]
 if plotter:
     fig,axs = plt.subplots(1,2, sharex = True, sharey = True)
-    fig.suptitle(f'Comparing Graph Models Histograms')
+    fig.suptitle(f'Comparing Graph Models: Degree Size Histogram')
 
     for i in range(len(graph_choices)):
         
         axs[i].set_title(f'{graph_choices[i]}')
             
-        axs[i].hist(degree_sequence[i],density = False,log=True, rwidth = 1)
+        axs[i].hist(degree_sequence[i],density = 0,log=ln, align = 'left')
     for ax in axs.flat:
         ax.set(xlabel = 'Degree')
         ax.set(ylabel = 'Count')
