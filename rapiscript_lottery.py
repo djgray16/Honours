@@ -45,7 +45,7 @@ parameters = {
               'lottery_p': 0.5,
               'atype': Nau}
 
-lottery(parameters, control_board)
+#lottery(parameters, control_board)
 
 
 ####################################################
@@ -55,9 +55,9 @@ control_board['filename'] = 'lottery2_me'
 
 parameters['alpha'] = 0.0
 
-lottery(parameters, control_board)
+#lottery(parameters, control_board)
 
-aa
+
 #######################################################
 
 control_board['title'] = 'Replication of Lottery Game: alpha = 0.5 Dynamics'

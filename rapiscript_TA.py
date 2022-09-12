@@ -28,7 +28,7 @@ run = 1
 save = 1
 
 
-reps = 5
+reps = 100
 CI = 0
 MeansOnly = 1
 
@@ -61,7 +61,7 @@ parameters = {
     'end_reporting':0
 }
 
-experiment(parameters, control_board)
+#experiment(parameters, control_board)
 
 
 #################################################################
@@ -71,7 +71,7 @@ control_board['filename'] = 'TAfig5a'
 
 parameters['graph_alpha'] = 0.0
 
-experiment(parameters, control_board)
+#experiment(parameters, control_board)
 
 
 
@@ -103,7 +103,7 @@ experiment(parameters, control_board)
 ######################################################################
 control_board['title'] = '95% Confidence Interval for TA Model: alpha = 0.3'
 
-control_board['filename'] = 'sensitivity2'
+control_board['filename'] = 'sensitivity1'
 
 parameters['graph_alpha'] = 0.3
 
