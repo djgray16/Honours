@@ -8,9 +8,9 @@ The paper chosen to replicate imitation and replicator dynamics was \cite{RN30},
 The paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_i$, \\
 
 \begin{equation} \label{rep}
-q_i = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
+q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
 
-In this formulation, $\Delta$ scales the difference so that $0 \leq q_i \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_i \geq r_i,$ $r_i \sim \mathsf{U}(0,1)$. \\
+In this formulation, $\Delta$ scales the difference so that $0 \leq q_{i\to j} \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_{i\to j} \geq R,$ $R  \sim \mathsf{U}(0,1)$. A strategy $i$ has an \emph{evolutionary advantage} over strategy $j$, denoted $j \prec i$, if $q_{j \to i} >q_{i \to j}$.    \\
 
 \subsection{Results Comparison}
 The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$, and are shown below. \\
@@ -28,7 +28,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lottery1}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively.}
     \label{lottery1_me}
   \end{subfigure}
-  \caption{Replication of Figure 5a from \cite{RN30}. The replication is successful, but these conditions do not provide anything interesting regarding replicator $(\alpha = 1)$ dynamics. Because the expected value of the strategies are equal, no strategy has an evolutionary advantage over any other.} \label{lottery_comp0}
+  \caption{Replication of Figure 5a from \cite{RN30}. The replication is successful, but these conditions do not provide anything interesting regarding replicator dynamics. Under replicator dynamics, strategy $i$ has an evolutionary advantage over strategy $j$ if $\mathbb E [\pi_i] >\mathbb E [\pi_j]$. Because the expected value of the strategies are equal, no strategy has an evolutionary advantage over any other, so the initial distribution of strategies remains. } \label{lottery_comp0}
 \end{figure} 
 \FloatBarrier
 
@@ -45,7 +45,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lottery2}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively.}
     \label{lottery2_me}
   \end{subfigure}
-  \caption{Replication of Figure 5b from \cite{RN30}. The results are well replicated, and this model for imitation dynamics can be explored on other games.} \label{lottery_comp1}
+  \caption{Replication of Figure 5b from \cite{RN30}. The results are well replicated, and this model for imitation dynamics can be explored on other games. Strategies RS and SR have no evolutionary advantages or disadvantages relative to other strategies, so they persist. However R--WS $\prec$ SS, RR, and R--WR, and they are sent extinct.} \label{lottery_comp1}
 \end{figure} 
 \FloatBarrier
 
@@ -64,12 +64,12 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lottery3}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
     \label{lottery3_me}
   \end{subfigure}
-  \caption{Replication of Figure 5c from \cite{RN30}. This is neither true imitation or replicator dynamic, but provides an intermediary case.} \label{lottery_comp2}
+  \caption{Replication of Figure 5c from \cite{RN30}. This is neither true imitation or replicator dynamic, but provides an intermediary case. The replicated results emulate the paper \cite{RN30}, so the replication is successful. In the $\alpha = 0.5$ regime, R--WS has an evolutionary advantage over all other strategies, and sends them all to extinction. The time to extinction for each strategy depends on the magnitudes of the evolutionary advantages. } \label{lottery_comp2}
 \end{figure} 
 \FloatBarrier
 
 
- It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, but for imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population. \\
+ It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, because it will have an evolutionary advantage. For imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population. \\
  
  \FloatBarrier 
 \begin{figure}[!h]
@@ -84,7 +84,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lotteryp4}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
     \label{lotteryp4_me}
   \end{subfigure}
-  \caption{Replication of Figure 6b from \cite{RN30}. Although SS is the expectation--maximising strategy, it is not an ESS, and R--WS has the evolutionary advantage.} \label{lottery_comp4}
+  \caption{Replication of Figure 6b from \cite{RN30}. Although SS is the expectation--maximising strategy, it is not an ESS, and R--WS eventually dominates the population. The parameter $p$ dictates the probability of winning a round of the lottery. For $p=0.4$, $\mathbb E [\pi_{\text{SS}}] = 8$, and $\mathbb E [\pi_{\text{R--WS}}] =6.72 $.} \label{lottery_comp4}
 \end{figure} 
 \FloatBarrier
 
@@ -101,45 +101,59 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lotteryp055}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
     \label{lotteryp4_me_2}
   \end{subfigure}
-  \caption{Replication of Figure 6c from \cite{RN30}. In this case, RR is expectation--maximising, but R--WS still takes over the population.} \label{lottery_comp5}
+  \caption{Replication of Figure 6c from \cite{RN30}. In this case, RR is expectation-maximising because $p>0.5$, but R--WS still takes over the population. The initial spike of RR is due to its evolutionary advantage over the strategies SS, SR, RS, and R--WR.} \label{lottery_comp5}
 \end{figure} 
 \FloatBarrier
 
-\subsection{Extension}
+\subsection{Extension: Deterministic Model}
 In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. This is investigated further. \\
 
-Consider the three strategies RS, SS, R--WS under the $p=0.4$ regime. For simplicity, assume these three strategies complete the strategy space. Their distributions are shown below. \\
-\begin{align*}
-    \mathbb P_{\text{RS}}(x = \pi)  &= \begin{cases} 0.4 \quad \pi = 12 \\
-    0.6 \quad \pi =4 
+Under the $p=0.4$ regime, the probability distribution for each strategy is calculated. \\
+ \begin{align*}
+ \mathbb P_{\text{SS}}(x = \pi)  &= \mathbbm{1}_{\pi = 8}, \\
+ \mathbb P_{\text{RR}}(x = \pi)  &= \begin{cases} 0.36 \quad \pi = 0 \\
+    0.48 \quad \pi =8 \\ 0.16 \quad \pi = 16
     \end{cases}, \\
-        \mathbb P_{\text{R--WS}}(x = \pi)  &= \begin{cases} 0.4 \quad \pi = 12 \\
+    \mathbb P_{\text{RS}}(x = \pi)  &= \begin{cases} 0.6 \quad \pi =4  \\
+     0.4 \quad \pi = 12
+    \end{cases}, \\
+    \mathbb P_{\text{SR}}(x = \pi)  &= \begin{cases} 0.6 \quad \pi =4  \\
+     0.4 \quad \pi = 12
+    \end{cases}, \\
+        \mathbb P_{\text{R--WS}}(x = \pi)  &= \begin{cases} 0.36 \quad \pi = 0 \\
     0.24 \quad \pi =8 \\
-    0.36 \quad \pi = 0\\
+    0.4 \quad \pi = 12\\
     \end{cases}, \\
-    \mathbb P_{\text{SS}}(x = \pi)  &= \mathbbm{1}_{\pi = 8}.
+    \mathbb P_{\text{R--WR}}(x = \pi)  &= \begin{cases} 0.6 \quad \pi = 4 \\
+    0.24 \quad \pi =8 \\
+    0.16 \quad \pi = 16\\
+    \end{cases}, \\
 \end{align*}
-Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, $j \prec i$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the example above, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. In \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. \\
+Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the $p=0.4$ case, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. However, the magnitude of the evolutionary advantage also has an effect. In Figure \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. \\
 
-This relationship can be expressed as as a set of difference equations. Call $\rho_{\text{RS},t}, \rho_{\text{R--WS},t}, \rho_{\text{SS},t}$ the proportion of each strategy present at time $t$. The boundary condition is $\rho_{\text{RS},t}+ \rho_{\text{R--WS},t}+ \rho_{\text{SS},t} = 1$, $\forall t \in [0,T]$. Denote $\mathcal F_t$ the natural filtration of $\rho_{\text{RS},t}, \rho_{\text{R--WS},t}, \rho_{\text{SS},t}$ at time $t$.  \\
+This relationship can be expressed as a set of difference equations. Call $\rho_{i,t}$ the proportion of strategy $i$ present at time $t$. The boundary condition is $\sum_i \rho_{i,t}= 1$, $\forall t \in [0,T]$. Denote $\mathcal F_t$ the natural filtration of $\cap_i \rho_{i,t}$ at time $t$.  \\
 \begin{align*}
-    \mathbb E \big [\rho_{\text{RS},t+1}| \mathcal F_t \big ] &= \rho_{\text{RS},t} \Bigg [ \rho_{\text{R--WS},t} [\mathbb P (\pi_\text{RS} > \pi_{\text{R--WS}}) -\mathbb P (\pi_\text{RS} < \pi_{\text{R--WS}}) ] \\
-    &+ \rho_{\text{SS},t} [\mathbb P (\pi_\text{RS} > \pi_{\text{SS}}) -\mathbb P (\pi_\text{RS} < \pi_{\text{SS}}) ] \Bigg ] \\
-    &= \rho_{\text{RS},t}\Bigg [ \rho_{\text{R--WS},t}(0.456 - 0.396) + \rho_{\text{SS},t}(0.4 - 0.6)  \Bigg ] \\
-    &= \rho_{\text{RS},t}\Bigg [ \rho_{\text{R--WS},t}(0.06) + \rho_{\text{SS},t}(-0.2)  \Bigg ]
+    \mathbb E \big [\rho_{\text{SS},t+1}| \mathcal F_t \big ] &= \rho_{\text{SS},t} \Bigg [\sum_{ i \neq \text{SS}}  \rho_{\text{i},t} [\mathbb P (\pi_\text{SS} > \pi_{i}) -\mathbb P (\pi_\text{SS} < \pi_{i}) ] \Bigg ] \\
+    &= \rho_{\text{SS},t}\Bigg [\rho_{\text{RR}, t}(0.36-0.16) + \rho_{\text{RS}, t}(0.6-0.4) + \rho_{\text{SR}, t}(0.6-0.4) + \\
+     & \quad \rho_{\text{R--WS}, t}(0.36-0.4) + \rho_{\text{R--WR}, t}(0.6-0.16) \Bigg ] \\
+    &= \rho_{\text{SS},t}\Bigg [\rho_{\text{RR}, t}(0.2) + \rho_{\text{RS}, t}(0.2) + \rho_{\text{SR}, t}(0.2) + 
+      \quad \rho_{\text{R--WS}, t}(-0.04) + \rho_{\text{R--WR}, t}(0.44) \Bigg ] \\
 \end{align*}
-The same logic can be applied for the difference equations for$\rho_{\text{SS},t}, \rho_{\text{R--WS},t}$. \\
+The same logic can be applied for each strategy, which results in a difference equation for each strategy, \\
 \begin{align*}
-    \mathbb E \rho_{\text{R--WS},t+1} &= \rho_{\text{R--WS},t} \Bigg [ \rho_{\text{RS},t} [\mathbb P (\pi_\text{R--WS} > \pi_{\text{RS}}) -\mathbb P (\pi_\text{R--WS} < \pi_{\text{RS}}) ] \\
-    &+  \rho_{\text{SS},t} [\mathbb P (\pi_\text{R--WS} > \pi_{\text{SS}}) -\mathbb P (\pi_\text{R--WSS} < \pi_{\text{SS}}) ] \Bigg ] \\
-    &= \rho_{\text{R--WS},t}\Bigg [ \rho_{\text{RS},t}(0.396-0.456) + \rho_{\text{SS},t}(0.4 - 0.36)  \Bigg ] \\
-    &= \rho_{\text{R--WS},t}\Bigg [ \rho_{\text{RS},t}(-0.06) + \rho_{\text{SS},t}(0.04)  \Bigg ] \\
-    \mathbb E \rho_{\text{SS},t+1}&= \rho_{\text{SS},t}\Bigg [ \rho_{\text{RS},t}(0.2) + \rho_{\text{R--WS},t}(-0.04)  \Bigg ]
+    \mathbb E \big [\rho_{\text{RR},t+1}| \mathcal F_t \big ] &=\rho_{\text{RR},t}\Bigg [\rho_{\text{SS}, t}(-0.2) + \rho_{\text{RS}, t}(-0.104) +  \rho_{\text{SR}, t}(-0.104) + \\ & \rho_{\text{R--WS}, t}(-0.0896) + \rho_{\text{R--WR}, t}(-0.0144) \Bigg ], \\
+    \mathbb E \big [\rho_{\text{RS},t+1}| \mathcal F_t \big ] &=\rho_{\text{RS},t}\Bigg [\rho_{\text{SS}, t}(-0.2) + \rho_{\text{RR}, t}(0.104) +  \rho_{\text{SR}, t}(0) + \\ & \rho_{\text{R--WS}, t}(0.072) + \rho_{\text{R--WR}, t}(0.032) \Bigg ] ,\\
+    \mathbb E \big [\rho_{\text{SR},t+1}| \mathcal F_t \big ] &=\rho_{\text{SR},t}\Bigg [\rho_{\text{SS}, t}(-0.2) + \rho_{\text{RR}, t}(0.104) +  \rho_{\text{RS}, t}(0) + \\ & \rho_{\text{R--WS}, t}(0.072) + \rho_{\text{R--WR}, t}(0.032) \Bigg ] ,\\
+    \mathbb E \big [\rho_{\text{R--WS},t+1}| \mathcal F_t \big ] &=\rho_{\text{R--WS},t}\Bigg [\rho_{\text{SS}, t}(0.04) + \rho_{\text{RR}, t}(0.0896) +  \rho_{\text{SR}, t}(-0.072) + \\ & \rho_{\text{RS}, t}(-0.072) + \rho_{\text{R--WR}, t}(0.032) \Bigg ] , \\
+\mathbb E \big [\rho_{\text{R--WR},t+1}| \mathcal F_t \big ] &=\rho_{\text{R--WR},t}\Bigg [\rho_{\text{SS}, t}(-0.44) + \rho_{\text{RR}, t}(0.0144) +  \rho_{\text{SR}, t}(-0.032) + \\ & \rho_{\text{RS}, t}(-0.032) +\rho_{\text{R--WS}, t}(-0.032)  \Bigg ] , \\    
 \end{align*}
-This set of difference equations cannot be solved analytically, and the numerical simulation is the same as Figure \ref{lotteryp4_me}. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. RS is eliminated because it has the highest pairwise death rate, as SS dominates it with a rate of 0.2. This is much larger than any other pairwise comparison rate.  \\
 
-The difference equations have ignored the effect of the other strategies, as they are negligible, but they were included for simulation. The image in \ref{lotteryp4_me} is aggregated over 20 trials, and the time to elimination is quite variable. The empirical quantiles are shown below, instead computed over 120 trials.  \\
+This set of difference equations cannot be solved analytically, however the numerical simulation is investigated. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. RR is eliminated quickly because it has the highest pairwise death rate, as SS dominates it with a rate of 0.44. This is much larger than any other pairwise comparison rate.  \\
+\textbf{PUT IN NUMERICAL SIMULATION HERE PDf}
 
+\subsection{Extension: Robustness} 
+
+A major difference between the $p=0.4$ stochastic model and its deterministic extension is the ability for strategies to go extinct. In the stochastic model, extinction is possible, particularly when the proportion of that strategy is already close to 0. Furthermore, once a strategy is extinct it can never return. Hence it is of interest to investigate the robustness of results, as the mean proportion of a strategy may be a poor reflection of its performance in each simulation. 
 \FloatBarrier
 \graphCap{lotteryp4_me_quantiles_empirical.pdf}{0.75}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is the dashed line. }{lottery_quantiles_empirical}
 \FloatBarrier
