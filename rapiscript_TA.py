@@ -32,9 +32,9 @@ reps = 100
 CI = 0
 MeansOnly = 1
 
-filename = 'TAfig2'
+filename = 'ID_RRG_long_100'
 
-title = 'Replication of Figure 2'
+title = ' Imitation Dynamics: RRG model'
 
 legend = 0
 
@@ -46,23 +46,23 @@ control_board = {'run': run, 'save': save,'title': title,
 
 parameters = {
     'seed':42,
-    'steps': 40, #number of time periods
-    'agent_n': 500,
-    'phi':ap.Values(1.2,1.8,2.0,2.2,2.4,2.6,3.0,4.0), # #multiplier for common contributions
+    'steps': 10_000, #number of time periods
+    'agent_n': 100,
+    'phi':ap.Values(6.0,6.25,6.5,6.75,7,7.25,7.5,7.75), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
     'graph_alpha': 0.3,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0.1,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0, #ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
-    'gtype': 'TAG',
-    'atype': AT,
-    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+    'gtype': 'RRG',
+    'atype': ReplicatorLocal,
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
     'step_reporting':0,
     'end_reporting':0
 }
 
-#experiment(parameters, control_board)
-
+experiment(parameters, control_board)
+aa
 
 #################################################################
 control_board['title'] = 'Replication of Figure 5a'

@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 
 
 run = 1
-save = 0
+save = 1
 reps = 100
 v2 = 'gtype'
 filename = 'ID_1'
@@ -39,8 +39,8 @@ control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
 
 parameters = {
     'seed':42,
-    'steps': 5000, #number of time periods
-    'agent_n': 500,
+    'steps': 1000, #number of time periods
+    'agent_n': 100,
     'phi':ap.Values(4.0,4.25,4.5,4.75), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
     'graph_alpha': 0.3,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
@@ -54,7 +54,7 @@ parameters = {
     'end_reporting':0
 }
 
-compare_two(parameters, control_board)
+#compare_two(parameters, control_board)
 
 ####################################################################
 
@@ -64,7 +64,7 @@ control_board['filename'] = 'ID_2'
 
 parameters['phi'] = ap.Values(5.0,5.25,5.5,5.75)
 
-compare_two(parameters, control_board)
+#compare_two(parameters, control_board)
 
 #####################################################################
 
@@ -72,7 +72,7 @@ control_board['filename'] = 'ID_3'
 
 parameters['phi'] = ap.Values(6.0,6.25,6.5,6.75)
 
-compare_two(parameters, control_board) 
+#compare_two(parameters, control_board) 
 
 #######################################################################
 
@@ -87,7 +87,7 @@ parameters['gtype'] = 'PL'
 
 parameters['power_p'] = ap.Values(0.1,0.2,0.3,0.4,0.5)
 
-compare_two(parameters, control_board) 
+#compare_two(parameters, control_board) 
 #######################################################################
 
 control_board['filename'] = 'ID_pl_high'
@@ -101,7 +101,8 @@ parameters['gtype'] = 'PL'
 
 parameters['power_p'] = ap.Values(0.1,0.2,0.3,0.4,0.5)
 
-compare_two(parameters, control_board) 
+#compare_two(parameters, control_board)
+ 
 #######################################################################
 
 control_board['filename'] = 'ID_ws_low'
@@ -114,7 +115,7 @@ parameters['phi'] =ap.Values(4.0,4.4,4.8,5.2)
 parameters['gtype'] = 'WS'
 
 parameters['graph_p'] = ap.Values(0.1,0.2,0.3,0.4,0.5)
-
+parameters['power_p'] = 0
 compare_two(parameters, control_board) 
 
 ####################################################
@@ -128,5 +129,5 @@ parameters['phi'] =ap.Values(5.6,6.0,6.4,6.8)
 parameters['gtype'] = 'WS'
 
 parameters['graph_p'] = ap.Values(0.1,0.2,0.3,0.4,0.5)
-
+parameters['power_p'] = 0
 compare_two(parameters, control_board) 
