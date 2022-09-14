@@ -39,9 +39,9 @@ filename = 'BA_degree_groups_45_1000_trimmed_6'
 parameters = {
     'seed':52,
     'steps': 200, #number of time periods
-    'agent_n': 500,
-    'phi':4.5,#ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
-    'graph_m' : 6,
+    'agent_n': 100,
+    'phi':4, #change here    #ap.Values(2.0,2.5,3.0,3.5), # #multiplier for common contributions
+    'graph_m' : 6, #change here
     'graph_alpha': 0,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
     'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
     'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),

@@ -56,7 +56,7 @@ parameters = {
     'end_reporting':0
 }
 
-compare_two(parameters, control_board)
+#compare_two(parameters, control_board)
 ############################################
 
 
@@ -64,11 +64,11 @@ control_board['filename'] = 'Replicator_new_med'
 
 parameters['phi'] = ap.Values(5.0, 5.25, 5.5, 5.75)
 
-compare_two(parameters, control_board)
+#compare_two(parameters, control_board)
 
 #######################################################
 
-control_board['filename'] = 'Replicator_new_med'
+control_board['filename'] = 'Replicator_new_high'
 
 parameters['phi'] = ap.Values(6.0,6.25, 6.5, 6.75)
 
