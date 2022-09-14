@@ -1,3 +1,4 @@
+\section{Outline}
 This chapter investigates the effect of network structure on observed cooperation for the linear PGG described in \ref{ToTC}. The first section uses a simple lottery game to demonstrate the implementation of replicator dynamics. To this end, the paper \cite{RN30} is replicated and extended. \\
 
 Then replicator dynamics are applied to the linear PGG. Under this regime, it is found that graphs with a power-law degree size distribution exhibit higher cooperation, when controlling for mean degree $m$. It is hypothesised that nodes with low degree size cooperate more, and the family of power-law models are characterised by a large number of low-degree nodes, resulting in higher overall cooperation than the WS and RRG model. \\
@@ -13,7 +14,7 @@ q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{
 In this formulation, $\Delta$ scales the difference so that $0 \leq q_{i\to j} \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_{i\to j} \geq R,$ $R  \sim \mathsf{U}(0,1)$. A strategy $i$ has an \emph{evolutionary advantage} over strategy $j$, denoted $j \prec i$, if $q_{j \to i} >q_{i \to j}$.    \\
 
 \subsection{Results Comparison}
-The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$, and are shown below. \\
+The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$, and are shown below. Each model consists of $N=6000$ agents, and each parameter permutation is simulated $T=100$ times. \\
 
 \FloatBarrier 
 \begin{figure}[!h]
@@ -28,10 +29,10 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lottery1}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively.}
     \label{lottery1_me}
   \end{subfigure}
-  \caption{Replication of Figure 5a from \cite{RN30}. The replication is successful, but these conditions do not provide anything interesting regarding replicator dynamics. Under replicator dynamics, strategy $i$ has an evolutionary advantage over strategy $j$ if $\mathbb E [\pi_i] >\mathbb E [\pi_j]$. Because the expected value of the strategies are equal, no strategy has an evolutionary advantage over any other, so the initial distribution of strategies remains. } \label{lottery_comp0}
+  \caption{Replication of Figure 5a from \cite{RN30}. The replication is successful, but these conditions do not provide anything interesting regarding replicator dynamics.  } \label{lottery_comp0}
 \end{figure} 
 \FloatBarrier
-
+Under replicator dynamics, strategy $i$ has an evolutionary advantage over strategy $j$ if $\mathbb E [\pi_i] >\mathbb E [\pi_j]$. Because the expected value of the strategies are equal, no strategy has an evolutionary advantage over any other, so the initial distribution of strategies remains.
 \FloatBarrier 
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
@@ -45,7 +46,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
     \caption{Replication of \ref{lottery2}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively.}
     \label{lottery2_me}
   \end{subfigure}
-  \caption{Replication of Figure 5b from \cite{RN30}. The results are well replicated, and this model for imitation dynamics can be explored on other games. Strategies RS and SR have no evolutionary advantages or disadvantages relative to other strategies, so they persist. However R--WS $\prec$ SS, RR, and R--WR, and they are sent extinct.} \label{lottery_comp1}
+  \caption{Replication of Figure 5b from \cite{RN30}. Strategies RS and SR have no evolutionary advantages or disadvantages relative to other strategies, so they persist. However R--WS $\prec$ SS, RR, and R--WR, and they are sent extinct.} \label{lottery_comp1}
 \end{figure} 
 \FloatBarrier
 
@@ -67,9 +68,9 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
   \caption{Replication of Figure 5c from \cite{RN30}. This is neither true imitation or replicator dynamic, but provides an intermediary case. The replicated results emulate the paper \cite{RN30}, so the replication is successful. In the $\alpha = 0.5$ regime, R--WS has an evolutionary advantage over all other strategies, and sends them all to extinction. The time to extinction for each strategy depends on the magnitudes of the evolutionary advantages. } \label{lottery_comp2}
 \end{figure} 
 \FloatBarrier
+The results are well replicated for all $\alpha$, and this model for evolutionary dynamics can be explored on other games. To transpose this model onto a network, it is necessary to restrict the sample space of each agent to its network neighbours. \\
 
-
- It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, because it will have an evolutionary advantage. For imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation--maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}. Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population. \\
+ It is also interesting to examine the results when the lottery win probability $p$ is not 0.5. For replicator dynamics, the strategy with the highest expected value eventually wins out, because it will have an evolutionary advantage. For imitation dynamics the result is not so obvious. This was shown in Figure 6 from \cite{RN30}, and replicated below. For $p=0.4$, the expectation-maximising strategy is SS, but R--WS has an evolutionary advantage and takes over the population. This is supported by theoretical results in \cite{RN30}.  \\
  
  \FloatBarrier 
 \begin{figure}[!h]
@@ -87,7 +88,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
   \caption{Replication of Figure 6b from \cite{RN30}. Although SS is the expectation--maximising strategy, it is not an ESS, and R--WS eventually dominates the population. The parameter $p$ dictates the probability of winning a round of the lottery. For $p=0.4$, $\mathbb E [\pi_{\text{SS}}] = 8$, and $\mathbb E [\pi_{\text{R--WS}}] =6.72 $.} \label{lottery_comp4}
 \end{figure} 
 \FloatBarrier
-
+Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS also takes over the population.\\
  \FloatBarrier 
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
@@ -104,9 +105,9 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
   \caption{Replication of Figure 6c from \cite{RN30}. In this case, RR is expectation-maximising because $p>0.5$, but R--WS still takes over the population. The initial spike of RR is due to its evolutionary advantage over the strategies SS, SR, RS, and R--WR.} \label{lottery_comp5}
 \end{figure} 
 \FloatBarrier
-
-\subsection{Extension: Deterministic Model}
 In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. This is investigated further. \\
+\subsection{Extension: Deterministic Model}
+
 
 Under the $p=0.4$ regime, the probability distribution for each strategy is calculated. \\
  \begin{align*}
@@ -148,20 +149,23 @@ The same logic can be applied for each strategy, which results in a difference e
 \mathbb E \big [\rho_{\text{R--WR},t+1}| \mathcal F_t \big ] &=\rho_{\text{R--WR},t}\Bigg [\rho_{\text{SS}, t}(-0.44) + \rho_{\text{RR}, t}(0.0144) +  \rho_{\text{SR}, t}(-0.032) + \\ & \rho_{\text{RS}, t}(-0.032) +\rho_{\text{R--WS}, t}(-0.032)  \Bigg ] , \\    
 \end{align*}
 
-This set of difference equations cannot be solved analytically, however the numerical simulation is investigated. Under imitation dynamics, once a strategy is eliminated it can never return, and the elimination of RS ensures the eventual dominance of R--WS. RR is eliminated quickly because it has the highest pairwise death rate, as SS dominates it with a rate of 0.44. This is much larger than any other pairwise comparison rate.  \\
-\textbf{PUT IN NUMERICAL SIMULATION HERE PDf}
+This set of difference equations cannot be solved analytically, however the numerical simulation is investigated. \\
+\FloatBarrier
+\graphCap{ODE_lottery.pdf}{0.75}{Deterministic simulation of the Lottery Game. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. Initially, it reports similar results to the stochastic model, however the deterministic model is cyclical, and no strategies are eliminated. Note that SR and RS are identical, so the green series is covered by the red series. }{ODE_lottery}
+\FloatBarrier
+A major difference between the $p=0.4$ stochastic model and its deterministic extension is the ability for strategies to go extinct. In the stochastic model, extinction is possible, particularly when the proportion of that strategy is already close to 0. Furthermore, once a strategy is extinct it can never return. For example, at the trough of the RS strategy, it represents 0.04\% of the population. This corresponds 2.5 agents in the simulations. It is feasible that both these agents go extinct, and the RS strategy is eliminated. In the difference equations model, no strategy can ever go extinct. The elimination of RS ensures the eventual dominance of R--WS. RR is eliminated quickly because it has the highest pairwise death rate, as SS dominates it with a rate of 0.44. This is much larger than any other pairwise comparison rate.  \\
+
 
 \subsection{Extension: Robustness} 
-
-A major difference between the $p=0.4$ stochastic model and its deterministic extension is the ability for strategies to go extinct. In the stochastic model, extinction is possible, particularly when the proportion of that strategy is already close to 0. Furthermore, once a strategy is extinct it can never return. Hence it is of interest to investigate the robustness of results, as the mean proportion of a strategy may be a poor reflection of its performance in each simulation. 
+The effect of extinction also affects the robustness of results. Some trials may eliminate strategies at their first trough, whereas these strategies may survive much longer in other trials. Therefore the empirical quantiles are examined.\\
 \FloatBarrier
-\graphCap{lotteryp4_me_quantiles_empirical.pdf}{0.75}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is the dashed line. }{lottery_quantiles_empirical}
+\graphCap{lotteryp4_me_quantiles_empirical.pdf}{0.75}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 100. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is the dashed line. }{lottery_quantiles_empirical}
 \FloatBarrier
-Figure \ref{lottery_quantiles_empirical} shows how great the variance of certain series are, particularly SS and R--WS. When R--WS is prominent and the strategies SR, RS are not extinct, SR, RS are able to grow. This occurs around the 200th generation. The strategy SS, which outperforms SR and RS, then dominates them. SS is dominated by R--WS, and this cycle continues until SR and RS are eliminated. The reason that they are eliminated is because the highest rate of dominance is SS over SR, RS. \\
+Figure \ref{lottery_quantiles_empirical} shows how great the variance of certain series are, particularly SS and R--WS. When R--WS is prominent and the strategies SR, RS are not extinct, SR and RS are able to grow. This occurs around the 200th generation. The strategy SS, which outperforms SR and RS, then dominates them. SS is dominated by R--WS, and this cycle continues until SR and RS are eliminated. The reason that they are eliminated is because the highest rate of dominance is SS over SR, RS. The empirical quantile plots exhibit a second trough, similar to Figure \ref{ODE_lottery}, however only the beginning of a third trough is shown.  \\
 \FloatBarrier
-\graphCap{lotteryp4_me_quantiles.pdf}{0.75}{95\% Confidence Interval for the Mean, Imitation Dynamics Lottery Game, $p=0.4$, T = 120. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The confidence interval for each series is the dashed line. }{lottery_quantiles}
+\graphCap{lotteryp4_me_quantiles.pdf}{0.75}{95\% Confidence Interval for the Mean, Imitation Dynamics Lottery Game, $p=0.4$, T = 100. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The confidence interval for each series is the dashed line. }{lottery_quantiles}
 \FloatBarrier
- The computed confidence intervals assume a normal distribution of the mean under the Central Limit Theorem. The computed standard deviation of each point in the time series is used as an estimate of the true standard deviation. Because the number of trials $T=120$, the confidence interval is tight around the sample mean. The original paper uses $T=20$, which results in a confidence interval four times as wide Figure \ref{lottery_quantiles}. Therefore it is suggested that more than 20 trials are used for future samples. \\
+ The computed confidence intervals assume a normal distribution of the mean under the Central Limit Theorem. The computed standard deviation of each point in the time series is used as an estimate of the true standard deviation. Because the number of trials $T=100$, the confidence interval is tight around the sample mean. The original paper uses $T=20$, which results in a confidence interval more than four times as wide Figure \ref{lottery_quantiles}. Therefore it is suggested that more than 20 trials are used for future samples. \\
 
 
 
@@ -175,16 +179,16 @@ The following section investigates the effect of the graph model on cooperation 
 
 It is found that the graphs with a power-law degree size distribution induce higher cooperation. The effect of $C_\Delta$ is not initially evident when comparing the WS, BA, TAG, and RRG models, so a new model type, the power-law (PL) model, is introduced to examine the effect of $C_\Delta$ for scale-free degree size distributions. The effect of $C_\Delta$ is also examined in the WS family of graph models. Under the PL model, higher $C_\Delta$ weakly induces higher cooperation, while the trend is reversed for the WS family of models. \\
 
-Then the effect of targeted mean degree $m$ is examined for RRG and BA models. Both of these experiments indicate that higher $m$ lead to lower cooperation. Finally, the cooperation levels are stratified by degree size within a BA graph model. These experiments show that the nodes with low degree size have a higher contribution proportion than average, which may explain the trend. \\
+Then the effect of targeted mean degree $m$ is examined for RRG and BA models. Both of these experiments indicate that higher $m$ lead to lower cooperation. Finally, the cooperation levels are stratified by degree size within a BA graph model. \textbf{NO TREND YET} These experiments show that the nodes with low degree size have a higher contribution proportion than average, which may explain the trend. \\
 
 \subsection{Results}
-These results examine the effect of network model on cooperation. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 200, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 7.5$. It appears that graph models with a power law degree size distribution induce higher cooperation. The results discussed in Chapter \ref{Chapter:Lit} corroborate this trend. \\
+These results examine the effect of network model on cooperation. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 200, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 7.5$. It appears that graph models with a power law degree size distribution induce higher cooperation. \\
 \FloatBarrier
-\graphCap{replicator_graphs_low.pdf}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It appears that the BA and TAG model do not induce equilibrium cooperation levels between 0.35 and 0.75.  }{replicator_low} 
+\graphCap{replicator_graphs_low.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It appears that the BA and TAG model do not induce equilibrium cooperation levels between 0.35 and 0.75.  }{replicator_low} 
 \FloatBarrier
-\graphCap{replicator_graphs_med.pdf}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4,4.5,5,5.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_medium}
+\graphCap{replicator_graphs_med.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4,4.5,5,5.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_medium}
 \FloatBarrier
-\graphCap{replicator_graphs_high.pdf}{0.8}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The relative ordering of graph model according to cooperation level is, from highest to lowest, TAG, BA, then RRG and WS, depending on the exact $r$ value.  }{replicator_large}\FloatBarrier
+\graphCap{replicator_graphs_high.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The relative ordering of graph model according to cooperation level is, from highest to lowest, TAG, BA, then RRG and WS, depending on the exact $r$ value.  }{replicator_large}\FloatBarrier
 
 
 
@@ -197,7 +201,7 @@ To test the hypothesis that the average clustering coefficient $C_\Delta$ does n
 \FloatBarrier
 \graphCap{PL05BA.pdf}{0.7}{Comparison of Power Law Clustering Graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
 \FloatBarrier
-The summary statistics are also reported. Both $C_\Delta$ and degree variance increase with respect to $p$. From \ref{graph_stats}, a BA model reports $l=3.24, C_\Delta = 0.05$, and a degree variance of 40.80. The major difference between a BA and PL model is $C_\Delta$, but the degree variance is also different and must be regarded.   \\
+The summary statistics are also reported, with parameter $N = 500$ and targeted mean degree $m=6$. Both $C_\Delta$ and degree variance increase with respect to $p$. From \ref{graph_stats}, the BA model reports $l=3.24, C_\Delta = 0.05$, and a degree variance of 40.80. The major difference between a BA and PL model is $C_\Delta$, but the degree variance is also different and must be regarded.   \\
 \FloatBarrier
 \begin{table}[!h]
 \begin{center}
@@ -213,15 +217,16 @@ PL: $p=0.5$         & 5.96           & 3.26                         & 0.30      
 \caption{Computed characteristics for PL graph, varying cluster parameter $p$. The characteristics were computed over 100 samples of each graph, and then averaged. In each case, the targeted mean degree $m$ was set to 6. } \label{graph_stats_PL}
 \end{center}
 \end{table}
+The PL model was tested, under a replicator dynamics regime, for a range of $r$. 
 \FloatBarrier
-\graphCap{comparing_power_p_low.pdf}{0.8}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p\in\{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is that higher $p$, and hence higher $C_\Delta$ leads to marginally higher cooperation.}{power_p_low}
+\graphCap{comparing_power_p_low.pdf}{0.7}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p\in\{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is that higher $p$, and hence higher $C_\Delta$ leads to marginally higher cooperation.}{power_p_low}
 \FloatBarrier
-\graphCap{comparing_power_p_high.pdf}{0.8}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The trend is unclear here, because $r=2.75, 3.5$ indicate higher $p$, and hence higher $C_\Delta$ leads to higher cooperation, but that trend is not observed for $r=3.0,3.25$.}{power_p_high} \FloatBarrier
+\graphCap{comparing_power_p_high.pdf}{0.7}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The trend is unclear here, because $r=2.75, 3.5$ indicate higher $p$, and hence higher $C_\Delta$ leads to higher cooperation, but that trend is not observed for $r=3.0,3.25$.}{power_p_high} \FloatBarrier
 
 These tests indicate that, when controlling for degree size distribution, the clustering coefficient $C_\Delta$ may have a marginal effect. The correlation is weakly positive, and is much more evident for $1.75\leq r\leq 3.0$. It is also necessary to test the effect of $C_\Delta$ under a different degree size distribution. \\
 
 \subsection{Isolating the Effect of Clustering Coefficient: Constant Degree Size Distribution}
-The WS model is a family of graphs, characterised by rewiring probability $p$. By increasing $p$, the $l$ statistic is reduced while $C_\Delta$ remains high for $0\leq p\leq0.15$. However there exists a region for $p$ where $C_\Delta$ decreases and $l$ does not change as rapidly. It is this region that will be isolated to test the effect of local clustering on cooperation in graphs under a near-constant degree distribution regime. Recall that a WS graph starts with a circle of nodes, each node connected to its adjacent $\frac{m}{2}$ circular neighbours. Hence the initial degree is $m$ for each node, and this only varies marginally due to $p$. There are certainly no scale factors such as in the PL, BA, or TAG models. \\
+The WS model is a family of graphs characterised by rewiring probability $p$. By increasing $p$, the $l$ statistic is reduced while $C_\Delta$ remains high for $0\leq p\leq0.15$. However there exists a region for $p$ where $C_\Delta$ decreases and $l$ does not change as rapidly. It is this region that will be isolated to test the effect of local clustering on cooperation in graphs under a near-constant degree distribution regime. Recall that a WS graph starts with a circle of nodes, each node connected to its adjacent $\frac{m}{2}$ circular neighbours. Hence the initial degree is $m$ for each node, and this only varies marginally due to $p$. There are certainly no scale factors such as in the PL, BA, or TAG models. \\
 
 \FloatBarrier
 \begin{table}[!h]
@@ -240,9 +245,9 @@ WS: $p=0.5$         & 6           & 3.83                         & 0.09         
 \end{table}
 \FloatBarrier
 
-\graphCap{graph_p_med.pdf}{0.8}{Effect of Rewiring $p$ in a WS model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The trend indicates that higher $p$, and hence lower $C_\Delta$, leads to higher cooperation.}{graph_p_med}
+\graphCap{graph_p_med.pdf}{0.7}{Effect of Rewiring $p$ in a WS model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The trend indicates that higher $p$, and hence lower $C_\Delta$, leads to higher cooperation.}{graph_p_med}
 \FloatBarrier
-\graphCap{graph_p_high.pdf}{0.8}{Capt. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is an increase in $p$, and hence a reduction in $C_\Delta$, leads to higher cooperation.}{graph_p_high}
+\graphCap{graph_p_high.pdf}{0.7}{Capt. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is an increase in $p$, and hence a reduction in $C_\Delta$, leads to higher cooperation.}{graph_p_high}
 \FloatBarrier
 Figures \ref{graph_p_med} and \ref{graph_p_high} indicate that higher rewiring probability $p$ leads to higher cooperation. This indicates that lowering the clustering coefficient induces higher cooperation, a contradiction to Figures \ref{power_p_low} and \ref{power_p_high}. In those figures, there was a weak positive correlation between $C_\Delta$ and cooperation. At this stage, there is no feasible explanation for this discrepancy, so further investigation is required. \\
 
@@ -285,3 +290,4 @@ Four graph models were examined under replicator dynamics, and the results are p
 Firstly, the effect of $C_\Delta$ was examined for both the PL family, and also the WS family of models. These produced weakly contradictory results. Under the WS model, increasing $C_\Delta$ reduced cooperation. Under the PL model, it was more unclear but it appears that increasing $C_\Delta$ weakly increases cooperation. At this stage, there is no explanation for these effects. \\
 
 Then the effect of targeted mean degree $m$ was examined. This produced strong results across both the BA and RRG models, demonstrating that mean degree is negatively correlated to cooperation level. This gives some suggestion for the trends observed in Figures \ref{replicator_low}, \ref{replicator_medium}, and \ref{replicator_large}. Because the BA and TAG model have a power-law degree size distribution with the same mean degree $m$ as the WS, RRG models, they necessarily have a lot of nodes with degree less than $m$. These nodes cooperate more often than their higher degree size counterparts, so induce higher mean cooperation. 
+
