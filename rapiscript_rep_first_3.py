@@ -25,8 +25,8 @@ import matplotlib.pyplot as plt
 
 
 run = 1
-save = 1
-reps = 100
+save = 0
+reps = 20
 v2 = 'gtype'
 
 filename = 'Replicator_new_low'
@@ -41,7 +41,7 @@ control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
 
 parameters = {
     'seed':42,
-    'steps': 1000, #number of time periods
+    'steps': 1500, #number of time periods
     'agent_n': 100,
     'phi':ap.Values(4.0, 4.25, 4.5, 4.75), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
@@ -56,7 +56,7 @@ parameters = {
     'end_reporting':0
 }
 
-#compare_two(parameters, control_board)
+compare_two(parameters, control_board)
 ############################################
 
 
@@ -64,7 +64,7 @@ control_board['filename'] = 'Replicator_new_med'
 
 parameters['phi'] = ap.Values(5.0, 5.25, 5.5, 5.75)
 
-#compare_two(parameters, control_board)
+compare_two(parameters, control_board)
 
 #######################################################
 
