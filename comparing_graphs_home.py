@@ -22,32 +22,46 @@ from Models import *
 import matplotlib.pyplot as plt
 #random.seed(2)
 
+run = 0
+save = 0
+reps = 5
+v2 = 'gtype'
 
-#### control box
-save = 1 #save the figure
-run =1
-v2 = 'power_p'
-
-
-filename = 'comparing_power_p_high'
-
-title = 'Varying clustering p, PL model, Replicator Dynamics'
- #TODO test phi large, then test WS p over phi, then examine cooperation
- # of BA grouped by node degree. also rewrite the markov ODE part of before
+MeansOnly = 0
+CI = 1
+legend = 0
+filename = 'Replicator_new_low_quants'
+title = 'Comparing Graph Models: Replicator Dynamics'
 
 
 
+
+control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
+                 'filename': filename, 'reps': reps, 'MeansOnly': MeansOnly, 
+                 'CI': CI, 'legend': legend}
+
+
+
+run = control_board['run'] 
+v2 = control_board['v2'] 
+save = control_board['save'] 
+title = control_board['title'] 
+filename = control_board['filename'] 
+reps = control_board['reps'] 
+MeansOnly = control_board['MeansOnly']
+CI = control_board['CI']
+legend = control_board['legend']
 
 parameters = {
     'seed':42,
-    'steps': 200, #number of time periods
-    'agent_n': 500,
-    'phi':ap.Values(2.75, 3.0, 3.25, 3.5), # #multiplier for common contributions
+    'steps': 1500, #number of time periods
+    'agent_n': 100,
+    'phi':ap.Values(4.0, 4.25, 4.5, 4.75), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
     'graph_alpha': 0.3,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
-    'graph_p':0,#ap.Values(0.1,0.2,0.3,0.4,0.5),
-    'power_p': ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
-    'gtype': 'PL', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'graph_p':0.1,#ap.Values(0.1,0.2,0.3,0.4,0.5),
+    'power_p': 0, #ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
+    'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': ReplicatorLocal,
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
@@ -55,82 +69,100 @@ parameters = {
     'end_reporting':0
 }
 
-
 sample = ap.Sample(
     parameters,
     n=1,
     method='linspace'
 )
+
 assert len(parameters['phi'])==4
 
-reps = 100
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
-                    record = True)
+                record = True)
 
 if run:
     results = exp.run()
-
+    pass
 colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
-           'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
-    
-markers = ['2', '3','1','8','^','s','p','X','h','d']
+       'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
+
+
 markers =['o','*', 'x', 'p', 's', 'd', 'p', 'h']
-
-
-
+    
 phis = results.parameters.sample.phi
 colours = colours[:len(phis)]
 
 coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).mean()
+
+
 ts = coops.index
 ts = ts.get_level_values(0).unique()
 
 df = results.parameters.sample
 coops2 = coops.to_frame().join(df)
 
-phi_graph = coops2.groupby(['t', 'phi', v2]).mean() #change here
-'''
-#m_graph = coops2.groupby(['t', 'graph_m']).mean()
-
-for i in phis.unique():
-    y = phi_graph.Cooperation_Level.iloc[phi_graph.index.get_level_values('phi') == i]
-    #x = phis.index
-    #plt.legend(phis.unique())
-    plt.plot(ts,y)
+phi_graph = coops2.groupby(['t', 'phi', v2]).mean()
+if not MeansOnly:
+    q_up = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).quantile(0.75)
+    q_down = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).quantile(0.25)
+    if CI:
+        q_up = coops + 1.96/math.sqrt(reps)*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
+        q_down = coops - 1.96/math.sqrt(reps)*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
+        
+    q_up = q_up.to_frame().join(df)
+    q_down = q_down.to_frame().join(df)
+    q_up = q_up.groupby(['t', 'phi', v2]).mean()
+    q_down = q_down.groupby(['t', 'phi', v2]).mean()
+    q_up = q_up.reset_index()
+    q_down = q_down.reset_index()
     
-plt.legend(phis.unique())
-plt.title(f'Parameters: {parameters["agent_n"]} agents, \
-graph: {parameters["gtype"]}, agents: {parameters["atype"]}, alpha: {parameters["graph_alpha"]}, m: {parameters["graph_m"]}: alpha: {parameters["replicator_alpha"]} '
-          )
-    
-    
-'''
-
-
 phi_graph = phi_graph.reset_index()
 graphs = results.parameters.sample[v2]
 
 fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
-fig.suptitle(f'{title}') # N: {parameters["agent_n"]}, Degree: {parameters["graph_m"]}, Repetitions: {reps}
-
-
-
+fig.suptitle(f'{title}')
+    
 axesx = [0,0,1,1]
 axesy = [0,1,0,1]
 for i in range(len(phis.unique())):
-    #i=1.8
+    
     testing =phi_graph[phi_graph.phi ==phis.unique()[i]]
+    
+    if not MeansOnly:
+        quant_up = q_up[q_up.phi==phis.unique()[i]]
+        
+        quant_down =  q_down[q_down.phi==phis.unique()[i]]
+        if CI:
+            pass
+            #quant_up = tt+1.96/math.sqrt(reps)*testing.groupby(['t',v2]).std()
+            #quant_down = tt-1.96/math.sqrt(reps)*testing.groupby(['t',v2]).std()
+            
     for j in range(len(graphs.unique())):
         tt = testing.groupby(['t',v2]).mean()
+        
+        
         ys = tt.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
         axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
+        axs[axesx[i], axesy[i]].set_ylim(0,1)
+        #axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
+        if not MeansOnly:
+            qq_up = quant_up.groupby(['t',v2]).mean()
+            qq_down = quant_down.groupby(['t',v2]).mean()
+            y2s = qq_up.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+            print(y2s-ys)
+            
+            y3s = qq_down.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+            #print(y3s-ys)
+            axs[axesx[i], axesy[i]].plot(ts,y2s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75, label = 'quant_up')
+            axs[axesx[i], axesy[i]].plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
+            
         
-        axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, label = graphs.unique()[j])
-        #axs[axesx[i], axesy[i]].legend()
+            
         
         
 handles, labels = axs[-1][-1].get_legend_handles_labels()
-#fig.legend(handles, labels, loc='lower left')
+if legend:
+    fig.legend(handles, labels, loc='lower left')
 
 
 for ax in axs.flat:
@@ -144,7 +176,7 @@ for ax in axs.flat:
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
+    print(f'saved fig: {title} as {filename}')
+    #plt.close(fig)
 
-        
-        
-            
+  

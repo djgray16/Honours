@@ -25,18 +25,22 @@ import matplotlib.pyplot as plt
 
 
 run = 1
-save = 0
-reps = 20
+save = 1
+reps = 100
 v2 = 'gtype'
 
-filename = 'Replicator_new_low'
+MeansOnly = 0
+CI = 0
+legend = 0
+filename = 'Replicator_new_low_quants'
 title = 'Comparing Graph Models: Replicator Dynamics'
 
 
 
 
 control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
-                 'filename': filename, 'reps': reps}
+                 'filename': filename, 'reps': reps, 'MeansOnly': MeansOnly, 
+                 'CI': CI, 'legend': legend}
 
 
 parameters = {
@@ -60,7 +64,7 @@ compare_two(parameters, control_board)
 ############################################
 
 
-control_board['filename'] = 'Replicator_new_med'
+control_board['filename'] = 'Replicator_new_med_quants'
 
 parameters['phi'] = ap.Values(5.0, 5.25, 5.5, 5.75)
 
@@ -68,7 +72,7 @@ compare_two(parameters, control_board)
 
 #######################################################
 
-control_board['filename'] = 'Replicator_new_high'
+control_board['filename'] = 'Replicator_new_high_quants'
 
 parameters['phi'] = ap.Values(6.0,6.25, 6.5, 6.75)
 

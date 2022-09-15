@@ -136,36 +136,44 @@ def compare_two(parameters, control_board):
     run, v2, save,title, filename, reps = control_board
     '''
 
-
+        
     run = control_board['run'] 
     v2 = control_board['v2'] 
     save = control_board['save'] 
     title = control_board['title'] 
     filename = control_board['filename'] 
     reps = control_board['reps'] 
+    MeansOnly = control_board['MeansOnly']
+    CI = control_board['CI']
+    legend = control_board['legend']
+    
     
     sample = ap.Sample(
         parameters,
         n=1,
         method='linspace'
     )
+    
     assert len(parameters['phi'])==4
+    
     exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
-
+    
     if run:
         results = exp.run()
         pass
     colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
            'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
     
-
+    
     markers =['o','*', 'x', 'p', 's', 'd', 'p', 'h']
         
     phis = results.parameters.sample.phi
     colours = colours[:len(phis)]
     
     coops = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).mean()
+    
+    
     ts = coops.index
     ts = ts.get_level_values(0).unique()
     
@@ -173,6 +181,19 @@ def compare_two(parameters, control_board):
     coops2 = coops.to_frame().join(df)
     
     phi_graph = coops2.groupby(['t', 'phi', v2]).mean()
+    if not MeansOnly:
+        q_up = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).quantile(0.975)
+        q_down = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).quantile(0.025)
+        if CI:
+            q_up = coops + 1.96/math.sqrt(reps)*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
+            q_down = coops - 1.96/math.sqrt(reps)*results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).std()
+            
+        q_up = q_up.to_frame().join(df)
+        q_down = q_down.to_frame().join(df)
+        q_up = q_up.groupby(['t', 'phi', v2]).mean()
+        q_down = q_down.groupby(['t', 'phi', v2]).mean()
+        q_up = q_up.reset_index()
+        q_down = q_down.reset_index()
         
     phi_graph = phi_graph.reset_index()
     graphs = results.parameters.sample[v2]
@@ -185,17 +206,42 @@ def compare_two(parameters, control_board):
     for i in range(len(phis.unique())):
         
         testing =phi_graph[phi_graph.phi ==phis.unique()[i]]
+        
+        if not MeansOnly:
+            quant_up = q_up[q_up.phi==phis.unique()[i]]
+            
+            quant_down =  q_down[q_down.phi==phis.unique()[i]]
+            if CI:
+                pass
+                #quant_up = tt+1.96/math.sqrt(reps)*testing.groupby(['t',v2]).std()
+                #quant_down = tt-1.96/math.sqrt(reps)*testing.groupby(['t',v2]).std()
+                
         for j in range(len(graphs.unique())):
             tt = testing.groupby(['t',v2]).mean()
+            
+            
             ys = tt.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
             axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
+            axs[axesx[i], axesy[i]].set_ylim(0,1)
+            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
+            if not MeansOnly:
+                qq_up = quant_up.groupby(['t',v2]).mean()
+                qq_down = quant_down.groupby(['t',v2]).mean()
+                y2s = qq_up.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+                #print(y2s-ys)
+                
+                y3s = qq_down.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+                #print(y3s-ys)
+                axs[axesx[i], axesy[i]].plot(ts,y2s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75, label = 'quant_up')
+                axs[axesx[i], axesy[i]].plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
+                
             
-            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, label = graphs.unique()[j])
-            #axs[axesx[i], axesy[i]].legend()
+                
             
             
     handles, labels = axs[-1][-1].get_legend_handles_labels()
-    #fig.legend(handles, labels, loc='lower left')
+    if legend:
+        fig.legend(handles, labels, loc='lower left')
     
     
     for ax in axs.flat:
@@ -211,6 +257,8 @@ def compare_two(parameters, control_board):
         plt.savefig(f'Overleaf/images/{filename}.pdf')
         print(f'saved fig: {title} as {filename}')
         #plt.close(fig)
+
+  
     return
     
     

@@ -13,7 +13,7 @@ tests = 100
 
 graphs_dict = {}
 results = {}
-graph_choices = ['BA', 'TAG']# 'BA', 'RRG', 'TAG']
+graph_choices = ['WS', 'RRG']# 'BA', 'RRG', 'TAG']
 
 N = int(500)
 
@@ -23,15 +23,15 @@ GNP_p = m/(N)
 TAG_alpha = 0.3
 
 power_p = 0.5   
-ln = 1
+ln = 0
 
 plotter = 1
 
-stats = 1
+stats = 0
 
-save = 1
+save = 0
 
-filename = 'hist1'
+filename = 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 degrees = [[]for j in graph_choices]
 
@@ -74,7 +74,7 @@ if plotter:
         
         axs[i].set_title(f'{graph_choices[i]}')
             
-        axs[i].hist(degree_sequence[i],density = 0,log=ln, align = 'left')
+        axs[i].hist(degree_sequence[i],density = 0,log=ln,bins = [2,3,4,5,6,7,8,9,10], align = 'left')
     for ax in axs.flat:
         ax.set(xlabel = 'Degree')
         ax.set(ylabel = 'Count')

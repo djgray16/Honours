@@ -55,4 +55,4 @@ ax.set_xlabel('Steps')
 ax.set_ylabel('Proportion')
 
 filename = 'ODE_lottery'
-plt.savefig(f'Overleaf/images/{filename}.pdf')
+#plt.savefig(f'Overleaf/images/{filename}.pdf')
