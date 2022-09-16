@@ -1,0 +1,19 @@
+how to do it
+
+use WINSCP (may need to connect) to drop new files in
+
+ssh into getafix
+
+this will need to be in the sbash
+
+sbash allocs
+
+module load anaconda3 
+
+conda activate getafix_honours
+
+python3 <script>.py
+
+use WINSCP to get files back out
+
+start plotting

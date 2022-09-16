@@ -5,7 +5,7 @@ Created on Fri Sep 16 09:11:48 2022
 @author: s4482670
 """
 
-import pickle
+import pickle as pickle
 import agentpy as ap
 import numpy as np
 import random as random
@@ -44,7 +44,7 @@ control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
 
 parameters = {
     'seed':42,
-    'steps': 10_000, #number of time periods
+    'steps': 10000, #number of time periods
     'agent_n': 100,
     'phi':ap.Values(4.0, 4.25, 4.5, 4.75), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
@@ -61,7 +61,7 @@ parameters = {
 
 results = run_compare_two(parameters, control_board)
 
-fname = 'results_script_test'
+fname = 'results_script_test2'
 with open (f'{fname}.pickle', 'wb') as handle:
     pickle.dump(results, handle)
     
