@@ -21,7 +21,22 @@ class WealthModel(ap.Model):
 
         self.gtype = self.p.gtype #what graph type for this model
 
-        self.atype = self.p.atype #what agent type
+        #self.atype = self.p.atype #what agent type
+        if self.p.atype =='ReplicatorLocal':
+            self.atype = ReplicatorLocal
+        elif self.p.atype =='AT':
+            self.atype = AT
+        elif self.p.atype =='Nau':
+            self.atype = Nau
+        elif self.p.atype =='ReplicatorGlobal':
+            self.atype = ReplicatorGlobal
+        elif self.p.atype =='BaseAgent':
+            self.atype  = BaseAgent
+        else:
+            print('no idea what agent, setting baseagent')
+            self.atype = BaseAgent
+            return 
+        
 
         
 

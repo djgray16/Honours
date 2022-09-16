@@ -29,17 +29,20 @@ reps = 100
 v2 = 'graph_p'
 filename = 'graph_p_low_new'
 title = 'Varying rewiring p, WS Model, Replicator Dynamics'
-
+MeansOnly = 1
+CI = 0
+legend = 0
 
 
 
 control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
-                 'filename': filename, 'reps': reps}
+                 'filename': filename, 'reps': reps, 'MeansOnly': MeansOnly, 
+                 'CI': CI, 'legend': legend}
 
 
 parameters = {
     'seed':42,
-    'steps': 1000, #number of time periods
+    'steps': 10_000, #number of time periods
     'agent_n': 100,
     'phi':ap.Values(4.0,4.25,4.5,4.75), # #multiplier for common contributions
     'graph_m' : 6,#ap.Values(4,6,8,10,12),
