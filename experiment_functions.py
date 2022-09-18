@@ -155,7 +155,17 @@ def run_compare_two(parameters, control_board):
     
     if run:
         results = exp.run()
-    return results
+        
+    psample =  results.parameters.sample
+    
+    summary = results.variables.WealthModel.Cooperation_Level.groupby(['t', 'sample_id']).agg([np.mean, np.std, lambda x: x.quantile(0.025), lambda x:x.quantile(0.975)])
+
+    summary.rename(columns = {'mean': 'avg', 'std': 'dev','<lambda_0>': 'q_low', '<lambda_1>': 'q_high'}, inplace = True)
+
+    pickle_save = {'psample': psample, 'summary': summary}
+    
+    
+    return pickle_save
 
 def plot_compare_two(results, control_board):
     run = control_board['run'] 
@@ -524,3 +534,13 @@ def plot_compare_two_from_pickle(pickle_in, control_board):
                 axs[axesx[i], axesy[i]].plot(ts,y2s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75, label = 'quant_up')
                 axs[axesx[i], axesy[i]].plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
     return fig, axs
+
+
+
+
+def q_low(data):
+    return data.quantile(q=0.025)
+def q_high(data):
+    return data.quantile(q=0.975)
+
+
