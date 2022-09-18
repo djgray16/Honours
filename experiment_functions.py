@@ -228,7 +228,7 @@ def plot_compare_two(results, control_board):
             ys = tt.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
             axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
             axs[axesx[i], axesy[i]].set_ylim(0,1)
-            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.1,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
+            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.5,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
             if not MeansOnly:
                 qq_up = quant_up.groupby(['t',v2]).mean()
                 qq_down = quant_down.groupby(['t',v2]).mean()
@@ -438,3 +438,89 @@ def lottery(parameters, control_board):
         print('saved',title, f'as {filename}' )
         #plt.close(fig)
     return 
+
+
+def plot_compare_two_from_pickle(pickle_in, control_board):
+    run = control_board['run'] 
+    v2 = control_board['v2'] 
+    save = control_board['save'] 
+    title = control_board['title'] 
+    filename = control_board['filename'] 
+    reps = control_board['reps'] 
+    MeansOnly = control_board['MeansOnly']
+    CI = control_board['CI']
+    legend = control_board['legend']
+    colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
+           'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
+    
+    
+    markers =['o','*', 'x', 'p', 's', 'd', 'p', 'h']
+    psample = pickle_in['psample']
+    summary = pickle_in['summary']
+    phis = psample.phi
+    colours = colours[:len(phis)]
+    
+    coops = summary.avg
+    
+    
+    ts = coops.index
+    ts = ts.get_level_values(0).unique()
+    
+    df = psample
+    coops2 = coops.to_frame().join(df)
+    
+    phi_graph = coops2.groupby(['t', 'phi', v2]).mean()
+    if not MeansOnly:
+        q_up = summary.q_high
+        q_down = summary.q_low
+        if CI:
+            q_up = coops + 1.96/math.sqrt(reps)*summary.std
+            q_down = coops - 1.96/summary.std
+            
+        q_up = q_up.to_frame().join(df)
+        q_down = q_down.to_frame().join(df)
+        q_up = q_up.groupby(['t', 'phi', v2]).mean()
+        q_down = q_down.groupby(['t', 'phi', v2]).mean()
+        q_up = q_up.reset_index()
+        q_down = q_down.reset_index()
+        
+    phi_graph = phi_graph.reset_index()
+    graphs = psample[v2]
+    
+    fig,axs = plt.subplots(2,2, sharex = True, sharey = True)
+    fig.suptitle(f'{title}')
+        
+    axesx = [0,0,1,1]
+    axesy = [0,1,0,1]
+    for i in range(len(phis.unique())):
+        
+        testing =phi_graph[phi_graph.phi ==phis.unique()[i]]
+        
+        if not MeansOnly:
+            quant_up = q_up[q_up.phi==phis.unique()[i]]
+            
+            quant_down =  q_down[q_down.phi==phis.unique()[i]]
+            if CI:
+                pass
+                #quant_up = tt+1.96/math.sqrt(reps)*testing.groupby(['t',v2]).std()
+                #quant_down = tt-1.96/math.sqrt(reps)*testing.groupby(['t',v2]).std()
+                
+        for j in range(len(graphs.unique())):
+            tt = testing.groupby(['t',v2]).mean()
+            #print(tt.head())
+            
+            ys = tt.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+            axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
+            axs[axesx[i], axesy[i]].set_ylim(0,1)
+            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.5,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
+            if not MeansOnly:
+                qq_up = quant_up.groupby(['t',v2]).mean()
+                qq_down = quant_down.groupby(['t',v2]).mean()
+                y2s = qq_up.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+                #print(y2s-ys)
+                
+                y3s = qq_down.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+                #print(y3s-ys)
+                axs[axesx[i], axesy[i]].plot(ts,y2s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75, label = 'quant_up')
+                axs[axesx[i], axesy[i]].plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
+    return fig, axs

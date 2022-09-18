@@ -5,7 +5,7 @@ Created on Tue Sep 13 12:51:13 2022
 @author: s4482670
 """
 
-
+import pickle as pickle
 import agentpy as ap
 import numpy as np
 import random as random
@@ -26,13 +26,13 @@ import matplotlib.pyplot as plt
 
 run = 1
 save = 1
-reps = 2
+reps = 100
 v2 = 'gtype'
 
 MeansOnly = 1
 CI = 0
 legend = 0
-filename = 'Replicator_new_low_long'
+filename = 'Replicator_new_low_long_home'
 title = 'Comparing Graph Models: Replicator Dynamics'
 
 
@@ -60,24 +60,34 @@ parameters = {
     'end_reporting':0
 }
 
-results = run_compare_two(parameters, control_board)
+#results = run_compare_two(parameters, control_board)
+'''
+fname = control_board['filename']
+with open (f'{fname}.pickle', 'wb') as handle:
+    pickle.dump(results, handle)
+'''
 
-#fname = 
-
-_, _ = plot_compare_two(results, control_board)
 ############################################
 
 
-control_board['filename'] = 'Replicator_new_med_long'
+control_board['filename'] = 'Replicator_new_med_long_home'
 
 parameters['phi'] = ap.Values(5.0, 5.25, 5.5, 5.75)
 
-compare_two(parameters, control_board)
+results = run_compare_two(parameters, control_board)
+
+fname = control_board['filename']
+with open (f'{fname}.pickle', 'wb') as handle:
+    pickle.dump(results, handle)
 
 #######################################################
 
-control_board['filename'] = 'Replicator_new_high_long'
+control_board['filename'] = 'Replicator_new_high_long_home'
 
 parameters['phi'] = ap.Values(6.0,6.25, 6.5, 6.75)
 
-compare_two(parameters, control_board)
+results = run_compare_two(parameters, control_board)
+
+fname = control_board['filename']
+with open (f'{fname}.pickle', 'wb') as handle:
+    pickle.dump(results, handle)

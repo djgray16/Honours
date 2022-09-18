@@ -6,6 +6,9 @@ ssh into getafix
 
 this will need to be in the sbash
 
+run dos2unix script.sh
+
+
 sbash allocs
 
 module load anaconda3 
@@ -13,6 +16,10 @@ module load anaconda3
 conda activate getafix_honours
 
 python3 <script>.py
+
+sbatch script.sh 
+
+d
 
 use WINSCP to get files back out
 
