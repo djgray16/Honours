@@ -26,13 +26,17 @@ import pickle as pickle
 
 ### need mean, std, quantiles, plus phi_graph
 
-fname = 'Replicator_new_low_long_home'
+fname = 'comparing_power_p_low_new'
 
 
 ''' 
 to do 
 
 
+
+
+
+comparing_power_p_low_new
 
 
 
