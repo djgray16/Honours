@@ -6,3 +6,4 @@ __pycache__/experiment_functions.cpython-38.pyc
 __pycache__/Models.cpython-38.pyc
 *.ini
 __pycache__/Agents.cpython-38.pyc
+.spyproject/config/workspace.ini
