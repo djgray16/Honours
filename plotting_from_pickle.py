@@ -23,14 +23,14 @@ from experiment_functions import *
 import matplotlib.pyplot as plt
 
 import pickle as pickle
-run = 1
+run = 0
 save = 0
 reps = 100
 v2 = 'graph_p'
 filename = 'graph_p_low_new'
-title = 'Varying rewiring p, WS Model, Replicator Dynamics'
+title = 'Comparing Rewiring p, WS Model, Replicator Dynamics'
 MeansOnly = 1
-CI = 1
+CI = 0
 legend = 0
 
 
@@ -38,11 +38,18 @@ legend = 0
 control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
                  'filename': filename, 'reps': reps, 'MeansOnly': MeansOnly, 
                  'CI': CI, 'legend': legend}
-fname = 'graph_p_low_new'
+fname = 'graph_p_high_' +'new'
 with open (f'{fname}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
      
 plot_compare_two_from_pickle(pickle_in, control_board)
 
+## need to save here
+
+save_now = 1
+filename = 'Rep_graph_p_WS_high'
+if save_now: 
+    plt.savefig(f'Overleaf/images/{filename}.pdf')
+    print(f'saved fig: {title} as {filename}')
      
      

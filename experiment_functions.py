@@ -526,13 +526,15 @@ def plot_compare_two_from_pickle(pickle_in, control_board):
             if not MeansOnly:
                 qq_up = quant_up.groupby(['t',v2]).mean()
                 qq_down = quant_down.groupby(['t',v2]).mean()
-                y2s = qq_up.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+                y2s = qq_up.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
                 #print(y2s-ys)
                 
-                y3s = qq_down.Cooperation_Level.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+                y3s = qq_down.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
                 #print(y3s-ys)
                 axs[axesx[i], axesy[i]].plot(ts,y2s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75, label = 'quant_up')
                 axs[axesx[i], axesy[i]].plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
+    if legend:
+        fig.legend( loc='lower right')
     return fig, axs
 
 
