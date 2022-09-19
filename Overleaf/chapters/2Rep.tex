@@ -6,7 +6,7 @@ Then replicator dynamics are applied to the linear PGG. Under this regime, it is
 \subsection{Outline}
 The paper chosen to replicate imitation and replicator dynamics was \cite{RN30}, which models a two-stage lottery game. Refer to \ref{Lottery} for a description of the game and the strategy space $S$. \\
 
-The paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_i$, \\
+The paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_{i\to j}$, \\
 
 \begin{equation} \label{rep}
 q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
@@ -32,7 +32,7 @@ The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$
   \caption{Replication of Figure 5a from \cite{RN30}. The replication is successful, but these conditions do not provide anything interesting regarding replicator dynamics.  } \label{lottery_comp0}
 \end{figure} 
 \FloatBarrier
-Under replicator dynamics, strategy $i$ has an evolutionary advantage over strategy $j$ if $\mathbb E [\pi_i] >\mathbb E [\pi_j]$. Because the expected value of the strategies are equal, no strategy has an evolutionary advantage over any other, so the initial distribution of strategies remains.
+Under replicator dynamics, strategy $i$ has an evolutionary advantage over strategy $j$ if $\mathbb E [\pi_i] >\mathbb E [\pi_j]$. Because the expected value of the strategies considered in Figure \ref{lottery_comp0} are equal, no strategy has an evolutionary advantage over any other, so the initial distribution of strategies remains.
 \FloatBarrier 
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
@@ -102,7 +102,7 @@ Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS a
     \caption{Replication of \ref{lotteryp055}. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. }
     \label{lotteryp4_me_2}
   \end{subfigure}
-  \caption{Replication of Figure 6c from \cite{RN30}. In this case, RR is expectation-maximising because $p>0.5$, but R--WS still takes over the population. The initial spike of RR is due to its evolutionary advantage over the strategies SS, SR, RS, and R--WR.} \label{lottery_comp5}
+  \caption{Replication of Figure 6c from \cite{RN30}. In this case, RR is expectation-maximising because $p>0.5$, but R--WS still takes over the population. The initial spike of RR is due to its evolutionary advantage over the strategies SS, SR, RS, and R--WR.  For $p=0.55$, $\mathbb E [\pi_{\text{RR}}] = 8.8$, and $\mathbb E [\pi_{\text{R--WS}}] =8.58 $.} \label{lottery_comp5}
 \end{figure} 
 \FloatBarrier
 In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. This is investigated further. \\
@@ -132,7 +132,7 @@ Under the $p=0.4$ regime, the probability distribution for each strategy is calc
 \end{align*}
 Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the $p=0.4$ case, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. However, the magnitude of the evolutionary advantage also has an effect. In Figure \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. \\
 
-This relationship can be expressed as a set of difference equations. Call $\rho_{i,t}$ the proportion of strategy $i$ present at time $t$. The boundary condition is $\sum_i \rho_{i,t}= 1$, $\forall t \in [0,T]$. Denote $\mathcal F_t$ the natural filtration of $\cap_i \rho_{i,t}$ at time $t$.  \\
+This relationship can be expressed as a set of difference equations. Call $\rho_{i,t}$ the proportion of strategy $i$ present at time $t$. The boundary condition is $\sum_i \rho_{i,t}= 1$, $\forall t \in [0,T]$. Denote $\mathcal F_t$ the natural filtration of $\cap_i \{\rho_{i,t} \}$ at time $t$. \textbf{THIS NEEDS TO BE INTERSECTION OF NATURAL FILTRATIONS}  \\
 \begin{align*}
     \mathbb E \big [\rho_{\text{SS},t+1}| \mathcal F_t \big ] &= \rho_{\text{SS},t} \Bigg [\sum_{ i \neq \text{SS}}  \rho_{\text{i},t} [\mathbb P (\pi_\text{SS} > \pi_{i}) -\mathbb P (\pi_\text{SS} < \pi_{i}) ] \Bigg ] \\
     &= \rho_{\text{SS},t}\Bigg [\rho_{\text{RR}, t}(0.36-0.16) + \rho_{\text{RS}, t}(0.6-0.4) + \rho_{\text{SR}, t}(0.6-0.4) + \\
@@ -151,7 +151,7 @@ The same logic can be applied for each strategy, which results in a difference e
 
 This set of difference equations cannot be solved analytically, however the numerical simulation is investigated. \\
 \FloatBarrier
-\graphCap{ODE_lottery.pdf}{0.75}{Deterministic simulation of the Lottery Game. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. Initially, it reports similar results to the stochastic model, however the deterministic model is cyclical, and no strategies are eliminated. Note that SR and RS are identical, so the green series is covered by the red series. }{ODE_lottery}
+\graphCap{ODE_lottery.pdf}{0.75}{Deterministic Simulation of the Lottery Game. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The starting condition is $\rho_{i,0} = \tfrac{1}{6}$, for each strategy $i$. Initially, it reports similar results to the stochastic model, however the deterministic model is cyclical, and no strategies are eliminated. Note that SR and RS are identical, so the green series is covered by the red series. }{ODE_lottery}
 \FloatBarrier
 A major difference between the $p=0.4$ stochastic model and its deterministic extension is the ability for strategies to go extinct. In the stochastic model, extinction is possible, particularly when the proportion of that strategy is already close to 0. Furthermore, once a strategy is extinct it can never return. For example, at the trough of the RS strategy, it represents 0.04\% of the population. This corresponds 2.5 agents in the simulations. It is feasible that both these agents go extinct, and the RS strategy is eliminated. In the difference equations model, no strategy can ever go extinct. The elimination of RS ensures the eventual dominance of R--WS. RR is eliminated quickly because it has the highest pairwise death rate, as SS dominates it with a rate of 0.44. This is much larger than any other pairwise comparison rate.  \\
 
@@ -159,11 +159,11 @@ A major difference between the $p=0.4$ stochastic model and its deterministic ex
 \subsection{Extension: Robustness} 
 The effect of extinction also affects the robustness of results. Some trials may eliminate strategies at their first trough, whereas these strategies may survive much longer in other trials. Therefore the empirical quantiles are examined.\\
 \FloatBarrier
-\graphCap{lotteryp4_me_quantiles_empirical.pdf}{0.75}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, T = 100. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is the dashed line. }{lottery_quantiles_empirical}
+\graphCap{lotteryp4_me_quantiles_empirical.pdf}{0.75}{Empirical 2.5\%, 97.5\% Quantiles of Imitation Dynamics Lottery Game, $p=0.4$, $T = 100$. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The quantile for each series is the dashed line. }{lottery_quantiles_empirical}
 \FloatBarrier
 Figure \ref{lottery_quantiles_empirical} shows how great the variance of certain series are, particularly SS and R--WS. When R--WS is prominent and the strategies SR, RS are not extinct, SR and RS are able to grow. This occurs around the 200th generation. The strategy SS, which outperforms SR and RS, then dominates them. SS is dominated by R--WS, and this cycle continues until SR and RS are eliminated. The reason that they are eliminated is because the highest rate of dominance is SS over SR, RS. The empirical quantile plots exhibit a second trough, similar to Figure \ref{ODE_lottery}, however only the beginning of a third trough is shown.  \\
 \FloatBarrier
-\graphCap{lotteryp4_me_quantiles.pdf}{0.75}{95\% Confidence Interval for the Mean, Imitation Dynamics Lottery Game, $p=0.4$, T = 100. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The confidence interval for each series is the dashed line. }{lottery_quantiles}
+\graphCap{lotteryp4_me_quantiles.pdf}{0.75}{95\% Confidence Interval for the Mean, Imitation Dynamics Lottery Game, $p=0.4$, $T = 100$. The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The confidence interval for each series is the dashed line. }{lottery_quantiles}
 \FloatBarrier
  The computed confidence intervals assume a normal distribution of the mean under the Central Limit Theorem. The computed standard deviation of each point in the time series is used as an estimate of the true standard deviation. Because the number of trials $T=100$, the confidence interval is tight around the sample mean. The original paper uses $T=20$, which results in a confidence interval more than four times as wide Figure \ref{lottery_quantiles}. Therefore it is suggested that more than 20 trials are used for future samples. \\
 
@@ -184,11 +184,11 @@ Then the effect of targeted mean degree $m$ is examined for RRG and BA models. B
 \subsection{Results}
 These results examine the effect of network model on cooperation. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 200, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 7.5$. It appears that graph models with a power law degree size distribution induce higher cooperation. \\
 \FloatBarrier
-\graphCap{replicator_graphs_low.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{2, 2.5, 3, 3.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It appears that the BA and TAG model do not induce equilibrium cooperation levels between 0.35 and 0.75.  }{replicator_low} 
+\graphCap{replicator_new_low.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4.0, 4.25, 4.5, 4.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It appears that the BA model induces the highest cooperation, then the TAG, followed by WS and RRG respectively. This corresponds to decreasing degree size variance. \textbf{WHY IS 4.75 BA SO HIGH} }{replicator_low} 
 \FloatBarrier
-\graphCap{replicator_graphs_med.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4,4.5,5,5.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. }{replicator_medium}
+\graphCap{replicator_new_med.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{5.0, 5.25, 5.5, 5.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. For $r\geq 5.5$, the RRG model induces more cooperation than the WS model. }{replicator_medium}
 \FloatBarrier
-\graphCap{replicator_graphs_high.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The relative ordering of graph model according to cooperation level is, from highest to lowest, TAG, BA, then RRG and WS, depending on the exact $r$ value.  }{replicator_large}\FloatBarrier
+\graphCap{replicator_new_high.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The TAG and RRG models overtake the BA model, while the WS model consistently induces the lowest cooperation amongst models. }{replicator_large}\FloatBarrier
 
 
 
