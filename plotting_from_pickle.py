@@ -38,7 +38,7 @@ legend = 0
 control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
                  'filename': filename, 'reps': reps, 'MeansOnly': MeansOnly, 
                  'CI': CI, 'legend': legend}
-fname = 'graph_m_' +'high' +'RRG'
+fname = 'graph_m_' +'high' +'BA'
 with open (f'{fname}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
      
@@ -46,7 +46,7 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 
 ## need to save here
 
-save_now = 1
+save_now = 0
 filename = 'Rep_graph_m_RRG_' +'high'
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')

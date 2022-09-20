@@ -34,14 +34,14 @@ filename = 'TAfig4b'
 
 parameters = {
     'seed': 42,
-    'steps': 1600, #number of time periods
-    'agent_n': 500,
+    'steps': 100, #number of time periods
+    'agent_n': 100,
     'phi':ap.Values(5.2,5.4,5.6,5.8,6.0), #multiplier for common contributions
     'graph_m' : 6,
     'graph_alpha': 1.0,
     'graph_p':0.1,
-    'gtype': 'WS',
-    'atype': ReplicatorLocal,
+    'gtype': 'BA',
+    'atype': 'ReplicatorLocal',
     'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
     'step_reporting': 0,
@@ -55,7 +55,7 @@ sample = ap.Sample(
     method='linspace'
 )
 
-reps = 40
+reps = 4
 exp = ap.Experiment(WealthModel, sample, iterations=reps,
                     record = True)
 
