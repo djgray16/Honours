@@ -535,6 +535,11 @@ def plot_compare_two_from_pickle(pickle_in, control_board):
                 axs[axesx[i], axesy[i]].plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
     if legend:
         fig.legend( loc='lower right')
+    for ax in axs.flat:
+        ax.set(xlabel = 'Steps')
+        ax.set(ylabel = 'Mean Cooperation')
+        ax.label_outer()
+        ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
     return fig, axs
 
 
