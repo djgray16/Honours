@@ -195,7 +195,7 @@ The following section investigates the effect of the graph model on cooperation 
 
 It is found that the graphs with a power-law degree size distribution induce higher cooperation. The effect of $C_\Delta$ is not initially evident when comparing the WS, BA, TAG, and RRG models, so a new model type, the power-law (PL) model, is introduced to examine the effect of $C_\Delta$ for scale-free degree size distributions. The effect of $C_\Delta$ is also examined in the WS family of graph models. Under the PL model, higher $C_\Delta$ weakly induces higher cooperation, while the trend is reversed for the WS family of models. \\
 
-Then the effect of targeted mean degree $m$ is examined for RRG and BA models. Both of these experiments indicate that higher $m$ lead to lower cooperation. Finally, the cooperation levels are stratified by degree size within a BA graph model. \textbf{BA TREND HERE}  These experiments show that the nodes with low degree size have a higher contribution proportion than average, which may explain the trend. \\
+Then the effect of targeted mean degree $m$ is examined for RRG and BA models. Both of these experiments indicate that higher $m$ lead to lower cooperation. Finally, the cooperation levels are stratified by degree size within a BA graph model. \textbf{BA TREND HERE}.\\
 
 \subsection{Results}
 These results examine the effect of network model on cooperation. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in much slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore the number of generations has been extended to 10 000, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher cooperation than WS, RRG models. This trend continues for $2.5 \leq r \leq 6$. It appears that graph models with a power law degree size distribution induce higher cooperation. \\
@@ -315,7 +315,7 @@ This experiment seeks to stratify the cooperation level of each point according 
     \caption{Final Cooperation by Degree, BA Model, Trimmed, for $m=4$, $r=6$. }
     \label{by_degree_m_4_phi_6}
   \end{subfigure}
-  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. Both plots indicate that higher node degrees contribute marginally less than lower node degrees.} \label{by_degree_m_4}
+  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. Both plots indicate that higher node degrees contribute less than lower node degrees.} \label{by_degree_m_4}
 \end{figure} 
 \FloatBarrier
 
@@ -332,7 +332,7 @@ This experiment seeks to stratify the cooperation level of each point according 
     \caption{Final Cooperation by Degree, BA Model, Trimmed, for $m=6$, $r=6$. }
     \label{by_degree_m_6_phi_6}
   \end{subfigure}
-  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. \textbf{BA TREND HERE}  } \label{by_degree_m_6}
+  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. For $m=6, r=4$, higher degree nodes contribute more than the mean, and the opposite is observed for $m=6,r=6$.  } \label{by_degree_m_6}
 \end{figure} 
 \FloatBarrier
 
@@ -349,12 +349,12 @@ This experiment seeks to stratify the cooperation level of each point according 
     \caption{Final Cooperation by Degree, BA Model, Trimmed, for $m=8$, $r=6$. }
     \label{by_degree_m_8_phi_6}
   \end{subfigure}
-  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. It is hard to tell, as overall cooperation is very low, but it appears high degree nodes cooperate more than the mean. \textbf{BA TREND HERE} } \label{by_degree_m_8}
+  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. It is hard to tell, as overall cooperation is very low, but it appears high degree nodes cooperate more than the mean. The trend is hard to tell here, perhaps higher degree nodes contribute marginally more than the mean. } \label{by_degree_m_8}
 \end{figure} 
 \FloatBarrier
 
-\textbf{BA TREND HERE} 
-These figures demonstrate a non-linear relationship between node size and mean equilibrium contribution. The higher nodes are incentivised to defect, as their gain from defection can be very high. It is notable that this strategy does not propagate well, and even for low $r$ high cooperation is achieved. These results corroborate the findings in Figures \ref{BA_graph_m_low} and \ref{BA_graph_m_med}, which show that there is higher cooperation amongst lower degrees. \\
+
+These figures demonstrate a non-linear relationship between node size and mean equilibrium contribution. The higher nodes are incentivised to defect, as their gain from defection can be very high. However this gain is only realised when the other nodes are cooperating. In general, lower degree nodes enforce more conformity, and tend to $c=0$ or $c=1$. . \\
 
 \subsection{Summary}
 Four graph models were examined under replicator dynamics, and the results are plotted in Figures \ref{replicator_low}, \ref{replicator_medium}, and \ref{replicator_large}. The trend of these plots was that the models with power-law degree size distribution, specifically the BA and TAG models, induced higher cooperation. In an attempt to explain these results, several more experiments were carried out. \\
