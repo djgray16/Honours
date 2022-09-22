@@ -34,7 +34,7 @@ filename = 'BA_degree_groups_45_1000_trimmed_6'
 
 phis = [4,6,8]
 
-ms = [4,6,8]
+ms = [6,8]
 
 
 
@@ -97,7 +97,7 @@ for phi in phis:
                 print('pickled')
         
         ### checking can read back
-        break
+        '''
         
         agg_coop_end = agg_coop.values[parameters['steps']]
         log_counts = np.log(counts)
@@ -144,5 +144,6 @@ for phi in phis:
         if save: 
             plt.savefig(f'Overleaf/images/{fname}.pdf')
             print('saved')
+        '''
 #plt.show()
 
