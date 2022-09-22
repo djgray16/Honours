@@ -26,12 +26,14 @@ run =1
 trim = 1
 
 
-filename = 'Rep_BA_node_groups_m_8_phi_6'
+filename = 'Rep_BA_node_groups_m_8_phi_4'
 
 
 phis = [4,6,8]
 
 ms = [4,6,8]
+
+parameters['steps'] = 2000
 with open (f'{filename}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
 
