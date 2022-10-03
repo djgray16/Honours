@@ -34,7 +34,7 @@ filename = 'BA_degree_groups_45_1000_trimmed_6'
 
 phis = [4,6,8]
 
-ms = [6,8]
+ms = [4,6,8]
 
 
 

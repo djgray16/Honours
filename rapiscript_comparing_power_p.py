@@ -27,8 +27,8 @@ run = 1
 save = 1
 reps = 100
 v2 = 'power_p'
-filename = 'comparing_power_p_low_new'
-title = 'Varying clustering p, PL Model, Replicator Dynamics'
+filename = 'Imitation_comparing_power_p_low'
+title = 'Varying clustering p, PL Model, Imitation Dynamics'
 MeansOnly = 1
 CI = 0
 legend = 0
@@ -51,7 +51,7 @@ parameters = {
     'power_p': ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
     'gtype': 'PL', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
     'atype': 'ReplicatorLocal',
-    'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+    'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
     'step_reporting':0,
     'end_reporting':0
@@ -68,7 +68,7 @@ with open (f'{fname}.pickle', 'wb') as handle:
 
 
 
-control_board['filename'] = 'comparing_power_p_med_new'
+control_board['filename'] = 'Imitation_comparing_power_p_med'
 
 parameters['phi'] = ap.Values(5.0,5.25,5.5,5.75)
 
@@ -80,7 +80,7 @@ with open (f'{fname}.pickle', 'wb') as handle:
 
 #####################################################################
 
-control_board['filename'] = 'comparing_power_p_high_new'
+control_board['filename'] = 'Imitation_comparing_power_p_high'
 
 parameters['phi'] = ap.Values(6.0,6.25,6.5,6.75)
 

@@ -23,22 +23,28 @@ from experiment_functions import *
 import matplotlib.pyplot as plt
 
 import pickle as pickle
-run = 0
-save = 0
-reps = 100
-v2 = 'graph_m'
-filename = 'graph_p_low_new'
-title = 'Comparing Mean Degree, RRG Model, Replicator Dynamics'
+run = 1
+save = 1
+reps = 2
+v2 = 'gtype'
+
 MeansOnly = 1
 CI = 0
 legend = 0
+filename = 'Imitation_new_med_long'
+title = 'Comparing Graph Models: Imitation Dynamics'
+
 
 
 
 control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
                  'filename': filename, 'reps': reps, 'MeansOnly': MeansOnly, 
                  'CI': CI, 'legend': legend}
-fname = 'graph_m_' +'high' +'BA'
+
+
+
+
+fname = filename
 with open (f'{fname}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
      
