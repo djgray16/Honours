@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 
 run = 1
 save = 1
-reps = 2
+reps = 100
 v2 = 'gtype'
 
 MeansOnly = 1

@@ -29,7 +29,7 @@ run =1
 trim = 1
 
 
-filename = 'BA_degree_groups_45_1000_trimmed_6'
+#filename = 'BA_degree_groups_45_1000_trimmed_6'
 
 
 phis = [4,6,8]
@@ -90,7 +90,7 @@ for phi in phis:
         agg_coop = results.variables.WealthModel.groupby(['t']).mean()
         
         if save:
-            fname = 'Rep_BA_node_groups_m_' + str(m) + '_phi_' + str(phi)
+            fname = 'ID_BA_node_groups_m_' + str(m) + '_phi_' + str(phi)
             pickle_in ={'counts': counts, 'end_coop': end_coop, 'agg_coop': agg_coop}
             with open (f'{fname}.pickle', 'wb') as handle:
                 pickle.dump(pickle_in, handle)
