@@ -25,14 +25,16 @@ import matplotlib.pyplot as plt
 import pickle as pickle
 run = 1
 save = 1
-reps = 2
-v2 = 'gtype'
+reps = 100
+v2 = 'graph_p'
 
 MeansOnly = 1
-CI = 0
+CI = 1
 legend = 0
-filename = 'Imitation_new_med_long'
-title = 'Comparing Graph Models: Imitation Dynamics'
+size = 'low'
+gmodel = 'WS'
+filename = 'Imitation_graph_p_'+size
+title = f'Comparing Rewiring p, {gmodel} Model, Imitation Dynamics'
 
 
 
@@ -52,8 +54,8 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 
 ## need to save here
 
-save_now = 0
-filename = 'Rep_graph_m_RRG_' +'high'
+save_now = 1
+filename = 'ID_graph_p_' +size
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print(f'saved fig: {title} as {filename}')

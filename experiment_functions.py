@@ -484,8 +484,8 @@ def plot_compare_two_from_pickle(pickle_in, control_board):
         q_up = summary.q_high
         q_down = summary.q_low
         if CI:
-            q_up = coops + 1.96/math.sqrt(reps)*summary.std
-            q_down = coops - 1.96/summary.std
+            q_up = coops + 1.96/math.sqrt(reps)*summary.dev
+            q_down = coops - 1.96/math.sqrt(reps)*summary.dev
             
         q_up = q_up.to_frame().join(df)
         q_down = q_down.to_frame().join(df)
