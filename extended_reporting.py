@@ -55,7 +55,7 @@ for phi in phis:
             'power_p': 0,#ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
             'gtype': 'BA', #ap.Values('WS', 'TAG', 'BA', 'RRG'),
             'atype': 'ReplicatorLocal',
-            'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
+            'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
             'plot_G': 0, #gives the summary plot of the graph for each experiment
             'step_reporting': 0,
             'end_reporting': 1
