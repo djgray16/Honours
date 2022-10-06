@@ -27,7 +27,7 @@ run = 1
 save = 1
 reps = 100
 v2 = 'graph_m'
-gmodels = ['BA' , 'RRG']
+gmodels = [ 'RRG']
 for gmodel in gmodels:
     filename = 'Imitation_graph_m_low'+gmodel
     title = f'Varying Mean Degree, {gmodel} Model, Imitation Dynamics'
@@ -58,7 +58,7 @@ for gmodel in gmodels:
         'step_reporting':0,
         'end_reporting':0
     }
-    
+    '''
     pickle_save = run_compare_two(parameters, control_board)
     fname = control_board['filename']
     with open (f'{fname}.pickle', 'wb') as handle:
@@ -78,7 +78,7 @@ for gmodel in gmodels:
         pickle.dump(pickle_save, handle) 
     
     #####################################################################
-    
+    '''
     control_board['filename'] = 'Imitation_graph_m_high'+gmodel
     
     parameters['phi'] = ap.Values(6.0,6.25,6.5,6.75)

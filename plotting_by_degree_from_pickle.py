@@ -26,13 +26,13 @@ run =1
 trim = 1
 
 
-filename = 'Rep_BA_node_groups_m_6_phi_8'
+filename = 'ID_BA_node_groups_m_8_phi_8'
 
 
 phis = [4,6,8]
 
 ms = [4,6,8]
-
+parameters = {}
 parameters['steps'] = 2000
 with open (f'{filename}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
@@ -55,7 +55,8 @@ line_ax.set_ylabel('Final Cooperation')
 fig.suptitle('Final Cooperation vs Node Degree: BA Model')
 
 #fname = 'Rep_BA_node_groups_m_' + str(m) + '_phi_' + str(phi)
-if save: 
+if save:
+    pass
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print('saved')
 
