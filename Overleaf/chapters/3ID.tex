@@ -2,8 +2,53 @@
 \subsection{Outline}
 \subsection{Results}
 \FloatBarrier
-\graphCap{ID_low_gtype.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{4.0, 4.25, 4.5, 4.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It appears that the BA model induces the highest cooperation, then the TAG, followed by WS and RRG respectively. Observed cooperation correlates with degree size variance. It is interesting that the BA trend for $r=4.75$ is lower than the trend for $r=4.5$. This may be due to sampling variation. }{replicator_low} 
+\graphCap{ID_gtype_low.pdf}{0.7}{Comparing Graph Models: Imitation Dynamics. Trend for $r \in \{4.0, 4.25, 4.5, 4.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively.Only the BA graph model induces non-trivial cooperation.}{imitation_low} 
 \FloatBarrier
-\graphCap{ID_med_gtype.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{5.0, 5.25, 5.5, 5.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. For $r\geq 5.5$, the TAG model induces the highest cooperation.}{replicator_medium}
+\graphCap{ID_gtype_med.pdf}{0.7}{Comparing Graph Models: Imitation Dynamics. Trend for $r \in \{5.0, 5.25, 5.5, 5.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The BA model still induces the highest cooperation, and the RRG consistently induces the lowest.}{imitation_medium}
 \FloatBarrier
-\graphCap{ID_high_gtype.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The TAG and RRG models overtake the BA model, while the WS model consistently induces the lowest cooperation amongst models. }{replicator_high}\FloatBarrier
+\graphCap{ID_gtype_high.pdf}{0.7}{Comparing Graph Models: Replicator Dynamics. Trend for $r \in \{6,6.5,7,7.5\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. The TAG model overtakes the BA model, while the RRG still fails to achieve non-zero cooperation. }{imitation_high}\FloatBarrier
+
+\textbf{Comments here. Also check out why the .75 is contributing less. Relative to Rep, there is less cooperation. Still observe the hook reordering at the start, where it falls and then climbs. In general, observing less cooperation. Also note that BA was overtaken by TAG around 5.25 in Rep, but not til 6.25 here. Also RRG never makes it out of 0. Possible thinking is that ID is more aggressive, as always switches.\\
+Consider that the value of defecting is decreasing in proportion playing d, but is always higher than c for rep dynamics. This does not occur in ID, so may explain why we go to d faster, and with less hook.  }
+\subsection{Isolating the Effect of Clustering Coefficient: Power Law Degree Size Distribution}
+\textbf{Comments here}
+\FloatBarrier
+\graphCap{ID_power_p_low.pdf}{0.7}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p\in\{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is that higher $p$, and hence higher $C_\Delta$, leads to marginally higher cooperation.}{ID_power_p_low}
+\FloatBarrier
+\graphCap{ID_power_p_med.pdf}{0.7}{To test the effect of $C_\Delta$, the parameter $p$ in a PL graph was varied. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The trend is also observed here, with some minor discrepancies. For example, $p=0.4$ induces higher cooperation in a $r=5$ regime than $p=0.5$.}{ID_power_p_med} \FloatBarrier
+
+\textbf{This trend is not as clear as in Rep, because I think ID induces higher rate of change, so more variance and flicking?. PL purple also does worse here. Seems faster to stability than Rep. Same overall trend as Rep}
+
+\subsection{Isolating the Effect of Clustering Coefficient: Constant Degree Size Distribution}
+\textbf{NEEDS Graphs here, }
+\graphCap{ID_graph_p_low.pdf}{0.7}{Effect of Rewiring $p$ in a WS model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The trend indicates that higher $p$, and hence lower $C_\Delta$, leads to higher cooperation. }{ID_graph_p_med}\FloatBarrier
+ 
+
+\graphCap{ID_graph_p_low.pdf}{0.7}{Effect of Rewiring $p$ in a WS model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p \in \{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is an increase in $p$, and hence a reduction in $C_\Delta$, leads to higher cooperation.}{ID_graph_p_high}
+\FloatBarrier
+
+\subsection{The Effect of Mean Degree: RRG}
+
+\graphCap{ID_graph_m_med_RRG.pdf}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to the mean degree $m \in \{4,6,8,10,12\}$ respectively. An increase in $m$ results in lower mean cooperation.  }{ID_graph_m_med} \FloatBarrier
+\begin{comment}
+
+
+\graphCap{ID_graph_m_high_RRG.pdf}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to mean degree $m \in  \{4,6,8,10,12\}$ respectively. Once again, an increase in $m$ results in lower cooperation }{ID_graph_m_high} \FloatBarrier
+\end{comment}
+\textbf{Needs comment on RRG here, but pretty obvious that we will observe strict ESS, ie $r>m+1$ is necessary for $c=1>0$. Once again, way faster to equilibrium too. }
+\FloatBarrier
+\graphCap{ID_graph_m_low_BA.pdf}{0.8}{The effect of mean degree, BA model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to targeted mean degree $m = \{4,6,8,10,12\}$ respectively. For the BA model, an increase in $m$ also results in lower cooperation.}{ID_BA_graph_m_low}
+\FloatBarrier
+\graphCap{ID_graph_m_med_BA.pdf}{0.8}{The effect of mean degree, BA model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to targeted mean degree $m = \{4,6,8,10,12\}$ respectively. For the BA model, an increase in $m$ results in lower cooperation.}{ID_BA_graph_m_med}
+\FloatBarrier
+\textbf{Not as strict ESS in the BA model, but results look pretty similar to Rep. Do observe some non-extreme cooperation.}
+
+\subsection{Cooperation Level Within a Single Graph Instance: BA model } 
+\subsection{Differences Between Replicator and Imitation Dynamics}
+\begin{itemize}
+    \item Imitation dynamics moves a lot more often, as prob move given greater payoff is 1. This means goes to 0 faster, and potentially can't return
+    \item Also means the diminishing return of defect in a defect environment is not punished
+    \item Faster to equilibrium, as less \emph{waiting} for probabilities to hit
+    \item Same ordering of graph models, but different switch time. I would hypothesise this is because it cares more about degree variance overall. 
+\end{itemize}
+
