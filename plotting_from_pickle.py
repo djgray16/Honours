@@ -26,15 +26,15 @@ import pickle as pickle
 run = 1
 save = 1
 reps = 100
-v2 = 'graph_m'
+v2 = 'graph_p'
 
 MeansOnly = 1
 CI = 1
 legend = 0
 size = 'high'
-gmodel = 'RRG'
-filename = 'Imitation_graph_m_'+size+gmodel
-title = f'Comparing Graph m, {gmodel} Model, Imitation Dynamics'
+gmodel = 'WS'
+filename = 'Imitation_graph_p_'+size
+title = f'Comparing Graph p, {gmodel} Model, Imitation Dynamics'
 
 
 
