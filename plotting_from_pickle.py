@@ -26,15 +26,15 @@ import pickle as pickle
 run = 1
 save = 1
 reps = 100
-v2 = 'graph_p'
+v2 = 'gtype'
 
-MeansOnly = 1
-CI = 1
+MeansOnly = 0
+CI = 0
 legend = 0
 size = 'high'
 gmodel = 'WS'
-filename = 'Imitation_graph_p_'+size
-title = f'Comparing Graph p, {gmodel} Model, Imitation Dynamics'
+filename = 'Imitation_new_'+size+'_long' #+'_home'
+title = f'Empirical Quantiles, Comparing Models, Imitation Dynamics'
 
 
 
@@ -54,7 +54,7 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 
 ## need to save here
 
-save_now = 1
+save_now = 0
 filename = 'ID_graph_p_' +size
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
