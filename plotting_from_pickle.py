@@ -26,14 +26,14 @@ import pickle as pickle
 run = 1
 save = 1
 reps = 100
-v2 = 'gtype'
+v2 = 'graph_m'
 
 MeansOnly = 0
 CI = 0
 legend = 0
 size = 'high'
-gmodel = 'WS'
-filename = 'Imitation_new_'+size+'_long' #+'_home'
+gmodel = 'BA'
+filename = 'Imitation_graph_m_highRRG' #+'_home'
 title = f'Empirical Quantiles, Comparing Models, Imitation Dynamics'
 
 

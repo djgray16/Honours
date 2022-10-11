@@ -79,9 +79,9 @@ for gmodel in gmodels:
     
     #####################################################################
     '''
-    control_board['filename'] = 'Imitation_graph_m_high'+gmodel
+    control_board['filename'] = 'Imitation_graph_m_super_high'+gmodel
     
-    parameters['phi'] = ap.Values(6.0,6.25,6.5,6.75)
+    parameters['phi'] = ap.Values(7.0,7.25,8,8.25)
     
     pickle_save = run_compare_two(parameters, control_board)
     fname = control_board['filename']
