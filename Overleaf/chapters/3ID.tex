@@ -1,6 +1,6 @@
 \section{Local Imitation Dynamics for Public Good Games}
 \subsection{Outline}
-This chapter investigates the linear PGG under imitation dynamics. Imitation dynamics come from the same family as replicator dynamics introduced in \eqref{rep}, with $\alpha = 0$. Hence $q_{i\to j} = \mathbbm{1}_{\{\pi_j>\pi_i\}}$. The tests from Chapter \ref{Chapter:Rep} are run for imitation dynamics, and the similarities and differences to imitation dynamics are noted. \\
+This chapter investigates the linear PGG under imitation dynamics. Imitation dynamics come from the same family as replicator dynamics introduced in \eqref{rep}, with $\alpha = 0$. The transition probability between strategies, given $\pi_j>\pi_i$, is $q_{i\to j} = \mathbbm{1}_{\{\pi_j>\pi_i\}}$. The tests from Chapter \ref{Chapter:Rep} are run for imitation dynamics, and the similarities and differences to imitation dynamics are noted. In general, imitation dynamics induces less cooperation than replicator dynamics. The greatest difference is noticed for RRG models, as they fail to achieve non-zero cooperation for $r<m+1$. The positive correlation between degree size variance and cooperation is noted, which mirrors the results in Chapter \ref{Chapter:Rep}.  \\
 
 \subsection{Results}
 \FloatBarrier
@@ -12,7 +12,7 @@ This chapter investigates the linear PGG under imitation dynamics. Imitation dyn
 
 Relative to replicator dynamics, less cooperation is observed for each graph model and parameter $r$. Furthermore, the \emph{re-ordering} effect noticed in Figure \ref{replicator_medium} and Figure \ref{replicator_high}, whereby the cooperation initially drops and then returns, is not observed to the same level. \\
 
-For $r<6.25$, the order of the models, from most to least cooperation, is the BA model, then TAG, then WS, and finally the RRG. In fact, for $r<7$, the RRG model never achieves non-zero cooperation. A possible explanation is the faster switching rate of strategies. Under imitation dynamics, player $i$ randomly chooses a neighbour $j$, and then always switches if $\pi_j>\pi_i$. In comparison, under replicator dynamics, the probability of switching is proportional to the difference in payoff. Therefore $i$ does not always switch to $j$, even if $\pi_j>\pi_i$. For this reason, the environment may be able to \emph{re-order}, and spread cooperation further before it becomes extinct. \\
+For $r<6.25$, the order of the models, from most to least cooperation, is the BA model, then TAG, then WS, and finally the RRG. In fact, for $r<7$, the RRG model never achieves non-zero cooperation. A possible explanation is the faster switching rate of strategies. Under imitation dynamics, player $i$ randomly chooses a neighbour $j$, and then always switches if $\pi_j>\pi_i$. In comparison, under replicator dynamics, the probability of switching is proportional to the difference in payoff. Therefore $i$ does not always switch to $j$, even if $\pi_j>\pi_i$. For this reason, the environment may be able to \emph{re-order}, and spread cooperation further before cooperation becomes extinct. \\
 
 In the regime $r\geq 6.25$, the TAG model overtakes the BA model for higher cooperation. This phenomenon was also noticed under replicator dynamics in Figure \ref{replicator_medium}, but instead occurred at $r=5.25$. A possible explanation is the higher clustering coefficient for the TAG model. This allows groups of cooperation to form, which then spread further and induce higher cooperation. \\
 
@@ -49,9 +49,9 @@ The trend from Figure \ref{power_p_med} is reproduced here, namely that higher $
 
 
 
-\graphCap{ID_graph_m_high_RRG.pdf}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to mean degree $m \in  \{4,6,8,10,12\}$ respectively. Once again, an increase in $m$ results in lower cooperation }{ID_graph_m_high} \FloatBarrier
+\graphCap{ID_graph_m_high_RRG.pdf}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to mean degree $m \in  \{4,6,8,10,12\}$ respectively. Once again, an increase in $m$ results in lower cooperation. }{ID_graph_m_high} \FloatBarrier
 
-It is evident that $r>m+1$ is required for full cooperation in the RRG model. It is also interesting  to constrast the trends corresponding to $m=4, r \to 5$, and $m=6, r \to 7$. As $r$ approaches $m+1$ for $m=4$, moderate cooperation is induced, however in the case $m=6$, all trials result in a full defection equilibrium. On the other hand, for $m = 6, r \to 7$ in Figure \ref{graph_m_med} and Figure \ref{graph_m_high}, some moderate cooperation is observed. This is a major difference between replicator and imitation dynamics. \\
+It is evident that $r>m+1$ is required for full cooperation in the RRG model. It is also interesting  to constrast the trends corresponding to $m=4, r \to 5$, and $m=6, r \to 7$. As $r$ approaches $m+1$ for $m=4$, moderate cooperation is induced, however in the case $m=6$, all trials result in a full defection equilibrium. On the other hand, for $m = 6, r \to 7$ in Figure \ref{graph_m_med} and Figure \ref{graph_m_high}, some moderate cooperation is observed. This is a major difference between replicator and imitation dynamics. For certainty, the experiment corresponding to $r=7, m =6$ was run and cooperation achieved, however it is not reproduced here. \\
 
 
 
@@ -65,7 +65,7 @@ It is evident that $r>m+1$ is required for full cooperation in the RRG model. It
 \graphCap{ID_graph_m_high_BA.pdf}{0.8}{The effect of mean degree, BA model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to targeted mean degree $m = \{4,6,8,10,12\}$ respectively. For the BA model, an increase in $m$ results in lower cooperation.}{ID_BA_graph_m_high}
 \FloatBarrier
 
-Firstly, note that the BA model generally reports higher cooperation than the RRG model for given $r,m$. This corresponds to previous trials. Under the BA model, some medium levels of cooperation are observed. This can be attributed to some realisations of the network inducing full cooperation. It is not shown, but the 2.5\% and 97.5\% quantiles were investigated for the BA and RRG models. In the case corresponding to $m=8, 4 = 4.25$, the 97.5\% quantile BA model was able to achieve full cooperation. This contrasts with $m=6, r = 6.75$, where the 97.5\% quantile realisation resulted in no contribution. The variance between realisations of a BA network is much higher, and this leads to reported average equilibria between 0 and 1. 
+Firstly, note that the BA model generally reports higher cooperation than the RRG model for given $r,m$. This corresponds to previous trials. Under the BA model, some medium levels of cooperation are observed. This can be attributed to some realisations of the network inducing full cooperation. It is not shown, but the 2.5\% and 97.5\% quantiles were investigated for the BA and RRG models. In the case corresponding to $m=8, r = 4.25$, the 97.5\% quantile BA model was able to achieve full cooperation. This contrasts with $m=6, r = 6.75$, where the 97.5\% quantile realisation resulted in no contribution for the RRG model. The variance between realisations of a BA network is much higher, and this leads to reported average equilibria between 0 and 1. 
 
 \subsection{Cooperation Level Within a Single Graph Instance: BA model } 
 
@@ -101,7 +101,7 @@ Firstly, note that the BA model generally reports higher cooperation than the RR
     \caption{Final Cooperation by Degree, BA Model, Trimmed, for $m=6$, $r=6$. }
     \label{ID_by_degree_m_6_phi_6}
   \end{subfigure}
-  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. Both plots indicate that higher node degrees contribute less than lower node degrees.} \label{ID_by_degree_m_6}
+  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. Higher degree nodes contribute more than average in Figure \ref{ID_by_degree_m_6_phi_4}, and similar to average for Figure \ref{ID_by_degree_m_6_phi_6}. } \label{ID_by_degree_m_6}
 \end{figure} 
 \FloatBarrier
 
@@ -119,7 +119,7 @@ Firstly, note that the BA model generally reports higher cooperation than the RR
     \caption{Final Cooperation by Degree, BA Model, Trimmed, for $m=8$, $r=6$. }
     \label{ID_by_degree_m_8_phi_6}
   \end{subfigure}
-  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. Both plots indicate that higher node degrees contribute less than lower node degrees.} \label{ID_by_degree_m_8}
+  \caption{The histogram, plotted on the left axis, shows the count of nodes with given degree. The black trend line is the mean cooperation for nodes of that degree, measured at the final step. Finally, the red line is the overall mean cooperation, also measured at the final step. Both plots indicate that higher node degrees contribute more than lower node degrees.} \label{ID_by_degree_m_8}
 \end{figure} 
 \FloatBarrier
 
@@ -140,19 +140,24 @@ Another major difference is the level of maximum cooperation achieved. Two figur
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=1\textwidth]{images/ID_gtype_med_CI.pdf}
+    \includegraphics[width=1.1\textwidth]{images/ID_gtype_med_CI.pdf}
     \caption{Comparing Graph Models, Imitation Dynamics. }
     \label{ID_high_gtype_2}
   \end{subfigure}
-  \caption{Replication of Figure  \ref{replicator_med} and Figure \ref{imitation_med} with confidence intervals. For every graph model, replicator dynamics induce higher cooperation. The width of the confidence intervals is quite similar between replicator and imitation dynamics. } \label{comparing_rep_ID_high}
+  \caption{Replication of Figure  \ref{replicator_medium} and Figure \ref{imitation_medium} with confidence intervals. For every graph model, replicator dynamics induce higher cooperation. The width of the confidence intervals is quite similar between replicator and imitation dynamics. } \label{comparing_rep_ID_high}
 \end{figure} 
 \FloatBarrier
 
-It is hard to examine the size of the confidence intervals visually, so Figure \ref{rep_dev} and \ref{id_dev} collate the variance of cooperation in the final timestep for each graph model. \\
+It is hard to examine the size of the confidence intervals visually, so Figure \ref{rep_dev} and \ref{id_dev} collate the standard deviation of cooperation in the final timestep for each graph model. \\
+\FloatBarrier
+\graphCap{Rep_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Replicator Dynamics.}{rep_dev}
+\FloatBarrier
+\graphCap{ID_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Imitation Dynamics.}{id_dev}
+\FloatBarrier
+When comparing Figure \ref{rep_dev} and \ref{id_dev}, it is important to compare the sample standard deviation amongst models that result in the same equilibrium cooperation, as opposed to the same $r$ value. For example, the BA model achieves around 0.6 cooperation for $r=5.5$ under replicator dynamics, but requires $r=6.5$ for imitation dynamics. At these levels, the sample standard deviation is similar for replicator (0.48) and imitation (0.45) dynamics. A major trend to observe is the difference in sample variance for BA and RRG models under replicator dynamics, even though they attain the same equilibrium values for $6.0\leq r \leq 6.5$. This can be explained by the higher variance in degree distribution for the BA model, which results in vastly different final equilibria. \\
 
-\graphCap{Rep_dev_heatmap.pdf}{0.9}{Cap}{rep_dev}
 
-\graphCap{ID_dev_heatmap.pdf}{0.9}{cap}{id_dev}
+
 
 
 A difference between replicator and imitation dynamics is the time to equilibrium, particularly in the case where the equilibrium is low cooperation. The time to equilibrium in a complete graph model is discussed in Lemma \ref{connected}, and it is shown that replicator dynamics achieve equilibrium much slower. While the simulated graph models are not complete graphs, there is some merit to the conclusion. This is because the probability that an agent $i$ changes to the strategy of agent $j$, given $\pi_j>\pi_i$, is 1 for imitation dynamics, and varies between 0 and 1 for replicator dynamics. So the equilibrium in imitation dynamics can be achieved faster as agents always change to a more profitable strategy once they observe it. \\
@@ -163,54 +168,8 @@ Replicator and imitation dynamics showed similar results when varying the cluste
 
 
 
-\begin{table}[]
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-     & WS    & TAG   & BA    & RRG \\ \hline
-4.0  & 0.0   & 0.097 & 0.338 & 0.0 \\ \hline
-4.25 & 0.0   & 0.102 & 0.405 & 0.0 \\ \hline
-4.5  & 0.0   & 0.103 & 0.394 & 0.0 \\ \hline
-4.75 & 0.08  & 0.174 & 0.419 & 0.0 \\ \hline
-5.0  & 0.084 & 0.174 & 0.428 & 0.0 \\ \hline
-5.25 & 0.285 & 0.272 & 0.485 & 0.0 \\ \hline
-5.5  & 0.409 & 0.303 & 0.503 & 0.0 \\ \hline
-5.75 & 0.429 & 0.459 & 0.499 & 0.0 \\ \hline
-6.0  & 0.465 & 0.493 & 0.495 & 0.0 \\ \hline
-6.25 & 0.49  & 0.475 & 0.493 & 0.0 \\ \hline
-6.5  & 0.502 & 0.456 & 0.445 & 0.0 \\ \hline
-6.75 & 0.49  & 0.418 & 0.478 & 0.0 \\ \hline
-\end{tabular}
-\caption{Imitation Final Deviation}
-\label{tab:ID_dev}
-\end{table}
 
-\begin{table}[]
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-     & WS    & TAG   & BA    & RRG   \\ \hline
-4.0  & 0.015 & 0.031 & 0.404 & 0.0   \\ \hline
-4.25 & 0.075 & 0.151 & 0.466 & 0.0   \\ \hline
-4.5  & 0.174 & 0.231 & 0.484 & 0.0   \\ \hline
-4.75 & 0.25  & 0.309 & 0.463 & 0.043 \\ \hline
-5.0  & 0.328 & 0.439 & 0.496 & 0.099 \\ \hline
-5.25 & 0.378 & 0.444 & 0.494 & 0.216 \\ \hline
-5.5  & 0.465 & 0.391 & 0.481 & 0.312 \\ \hline
-5.75 & 0.474 & 0.337 & 0.457 & 0.306 \\ \hline
-6.0  & 0.485 & 0.313 & 0.437 & 0.237 \\ \hline
-6.25 & 0.49  & 0.251 & 0.41  & 0.203 \\ \hline
-6.5  & 0.465 & 0.156 & 0.391 & 0.177 \\ \hline
-6.75 & 0.474 & 0.139 & 0.353 & 0.098 \\ \hline
-\end{tabular}
-\caption{Replicator Final Standard Deviation}
-\label{tab:Rep_final}
-\end{table}
-\begin{itemize}
-    \item Imitation dynamics moves a lot more often, as prob move given greater payoff is 1. This means goes to 0 faster, and potentially can't return
-    \item Also means the diminishing return of defect in a defect environment is not punished
-    \item Faster to equilibrium, as less \emph{waiting} for probabilities to hit
-    \item Same ordering of graph models, but different switch time. I would hypothesise this is because it cares more about degree variance overall. 
-    \item 
-\end{itemize}
+
 \subsection{Simple Results}
 \newtheorem{remark1}[theorem]{Remark} \label{remark1}
 \begin{remark1}
