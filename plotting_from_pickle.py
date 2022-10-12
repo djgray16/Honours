@@ -54,7 +54,7 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 
 ## need to save here
 
-save_now = 1
+save_now = 0
 filename = 'Rep_gtype_med_CI' 
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')

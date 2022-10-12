@@ -56,13 +56,13 @@ Rep_dev = Rep_dev.set_index('phi')
 
 fig, ax = plt.subplots()
 
-sb.heatmap(Rep_dev, cmap = 'coolwarm', vmin = 0, vmax = 0.502, annot = True, yticklabels=3)
+sb.heatmap(ID_dev, cmap = 'coolwarm', vmin = 0, vmax = 0.502, annot = True, yticklabels=3)
 
 #im = ax.imshow(ID_dev, cmap = 'coolwarm', vmin = 0, vmax = 0.502)
 
 ax.set_xticklabels(ID_dev.columns)
 
-ax.set_title('Replicator Dynamics, Sample Variance at Final Generation')
+ax.set_title('Imitation Dynamics, Sample Standard Deviation at Final Generation')
 #ax.xaxis.set_xticks(ID_dev.columns)
 #ax.set_yticklabels(ID_dev.index)
 ax.set_xlabel('Graph Type')
@@ -70,4 +70,4 @@ ax.set_ylabel('r')
 #ax.set_ytickslabels( labels=ID_dev.index)
 save = 1
 if save:
-    plt.savefig('Overleaf/images/Rep_dev_heatmap.pdf')
+    plt.savefig('Overleaf/images/ID_dev_heatmap.pdf')
