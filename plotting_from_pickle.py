@@ -26,15 +26,15 @@ import pickle as pickle
 run = 1
 save = 1
 reps = 100
-v2 = 'graph_m'
+v2 = 'gtype'
 
 MeansOnly = 0
-CI = 0
+CI = 1
 legend = 0
 size = 'high'
 gmodel = 'BA'
-filename = 'Imitation_graph_m_highRRG' #+'_home'
-title = f'Empirical Quantiles, Comparing Models, Imitation Dynamics'
+filename = 'Replicator_new_med_long_home' #+'_home'
+title = f'95% Confidence Intervals, Comparing Graph Type, Replicator Dynamics'
 
 
 
@@ -54,8 +54,8 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 
 ## need to save here
 
-save_now = 0
-filename = 'ID_graph_p_' +size
+save_now = 1
+filename = 'Rep_gtype_med_CI' 
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print(f'saved fig: {title} as {filename}')
