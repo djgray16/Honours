@@ -29,8 +29,8 @@ reps = 100
 v2 = 'graph_m'
 gmodels = [ 'RRG']
 for gmodel in gmodels:
-    filename = 'Imitation_graph_m_low'+gmodel
-    title = f'Varying Mean Degree, {gmodel} Model, Imitation Dynamics'
+    filename = 'Rep_graph_m_low_superlong'+gmodel
+    title = f'Varying Mean Degree, {gmodel} Model, Replicator Dynamics'
     
     
     MeansOnly = 1
@@ -44,7 +44,7 @@ for gmodel in gmodels:
     
     parameters = {
         'seed':42,
-        'steps': 10_000, #number of time periods
+        'steps': 25_000, #number of time periods
         'agent_n': 100,
         'phi':ap.Values(4.0,4.25,4.5,4.75), # #multiplier for common contributions
         'graph_m' : ap.Values(4,6,8,10,12),
@@ -53,12 +53,12 @@ for gmodel in gmodels:
         'power_p': 0.1, #ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
         'gtype': gmodel, #ap.Values('WS', 'TAG', 'BA', 'RRG'),
         'atype': 'ReplicatorLocal',
-        'replicator_alpha': 0.0, #1 is pure replicator, 0 is imitation
+        'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
         'plot_G': 0, #gives the summary plot of the graph for each experiment
         'step_reporting':0,
         'end_reporting':0
     }
-    '''
+    
     pickle_save = run_compare_two(parameters, control_board)
     fname = control_board['filename']
     with open (f'{fname}.pickle', 'wb') as handle:
@@ -68,7 +68,7 @@ for gmodel in gmodels:
     
     
     
-    control_board['filename'] = 'Imitation_graph_m_med'+gmodel
+    control_board['filename'] = 'Rep_graph_m_med_superlong'+gmodel
     
     parameters['phi'] = ap.Values(5.0,5.25,5.5,5.75)
     
@@ -78,8 +78,8 @@ for gmodel in gmodels:
         pickle.dump(pickle_save, handle) 
     
     #####################################################################
-    '''
-    control_board['filename'] = 'Imitation_graph_m_super_high'+gmodel
+    
+    control_board['filename'] = 'Rep_graph_m_high_superlong'+gmodel
     
     parameters['phi'] = ap.Values(7.0,7.25,8,8.25)
     

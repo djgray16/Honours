@@ -47,7 +47,7 @@ control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
 
 
 fname = filename
-with open (f'{fname}.pickle', 'rb') as handle:
+with open (f'pickles/{fname}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
      
 plot_compare_two_from_pickle(pickle_in, control_board)

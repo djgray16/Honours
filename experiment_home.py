@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 
 ## Control board
 
-run = 1
+run = 0
 CI = True #true is when assume normal distribution, false is empirical quantiles
 
 MeansOnly = True
@@ -34,7 +34,7 @@ filename = 'TAfig4b'
 
 parameters = {
     'seed': 42,
-    'steps': 20_000, #number of time periods
+    'steps': 100_000, #number of time periods
     'agent_n': 100,
     'phi':5.0, #multiplier for common contributions
     'graph_m' : 6,
@@ -70,10 +70,10 @@ if run:
 
 
 
+#phis = 5.0
 
 
-
-phis = results.parameters.sample.phi
+phis = results.parameters.sample.gtype
 
 colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown',\
            'tab:pink','tab:olive', 'tab:cyan', 'tab:gray' ]
@@ -98,21 +98,20 @@ pct_down = pct_down.rename('q_down')
 ts = coops.index
 ts = ts.get_level_values(0).unique()
 
-df = results.parameters.sample
 coops2 = coops.to_frame().join(df).join(pct_up).join(pct_down)
 
-phi_graph = coops2.groupby(['t', 'phi']).mean()
+phi_graph = coops2.groupby(['t', 'gtype']).mean()
 
 #m_graph = coops2.groupby(['t', 'graph_m']).mean()
 #plt.figure(figsize = (8,8))
 fig, ax = plt.subplots()
 for i in range(len(phis)):
-    y1 = phi_graph.Cooperation_Level.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
-    y2 = phi_graph.q_down.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
-    y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('phi') == phis[i]]
+    y1 = phi_graph.Cooperation_Level.iloc[phi_graph.index.get_level_values('gtype') == phis[i]]
+    y2 = phi_graph.q_down.iloc[phi_graph.index.get_level_values('gtype') == phis[i]]
+    y3 = phi_graph.q_up.iloc[phi_graph.index.get_level_values('gtype') == phis[i]]
     x = phis.index
     #plt.legend(phis.unique())
-    ax.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 1,ms = 4,linewidth = 1.0, label = f'r = {phis[i]}') #
+    ax.plot(ts,y1, c=colours[i],marker = markers[i], markevery = 100,ms = 1,linewidth = 1.0, label = f'r = {phis[i]}') #
     if not MeansOnly:
         ax.plot(ts,y2,  c=colours[i], linestyle = 'dashed', label = f'_5th Percentile of {phis[i]}', alpha = 0.6 )
         ax.plot(ts,y3,  c=colours[i], linestyle =  'dashed', label = f'_95th Percentile of {phis[i]}' , alpha = 0.6)
