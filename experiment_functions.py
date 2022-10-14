@@ -15,6 +15,7 @@ from TAG import *
 from Agents import *
 from Models import *
 import math
+import seaborn as sns
 
 # Visualization
 #import seaborn as sns
@@ -253,7 +254,9 @@ def plot_compare_two(results, control_board):
     
 
 def compare_two(parameters, control_board):
-    '''to make the 4 subplots graph. needs parameters as usual
+    '''
+    THIS IS OLD, AS DIDNT SEPARATE GRAPHING AND RUNNING
+    to make the 4 subplots graph. needs parameters as usual
     then a control board consisting of 
     run, v2, save,title, filename, reps = control_board
     '''
@@ -549,5 +552,38 @@ def q_low(data):
     return data.quantile(q=0.025)
 def q_high(data):
     return data.quantile(q=0.975)
+
+
+def stackplot(results, ax):
+    ''' used for Jupyter animation'''
+    
+    n = results.groupby('t').count().contribute[0]
+    
+    contribute = results.groupby('t').contribute.mean()*n
+    x= contribute.index
+    defect = n-contribute
+    sns.set()
+    #fig, ax = plt.subplots()
+    ax.stackplot(x,contribute,defect, labels = ['con', 'defect'], colors = ['g', 'r'])
+    ax.set_xlim(0, max(1, len(x)-1))
+    ax.set_ylim(0, defect[0] + contribute[0])
+    ax.set_xlabel('Time')
+    ax.set_ylabel('Number of Agents')
+    #fig.suptitle('Stackplot')
+
+    
+def animation_plot(m, axs):
+    '''used for jupyter animation'''
+    ax1, ax2 = axs
+    ax1.set_title('Stackplot')
+    #prop = 
+    ax2.set_title('Graph Contributing')
+    stackplot(m.output.variables.ReplicatorLocal, ax1)
+    
+    color_dict = {0: 'r', 1: 'g'}
+    #print(m.agents.contribute)
+    colors = [color_dict[c] for c in m.agents.contribute]
+    #print(m.network.graph)
+    nx.draw(m.network.graph, pos = nx.kamada_kawai_layout(m.network.graph), node_color = colors, node_size = 150, ax = ax2)
 
 
