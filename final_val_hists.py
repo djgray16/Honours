@@ -34,13 +34,13 @@ filename = 'TAfig4b'
 
 parameters = {
     'seed': 42,
-    'steps': 20_000, #number of time periods
+    'steps': 100, #number of time periods
     'agent_n': 100,
-    'phi':5.0, #multiplier for common contributions
+    'phi':5.5, #multiplier for common contributions
     'graph_m' : 6,
-    'graph_alpha': 0.3,
+    'graph_alpha': 1.0,
     'graph_p':0.1,
-    'gtype': ap.Values('WS', 'TAG', 'BA', 'RRG'),
+    'gtype': 'BA',
     'atype': 'ReplicatorLocal',
     'replicator_alpha': 1.0, #1 is pure replicator, 0 is imitation
     'plot_G': 0, #gives the summary plot of the graph for each experiment
@@ -70,7 +70,7 @@ if run:
 
 
 
-
+'''
 
 
 phis = results.parameters.sample.phi
@@ -129,11 +129,17 @@ fig.suptitle(f"WS Time to stability") #"; N: {parameters['agent_n']} "\
           #f"k: {parameters['graph_m']}, T: {reps}, alpha: {parameters['graph_alpha']} ")
     
   
+'''
 
 
 
+trends = results.variables.WealthModel
 
+tfinal = parameters['steps']
 
+final_vals = trends.iloc[trends.index.get_level_values('t') == tfinal]
+
+plt.hist(final_vals, bins = 20)
 
 if save: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
