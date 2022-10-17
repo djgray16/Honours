@@ -32,7 +32,7 @@ v2 = 'gtype'
 MeansOnly = 1
 CI = 0
 legend = 0
-filename = 'Rep_med_super_long'
+filename = 'Rep_low_super_long'
 title = 'Comparing Graph Models: Replicator Dynamics'
 
 
@@ -70,7 +70,7 @@ with open (f'{fname}.pickle', 'wb') as handle:
 
 ############################################
 
-
+'''
 control_board['filename'] = 'Rep_med_super_long'
 
 parameters['phi'] = ap.Values(5.0, 5.25, 5.5, 5.75)
@@ -81,7 +81,7 @@ fname = control_board['filename']
 with open (f'{fname}.pickle', 'wb') as handle:
     pickle.dump(results, handle)
     print('pickled', fname)
-
+'''
 #######################################################
 
 control_board['filename'] = 'Rep_high_super_long'

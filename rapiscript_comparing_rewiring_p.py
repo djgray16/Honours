@@ -57,13 +57,13 @@ parameters = {
     'step_reporting':0,
     'end_reporting':0
 }
-
+'''
 results = run_compare_two(parameters, control_board)
 
 fname = control_board['filename']
 with open (f'{fname}.pickle', 'wb') as handle:
     pickle.dump(results, handle)
-
+'''
 
 ####################################################################
 

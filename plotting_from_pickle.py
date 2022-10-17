@@ -26,14 +26,14 @@ import pickle as pickle
 run = 1
 save = 1
 reps = 100
-v2 = 'graph_m'
+v2 = 'graph_p'
 
-MeansOnly = 0
+MeansOnly = 1
 CI = 0
 legend = 0
 size = 'high'
 gmodel = 'BA'
-filename = 'Imitation_graph_m_lowBA' #+'_home'
+filename = 'Rep_graph_p_superlong_low' #+'_home'
 title = f'95% Confidence Intervals, Comparing Graph Type, Replicator Dynamics'
 
 

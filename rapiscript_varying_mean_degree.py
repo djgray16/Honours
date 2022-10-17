@@ -47,7 +47,7 @@ for gmodel in gmodels:
         'steps': 25_000, #number of time periods
         'agent_n': 100,
         'phi':ap.Values(4.0,4.25,4.5,4.75), # #multiplier for common contributions
-        'graph_m' : ap.Values(4,6,8,10,12),
+        'graph_m' : ap.Values(4,6,8),
         'graph_alpha': 0.3,# ap.Values(0.01,0.1,0.25,0.5, 0.75,1.0),
         'graph_p': 0.1, #ap.Values(0.1,0.2,0.3,0.4,0.5),
         'power_p': 0.1, #ap.Values(0.1, 0.2,0.3,0.4,0.5),#ap.Values(0.01,0.2,0.4,0.6,0.8),
