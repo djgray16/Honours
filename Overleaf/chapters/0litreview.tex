@@ -313,7 +313,7 @@ In some cases, replicator dynamics can be solved analytically using mean-field t
 where the constants have been normalised as follows: $r_i = \pi(s_i,s_n) - \pi(s_n,s_n)$ and $c_{ij} = \pi(s_i,s_j) - \pi(s_n,s_j)$. \\
 
 
-This theorem allows the mathematical analysis of Lotka--Volterra models to be applied to game theory. With the exception of \cite{RN75}, population games do not consider the network structure that dictates the interaction between agents. Population games assume either a complete graph \cite{RN67}, or random uniform sampling across the agents \cite{RN47}. The 2008 paper by Dunia \cite{RN75} demonstrates the link between stochastic dominance of a graph and mean-field approximations on the \emph{tragedy of the commons} game. This will be expanded upon in chapter \ref{MFT}. \\
+This theorem allows the mathematical analysis of Lotka--Volterra models to be applied to game theory. With the exception of \cite{RN75}, population games do not consider the network structure that dictates the interaction between agents. Population games assume either a complete graph \cite{RN67}, or random uniform sampling across the agents \cite{RN47}. The 2008 paper by Dunia \cite{RN75} demonstrates the link between stochastic dominance of a graph and mean-field approximations on the \emph{tragedy of the commons} game. \\
 
 Mean-field theory fails to capture certain key elements of evolutionary game theory. Firstly, the population size is often finite. Secondly, population games neglect the network on which agents interact. In the last 20 years, this has become a crucial specification of a model. \\
 
@@ -355,7 +355,15 @@ To iterate the importance of the specified update dynamics, Nau and Roos \cite{R
     \item R--WR: risky in the first round, and if it is a win then risky again, otherwise safe.
     \item R--WS: risky in the first round, and if it is a win then safe, otherwise risky.
 \end{itemize}
-Obviously these strategies all have the same expected value for $p=0.5$. Under replicator dynamics, the expected growth rate $\mathbb E[\pi_i - \pi_j] = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation of the best, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
+Obviously these strategies all have the same expected value for $p=0.5$. The paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_{i\to j}$, \\
+
+\begin{equation} \label{rep}
+q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
+
+In this formulation, $\Delta$ scales the difference so that $0 \leq q_{i\to j} \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_{i\to j} \geq R,$ $R  \sim \mathsf{U}(0,1)$. A strategy $i$ has an \emph{evolutionary advantage} over strategy $j$, denoted $j \prec i$, if $q_{j \to i} >q_{i \to j}$.    \\
+
+
+Under replicator dynamics, the expected growth rate $\mathbb E[\pi_i - \pi_j] = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation of the best, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
 \begin{align*}
     \mathbb P(\textrm{R--WS}> \textrm{SS}) &= \mathbb P(W_1) = 0.5, \\
     \mathbb P(\textrm{SS}>\textrm{R--WS}) &= \mathbb P(L_1 \cap L_2) = 0.25, \\
@@ -364,7 +372,7 @@ Obviously these strategies all have the same expected value for $p=0.5$. Under r
 So R--WS is imitated twice as often as SS under pairwise comparison (in the case of a tie, the winner is chosen by a coin flip). The other combinations are not computed here, but one can verify that SS, RR, and R--WR should go extinct. This was verified under simulation, and is plotted in Figure \ref{Nau} from \cite{RN24}, which was a conference presentation before the paper \cite{RN30}. 
 \graphCap{Nau.png}{1}{Imitation Dynamics of Two--Stage Lottery Game, from \cite{RN24}.}{Nau} 
 
-In the paper \cite{RN30}, the authors proved that R--WS is an ESS. In fact, for the risky lottery with $p \neq 0.5$, R--WS is an ESS against the expected value maximising strategy for a range of $p$. This example is replicated in Chapter \ref{Lottery_Me}. \\
+In the paper \cite{RN30}, the authors proved that R--WS is an ESS. In fact, for the risky lottery with $p \neq 0.5$, R--WS is an ESS against the expected value maximising strategy for a range of $p$. This example is replicated and extended in Chapter \ref{Lottery_Me}. \\
 
 
 As early as 1984, Axelrod described an agent-based model for playing the repeated PD on a grid \cite{RN63}. Each agent plays with their von Neumann neighbours. The update rule considered by these agents was imitation of the best strategy amongst an agent's neighbours. This model was extended by Nowak and May, 1992 and defines a cellular automaton, \cite{RN63}, \cite{RN70}. \\
@@ -478,11 +486,79 @@ $\mathrm{BA}(n,m)$ & $\frac{2m(m+1)}{k(k+1)(k+2)} \propto k^{-3}$ & $C_\Delta = 
 Results for the $G(n,p)$, $\mathrm{WS}(n,\kappa,\beta)$, and $\mathrm{BA}(n,m)$ graphs come from \cite{RN53, RN58, RN94, RN95, RN96}. 
 
  
- \section{Evolutionary Game Theory on Random Graphs} \label{EGToRG}
+ \section{Evolutionary Game Theory on Graphs} \label{EGToRG}
  
- The intersection of random graphs and EGT has produced many recent papers. The following summaries represent a cross-section of EGT results.  \\
+ \subsection{Simple Results}
+
+ Lemma \ref{connected} \textbf{TT HELP REFERENCE LEMMA}links the classical and evolutionary models of the linear public goods game. In the classical model, all agents play at once, and the only NE is full defection for $r<n$. The classical framework implicitly plays the game on a complete graph, as every agent interacts with all other agents. Lemma \ref{connected} shows that the same model, but with EGT update dynamics (replicator and imitation), also results in full defection. It is the confluence of EGT and a graph model that allows the growth of cooperation. The graph models creates subgroups of cooperation, which can locally influence defectors without having to support the whole population. Lemma \ref{connected} motivates the inclusion of random graphs into the model for EGT.\\
+
+\newtheorem{lemma_connected}[theorem]{Lemma} 
+\begin{lemma_connected}
+For the linear public goods game played on a complete graph, then the only ESS is full defection, regardless of $n$ or $r$. This holds for replicator and imitation dynamics, however the time to equilibrium is less for imitation dynamics.  \end{lemma_connected} \label{connected}
+\begin{proof}
+Consider the payoff of a contributor on the complete graph in time period $t$, and hence $c_{i,t} = 1$, $$\pi_i(c_{i,t} = 1) = \frac{r {n_c}_t}{n} - n,  $$ where $n_c$ is the total number of contributors at time $t$. On the other hand, the payoff of a defector $j$, playing $c_{j,t} = 0$, is $$\pi_j(c_{j,t} = 0) = \frac{r {n_c}_t}{n}. $$ Regardless of parameters $n$ or $r$, the payoff for a defector is higher. Hence there is only flow of contributors becoming defectors, and the ESS is full defection. \\
+
+Now consider the time to reach equilibrium. Call the probability that a given cooperator $i$ changes to defection in a given generation $q_{n_c}$. Then  $$q_{n_c} = \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) = \mathbb P(c_{\text{nbr},t} = 0)\mathbb P (c_{i,t+1} = 0 | c_{i,t} =1, c_{\text{nbr}, t}=0), $$ where $c_{\text{nbr},t}$ is the contribution of the randomly selected neighbour in the reproduction step. Each of these terms is calculable, \\
+\begin{align}  \label{lemma_p}
+    \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) &= \frac{n-n_c}{n} \min( \Bigg[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Bigg]^\alpha, 1)\\
+    &= \frac{n-n_c}{n} \min(\Bigg[ \frac{\tfrac{rn_c}{n} - \tfrac{rn_c}{n} +n}{\tfrac{rn_c}{n}} \Bigg]^\alpha, 1) \nonumber\\
+    &= \frac{n-n_c}{n}\min(\Bigg[ \frac{n^2}{rn_c} \Bigg]^\alpha,1) \nonumber\\ \nonumber
+\end{align}
+For replicator dynamics, the parameter $\alpha = 1$, so the probability of a given agent changing strategies is $ q_{n_c} = \frac{n-n_c}{n}\min(\Bigg[ \frac{n^2}{rn_c} \Bigg],1)$. For imitation dynamics, $\alpha = 0$, and the probability becomes $q_{n_c} = \frac{n-n_c}{n}$. In the implementation described in Chapter \ref{Lottery_Me}, the transition probability $$\mathbb P (c_{i,t+1} = 0 | c_{i,t} =1, c_{\text{nbr}, t}=0) = \mathbb P (R \leq \Bigg[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Bigg]^\alpha), \quad R  \sim \mathsf{U}(0,1).$$ The Lottery game ensured $\pi_{i,t}\geq 0 \forall i,t$ and hence $ 0 \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha \leq 1$, so $\mathbb P (R \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha) = \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha$. However in the linear public goods game, it is possible for $\pi_{i,t}< 0$, and therefore $$\mathbb P (R \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha) = \min(\Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha, 1). $$ This explains the substitution in equation \eqref{lemma_p}.   \\
+
+Finally, we gain some insight into the time to equilibrium. It is necessary to make the assumption that the timesteps are continuous, so that probability of two cooperators changing to defection in the same instant is 0. Under this assumption, the event that one of the contributors becomes a defector is a Poisson random variable, and the distribution of the time between events is an exponential random variable with parameter $q_{n_c}$. The distribution of the minimum of $n$ i.i.d exponential $q_{n_c}$ random variables is an exponential distribution with parameter $n_c q_{n_c}$. So the time for $n_c$ to decrease by 1, denoted $T_{{n_c},{n_{c-1}}}$, is an exponential random variable with parameter $n_c q_{n_c}$. Call $T_{n_c, 0}$ the time to equilibrium from the current level of cooperators $n_c$. 
+\begin{align*}
+    \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = 1}^{n_c} \mathbb E (T_{{i}, {i-1}}|n_c = i)\\
+    &= \sum_{i = 1}^{n_c} \frac{1}{iq_i}\\
+\end{align*}
+For replicator dynamics, this evaluates to 
+\begin{align*}
+       \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i =1}^{\lfloor \frac{n^2}{r} \rfloor} \frac{n}{i(n-i)}+ \sum_{i=\lfloor \frac{n^2}{r}\rfloor+1}^{n_c}  \frac{r}{n(n-i)}. 
+\end{align*}
+For imitation dynamics, 
+\begin{align*}
+    \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = 1}^{n_c} \frac{n}{i(n-i)}. 
+\end{align*}
+
+When $i>\frac{n^2}{r}$, $\frac{r}{n(n-1)}>\frac{n}{i(n-1)}$, and therefore imitation dynamics achieves the equilibrium faster, as the respective $q_i$ is higher so there is faster rate of change from contribution to defection. It is also interesting to note that the time to equilibrium for imitation dynamics does not depend on the rate $r$ at all. \\
+
+\end{proof}
+
+The next lemma, Lemma \ref{remark1}, investigates a lone defector in a RRG graph model. It shows that a network with one defector cannot immediately evolve to full cooperation, even when full cooperation is the NE. It links nicely with the paper \cite{RN48}, and the lemma is an argument for the bipartite networks mentioned in the paper. 
+ \newtheorem{remark1}[theorem]{Lemma} \label{remark1}
+\begin{remark1}
+For a RRG, with $r>m+1$, the NE is full cooperation. However the model can never step from a lone defector to full cooperation. Because the defector is a drain on their neighbouring cooperators, it is unable to see the maximum profit from cooperation. 
+\end{remark1}
+\begin{proof}
+Consider a lone defector in a RRG environment. Also assume that none of the neighbours of the defector are connected to each other. The defector's payoff, called $\pi_D$, is calculated as $m+1$ games with $m$ contributors, hence $$\pi_D = (m+1) \times \frac{mr}{m+1} = mr. $$ This defector only changes to cooperation if one of its neighbours has higher payoff. The payoff of a neighbour, denoted $\pi_C$, is the result of their hosted game, plus the defectors hosted game, plus $m-1$ games of full cooperation, hence $$\pi_C = \frac{mr}{m+1}+\frac{mr}{m+1} + (m-1) \frac{(m+1 )r}{m+1} - (m+1) = \frac{2mr}{m+1} +(m-1)r - (m+1) $$ 
+
+
+The condition for the defector to change strategy is $\pi_C  - \pi_D>0$. Consider the case when this is true. \\
+\begin{align*}
+    \pi_C - \pi_D &= \frac{2mr}{m+1} +r(m-1) -(m+1)-mr\\
+    &= \frac{2mr}{m+1} -(m+1+r)\\
+    \frac{2mr}{m+1} -(m+1+r) &> 0\\
+    \frac{2mr}{m+1} &>(m+1+r)\\
+    mr &>(m+1)^2+r\\
+    r&>\frac{(m+1)^2}{m-1}
+\end{align*}
+This is a stricter condition than the hypothesis $r>m+1$, so the defector may not necessarily change. However changing would be the right decision, as their payoff becomes that of a full cooperator, $\pi_{F}$, $$ \pi_F = (m+1)\frac{(m+1)r}{m+1} - (m+1) = (m+1)(r-1). $$ This payoff is greater than $\pi_D$ for $r>m+1$. Furthermore, this shows that full cooperation is a NE, as no player has a unilateral incentive to deviate from full cooperation. The defector is unable to see the benefits of full cooperation because all of their neighbours' profits are diminished by the defectors choice. \end{proof}
+
+
+
+The Lemma \ref{remark1} does not imply that no defector could ever switch to cooperation in a RRG model with $r>m+1$. It is simple to contrive an example where a defector \emph{sees} a cooperator with higher profit. It simply requires that the defector is connected to a lot of other defectors, while the cooperator is supported by other cooperators. Full cooperation may still be achieved, because the strategy changes are synchronous. Multiple defectors may all decide to switch at the same time, avoiding the lone defector problem from Lemma \ref{remark1}. The key implication from Lemma \ref{remark1} is the impediment to cooperation as a result of the game network being the same as the update network. The defector only considers the payoffs of its neighbours when updating strategy, but the payoff of its neighbours have been negatively affected by the defectors strategy. In fact, this very problem is discussed in \cite{RN48}. The authors solution is to model two networks, one for game-playing and the other for update dynamics. This way, defectors can see the payoffs of cooperators whose games are not affected by the defector's choice. The authors in \cite{RN48} also argue that the choice of graph models should differ for the game-playing and update networks.   \\
+
+Furthermore, the above analysis does not extend to other graph models, because of the strict assumption that each node has the same degree. In a BA model, the defector may be connected to a cooperator of high degree, with all their neighbours also cooperating. This changes the solution to $\pi_C - \pi_D>0$. \\
+\FloatBarrier
+
+
+ 
+
  
  \subsection{Optional Public Good Game on Varying Networks} 
+ 
+  The intersection of random graphs and EGT has produced many recent papers. The following summaries represent a cross-section of EGT results.  \\
+  
  In 2002, two papers by \cite{RN47, RN67} used mean-field theory as well as Monte Carlo simulations to model an optional PGG on a well-mixed population. An optional PGG allows players to contribute $c=1$, defect $c=0$, and play as a loner with $\pi_{3} = \sigma<r-1$. A random sample of size $N$ is selected, and the PGG is played with all non-loner players. This is an adaption of the standard PGG described in \ref{PGG}. The paper \cite{RN47} used replicator dynamics, as in \ref{Replicator}. Obviously, the corners of the simplex $\{e_c, e_d, e_l\}$, where $e_c, e_d, e_l$ correspond to the proportion of the population playing cooperate, defect, loner, respectively,  are unstable fixed points. In the notation of \eqref{Replicator}, these proportions would be denoted $\rho_c,\rho_d,\rho_l$. Furthermore, the replicator equations are transformed into a Hamiltonian system and a heteroclinical cycle (rock-paper-scissors) is observed on the boundary. For $r\leq 2$, the only fixed points are the corners of the simplex. This is demonstrated in Figure \ref{cycle1}. \\
  \graphCap{cycle1.png}{0.8}{Optional PGG, $ N =5,r=1.8, \sigma = 0.5$, from \cite{RN47}. The corners of the simplex correspond to the whole population playing $c,d,l$ respectively. One can see that there is no interior fixed point, and all orbits converge to $e_l$. However $e_l$ is not stable, as one agent playing $c$ will receive higher payoff. } {cycle1}
  
@@ -505,6 +581,9 @@ Results for the $G(n,p)$, $\mathrm{WS}(n,\kappa,\beta)$, and $\mathrm{BA}(n,m)$ 
  
  
  \subsection{Bipartite Graphs: Separating the Game and Update Networks }
+ 
+
+
  Pena and Rochat \cite{RN48} argued that bipartite graphs were a better model for PGG on graphs. They model two different variations of an $N$-player Prisoner's Dilemma (NPD). A \emph{conventional} NPD involves a fixed cost $c$ for every game that a cooperator plays in. A \emph{distributed} NPD charges the fixed cost per cooperator, who proportions it equally amongst all their games. As in a PGG, the total contribution is scaled by $r$ and distributed to all players equally. \\
  
  

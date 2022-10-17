@@ -152,7 +152,7 @@ It is hard to examine the size of the confidence intervals visually, so Figure \
 \FloatBarrier
 \graphCap{Rep_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Replicator Dynamics.}{rep_dev}
 \FloatBarrier
-\graphCap{ID_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Imitation Dynamics.}{id_dev}
+\graphCap{ID_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Imitation Dynamics. }{id_dev}
 \FloatBarrier
 When comparing Figure \ref{rep_dev} and \ref{id_dev}, it is important to compare the sample standard deviation amongst models that result in the same equilibrium cooperation, as opposed to the same $r$ value. For example, the BA model achieves around 0.6 cooperation for $r=5.5$ under replicator dynamics, but requires $r=6.5$ for imitation dynamics. At these levels, the sample standard deviation is similar for replicator (0.48) and imitation (0.45) dynamics. A major trend to observe is the difference in sample variance for BA and RRG models under replicator dynamics, even though they attain the same equilibrium values for $6.0\leq r \leq 6.5$. This can be explained by the higher variance in degree distribution for the BA model, which results in vastly different final equilibria. \\
 
@@ -164,65 +164,14 @@ A difference between replicator and imitation dynamics is the time to equilibriu
 
 
 
-Replicator and imitation dynamics showed similar results when varying the clustering parameter $p$ in a PL model and also the rewiring parameter $p$ in the WS model. Increasing variance, regardless of the effect on the clustering coefficient, generally increases cooperation. The same effect is observed when varying rewiring $p$ in a WS model. Equilibrium is achieved much faster under imitation dynamics, but higher equilibria are observed for replicator dynamics. 
+Replicator and imitation dynamics showed similar results when varying the clustering parameter $p$ in a PL model and also the rewiring parameter $p$ in the WS model. Increasing variance, regardless of the effect on the clustering coefficient, generally increases cooperation. The same effect is observed when varying rewiring $p$ in a WS model. Equilibrium is achieved much faster under imitation dynamics, but higher equilibria are observed for replicator dynamics. \\
 
 
 
 
 
-\subsection{Simple Results}
-\newtheorem{remark1}[theorem]{Remark} \label{remark1}
-\begin{remark1}
-For a RRG, with $r>m+1$, the NE is full cooperation, however it is not necessarily achieved. This is because the defector is a drain on their neighbouring cooperators, and is unable to see a full contributor. 
-\end{remark1}
-\begin{proof}
-Consider a lone defector in a RRG environment. Also assume that none of the neighbours of the defector are connected to each other. The defector's payoff, called $\pi_D$, is calculated as $m+1$ games with $m$ contributors, hence $$\pi_D = (m+1) \times \frac{mr}{m+1} = mr. $$ This defector only changes to cooperation if one of its neighbours has higher payoff. The payoff of a neighbour, denoted $\pi_C$, is the result of their hosted game, plus the defectors hosted game, plus $m-1$ games of full cooperation, hence $$\pi_C = \frac{mr}{m+1}+\frac{mr}{m+1} + (m-1) \frac{(m+1 )r}{m+1} - (m+1) = \frac{2mr}{m+1} +(m-1)r - (m+1) $$ 
 
 
-The condition for the defector to change strategy is $\pi_C  - \pi_D>0$. Consider the case when this is true. \\
-\begin{align*}
-    \pi_C - \pi_D &= \frac{2mr}{m+1} +r(m-1) -(m+1)-mr\\
-    &= \frac{2mr}{m+1} -(m+1+r)\\
-    \frac{2mr}{m+1} -(m+1+r) &> 0\\
-    \frac{2mr}{m+1} &>(m+1+r)\\
-    mr &>(m+1)^2+r\\
-    r&>\frac{(m+1)^2}{m-1}
-\end{align*}
-This is a stricter condition than the hypothesis $r>m+1$, so the defector may not necessarily change. However changing would be the right decision, as their payoff becomes that of a full cooperator, $\pi_{F}$, $$ \pi_F = (m+1)\frac{(m+1)r}{m+1} - (m+1) = (m+1)(r-1). $$ This payoff is greater than $\pi_D$ for $r>m+1$. Furthermore, this shows that full cooperation is a NE, as no player has a unilateral incentive to deviate from full cooperation. The defector is unable to see the benefits of full cooperation because all of their neighbours' profits are diminished by the defectors choice. \end{proof}
 
-The remark \ref{remark1} does not imply that no defector could ever switch to cooperation in a RRG model with $r>m+1$. It is simple to contrive an example where a defector \emph{sees} a cooperator with higher profit. It simply requires that the defector is connected to a lot of other defectors, while the cooperator is supported by other cooperators. Furthermore, full cooperation may be achieved, because the strategy changes are synchronous. Multiple defectors may all decide to switch at the same time, avoiding the lone defector problem from \ref{remark1}. \\
-
-Furthermore, the above analysis does not extend to other graph models, because of the strict assumption that each node has the same degree. In a BA model, the defector may be connected to a cooperator of high degree, with all their neighbours also cooperating. This changes the solution to $\pi_C - \pi_D>0$. \\
-\FloatBarrier
-\newtheorem{lemma_connected}[theorem]{Lemma} \label{connected}
-\begin{lemma_connected}
-For the linear public goods game played on a complete graph, then the only ESS is full defection, regardless of $n$ or $r$. This holds for replicator and imitation dynamics, however the time to equilibrium is less for imitation dynamics.  \end{lemma_connected}
-\begin{proof}
-Consider the payoff of a contributor on the complete graph, and hence playing $c_i = 1$, $$\pi_i(c_i = 1) = \frac{r n_c}{n} - n,  $$ where $n_c$ is the total number of contributors. On the other hand, the payoff of a defector, hence playing $c_i = 0$, is $$\pi_i(c_i = 0) = \frac{r n_c}{n}. $$ Regardless of parameters $n$ or $r$, the payoff for a defector is higher. Hence there is only flow of contributors becoming defectors, and the ESS is full defection. \\
-
-Now consider the time to reach equilibrium. Call the probability that a given cooperator $i$ changes to defection in a given generation is $q_{n_c}$. Then  $$q_{n_c} = \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) = \mathbb P (c_{i,t+1} = 0 | c_{i,t} =1, c_{\text{nbr}, t = 0})\mathbb P(c_{\text{nbr},t} = 0), $$ where $c_{\text{nbr},t}$ is the contribution of the randomly selected neighbour in the reproduction step. Each of these terms is calculable, so \\
-\begin{align*}
-    \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) &= \frac{n-n_c}{n}\Bigg[ \frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Bigg]^\alpha\\
-    &= \frac{n-n_c}{n}\Bigg[ \frac{\tfrac{rn_c}{n} - \tfrac{rn_c}{n} +n}{\tfrac{rn_c}{n}} \Bigg]^\alpha\\
-    &= \frac{n-n_c}{n}\Bigg[ \frac{1}{rn_c} \Bigg]^\alpha\\
-\end{align*}
-For replicator dynamics, the parameter $\alpha = 1$, so the probability of a given agent changing strategies is $ q_{n_c} = \frac{n-n_c}{n}\Bigg[ \frac{1}{rn_c} \Bigg]$. For imitation dynamics, $\alpha = 0$, and the probability becomes $q_{n_c} = \frac{n-n_c}{n}$. \\
-
-Finally, we can compute the expected time to equilibrium. Make the assumption that the timesteps are continuous, and then the event that one of the contributors becomes a defector is a Poisson random variable, and the distribution of the time between events is an exponential random variable with parameter $q_{n_c}$. The distribution of the minimum of $n$ i.i.d exponential $q_{n_c}$ random variables is an exponential distribution with parameter $n_c q_{n_c}$. So the time for $n_c$ to decrease by 1, denoted $T_{{n_c},{n_{c-1}}}$, is an exponential random variable with parameter $n_c q_{n_c}$. Call $T_{n_c, 0}$ the time to equilibrium from the current level of cooperators $n_c$. 
-\begin{align*}
-    \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = n_c}^1 \mathbb E (T_{{i}, {i-1}}|n_c = i)\\
-    &= \sum_{i = n_c}^1 \frac{1}{iq_i}\\
-\end{align*}
-For replicator dynamics, this evaluates to 
-\begin{align*}
-       \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = n_c}^1 \frac{nr}{(n-i)}. 
-\end{align*}
-For imitation dynamics, 
-\begin{align*}
-    \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = n_c}^1 \frac{n}{i(n-i)}. 
-\end{align*}
-It is evident that imitation dynamics achieves the equilibrium faster, as the respective $q_i$ is higher so there is faster rate of change from contribution to defection. It is also interesting to note that the time to equilibrium for imitation dynamics does not depend on the rate $r$. \\
-
-\end{proof}
 
 

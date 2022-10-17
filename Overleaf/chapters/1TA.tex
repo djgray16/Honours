@@ -5,11 +5,11 @@ This chapter will discuss the analysis of PGGs on networks using the model devel
 
 \section{Payoff Satisfaction Model}
 This model described in \cite{RN49} emulates an agent who increases their contribution when they are \emph{satisfied}. That is, their total return from the common pools are greater than their contributions. The goal of the \emph{satisfaction} model is to accurately reflect results observed in human experiments. This differs strongly from evolutionary dynamics, which will be discussed in a later chapter. The payoff $\pi_i$ of an individual $i$ enrolled in $g_i$ groups each with size $|N_j|$ is \\
-\begin{align} \label{TA_pi}
-    \pi_i(c_i) = - g_ic_i + \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|}, \quad c_i \in C:= \{0.0, 0.25, 0.50, 0.75, 1.0\}. 
-\end{align}
+\begin{equation}
+    \pi_i(c_i) = - g_ic_i + \sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|}, \quad c_i \in C:= \{0.0, 0.25, 0.50, 0.75, 1.0\} \label{TApp}
+\end{equation}
 
-It is enforced that each player contributes a constant $c_i$ to each group, and is initially endowed with $g_i$ units. The first term of \eqref{TA_pi} their contribution, and the last term represents the return earned from all the games, enhanced by $r$. \\
+It is enforced that each player contributes a constant $c_i$ to each group, and is initially endowed with $g_i$ units. The first term of \eqref{TApp} represents their contribution, and the last term represents the return earned from all the games, enhanced by $r$. \\
 
 Each agent's initial contribution is randomly chosen from the set $C$. The choice set qualitatively emulates a lab experiment, where players are given tokens and choose how many tokens to contribute. \\
 
