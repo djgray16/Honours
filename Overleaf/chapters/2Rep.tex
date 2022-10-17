@@ -1,17 +1,12 @@
 \subsection{Chapter Outline}
-This chapter investigates the effect of network structure on observed cooperation for the linear PGG described in \ref{ToTC}. The first section uses a simple lottery game to demonstrate the implementation of replicator dynamics. To this end, the paper \cite{RN30} is replicated and extended. \\
+This chapter investigates the effect of network structure on observed cooperation for the linear PGG described in \ref{ToTC}. The first section uses a simple lottery game to demonstrate the implementation of replicator and imitation dynamics. To this end, the paper \cite{RN30} is replicated and extended. \\
 
 Then replicator dynamics are applied to the linear PGG. Under this regime, it is found that graphs with a power-law degree size distribution exhibit higher cooperation, when controlling for mean degree $m$. It is hypothesised that nodes with low degree size cooperate more, and the family of power-law models are characterised by a large number of low-degree nodes, resulting in higher overall cooperation than the WS and RRG model. \\
 \section{Proof of Concept: Replicator and Imitation Dynamics} \label{Lottery_Me}
 \subsection{Outline}
 The paper chosen to replicate imitation and replicator dynamics was \cite{RN30}, which models a two-stage lottery game. Refer to \ref{Lottery} for a description of the game and the strategy space $S$. \\
 
-The paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates $q_{i\to j}$, \\
-
-\begin{equation} \label{rep}
-q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
-
-In this formulation, $\Delta$ scales the difference so that $0 \leq q_{i\to j} \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_{i\to j} \geq R,$ $R  \sim \mathsf{U}(0,1)$. A strategy $i$ has an \emph{evolutionary advantage} over strategy $j$, denoted $j \prec i$, if $q_{j \to i} >q_{i \to j}$.    \\
+Recall that the paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics, as described in equation \eqref{rep}.
 
 \subsection{Results Comparison}
 The simulated results were compared to the paper for $\alpha = 0, 1$, and $ 0.5$, and are shown below. Each model consists of $N=6000$ agents, and each parameter permutation is simulated $T=100$ times. \\
