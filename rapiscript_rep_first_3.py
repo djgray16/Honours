@@ -59,18 +59,18 @@ parameters = {
     'step_reporting':0,
     'end_reporting':0
 }
-
+'''
 results = run_compare_two(parameters, control_board)
 
 fname = control_board['filename']
 with open (f'{fname}.pickle', 'wb') as handle:
     pickle.dump(results, handle)
     print('pickled', fname)
-
+'''
 
 ############################################
 
-'''
+
 control_board['filename'] = 'Rep_med_super_long'
 
 parameters['phi'] = ap.Values(5.0, 5.25, 5.5, 5.75)
@@ -94,3 +94,4 @@ fname = control_board['filename']
 with open (f'{fname}.pickle', 'wb') as handle:
     pickle.dump(results, handle)
     print('pickled', fname)
+'''

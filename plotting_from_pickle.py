@@ -33,8 +33,8 @@ CI = 0
 legend = 0
 size = 'high'
 gmodel = 'BA'
-filename = 'Rep_graph_p_superlong_low' #+'_home'
-title = f'95% Confidence Intervals, Comparing Graph Type, Replicator Dynamics'
+filename = 'Rep_graph_p_superlong_high' #+'_home'
+title = f'Comparing Rewiring p, WS Model, Replicator Dynamics'
 
 
 
@@ -54,8 +54,8 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 
 ## need to save here
 
-save_now = 0
-filename = 'Rep_gtype_med_CI' 
+save_now = 1
+filename = 'graph_p_high_superlong' 
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print(f'saved fig: {title} as {filename}')
