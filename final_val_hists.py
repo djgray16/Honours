@@ -20,7 +20,7 @@ import math
 
 import matplotlib.pyplot as plt
 #random.seed(2)
-
+import pickle as pickle
 ## Control board
 
 run = 1
@@ -30,7 +30,7 @@ MeansOnly = True
 
 save = 1 #save the figure
 
-filename = 'TAfig4b'
+#filename = 'TAfig4b'
 
 phis = [5.5]
 
@@ -84,14 +84,16 @@ for phi in phis:
         tfinal = parameters['steps']
         
         final_vals = trends.iloc[trends.index.get_level_values('t') == tfinal]
-        fname = f'final_val_hists_rep_{gtype}_{phin}'
-        with open (f'{fname}.pickle', 'wb') as handle:
+        phin = str(phi).replace('.', '')
+        fname = f'final_val_hists_Rep_{gtype}_{phin}'
+        with open (f'pickles/{fname}.pickle', 'wb') as handle:
             pickle.dump(final_vals, handle)
         fig, ax = plt.subplots()
-        ax.hist(final_vals, bins = 25)
+        ax.hist(final_vals, density = 0,bins = 25, range = [0,1])
         phiz = str(phi)
-        fig.suptitle(f'Final Cooperation level, {gtype} Model, r = {phiz}, Replicator Dynamics')
-        phin = str(phi).replace('.', '')
+        fig.suptitle(f'Final Cooperation Level, {gtype} Model, r = {phiz}, Replicator Dynamics')
+        ax.set_xlabel('Final Cooperation')
+        ax.set_ylabel('Count')
         fname = f'Rep_coop_histo_{gtype}_{phin}'
         if save: 
             plt.savefig(f'Overleaf/images/{fname}.pdf')
