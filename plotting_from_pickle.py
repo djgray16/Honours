@@ -26,15 +26,15 @@ import pickle as pickle
 run = 1
 save = 1
 reps = 100
-v2 = 'graph_p'
+v2 = 'gtype'
 
 MeansOnly = 1
 CI = 0
 legend = 0
 size = 'high'
 gmodel = 'BA'
-filename = 'Rep_graph_p_superlong_high' #+'_home'
-title = f'Comparing Rewiring p, WS Model, Replicator Dynamics'
+filename = 'Rep_med_super_long' #+'_home'
+title = f'Comparing Graph Models, Replicator Dynamics'
 
 
 
@@ -47,7 +47,7 @@ control_board = {'run': run, 'v2': v2, 'save': save,'title': title,
 
 
 fname = filename
-with open (f'pickles/{fname}.pickle', 'rb') as handle:
+with open (f'{fname}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
      
 plot_compare_two_from_pickle(pickle_in, control_board)
@@ -55,7 +55,7 @@ plot_compare_two_from_pickle(pickle_in, control_board)
 ## need to save here
 
 save_now = 1
-filename = 'graph_p_high_superlong' 
+filename = 'Rep_med_gtype_superlong' 
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print(f'saved fig: {title} as {filename}')
