@@ -1,6 +1,6 @@
 \section{Local Imitation Dynamics for Public Good Games}
 \subsection{Outline}
-This chapter investigates the linear PGG under imitation dynamics. Imitation dynamics come from the same family as replicator dynamics introduced in \eqref{rep}, with $\alpha = 0$. The transition probability between strategies, given $\pi_j>\pi_i$, is $q_{i\to j} = \mathbbm{1}_{\{\pi_j>\pi_i\}}$. The tests from Chapter \ref{Chapter:Rep} are run for imitation dynamics, and the similarities and differences to imitation dynamics are noted. In general, imitation dynamics induces less cooperation than replicator dynamics. The greatest difference is noticed for RRG models, as they fail to achieve non-zero cooperation for $r<m+1$. The positive correlation between degree size variance and cooperation is noted, which mirrors the results in Chapter \ref{Chapter:Rep}.  \\
+This chapter investigates the linear PGG under imitation dynamics. Imitation dynamics come from the same family as replicator dynamics introduced in \eqref{rep}, instead with $\alpha = 0$. The transition probability between strategies, given $\pi_j>\pi_i$, is $q_{i\to j} = \mathbbm{1}_{\{\pi_j>\pi_i\}}$. The tests from Chapter \ref{Chapter:Rep} are run for imitation dynamics, and the similarities and differences to imitation dynamics are noted. In general, imitation dynamics induces less cooperation than replicator dynamics. The greatest difference is noticed for RRG models, as they fail to achieve non-zero cooperation for $r<m+1$. The positive correlation between degree size variance and cooperation is noted, which mirrors the results in Chapter \ref{Chapter:Rep}.  \\
 
 \subsection{Results}
 \FloatBarrier
@@ -55,7 +55,7 @@ It is evident that $r>m+1$ is required for full cooperation in the RRG model. It
 
 
 
-
+\subsection{The Effect of Mean Degree: BA Model}
 \FloatBarrier
 \graphCap{ID_graph_m_low_BA.pdf}{0.8}{The effect of mean degree, BA model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to targeted mean degree $m = \{4,6,8,10,12\}$ respectively. For the BA model, an increase in $m$ also results in lower cooperation.}{ID_BA_graph_m_low}
 \FloatBarrier
@@ -125,7 +125,7 @@ Firstly, note that the BA model generally reports higher cooperation than the RR
 
 The trend in these graphs is very similar to that observed in Figure \ref{by_degree_m_4}, Figure \ref{by_degree_m_6}, and Figure \ref{by_degree_m_8}. The nodes with high degree are not as influenced as the low degree nodes, so contribute less in a high contribution environment and more in a low contribution environment. At this stage, there is no explanation for these observations.
 
-\subsection{Differences Between Replicator and Imitation Dynamics}
+\section{Differences Between Replicator and Imitation Dynamics}
 
 Both replicator and imitation dynamics produced a similar ranking of graph models. The graph models with a power-law degree distribution, specifically the BA and TAG models, induced higher cooperation than the RRG and WS models. The RRG model never achieved non-zero cooperation under imitation dynamics, yet surpassed the WS model and achieved quite substantial cooperation under replicator dynamics. This is one of the major differences. \\
 
@@ -148,6 +148,7 @@ Another major difference is the level of maximum cooperation achieved. Two figur
 \end{figure} 
 \FloatBarrier
 
+\begin{comment}
 It is hard to examine the size of the confidence intervals visually, so Figure \ref{rep_dev} and \ref{id_dev} collate the standard deviation of cooperation in the final timestep for each graph model. \\
 \FloatBarrier
 \graphCap{Rep_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Replicator Dynamics.}{rep_dev}
@@ -155,7 +156,77 @@ It is hard to examine the size of the confidence intervals visually, so Figure \
 \graphCap{ID_dev_heatmap.pdf}{0.7}{Sample Standard Deviation at the Final Generation, Imitation Dynamics. }{id_dev}
 \FloatBarrier
 When comparing Figure \ref{rep_dev} and \ref{id_dev}, it is important to compare the sample standard deviation amongst models that result in the same equilibrium cooperation, as opposed to the same $r$ value. For example, the BA model achieves around 0.6 cooperation for $r=5.5$ under replicator dynamics, but requires $r=6.5$ for imitation dynamics. At these levels, the sample standard deviation is similar for replicator (0.48) and imitation (0.45) dynamics. A major trend to observe is the difference in sample variance for BA and RRG models under replicator dynamics, even though they attain the same equilibrium values for $6.0\leq r \leq 6.5$. This can be explained by the higher variance in degree distribution for the BA model, which results in vastly different final equilibria. \\
+\end{comment}
 
+It is of interest to examine the nature of each realisation of the graph model in the final timestep. To do this, the cooperation level of each trial was recorded for each graph model, $r$, and evolution model combination, and plotted on a histogram. It is interesting that \dots \textbf{WHATS COOL}
+
+\FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/Rep_coop_histo_BA_55.pdf}
+    \caption{Replicator Dynamics.}
+    \label{Rep_BA_55_coop_histo}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/ID_coop_histo_BA_55.pdf}
+    \caption{Imitation Dynamics. }
+    \label{ID_BA_55_coop_histo}
+  \end{subfigure}
+  \caption{Final Cooperation Level, BA Model, r = 5.5, Replicator and Imitation Dynamics. } \label{coop_histo_BA}
+\end{figure} 
+\FloatBarrier
+
+\FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/Rep_coop_histo_WS_55.pdf}
+    \caption{Replicator Dynamics. }
+    \label{Rep_WS_55_coop_histo}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/ID_coop_histo_WS_55.pdf}
+    \caption{Imitation Dynamics. }
+    \label{ID_WS_55_coop_histo}
+  \end{subfigure}
+  \caption{Final Cooperation Level, WS Model, r = 5.5, Replicator and Imitation Dynamics. } \label{coop_histo_WS}
+\end{figure} 
+\FloatBarrier
+
+\FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/Rep_coop_histo_TAG_55.pdf}
+    \caption{Replicator Dynamics. }
+    \label{Rep_TAG_55_coop_histo}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/ID_coop_histo_TAG_55.pdf}
+    \caption{Imitation Dynamics. }
+    \label{ID_TAG_55_coop_histo}
+  \end{subfigure}
+  \caption{Final Cooperation Level, TAG Model, r = 5.5, Replicator and Imitation Dynamics. } \label{coop_histo_TAG}
+\end{figure} 
+\FloatBarrier
+
+\FloatBarrier 
+\begin{figure}[!h]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/Rep_coop_histo_RRG_55.pdf}
+    \caption{Replicator Dynamics. }
+    \label{Rep_RRG_55_coop_histo}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=1.1\textwidth]{images/ID_coop_histo_RRG_55.pdf}
+    \caption{Imitation Dynamics. }
+    \label{ID_RRG_55_coop_histo}
+  \end{subfigure}
+  \caption{Final Cooperation Level, RRG Model, r = 5.5, Replicator and Imitation Dynamics. } \label{coop_histo_TAG}
+\end{figure} 
+\FloatBarrier
 
 
 
@@ -164,7 +235,7 @@ A difference between replicator and imitation dynamics is the time to equilibriu
 
 
 
-Replicator and imitation dynamics showed similar results when varying the clustering parameter $p$ in a PL model and also the rewiring parameter $p$ in the WS model. Increasing variance, regardless of the effect on the clustering coefficient, generally increases cooperation. The same effect is observed when varying rewiring $p$ in a WS model. Equilibrium is achieved much faster under imitation dynamics, but higher equilibria are observed for replicator dynamics. \\
+Replicator and imitation dynamics showed similar results when varying the clustering parameter $p$ in a PL model and also the rewiring parameter $p$ in the WS model. Increasing variance, regardless of the effect on the clustering coefficient, generally increases cooperation. The same effect is observed when varying rewiring $p$ in a WS model. Equilibrium is achieved much faster under imitation dynamics, but higher equilibria are observed for replicator dynamics.  \\
 
 
 
