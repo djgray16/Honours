@@ -568,7 +568,7 @@ def stackplot(results, ax):
     ax.set_xlim(0, max(1, len(x)-1))
     ax.set_ylim(0, defect[0] + contribute[0])
     ax.set_xlabel('Time')
-    ax.set_ylabel('Number of Agents')
+    ax.set_ylabel('Number of Contributing Agents')
     #fig.suptitle('Stackplot')
 
     
@@ -577,14 +577,14 @@ def animation_plot(m, axs):
     ax1, ax2 = axs
     ax1.set_title('Stackplot')
     #prop = 
-    ax2.set_title('Graph Contributing')
+    ax2.set_title('Network')
     stackplot(m.output.variables.ReplicatorLocal, ax1)
     
     color_dict = {0: 'r', 1: 'g'}
     #print(m.agents.contribute)
     colors = [color_dict[c] for c in m.agents.contribute]
     #print(m.network.graph)
-    nx.draw(m.network.graph, pos = nx.kamada_kawai_layout(m.network.graph), node_color = colors, node_size = 150, ax = ax2)
+    nx.draw(m.network.graph, pos = nx.circular_layout(m.network.graph), node_color = colors, node_size = 150, ax = ax2)
 
 
 def plot_one(pickle_in, control_board, phi_chosen):
