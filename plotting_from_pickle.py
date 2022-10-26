@@ -30,7 +30,7 @@ v2 = 'graph_m'
 
 MeansOnly = 1
 CI = 0
-legend = 0
+legend = 1
 size = 'high'
 gmodel = 'BA'
 filename = 'graph_m_medBA' #+'_home'
@@ -55,7 +55,7 @@ fig, axs = plot_one(pickle_in, control_board, 5.75)
 ## need to save here
 
 save_now = 1
-filename = 'presentation_graph_m_rep' 
+filename = 'presentation_graph_m_rep_legend' 
 if save_now: 
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print(f'saved fig: {title} as {filename}')

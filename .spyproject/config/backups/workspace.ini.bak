@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = empty-project-type
-recent_files = ['final_val_hists.py', 'rapiscript_rep_first_3.py', 'rapiscript_comparing_rewiring_p.py', 'rapiscript_varying_mean_degree.py', 'plotting_from_pickle.py']
+recent_files = ['final_val_hists.py', 'rapiscript_rep_first_3.py', 'rapiscript_comparing_rewiring_p.py', 'rapiscript_varying_mean_degree.py', 'plotting_from_pickle.py', 'experiment_functions.py']
 
 [main]
 version = 0.2.0

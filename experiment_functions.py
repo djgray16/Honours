@@ -640,7 +640,7 @@ def plot_one(pickle_in, control_board, phi_chosen):
     axesx = [0,0,1,1]
     axesy = [0,1,0,1]
     phiz = [phi_chosen]
-    for i in range(len(phiz)):
+    for i in [0]:
         
         testing =phi_graph[phi_graph.phi ==phiz[i]]
         
@@ -658,9 +658,11 @@ def plot_one(pickle_in, control_board, phi_chosen):
             #print(tt.head())
             
             ys = tt.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
+            ys = ys['avg']
             axs.set_title(f' r: {phiz[i]}')
             axs.set_ylim(0,1)
-            axs.plot(ts,ys,marker =markers[j], markevery = 0.5,ms = 10,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
+            axs.plot(ts,ys,marker =markers[j], markevery = 0.5,ms = 10,linewidth = 1.75, c= colours[j], label = 'm=' + str(graphs.unique()[j]))
+            #axs.legend( loc='lower right')
             if not MeansOnly:
                 qq_up = quant_up.groupby(['t',v2]).mean()
                 qq_down = quant_down.groupby(['t',v2]).mean()
@@ -672,10 +674,10 @@ def plot_one(pickle_in, control_board, phi_chosen):
                 axs.plot(ts,y2s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75, label = 'quant_up')
                 axs.plot(ts,y3s,linestyle = 'dashed', c = colours[j], alpha = 0.6,linewidth = 1.75)
     if legend:
-        fig.legend( loc='lower right')
+        axs.legend(loc = 'upper right')
     
     axs.set(xlabel = 'Steps')
-    axs.set(ylabel = 'Mean Cooperation')
+    axs.set(ylabel = 'Mean Contribution')
     axs.label_outer()
     axs.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
     return fig, axs
