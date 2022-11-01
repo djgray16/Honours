@@ -26,7 +26,7 @@ run =1
 trim = 1
 
 
-filename = 'Rep_BA_node_groups_m_8_phi_6'
+filename = 'ID_BA_node_groups_m_8_phi_6'
 
 
 phis = [4,6,8]
