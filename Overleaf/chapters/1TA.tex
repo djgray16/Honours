@@ -1,7 +1,7 @@
 
 
 \subsection{Chapter Outline}
-This chapter will discuss the analysis of PGGs on networks using the model developed by Marco Tomassini and Alberto Antonioni in \cite{RN49}. First, their model is replicated, and the replicated results are compared to the published results. Then the replicated results are examined for robustness. After that, the analysis is extended to further graph types to analyse the effect of graph structure on cooperation. Under the Tomassini--Antonioni model, network models with high clustering coefficient $C_\Delta$ induce lower cooperation for low values of $r$ and higher cooperation for higher values of $r$ relative to models with low $C_\Delta$, regardless of degree size distribution. \\
+This chapter will discuss the analysis of PGGs on networks using the model developed by Marco Tomassini and Alberto Antonioni in \cite{RN49}. First, their model is replicated, and the replicated results are compared to the published results. Then the replicated results are examined for robustness. After that, the analysis is extended to further graph types to analyse the effect of graph structure on contribution. Under the Tomassini--Antonioni model, network models with high clustering coefficient $C_\Delta$ induce lower contribution for low values of $r$ and higher contribution for higher values of $r$ relative to models with low $C_\Delta$, regardless of degree size distribution. 
 
 \section{Payoff Satisfaction Model}
 This model described in \cite{RN49} emulates an agent who increases their contribution when they are \emph{satisfied}. That is, their total return from the common pools are greater than their contributions. The goal of the \emph{satisfaction} model is to accurately reflect results observed in human experiments. This differs strongly from evolutionary dynamics, which will be discussed in a later chapter. The payoff $\pi_i$ of an individual $i$ enrolled in $g_i$ groups each with size $|N_j|$ is \\
@@ -13,17 +13,17 @@ It is enforced that each player contributes a constant $c_i$ to each group, and 
 
 Each agent's initial contribution is randomly chosen from the set $C$. The choice set qualitatively emulates a lab experiment, where players are given tokens and choose how many tokens to contribute. \\
 
-The agents' update rule is simple. If they receive, from the common pools, at least as much as they contribute, they are \emph{satisfied}. That is, an agent is \emph{satisfied} when $\sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|} - g_i c_i\geq g_i c_i$. In this case, they increase their contribution by 0.25 with probability 0.5, otherwise remain unchanged. If they are \emph{unsatisfied}, their contribution always decreases by 0.25. Obviously an agent playing $c_i =1$ cannot increase their contribution, and similarly an agent playing $c_i=0$ cannot decrease their contribution. This model does not claim to simulate evolutionary dynamics, instead it intends to replicate results observed in human trials. \\
+The agents' update rule is simple. If they receive, from the common pools, at least as much as they contribute, they are \emph{satisfied}. That is, an agent is \emph{satisfied} when $\sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|} - g_i c_i\geq g_i c_i$. In this case, they increase their contribution by 0.25 with probability 0.5, otherwise remain unchanged. If they are \emph{unsatisfied}, their contribution always decreases by 0.25. Obviously an agent playing $c_i =1$ cannot increase their contribution, and similarly an agent playing $c_i=0$ cannot decrease their contribution. This model does not claim to simulate evolutionary dynamics, instead it intends to replicate results observed in human trials. 
 
 
 \section{Network Structure}
-Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two-dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in \ref{BA}, a growing mechanism is used to create the graph. The parameters are  the population size $N$, the targeted mean degree, $m$, and  a mixing parameter, $\alpha$. \\
+Antonioni and Tomassini developed their own model for the generation of social networks in the paper \cite{RN51}. This model considers the degree of vertices as well as their location in two-dimensional unitary space $[0,1]^2$. Similar to the Barab\'{a}si--Albert model described in Section \ref{BA}, a growing mechanism is used to create the graph. The parameters are  the population size $N$, the targeted mean degree, $m$, and  a mixing parameter, $\alpha$. \\
 
 The graph is initialised with a clique of $m+1$ nodes distributed in $[0.45, 0.55]^2$. Then each new node is added randomly in $[0,1]^2$ and prescribed a number of links drawn from $\mathsf{DU}(1,2m-1)$. For each link, a uniform random number is compared to the parameter $\alpha$. If the random number is less than $\alpha$, the node is then joined to an existing node chosen by preferential attachment as in a Barab\'{a}si--Albert model. Otherwise, the node is joined to the geometrically closest existing node that is not already linked. \\
 
 The paper \cite{RN51} compares graphs built using this model to real-world graphs, and finds it exhibits the common features for a social network. Relative to a Barab\'{a}si--Albert model, the clustering coefficient is higher due to the spatial dimension. It also preserves the right-skewed degree distribution and low path lengths. \\
 
-This network model serves as the structure for the game in \cite{RN49}, with agents stationed at nodes. For each figure, the simulation has parameters $N=500, m = 6, T=100$, where $T$ represents the number of trials for each parameter combination. The plotted series represents the mean taken over all $T$ trials. In \cite{RN49}, Tomassini and Antonioni also used $N=500, m = 6$. \\
+This network model serves as the structure for the game in \cite{RN49}, with agents stationed at nodes. For each figure, the simulation has parameters $N=500, m = 6, T=100$, where $T$ represents the number of trials for each parameter combination. The plotted series represents the mean taken over all $T$ trials. In \cite{RN49}, Tomassini and Antonioni also used $N=500, m = 6$. 
 
 \section{Results Comparison}
 The results obtained by simulation were compared to the results reported in the paper \cite{RN49}. The comparison is shown in Figure \ref{comp0}. \\
@@ -37,7 +37,7 @@ The results obtained by simulation were compared to the results reported in the 
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=1.25\textwidth]{images/TAfig2.png}
+    \includegraphics[width=1.25\textwidth]{images/final_TAfig2.png}
     \caption{Replication of \ref{TAfig2_real}. }
     \label{TAfig2}
   \end{subfigure}
@@ -45,12 +45,12 @@ The results obtained by simulation were compared to the results reported in the 
 \end{figure} 
 \FloatBarrier
 
-Evidently, increasing the enhancement factor $r$ increases cooperation. It is interesting to note that equilibrium is reached relatively quickly ($\sim$ 20 rounds). In \cite{RN49}, the authors note that even in the case of low $r$, zero cooperation is not observed. This agrees with experimentally reported results, but disagrees with classical and evolutionary game theory predictions. In fact, the minimum contribution amount of 0.0833 can be shown analytically as a steady state under some simplifying assumptions.\\
+Evidently, increasing the enhancement factor $r$ increases contribution. It is interesting to note that equilibrium is reached relatively quickly ($\sim$ 20 rounds). In \cite{RN49}, the authors note that even in the case of low $r$, zero contribution is not observed. This agrees with experimentally reported results, but disagrees with classical and evolutionary game theory predictions. In fact, the minimum contribution amount of 0.0833 can be shown analytically as a steady state under some simplifying assumptions.
 
 
 \newtheorem{lemma_mcb}[theorem]{Lemma} \label{mcb}
 \begin{lemma_mcb}
-In the \emph{satisfaction} model, under mean-field assumptions and for enhancement factor $r \geq0$, there exists a population minimum contribution bound $\Bar{c} = \tfrac{1}{12}.$ such that any equilibrium contribution $c^*$ achieves at least $\Bar{c}$.  \end{lemma_mcb}
+In the \emph{payoff satisfaction} model, under mean-field assumptions and for enhancement factor $r \geq0$, there exists a population minimum contribution bound $\Bar{c} = \tfrac{1}{12}.$ such that any equilibrium contribution $c^*$ achieves at least $\Bar{c}$.  \end{lemma_mcb}
 \begin{proof}
 Consider a representative agent $i$. By the mean-field assumption, they are enrolled in $g=7$ games, each with $7$ agents per game. Also assume each interacting agent is contributing at the population equilibrium proportion $c^*$. If agent $i$ is playing $c_i = 0$, then their payoff is \\
 \begin{equation}
@@ -58,9 +58,9 @@ Consider a representative agent $i$. By the mean-field assumption, they are enro
 \end{equation}
 So agent $i$ will be satisfied, and therefore increase their contribution to 0.25 with probability $\tfrac{1}{2}$ or else keep $c_i = 0$ in the next step. \\
 
-To find the minimum contribution bound, assume that agent $i$ is unsatisfied with their contribution if $c_i = 0.25$. Otherwise their contribution $c_i$, and hence the equilibrium contribution $c^*$ will be greater than 0.25 and the minimum contribution bound will be achieved. 
+To find the minimum contribution bound, assume that agent $i$ is unsatisfied with their contribution if $c_i = 0.25$. Otherwise their contribution $c_i$, and hence the equilibrium contribution $c^*$ will be greater than 0.25 and the minimum contribution bound will be achieved. \\
 
-The payoff for agent $i$ of $c_i$ is  \\
+The payoff for agent $i$ of playing $c_i=0.25$ is  \\
 \begin{equation} \label{unsat}
     \pi_i(0.25, c^*)= \mathbb E - gc_i + \sum_{j=1}^{g_i} [\sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|}]  =   7\times\frac{6rc^* + 0.25r}{7}-7\times0.25. 
 \end{equation}
@@ -81,16 +81,16 @@ For further confirmation, Figures 5a and b from the paper were also replicated, 
 \begin{figure}[!h] 
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/TAfig4a_real.png}
-    \caption{Figure 5a from \cite{RN49}. $\alpha = 0$ }
+    \caption{Figure 5a from \cite{RN49}, $\alpha = 0$. }
     \label{TAfig4a_real}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=1.35\textwidth]{images/TAfig4a.png}
+    \includegraphics[width=1.35\textwidth]{images/final_TAfig5a.png}
     \caption{Replication of \ref{TAfig4a_real}. }
     \label{TAfig4a}
   \end{subfigure}
-  \caption{Comparison of reported results from \cite{RN49} and replicated results. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which correspond to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. Once again, the replication is successful.  Mixing parameter $\alpha = 0.0$. } \label{comp1}
+  \caption{Comparison of reported results from \cite{RN49} and replicated results. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which correspond to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. Once again, the replication is successful. } \label{comp1}
 \end{figure} 
 \FloatBarrier
 
@@ -107,14 +107,14 @@ For further confirmation, Figures 5a and b from the paper were also replicated, 
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=1.35\textwidth]{images/TAfig4b.png}
-    \caption{Replication of \ref{TAfig4b_real}. }
+    \caption{Replication of \ref{TAfig4b_real}, $\alpha=1$. }
     \label{TAfig4b}
   \end{subfigure}
   \caption{Comparison of reported results from \cite{RN49} for $\alpha = 1$. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The replication is again successful. } \label{comp2}
 \end{figure} 
 \FloatBarrier
 
-The key results from \cite{RN49} have been reproduced. Because the results were replicated for varying graph parameter $\alpha$, and model parameter $r$, then the implementation of the model and network structure mirrors \cite{RN49}. Other results from their paper, where the mean degree is varied, have also been reproduced, but are not included for the sake of brevity.\\
+The key results from \cite{RN49} have been reproduced. Because the results were replicated for varying graph parameter $\alpha$, and model parameter $r$, then the implementation of the model and graph structure mirrors \cite{RN49}. Other results from their paper, where the mean degree is varied, have also been reproduced, but are not included for the sake of brevity.
 
 
 \section{Robustness}
@@ -123,19 +123,19 @@ The robustness of results was discussed qualitatively in \cite{RN49}, and the au
 \FloatBarrier
 \graphCap{sensitivity2.pdf}{0.8}{2.5\% and 97.5\% quantiles for each series. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The mean is shown as a solid line, and the quantiles as dashed. Only 5 out of 100 trials lie outside the dashed lines for each series.}{sens2}
 \FloatBarrier
-The series corresponding to $r=2.2$ shows a 97.5\% quantile trend of around 0.58. This is much higher than the mean trend. This shows the influence of the particular network within the network model, particularly for the critical values at which cooperation is sustained but full cooperation is not achieved. It is interesting to note that this phenomenon does not occur for the $r=2$ line, which also achieves incomplete but non-zero cooperation. A granular simulation was carried out for $r \in [2.0,2.5]$, and it was found that for $r \in [2.2, 2.28]$, the 2.5\% quantile is the same, however the mean trends are different. There appears to be a lower bound of 0.33 for $r \in [2.0, 2.5]$, which represents a population switching between 0.25 and 0.5 similar to the lower bound of 0.0833 discussed in reference to Lemma \ref{mcb}.\\
+The series corresponding to $r=2.2$ shows a 97.5\% quantile trend of around 0.58. This is much higher than the mean trend. This shows the influence of the particular realisation of the graph within the graph model, particularly for the critical values at which contribution is sustained but full contribution is not achieved. It is interesting to note that this phenomenon does not occur for the $r=2$ line, which also achieves incomplete but non-zero contribution. A granular simulation was carried out for $r \in [2.0,2.5]$, and it was found that for $r \in [2.2, 2.28]$, the 2.5\% quantile is the same, however the mean trends are different. There appears to be a lower bound of 0.33 for $r \in [2.0, 2.5]$, which represents a population switching between 0.25 and 0.5 similar to the lower bound of $\tfrac{1}{12}$ discussed in reference to Lemma \ref{mcb}.\\
 
-Figure \ref{sens1} applies the Central Limit Theorem to the cooperation level, and plots a $95\%$ confidence interval for the mean for each series. The Central Limit Theorem derives a 95\% CI for the mean, as $\hat{\mu} \pm 1.96\times\frac{\hat{\sigma}}{\sqrt{T}}$, where $\hat{\sigma}$ is the empirical standard deviation. The Central Limit Theorem is applicable, as there are more than 30 samples for each series. \\
+Figure \ref{sens1} applies the Central Limit Theorem to the contribution level, and plots a $95\%$ confidence interval for the mean for each series. The Central Limit Theorem derives a 95\% CI for the mean, as $\hat{\mu} \pm 1.96\times\frac{\hat{\sigma}}{\sqrt{T}}$, where $\hat{\sigma}$ is the empirical standard deviation. The Central Limit Theorem is applicable, as there are more than 30 samples for each series. \\
 \FloatBarrier
 \graphCap{sensitivity1.pdf}{0.8}{95\% Confidence interval for the mean of each series. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The mean is shown in the solid line, and the bounds of the confidence interval are shown as dashed lines. It is evident that the results are stable. Only the middle series, $r=2.2$, shows some variance.}{sens1}
 \FloatBarrier
 Figure \ref{sens1} shows that the means are stable, and the results are robust. The confidence intervals for the mean are symmetric about the mean, due to the assumption of limiting normality. \\
 
-To investigate the effect of network structure on cooperation, the Tomassini--Antonioni model will be extended to other network models. \\
+To investigate the effect of network structure on contribution, the Tomassini--Antonioni model will be extended to other network models.
 
 \section{Extension to Other Network Models} \label{other_networks}
 
-In \ref{RG}, three main network models are discussed. These are the Erd\H{o}s--R\'enyi graph, \emph{small-world} network (Watts--Strogatz, WS), and also the Barab\'{a}si--Albert (BA) model. In the following analysis, $G(n,r)$ graphs are chosen for Erd\H{o}s--R\'enyi graphs, and denoted RRG (random regular graphs). This is to be able to control the mean degree. All three of these network models are implemented using the \verb+networkx+ Python package. For comparison, the model described by Tomassini and Antonioni in \cite{RN51} is included, and denoted Tomassini Antonioni Graph (TAG). Across all graphs, the targeted mean degree, $m$, is set to 6 to allow comparison between graph models. \\
+In \ref{RG}, three main network models are discussed. These are the Erd\H{o}s--R\'enyi graph, \emph{small-world} network (Watts--Strogatz, WS), and also the Barab\'{a}si--Albert (BA) model. In the following analysis, $G(n,M)$ graphs are chosen for Erd\H{o}s--R\'enyi graphs, and denoted RRG (random regular graphs). This is to be able to control the mean degree. All three of these network models are implemented using the \verb+networkx+ Python package. For comparison, the model described by Tomassini and Antonioni in \cite{RN51} is included, and denoted Tomassini Antonioni Graph (TAG). Across all graphs, the targeted mean degree, $m$, is set to 6 to allow comparison between graph models. \\
 
 Small-world networks describe a family of graphs, depending on the parameter $p$. For this analysis, $p$ was set to 0.1, which preserves local clustering and reduces the average shortest path length. Importantly, only connected WS graphs are used. If the graph generated is not connected, then a new one with the same parameter is generated until they are connected. This is convention to allow strategies to propagate throughout the graph. \\
 
@@ -166,30 +166,33 @@ WS         & 6           & 5.39                         & 0.44                  
 
 The degree variance does not accurately describe all the facets of the degree distribution, so a histogram for each model is plotted below. For each graph model, 100 graphs were created according to the previously described parameters and their degree counts summed to create the histograms. \\
 \FloatBarrier
-\graphCap{hist1.pdf}{0.7}{Degree Histogram for WS and RRG models. The RRG model enforces a degree of 6 for every node. The WS model starts from a lattice, then rewires each link with probability $p=0.1$.}{hist1}
+\graphCap{hist1.pdf}{0.7}{Degree histogram for WS and RRG models. The RRG model enforces a degree of 6 for every node. The WS model starts from a lattice, then rewires each link with probability $p=0.1$.}{hist1}
 \FloatBarrier
-\graphCap{hist2.pdf}{0.7}{Degree Histogram for BA and TAG models, on a logarithmic scale. The logarithmic scale clearly shows the counts for higher degrees. Because the TAG model only uses preferential attachment $\alpha = 0.3$ proportion of the time, it is not a true scale-free distribution. }{hist2}
+\graphCap{hist2.pdf}{0.7}{Degree histogram for BA and TAG models, on a logarithmic scale. The logarithmic scale clearly shows the counts for higher degrees. Because the TAG model only uses preferential attachment $\alpha = 0.3$ proportion of the time, it is not a true scale-free distribution. }{hist2}
 \FloatBarrier
-One of the goals of the TAG is to preserve a higher clustering coefficient than BA graphs, while remaining approximately scale-free. Table \ref{graph_stats} emphasises this effect. From these descriptive statistics, it appears that BA and RRG can be considered similar except for their degree distributions. The mean cooperation level for each graph was plotted. Because this is novel analysis, each trial observes 60 steps. \\
+One of the goals of the TAG is to preserve a higher clustering coefficient than BA graphs, while remaining approximately scale-free. Table \ref{graph_stats} emphasises this effect. From these descriptive statistics, it appears that BA and RRG can be considered similar in terms of their clustering coefficient.\\
+
+Under the payoff satisfaction model, again with $N=500, m=6$, each graph model was tested 100 times, and the mean contribution level for each graph is plotted. Because this is novel analysis, each trial observes 60 steps. \\
 
 
 \FloatBarrier
-\graphCap{graphs1.pdf}{0.8}{Comparing network models, $r \in \{1.8, 1.85, 1.9, 1.95\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It is observed that first RRG, then BA, then TAG, then WS achieve non-trivial cooperation. This corresponds to the order of increasing $C_\Delta$. }{graphs1}
+\graphCap{graphs1.pdf}{0.8}{Comparing graph models, $r \in \{1.8, 1.85, 1.9, 1.95\}$. In each plot, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It is observed that first RRG, then BA, then TAG, then WS achieve non-trivial contribution. This corresponds to the order of increasing $C_\Delta$. }{graphs1}
 \FloatBarrier
 
-It appears that $C_\Delta$ dictates the value for $r$ for which non-trivial cooperation is observed. Interestingly, for $\alpha = 0.3$, 30\% of the TAG graph are nodes added in BA style. Yet the TAG graph reflects the trend of the WS model more than the BA model.
+
 \FloatBarrier
-\graphCap{graphs2.pdf}{0.8}{Comparing Graph models, $r \in \{2.0,2.05,2.1,2.15\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. For $2.0<r<2.25$, the cooperation levels are very similar around 0.33, and the WS model requires the highest enhancement factor $r$ to achieve non-trivial cooperation.  \\ }{graphs2}
+\graphCap{graphs2.pdf}{0.8}{Comparing graph models, $r \in \{2.0,2.05,2.1,2.15\}$. In each plot, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. For $2.0<r<2.25$, the contribution levels are very similar around 0.33, and the WS model requires the highest enhancement factor $r$ to achieve non-trivial contribution.  \\ }{graphs2}
 \FloatBarrier
-\graphCap{graphs3.pdf}{0.8}{Comparing Graph models, $r \in \{2.2, 2.25, 2.3, 2.35\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. For $2.0<r<2.25$, the cooperation levels were very similar around 0.5, so the plots are not shown.  It is an almost perfect trend reversal, as WS is the first graph to achieve full cooperation, then TAG, then BA and finally RRG. For $r>2.35$, full cooperation was always achieved. \\ }{graphs3}
+It appears that $C_\Delta$ dictates the value for $r$ for which non-trivial contribution is observed. Interestingly, for $\alpha = 0.3$, 30\% of the TAG graph are nodes added in BA style. Yet the TAG graph reflects the trend of the WS model more than the BA model.\FloatBarrier
+\graphCap{graphs3.pdf}{0.8}{Comparing graph models, $r \in \{2.2, 2.25, 2.3, 2.35\}$. In each plot, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. For $2.0<r<2.25$, the contribution levels were very similar around 0.5, so the plots are not shown.  It is an almost perfect trend reversal, as WS is the first graph to achieve full contribution, then TAG, then BA and finally RRG. For $r>2.35$, full contribution was always achieved. \\ }{graphs3}
 \FloatBarrier
-For the range of $r$ in Figure \ref{graphs3}, it is more interesting. The WS and TAG trends achieve full cooperation earlier. This seems to indicate that the agents are more uniform under this graph structure. The WS and TAG models have a small range of $r$ for which non-trivial cooperation is observed. These graph models also have high $C_\Delta$, which may propagate strategies through the population, and enforce homogeneity in contribution. Both the WS and RRG model have very low degree variance, yet behave quite differently. It appears that the degree distribution does not impact the cooperation level for Tomassini--Antonioni style agents. \\
+For the range of $r$ in Figure \ref{graphs3}, it is also interesting. The WS and TAG trends achieve full contribution earlier. This seems to indicate that the agents are more uniform under this graph structure. The WS and TAG models have a small range of $r$ for which non-trivial contribution is observed. These graph models also have high $C_\Delta$, which may propagate strategies through the population, and enforce homogeneity in contribution. Both the WS and RRG model have very low degree variance, yet behave quite differently. It appears that the degree distribution does not impact the contribution level under payoff satisfaction dynamics. 
 
 \section{Summary}
 
-This chapter focused exclusively on agents defined by Tomassini and Antonioni in \cite{RN49}. Tomassini and Antonioni demonstrated that these agents are a good proxy for human interactions, and simulated the Public Goods Game on a custom network model. These results were perfectly replicated, and both plots are shown in Figures \ref{comp0}, \ref{comp1}, and \ref{comp2}.  A lower bound for cooperation of 0.0835 was demonstrated analytically. The robustness of these results were also examined. It is shown that 100 repetitions were sufficient to estimate the mean of each series, however the empirical quantile plots showed that there is quite high variance in distribution for the series corresponding to $r=2.2$.\\ 
+This chapter focused exclusively on agents defined by Tomassini and Antonioni in \cite{RN49}. Tomassini and Antonioni demonstrated that these agents are a good proxy for human interactions, and simulated the Public Goods Game on a custom network model. These results were perfectly replicated, and the original plot, as well as the replication, are shown in Figure \ref{comp0}, Figure \ref{comp1}, and Figure \ref{comp2}. A lower bound for contribution of 0.0833 was demonstrated analytically. The robustness of these results were also examined. It is shown that 100 repetitions were sufficient to estimate the mean of each series, however the empirical quantile plots showed that there is quite high variance in distribution for the series corresponding to $r=2.2$.\\ 
 
-The agents from this model were then tested on different models for random graphs. The results are interesting in the range $1.85\leq r \leq 2.4$. The trend indicates that models with high clustering coefficient $C_\Delta$ do not support intermediate levels of cooperation, and remain at the lower bound of cooperation for higher $r$ and full cooperation for lower $r$ relative to models with low $C_\Delta$. Other characteristics of the graph model, such as the distribution of node size, and $l$, did not seem to have an effect. \\
+The agents from this model were then tested on different models for random graphs. The results are interesting in the range $1.85\leq r \leq 2.4$. The trend indicates that models with high clustering coefficient $C_\Delta$ do not support intermediate levels of contribution, and remain at the lower bound of contribution for higher $r$ and full contribution for lower $r$ relative to models with low $C_\Delta$. Other characteristics of the graph model, such as the distribution of node size, and $l$, did not seem to have an effect. \\
 
 
 
