@@ -545,7 +545,7 @@ def plot_compare_two_from_pickle(pickle_in, control_board):
             ys = tt.iloc[tt.index.get_level_values(v2)==graphs.unique()[j]]
             axs[axesx[i], axesy[i]].set_title(f' r: {phis.unique()[i]}')
             axs[axesx[i], axesy[i]].set_ylim(0,1)
-            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.5,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
+            axs[axesx[i], axesy[i]].plot(ts,ys,marker =markers[j], markevery = 0.15,ms = 5,linewidth = 1.75, c= colours[j], label = graphs.unique()[j])
             if not MeansOnly:
                 qq_up = quant_up.groupby(['t',v2]).mean()
                 qq_down = quant_down.groupby(['t',v2]).mean()
