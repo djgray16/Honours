@@ -26,7 +26,7 @@ run =1
 trim = 1
 
 
-filename = 'ID_BA_node_groups_m_8_phi_8'
+filename = 'Rep_BA_node_groups_m_8_phi_6'
 
 
 phis = [4,6,8]
@@ -34,7 +34,7 @@ phis = [4,6,8]
 ms = [4,6,8]
 parameters = {}
 parameters['steps'] = 2000
-with open (f'{filename}.pickle', 'rb') as handle:
+with open (f'pickles/{filename}.pickle', 'rb') as handle:
      pickle_in = pickle.load( handle)
 
 counts = pickle_in['counts']
@@ -50,15 +50,17 @@ line_ax = bar_ax.twinx()
 line_ax.plot(end_coop.index,end_coop, marker = 'o', color = 'black')
 line_ax.set_ylim([0,1])
 line_ax.hlines(agg_coop_end,end_coop.index.min(), end_coop.index.max(), color = 'r', linewidth = 3, linestyle = 'dashed')
-line_ax.set_ylabel('Final Cooperation')
+line_ax.set_ylabel('Final Contribution')
 
-fig.suptitle('Final Cooperation vs Node Degree: BA Model')
+fig.suptitle('Final Contribution vs Node Degree: BA Model')
 
 #fname = 'Rep_BA_node_groups_m_' + str(m) + '_phi_' + str(phi)
 if save:
     pass
+    '''
     plt.savefig(f'Overleaf/images/{filename}.pdf')
     print('saved')
+    '''
 
 ### trimming
 
@@ -75,9 +77,9 @@ line_ax = bar_ax.twinx()
 line_ax.plot(end_coop.index,end_coop, marker = 'o', color = 'black')
 line_ax.set_ylim([0,1])
 line_ax.hlines(agg_coop_end,end_coop.index.min(), end_coop.index.max(), color = 'r', linewidth = 3, linestyle = 'dashed')
-line_ax.set_ylabel('Final Cooperation')
+line_ax.set_ylabel('Final Contribution')
 
-fig.suptitle('Final Cooperation vs Node Degree: BA Model, Trimmed')
+fig.suptitle('Final Contribution vs Node Degree: BA Model, Trimmed')
 
 
 #
@@ -85,4 +87,4 @@ fig.suptitle('Final Cooperation vs Node Degree: BA Model, Trimmed')
 fname = filename+'_trimmed'
 if save: 
     plt.savefig(f'Overleaf/images/{fname}.pdf')
-    print('saved')
+    print(f'saved fig as {fname}')
