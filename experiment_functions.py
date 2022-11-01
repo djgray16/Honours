@@ -28,6 +28,7 @@ def experiment(parameters, control_board):
     
 
     ''' needs parameters for the experiment, control board for everything else
+    LEGACY, as didnt separate plotting and running experiment
     '''
     
     
@@ -106,7 +107,7 @@ def experiment(parameters, control_board):
         
     if legend:
         ax.legend( loc='lower right')
-    ax.set_ylabel('Mean Cooperation')
+    ax.set_ylabel('Mean Contribution')
     ax.set_xlabel('Round')
     ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
     
@@ -132,6 +133,13 @@ def experiment(parameters, control_board):
     return 
 
 def run_compare_two(parameters, control_board):
+    '''for running experiments and comparing across r and one other dependent
+    variable. Used in final submission. 
+    Takes the parameters, which are passed to ap.Experiment, and control_board
+    which controls the non-experiment values. Outputs a dict ready to be saved
+    as a pickle. Dict contains all necessary to construct the plots'''
+    
+    ### unpack control baord, not all necessary
     run = control_board['run'] 
     v2 = control_board['v2'] 
     save = control_board['save'] 
@@ -149,10 +157,10 @@ def run_compare_two(parameters, control_board):
         method='linspace'
     )
     
-    assert len(parameters['phi'])==4
+    #assert len(parameters['phi'])==4
     
     exp = ap.Experiment(WealthModel, sample, iterations=reps,
-                    record = True)
+                    record = True) #run experiment
     
     if run:
         results = exp.run()
@@ -169,6 +177,10 @@ def run_compare_two(parameters, control_board):
     return pickle_save
 
 def plot_compare_two(results, control_board):
+    '''
+    old, as requires the whole results output from experiment, which was too
+    big to save. Superseded by plot_compare_two_from_pickle
+    '''
     run = control_board['run'] 
     v2 = control_board['v2'] 
     save = control_board['save'] 
@@ -371,7 +383,7 @@ def compare_two(parameters, control_board):
     
     for ax in axs.flat:
         ax.set(xlabel = 'Steps')
-        ax.set(ylabel = 'Cooperation')
+        ax.set(ylabel = 'Contribution')
         ax.label_outer()
         ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
         
@@ -388,6 +400,10 @@ def compare_two(parameters, control_board):
     
     
 def lottery(parameters, control_board):
+    '''
+    runs and plots the lottery experiment. Was not necessary to separate, as
+    all simulations happened very quickly. 
+    '''
     run = control_board['run'] 
     #v2 = control_board['v2'] 
     save = control_board['save'] 
@@ -454,6 +470,10 @@ def lottery(parameters, control_board):
 
 
 def plot_compare_two_from_pickle(pickle_in, control_board):
+    '''
+    USed in final. This takes a saved pickle and plots the 2x2 graph, comparing 
+    r and one other parameter (v2). 
+    '''
     run = control_board['run'] 
     v2 = control_board['v2'] 
     save = control_board['save'] 
@@ -540,7 +560,7 @@ def plot_compare_two_from_pickle(pickle_in, control_board):
         fig.legend( loc='lower right')
     for ax in axs.flat:
         ax.set(xlabel = 'Steps')
-        ax.set(ylabel = 'Mean Cooperation')
+        ax.set(ylabel = 'Mean Contribution')
         ax.label_outer()
         ax.set_yticks(ticks = [0,0.2,0.4,0.6,0.8,1.0])
     return fig, axs
@@ -588,6 +608,9 @@ def animation_plot(m, axs):
 
 
 def plot_one(pickle_in, control_board, phi_chosen):
+    ''' also used in final, but for producing just one graph from the 2x2 stack
+    this corresponds to the phi_chosen value
+    '''
     run = control_board['run'] 
     v2 = control_board['v2'] 
     save = control_board['save'] 
