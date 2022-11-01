@@ -37,7 +37,7 @@ The results obtained by simulation were compared to the results reported in the 
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=1.25\textwidth]{images/final_TAfig2.png}
+    \includegraphics[width=1.25\textwidth]{images/final_TA_fig2.pdf}
     \caption{Replication of \ref{TAfig2_real}. }
     \label{TAfig2}
   \end{subfigure}
@@ -86,7 +86,7 @@ For further confirmation, Figures 5a and b from the paper were also replicated, 
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=1.35\textwidth]{images/final_TAfig5a.png}
+    \includegraphics[width=1.35\textwidth]{images/final_TAfig5a.pdf}
     \caption{Replication of \ref{TAfig4a_real}. }
     \label{TAfig4a}
   \end{subfigure}
@@ -106,7 +106,7 @@ For further confirmation, Figures 5a and b from the paper were also replicated, 
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=1.35\textwidth]{images/TAfig4b.png}
+    \includegraphics[width=1.35\textwidth]{images/final_TAfig5b.pdf}
     \caption{Replication of \ref{TAfig4b_real}, $\alpha=1$. }
     \label{TAfig4b}
   \end{subfigure}
@@ -121,13 +121,13 @@ The key results from \cite{RN49} have been reproduced. Because the results were 
 The robustness of results was discussed qualitatively in \cite{RN49}, and the authors demonstrated consistency in results. However no quantitative analysis was provided. To examine the robustness of the results, the empirical quantiles, as well as the confidence interval for the mean of each series, are examined. The first plot examines the shape of the distribution for each of the series by plotting the empirical 2.5\% and 97.5\% quantiles. \\
 
 \FloatBarrier
-\graphCap{sensitivity2.pdf}{0.8}{2.5\% and 97.5\% quantiles for each series. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The mean is shown as a solid line, and the quantiles as dashed. Only 5 out of 100 trials lie outside the dashed lines for each series.}{sens2}
+\graphCap{final_sensitivity2.pdf}{0.8}{2.5\% and 97.5\% quantiles for each series. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The mean is shown as a solid line, and the quantiles as dashed. Only 5 out of 100 trials lie outside the dashed lines for each series.}{sens2}
 \FloatBarrier
 The series corresponding to $r=2.2$ shows a 97.5\% quantile trend of around 0.58. This is much higher than the mean trend. This shows the influence of the particular realisation of the graph within the graph model, particularly for the critical values at which contribution is sustained but full contribution is not achieved. It is interesting to note that this phenomenon does not occur for the $r=2$ line, which also achieves incomplete but non-zero contribution. A granular simulation was carried out for $r \in [2.0,2.5]$, and it was found that for $r \in [2.2, 2.28]$, the 2.5\% quantile is the same, however the mean trends are different. There appears to be a lower bound of 0.33 for $r \in [2.0, 2.5]$, which represents a population switching between 0.25 and 0.5 similar to the lower bound of $\tfrac{1}{12}$ discussed in reference to Lemma \ref{mcb}.\\
 
 Figure \ref{sens1} applies the Central Limit Theorem to the contribution level, and plots a $95\%$ confidence interval for the mean for each series. The Central Limit Theorem derives a 95\% CI for the mean, as $\hat{\mu} \pm 1.96\times\frac{\hat{\sigma}}{\sqrt{T}}$, where $\hat{\sigma}$ is the empirical standard deviation. The Central Limit Theorem is applicable, as there are more than 30 samples for each series. \\
 \FloatBarrier
-\graphCap{sensitivity1.pdf}{0.8}{95\% Confidence interval for the mean of each series. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The mean is shown in the solid line, and the bounds of the confidence interval are shown as dashed lines. It is evident that the results are stable. Only the middle series, $r=2.2$, shows some variance.}{sens1}
+\graphCap{final_sensitivity1.pdf}{0.8}{95\% Confidence interval for the mean of each series. Each series represents a value for the enhancement factor $r \in \{1.2, 1.8, 2.0, 2.2, 2.4, 2.6, 3.0, 4.0\}$, which corresponds to blue circles, orange stars, green crosses, red pentagons, purple squares, brown diamonds, pink pentagons, and olive hexagons respectively. The mean is shown in the solid line, and the bounds of the confidence interval are shown as dashed lines. It is evident that the results are stable. Only the middle series, $r=2.2$, shows some variance.}{sens1}
 \FloatBarrier
 Figure \ref{sens1} shows that the means are stable, and the results are robust. The confidence intervals for the mean are symmetric about the mean, due to the assumption of limiting normality. \\
 
