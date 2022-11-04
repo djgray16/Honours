@@ -27,11 +27,11 @@
 \usepackage[section]{placeins}
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[RO,LE]{Games on Random Graphs}
+\fancyhead[RO,LE]{Evolutionary Game Theory on Random Graphs}
 \fancyfoot{}
 \fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{Chapter \thechapter}
-\fancyfoot[CO,RE]{Daniel Gray}
+\fancyfoot[CO,CE]{Chapter \thechapter}
+\fancyfoot[LO,RE]{Daniel Gray}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 \setlength{\parindent}{0pt}
@@ -39,7 +39,7 @@
 \usepackage{changepage}
 \newenvironment{ltab}{\begin{adjustwidth}{2cm}{}}{\end{adjustwidth}}
 \addbibresource{final3.bib} 
-
+ \newtheorem{remark1}[theorem]{Lemma} 
 %workklow for bib is: store them in endnote, then export as .bib. Open in jabref and do unabbreviate journals, then export out as bib and import here
 
 \title{Evolutionary Game Theory on Random Graphs}
@@ -71,7 +71,7 @@ I want to thank my supervisor, Dr. Thomas Taimre. He was patient, communicative,
 \input{chapters/00intro}
 \chapter{Literature Review and Background} \label{Chapter:Lit}
 \input{chapters/0litreview}
-\chapter{Tomassini--Antonioni Models} \label{TA}
+\chapter{Payoff Satisfaction Model} \label{TA}
 \input{chapters/1TA}
 
 \chapter{PGG on Graphs: Replicator Dynamics} 

@@ -1,4 +1,4 @@
-\section{Outline}
+\section{Chapter Outline}
 This literature review provides the necessary knowledge to construct agent-based models on random graphs. It is divided into five sections that build to the current state of the literature. Section \ref{CGT} defines and demonstrates classical game theory, as well as the deficiencies of classical models. Section \ref{EGT} introduces evolutionary game theory and discusses its relationship to the classical models. In Section \ref{ABM}, evolutionary game theory is extended to agent-based models. This is followed by Section \ref{RG}, which discusses the development of random graphs and their applications as models for social networks. Finally, the current state of agent-based evolutionary game theory is discussed in Section \ref{EGToRG}. 
 
 \section{Classical Game Theory} \label{CGT}
@@ -15,30 +15,24 @@ Game theory is the abstraction of interaction between entities. While there exis
 
 
 
-The players, also called agents, each have complete knowledge of the rules of the game. At any point in the game, their possible moves are enumerated in $S_i$, which can depend on the state of the game. Finally, when the game ends, they receive a numerical payoff calculated by $\pi_i$. Players are risk-neutral, in that they seek to maximise their expected payoff. Players are also rational \emph{ad infinum}. That is, they are perfectly rational, and aware that other players are also perfectly rational, and aware of the awareness of other players, \emph{et cetera}. This is a key assumption of classical game theory. \\
+The players, also called agents, each have complete knowledge of the rules of the game. At any point in the game, their possible moves are enumerated in $S_i$, which can depend on the state of the game. Finally, when the game ends, they receive a numerical payoff calculated by $\pi_i$. Players are risk-neutral, in that they seek to maximise their expected payoff. Players are also rational \emph{ad infinitum}. That is, they are perfectly rational, and aware that other players are also perfectly rational, and aware of the awareness of other players, \emph{et cetera}. This is a key assumption of classical game theory. \\
 
 A game is of \emph{perfect information} if, at each point in the game, each player knows the entire history of the game. Backgammon is an example of a game of perfect information. On the other hand, bridge is not, as players know their own cards without knowing other players' \cite{RN78}. \\
 
 
 \subsection{Example: Prisoner's Dilemma} \label{PD}
-Perhaps the most famous game is the Prisoner's Dilemma (PD). It was formalised by Tucker, Nash's PhD supervisor \cite{RN82}. Consider a two-person conspiracy of thieves, each arrested and held separately at the police station. If they both stay silent (cooperate with each other), they will be imprisoned on a lesser charge with one year jail time. However each thief is separately offered the choice to defect to the police, and inform on their co-conspirator. The defector will receive immunity, and the other thief receives five years in prison if they stay silent. Finally, if both thieves defect, their testimony is not as valuable so they are imprisoned for three years each. A matrix representation of the game is in Table \ref{table:PD}. 
+Perhaps the most famous game is the Prisoner's Dilemma (PD). It was formalised by Tucker, Nash's PhD supervisor \cite{RN82}. Consider a two-person conspiracy of thieves, each arrested and held separately at the police station. If they both stay silent (cooperate with each other), they will be imprisoned on a lesser charge with one year jail time. However, each thief is separately offered the choice to defect to the police, and inform on their co-conspirator. The defector will receive immunity, and the other thief receives five years in prison if they stay silent. Finally, if both thieves defect, their testimony is not as valuable, so they are imprisoned for three years each. A matrix representation of the game is in Table \ref{table:PD}. 
 
 \begin{center}
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|}
-
-    
-
 \hline
           & Cooperate & Defect \\ \hline
 Cooperate & (-1,-1)     & (-5,0)  \\ \hline
 Defect    & (0,-5)     & (-3,-3)  \\ \hline
-
 \end{tabular}
-    
-
-\caption{Matrix Representation of Prisoner's Dilemma.}
+\caption{Matrix representation of prisoner's dilemma, from \cite{RN79}.}
 \label{table:PD}
 \end{table}
 \end{center} 
@@ -53,7 +47,7 @@ Formally, this game is represented by players $\{1,2\}$, strategy sets $S_1 = S_
 
 \subsection{Example: Public Good Game} \label{PGG} \label{ToTC}
 
-The PD game extends to an $n$-player game, initally called \emph{Tragedy of the Commons}, and formalised by Hardin in 1986 but drawing from a sketch in 1833 by Lloyd \cite{RN82}. In modern examples, each player can contribute some of their wealth $c$ to a common pot, where it is amplified by return rate  $r$. Regardless of contribution, all players equally divide the common pot. In the language of the Prisoner's Dilemma, the socially optimal choice is called cooperation. This nomenclature is sometimes applied to this game, so contribution and cooperation are interchangable. \\
+The PD game extends to an $n$-player game, initially called \emph{Tragedy of the Commons}, and formalised by Hardin in 1986 but drawing from a sketch in 1833 by Lloyd \cite{RN82}. In modern examples, each player can contribute some of their wealth $c$ to a common pot, where it is amplified by return rate  $r$. Regardless of contribution, all players equally divide the common pot. In the language of the Prisoner's Dilemma, the socially optimal choice is called cooperation. This nomenclature is sometimes applied to this game, so contribution and cooperation are interchangeable. \\
 
 This sketch can be normalised as follows. Each player $\{ i = 1,\dots,n\}$ has the strategy set $S_i = \{c_i, c_i \in [0,1] \}$, and payoff function $$\pi_i = -c_i + \frac{\sum_{j =1}^n r c_j}{n}$$ with return ratio $r$ satisfying $n>r>1$. In the literature, this game is called a Public Goods Game (PGG) \cite{RN67}. For further examples of common games, see \cite{RN79}, or Appendix A of \cite{RN99}.  \\
 
@@ -80,15 +74,10 @@ This sketch can be normalised as follows. Each player $\{ i = 1,\dots,n\}$ has t
 % }
 % \label{BotS}
 % \end{table}
-
-
-
-
-
-To further discuss these games, there must be some concept of a solution. Under the assumptions of classical game theory, the Nash equilibrium is considered the solution to a game. \\
+To further discuss these games, there must be some concept of a solution. Under the assumptions of classical game theory, the Nash equilibrium is considered the solution to a game. 
 
 \subsection{Nash Equilibria} \label{NE_def}
-The first Nobel Memorial Prize in the field of game theory was awarded to John Nash, who developed the concept of a Nash equlibrium (NE). A NE is a strategy profile such that no player has a unilateral incentive to deviate from the profile by altering their strategy. \\
+The first Nobel Memorial Prize in the field of game theory was awarded to John Nash, who developed the concept of a Nash equilibrium (NE) \cite{RN78}. A NE is a strategy profile such that no player has a unilateral incentive to deviate from the profile by altering their strategy. \\
 
 
 A (possibly mixed) strategy profile $\mathbf{s^*} = (s^{*1}, s^{*2}, \dots, s^{*n})$ of a game with $n$ players is a NE if \\
@@ -102,7 +91,7 @@ Using the alternative notation, this can be written as \\
     \pi_i(s^{*k},s^{*-k}) \geq \pi_i(s^k,s^{*-k}), \qquad \forall  s^k \in \Delta_{ S_i}, \forall i =\{1, \dots, n\}.
 \end{align*}
 
-This is an extension of von Neumann's minimax theorem on zero-sum games \cite{RN99}, and Nash proved the existence of at least one NE under the assumption of a finite set of players, each with a finite set of possible actions, where each player is allowed to play a mixed strategy. \\
+This is an extension of von Neumann's minimax theorem on zero-sum games \cite{RN99}, and Nash proved the existence of at least one NE under the assumption of a finite set of players, each with a finite set of possible actions, where each player is allowed to play a mixed strategy. 
 
 
 \subsubsection{Game with No Nash Equilibrium: Largest Number Game}
@@ -117,7 +106,7 @@ If the NE condition, \eqref{NE}, holds for player 1, then $1>s^1 >s^2$. As $s^1<
 It is evident that \eqref{NE} cannot hold for player 2, as they should move to $s^2 + \epsilon$ to improve their payoff. This is shown for arbitrary $s^1, s^2$, so holds for all $s^1 \in [0,1), s^2 \in [0,1)$. Hence this game does not have a NE. 
 
 \subsubsection{Pareto Optimal}
-An alternate solution concept is Pareto optimality. A strategy profile $\bs^*$ \emph{Pareto dominates} another strategy profile $\bs$ if $$\forall i=1,\dots,n, \quad \pi_i(\bs^*)\geq \pi_i(\bs), \quad  \text{and} \quad  \exists  j\in [1,\dots,n] \quad \text{such that} \quad \pi_j(\bs^*)>\pi_j(\bs).$$ In other words, a Pareto dominated strategy profile can be improved to another strategy profile such that no agent's payoff decreases, and at least one agent's payoff increases \cite{RN97}. A strategy profile $\bs^*$ is \emph{Pareto optimal} if there does not exist any strategy profile that dominates $\bs^*$. A NE is not necessarily Pareto optimal, and a Pareto optimal strategy profile is not necessarily a NE. Pareto optimal strategy profiles can be considered as the solutions preferred by a \emph{benevolent central planner}, who can unilaterally force each agent to choose a particular strategy. In classical game theory, this central planner does not exist, and agents are selfish, so NE is the logical solution concept. 
+An alternate solution concept is Pareto optimality. A strategy profile $\bs^*$ \emph{Pareto dominates} another strategy profile $\bs$ if, $$\forall i=1,\dots,n, \quad \pi_i(\bs^*)\geq \pi_i(\bs), \quad  \text{and} \quad  \exists  j\in [1,\dots,n] \quad \text{such that} \quad \pi_j(\bs^*)>\pi_j(\bs).$$ In other words, a Pareto dominated strategy profile can be improved to another strategy profile such that no agent's payoff decreases, and at least one agent's payoff increases \cite{RN97}. A strategy profile $\bs^*$ is \emph{Pareto optimal} if there does not exist any strategy profile that dominates $\bs^*$. A NE is not necessarily Pareto optimal, and a Pareto optimal strategy profile is not necessarily a NE. Pareto optimal strategy profiles can be considered as the solutions preferred by a \emph{benevolent central planner}, who can unilaterally force each agent to choose a particular strategy. In classical game theory, this central planner does not exist, and agents are selfish, so NE is the logical solution concept. 
 
 
 \subsection{Nash Equilibrium and Pareto Optimal Solution to Example \ref{PD}}
@@ -127,9 +116,9 @@ It is quite simple to verify that in the PD game \eqref{PD}, the NE is $(D, D)$.
 \begin{align*}
 \pi_1(s,D) &= \pi_1(\alpha C + (1-\alpha)D,D) \\
 &=\alpha \pi_1(C,D) + (1-\alpha) \pi_1(D,D) \qquad \text{(Payoff of mixed strategy is expectation)} \\
-&= \alpha (-5) + (1-\alpha)(-3) = -3 -2\alpha. \\
+&= \alpha (-5) + (1-\alpha)(-3) = -3 -2\alpha. 
 \end{align*}
-For the strategy to be a NE, it must satisfy the NE condition\eqref{NE}. The strategy corresponding to pure defection, $s^* = D$, satisfies this condition as \\
+For the strategy to be a NE, it must satisfy the NE condition \eqref{NE}. The strategy corresponding to pure defection, $s^* = D$, satisfies this condition as 
 \begin{align*}
     \pi_1(s^*,D) =\pi_1(D,D) = -3 \geq -3-2\alpha  \qquad \forall  \alpha \in [0,1].
 \end{align*}
@@ -138,23 +127,24 @@ Player 1 will only play $D$, and by symmetry, $(D,D)$ is a NE of \eqref{PD}. Not
 
 \subsection{Nash Equilibrium and Pareto Optimal Solution to Example \ref{ToTC}}
 
-The game \ref{ToTC} is the $n$-player extension of the game \ref{PD}. For this game, the NE is $(0,0,\dots,0)$. Once again, this game is symmetric with respect to the player so it suffices to consider the first player. Their strategy set is $S = \{c, c \in [0,1] \}$. For any strategy $c$ in $S$, the payoff when playing $(c,0,0,\dots,0)$ is \\
+The game \ref{ToTC} is the $n$-player extension of the game \ref{PD}. For this game, the NE is $(0,0,\dots,0)$. Once again, this game is symmetric with respect to the player, so it suffices to consider the first player. Their strategy set is $S = \{c, c \in [0,1] \}$. For any strategy $c$ in $S$, the payoff when playing $(c,0,0,\dots,0)$ is 
 \begin{align*}
     \pi_1(c,0,\dots,0) &= -c + \frac{\sum_{j=1}^n rc_j}{n} \\
     &= -c + \frac{rc + 0 + \dots + 0}{n} \\
-    &= c\left(-1+\frac{r}{n}\right)<0 \qquad \text{as $1<r<n$.}
+    &= c\left(-1+\frac{r}{n}\right)\leq0 \qquad \text{as $1<r<n$.}
 \end{align*}
 This is decreasing in $c$, so the NE condition \eqref{NE} holds only for $c=0$. By symmetry, the NE is $(0,0,\dots,0)$. Once again, the NE is Pareto dominated by $(1,1,\dots,1)$. \\
 
 In general, it is much easier to verify a NE than to find them. Techniques for finding a NE include Brown's fictitious play, iterated dominance, and best-response functions \cite{RN99}. These are discussed further in \cite{RN99}. 
 % In Battle of the Sexes, there are three NE. They are (Opera, Opera), (Boxing, Boxing), and the mixed strategy where each players chooses their preferred event $\frac{3}{4}$ of the time. \\
 \subsection{Deficiencies of Classical Game Theory} \label{Differences}
-A key assumption of classical game theory is rational players, and the common knowledge that all other players are rational, \emph{ad infinitum} \cite{RN78}. This form of rationality is known as perfect rationality \cite{RN99}. This assumption is necessary for the existence of a NE for each game, however there are several flaws with the assumption of perfect rationality. The flaws motivate the introduction of evolutionary game theory.
+A key assumption of classical game theory is rational players. In fact, the assumption is perfectly rational players \cite{RN99}. That is, each player is rational, and aware that all other players are rational, \emph{ad infinitum} \cite{RN78}. This assumption is necessary for the existence of a NE for each game, however there are several flaws with the assumption of perfect rationality. The flaws motivate the introduction of evolutionary game theory.
+
 \subsubsection{Differences to Experimental Results}
- Consider a finitely repeated PD game under classical assumptions. Each player knows that the last round they will be defected against, so they will play $D$ in the last round. This backward induction repeats for the penultimate round, so the only NE is pure defection. However, this assumption did not correspond to experimental results in some games \cite{RN99, RN50}. Therefore either the model of the game is incorrect, or human players do not fulfil the model assumptions. From this example, the idea of bounded rationality was proposed. Bounded rationality limits the computational power of each agent when deciding their strategy. Examples of boundedly rational strategy rules are given in Section \ref{UD}. 
+ Consider a finitely repeated PD game under classical assumptions. Each player knows that in the last round they will be defected against, so they will play $D$ in the last round. This backward induction repeats for the penultimate round, so the only NE is pure defection. However, this assumption did not correspond to experimental results in some games \cite{RN99, RN50}. Therefore, either the model of the game is incorrect, or human players do not fulfil the model assumptions. From this example, the idea of bounded rationality was proposed. Bounded rationality limits the computational power of each agent when deciding their strategy. Examples of boundedly rational strategy rules are given in Section \ref{UD}. 
 
 \subsubsection{Game Dynamics}
-Under the assumption of perfect rationality, there are no dynamics to the game, because each player perfectly anticipates all future moves and instantaneously constructs the equilibrium solution. However under a bounded rationality regime, the dynamics of the game become crucial. The model for rationality must consider the agents' memory (knowledge of game history), myope (how long agents think ahead), search strategy, and learning technique. All of these factors influence the dynamics of the game, and better reflect human agents.
+Under the assumption of perfect rationality, there are no dynamics to the game, because each player perfectly anticipates all future moves and instantaneously constructs the equilibrium solution. However, under a bounded rationality regime, the dynamics of the game become crucial. The model for rationality must consider the agents' memory (knowledge of game history), myope (how long agents think ahead), search strategy, and learning technique. All of these factors influence the dynamics of the game, and better reflect human agents.
 
 \subsubsection{Illogical Nash Equilibria}
 The definition of a NE allows for equilibria which appear suboptimal. Consider the two-player matrix game in Table \ref{SG}. 
@@ -168,21 +158,21 @@ The definition of a NE allows for equilibria which appear suboptimal. Consider t
 C & (1,1) & (0,0) \\ \hline
 D & (0,0) & (0,0) \\ \hline
 \end{tabular}
-\caption{Simple Game, from \cite{RN79}.}
+\caption{Simple game, from \cite{RN79}.}
 \label{SG}
 \end{center}
 \end{table}
-Both $(C,C)$ and $(D,D)$ are NE. Yet it is evident that the $(C,C)$ equilibrium should always be preferred. A possible criterion to eliminate the illogical $(D,D)$ NE could be Pareto optimality. However example \ref{PD} demonstrated that the Pareto optimal solution is not always NE. Other examples of \say{illogical} NE are non-credible threats in sequential games such as the market entry game \cite{RN79}. The next section of this review discusses advances in the literature that remedy these flaws. 
+Both $(C,C)$ and $(D,D)$ are NE. Yet it is evident that the $(C,C)$ equilibrium should always be preferred. A possible criterion to eliminate the illogical $(D,D)$ NE could be Pareto optimality. However, example \ref{PD} demonstrated that the Pareto optimal solution is not always NE. Other examples of \say{illogical} NE are non-credible threats in sequential games, such as the market entry game \cite{RN79}. The next section of this review discusses advances in the literature that remedy these flaws. 
 
 
 \section{Evolutionary Game Theory} \label{EGT}
 
-Evolutionary game theory (EGT) develops from the relaxation of the assumption of perfect rationality. The seminal work on EGT was John Maynard Smith's \emph{Evolution and the Theory of Games} \cite{RN99}. In an EGT model, a classical \emph{stage game} is repeated a large number of times $T$. Agents are not perfectly rational, but instead strategies \emph{evolve} according to a game-wide heuristic that simulates evolution. EGT remedies three deficiencies of classical game theory; the unreasonable assumption of perfect rationality, lack of consideration for game dynamics, and lack of equilibria selection in the case of multiple NE \cite{RN99}. For completeness, it should be noted that several authors had proposed refinements of NE before EGT, such as Bayesian NE, risk dominance, and trembling hand perfection \cite{RN39}. EGT achieves the full potential of these refinements and extends them further.  
+Evolutionary game theory (EGT) develops from the relaxation of the assumption of perfect rationality. The seminal work on EGT was John Maynard Smith's \emph{Evolution and the Theory of Games} \cite{RN99}. In an EGT model, a classical \emph{stage game} is repeated a large number of times $T$. Agents are not perfectly rational, but instead strategies \emph{evolve} according to a game-wide heuristic that simulates evolution. EGT remedies three deficiencies of classical game theory: the unreasonable assumption of perfect rationality; lack of consideration for game dynamics; and lack of equilibria selection in the case of multiple NE \cite{RN99}. For completeness, it should be noted that several authors had proposed refinements of NE before EGT, such as Bayesian NE, risk dominance, and trembling hand perfection \cite{RN39}. EGT achieves the full potential of these refinements and extends them further.  
 
  
 % The evolutionary model of the mind is defined by behavioral rules. The population may consist of heterogeneous agents. The strategy evolves as plays of the game endow agents with fitness, which then determines their evolutionary success \cite{RN99}.   \\
 \subsection{Population Games}
-In the early development of evolutionary game theory, games were constructed such that contemporary solution techniques could be applied. Games defined in this manner will be referred to as \emph{population}, or \emph{mean-field} games. \\
+In the early development of evolutionary game theory, games were constructed such that contemporary solution techniques could be applied. Games defined in the following manner will be referred to as \emph{population}, or \emph{mean-field} games. \\
 
  Population games make several key assumptions to allow the behaviour of the population to be investigated analytically. These are: \begin{itemize}
     \item Common payoff function $\pi$,  $\pi_i = \pi$ for all agents $i = 1, \dots, N$. 
@@ -213,7 +203,7 @@ Condition \eqref{ESS1} is often called the \emph{Strict NE condition}, and \eqre
 \begin{align*}
     \pi(C,C) = 1 > \pi(D,C) = 0. \\
 \end{align*}
-On the other hand, $D$ is not an ESS because neither \eqref{ESS1} or \eqref{ESS2} are satisfied. \\
+On the other hand, $D$ is not an ESS because neither \eqref{ESS1} nor \eqref{ESS2} are satisfied. \\
 \begin{align*}
     \pi(D,D) &= 0 \ngtr \pi(D,C) = 0, \text{ and}\\
     \pi(D,D) &= \pi(D,C) \qquad \text{but } \pi(D,C) \ngtr \pi(C,C).
@@ -234,12 +224,12 @@ C & (0,0)  & (-1,1)    \\ \hline
 D & (1,-1) & (-20,-20) \\ \hline
 \end{tabular}
 
-\caption{Chicken. This game is an analogue for nuclear brinksmanship. It was posited in the evolutionary context that animals could either use threat displays like a dove $(C)$, or physical attacks, like a hawk $(D)$, in contesting a shared resource. The problem formulation requires that each actor commit to their choice before seeing the other's move.}
+\caption{Chicken, from \cite{RN78}. This game is an analogue for nuclear brinksmanship. It was posited in the evolutionary context that animals could either use threat displays like a dove $(C)$, or physical attacks, like a hawk $(D)$, in contesting a shared resource. The problem formulation requires that each actor commit to their choice before seeing the other's move.}
 \label{Chicken}
 \end{center}
 \end{table}
 \FloatBarrier
-The pure NE are $(C,D)$, and $(D,C)$. The strategy set is $\Delta(C,D) = \{\alpha C + (1-\alpha) D|$,   $\alpha \in [0,1] \}$. This game is symmetric, so the NE condition \eqref{NE} is checked for player 1 only. \\
+The pure NE are $(C,D)$, and $(D,C)$. The strategy set is $\Delta(C,D) = \{\alpha C + (1-\alpha) D|$,   $\alpha \in [0,1] \}$. This game is symmetric, so the NE condition \eqref{NE} is checked for player 1 only. 
 \begin{align*}
     \pi_1(s,D) &= \alpha\pi_1(C,D) + (1-\alpha)\pi_1(D,D) \\
     &= \alpha (-1) + (1-\alpha)(-20) = -20 + 19\alpha. 
@@ -251,11 +241,11 @@ This is increasing in $\alpha$, so \eqref{NE} only holds for $\alpha = 1$, which
 \end{align*}
 This is decreasing in $\alpha$, so $\eqref{NE}$ only holds for $\alpha = 0$, which is playing $D$ always. Finally, there is a mixed equilibrium where each player plays $C$ with proportion $\alpha^* = 0.95$. To prove this strategy profile is a NE, first note that any mixed equilibria, denoted $( s^i, s^{-i})$ must satisfy the condition that the agent $i$ is indifferent between their pure strategy profiles. 
 \subsubsection{Lemma: Mixed Strategy Equilibrium}
-\emph{In a mixed strategy NE $ = (s_i,s_{-i})$, then each pure strategy being played with positive probability, $s_j^i$ such that $\alpha_j^i>0$, must have the same payoff against the mixed strategy profile $s_{-i}$.  }
+\emph{In a mixed strategy NE $ = (s^i,s^{-i})$, then each pure strategy being played with positive probability, $s_j^i$ such that $\alpha_j^i>0$, must have the same payoff against the mixed strategy profile $s^{-i}$.  }
 \subsubsection{Proof}
- Without loss of generality, suppose player 1 is playing a mixed strategy $\alpha^* \in (0,1)$. Their opponents are playing $\mathbf{s^{-i}}$, also mixed. For contradiction's sake, suppose there exist pure strategies $s_{j_1}^i, s_{j_2}^i$ such that $\alpha_{j_1}^i, \alpha_{j_2}^i >0$ and $\pi_i(s_{j_1}^i,\mathbf{s^{-i}}) > \pi_i(s_{j_2}^i,\mathbf{s^{-i}})$. Then the strategy modification of playing $s_{j_1}^i$ with probability $\alpha_{j_1}^i + \alpha_{j_2}^i$, and not playing $s_{j_2}^i$ yields a higher payoff. This is a contradiction, as the original strategy was a NE and satisfied \eqref{NE}. Hence any mixed strategy NE $(s_i,s_{-i})$ requires that $\pi_i(s_j^i, \mathbf{s^{-i}})$ is constant for all $s_j^i$ with $\alpha_j^i>0$. \halmos \\
+ Without loss of generality, suppose player 1 is playing a mixed strategy $\alpha^* \in (0,1)$. Their opponents are playing $\mathbf{s^{-i}}$, also mixed. For contradiction's sake, suppose there exist pure strategies $s_{j_1}^i, s_{j_2}^i$ such that $\alpha_{j_1}^i, \alpha_{j_2}^i >0$ and $\pi_i(s_{j_1}^i,\mathbf{s^{-i}}) > \pi_i(s_{j_2}^i,\mathbf{s^{-i}})$. Then the strategy modification of playing $s_{j_1}^i$ with probability $\alpha_{j_1}^i + \alpha_{j_2}^i$, and not playing $s_{j_2}^i$ yields a higher payoff. This is a contradiction, as the original strategy was a NE and satisfied \eqref{NE}. Hence any mixed strategy NE $(s^i,s^{-i})$ requires that $\pi_i(s_j^i, \mathbf{s^{-i}})$ is constant for all $s_j^i$ with $\alpha_j^i>0$. \halmos \\
 
-Now to solve for the mixed equilibrum of Table \ref{Chicken}. Once again, it suffices to check \eqref{NE} for player 1. From the lemma, the mixed strategy equilibrium requires $\pi_1(C,s^{-i}) = \pi_1(D,s^{-i})$. 
+Now to solve for the mixed equilibrium of Table \ref{Chicken}. Once again, it suffices to check \eqref{NE} for player 1. From the lemma, the mixed strategy equilibrium requires $\pi_1(C,s^{-i}) = \pi_1(D,s^{-i})$. 
 Consider player 2 playing any $\alpha \in [0,1]$. \\
 \begin{align*}
     \pi_1(C,\alpha C + (1-\alpha)D) &= \alpha (0) + (1-\alpha)(-1) = \alpha -1 \\
@@ -283,13 +273,14 @@ An evolutionary game requires a strategy update rule. Depending on the model, th
     \dot{\rho_i} \propto \rho_i(\pi(s_i, s) - \pi(s, s) ) \qquad\forall i = 1, \dots, n.
 \end{align}
 
+Replicator dynamics specified in this fashion are called population replicator dynamics. This is because each variable is measured at a population level. Population replicator dynamics are extended to local, or agent-based, replicator dynamics in Section \ref{UD}. 
 
 \subsection{Example: Axelrod's Iterated PD} \label{IPD}
-An early example of a population game came from Axelrod's computer tournaments \cite{RN89}. In the late 1970's, political scientist Robert Axelrod invited contestants to submit strategies to play the iterated PD. The first round received 14 submissions, and the second round received 62 entries from across six countries, including John Maynard Smith (who came 24th). Axelrod then extended the second round into a mean-field game, simulating 1000 generations. Each entry was paired with every other entry, as well as a clone of itself and a strategy playing purely randomly. The length of the game was chosen such that the probability of it ending after a given play was 0.00346, with an expected median length of 200. Strategies were allowed to consider the entire history of plays up to the current round. \\
+An early example of a population game came from Axelrod's computer tournaments \cite{RN89}. In the late 1970s, political scientist Robert Axelrod invited contestants to submit strategies to play the iterated PD. The first round received 14 submissions, and the second round received 62 entries from across six countries, including John Maynard Smith (who came 24th). Axelrod then extended the second round into a mean-field game, simulating 1000 generations. Each entry was paired with every other entry, as well as a clone of itself and a strategy playing purely randomly. The length of the game was chosen such that the probability of it ending after a given play was 0.00346, with an expected median length of 200. Strategies were allowed to consider the entire history of plays up to the current round. \\
 
 One NE of the iterated PD is to always defect. Another NE of the iterated PD is the so-called grim trigger (GT), that cooperates until any player defects, and then always defects. For games expected to be sufficiently long, this is a NE. Of course, some participants submitted strategies that were not NE. For example, tit-for-tat (TFT) initially plays $C$, then copies the opponent's previous move. B\H{o}rufsen (BF) plays TFT except for a check for 3 consecutive alternating moves, in which case it reverts to $C$ and continues. For further specification of the strategies, refer to \cite{RN89}. Axelrod used replicator dynamics to simulate the evolution of these strategies over 1000 generations, shown in Figure \ref{Axelrod}. Strategies are labelled according to their rank in the tournament. \\
 \FloatBarrier
-\graphCap{axelrod.png}{1}{Axelrod's Population Game, from \cite{RN89}. Rule 1 is TFT, Rule 3 is BF.}{Axelrod}
+\graphCap{axelrod.png}{1}{Axelrod's population game, from \cite{RN89}. Rule 1 is TFT, rule 3 is BF.}{Axelrod}
 \FloatBarrier
 
 Although TFT won all three rounds of Axelrod's tournament, later authors have proven that it is not an ESS, in the sense that a population playing purely TFT can be successfully invaded by another strategy \cite{RN90}.
@@ -311,11 +302,11 @@ In some cases, replicator dynamics can be solved analytically using mean-field t
 where the constants have been normalised as follows: $r_i = \pi(s_i,s_n) - \pi(s_n,s_n)$ and $c_{ij} = \pi(s_i,s_j) - \pi(s_n,s_j)$. \\
 
 
-This theorem allows the mathematical analysis of Lotka--Volterra models to be applied to game theory. With the exception of the paper \cite{RN75}, population games do not consider the network structure that dictates the interaction between agents. Population games assume either a complete graph \cite{RN67}, or random uniform sampling across the agents \cite{RN47}. The 2008 paper by Dunia \cite{RN75} demonstrates the link between stochastic dominance of a graph and mean-field approximations on the \emph{tragedy of the commons} game. \\
+This theorem allows the mathematical analysis of Lotka--Volterra models to be applied to game theory. Except for the paper \cite{RN75}, population games do not consider the network structure that dictates the interaction between agents. Population games assume either a complete graph \cite{RN67}, or random uniform sampling across the agents \cite{RN47}. The 2008 paper by Dunia \cite{RN75} demonstrates the link between stochastic dominance of a graph and mean-field approximations on the \emph{tragedy of the commons} game. \\
 
 Mean-field theory fails to capture certain key elements of evolutionary game theory. Firstly, the assumption of infinite population size affects the dynamics of games. Secondly, population games neglect the network on which agents interact. In the last 20 years, this has become a crucial specification of a model. \\
 
-Mean-field theory makes several strict assumptions about an evolutionary game. The assumption of infinite agents is one, as is the implicit assumption of a complete interaction graph. These assumptions can be relaxed, however analytical solution techniques can no longer be applied. This leaves agent-based modelling as the major solution technique. \\ 
+Mean-field theory makes several strict assumptions about an evolutionary game. The assumption of infinite agents is one, as is the implicit assumption of a complete interaction graph. These assumptions can be relaxed, however analytical solution techniques can no longer be applied. This leaves agent-based modelling as the major solution technique. 
 
 
 \section{Agent-Based Modelling} \label{ABM}
@@ -333,7 +324,17 @@ An \emph{agent-based} game is an evolutionary game defined at a microscopic leve
 The imposition of only allowing agents to play pure strategies simplifies the simulation of models. A mixed strategy equilibrium is still possible, and is found by an equilibrium proportion of agents playing each equilibrium strategy. 
 
 \subsection{Update Dynamics} \label{UD}
-Agent-based games allow for more specification of the update dynamics. As well as the replicator dynamics that generally characterise population games, alternate strategy update rules, collated from \cite{RN43}, are \emph{imitation of the best}, in which a small fraction of the population recreate the strategy of the highest ranked agent, \emph{local replicator dynamics}, which is replicator dynamics restricted to a neighbourhood of each agent, and the \emph{Fermi rule}. Imitation dynamics are often used for the growth of cultural phenomenon, as opposed to biological growth rates where replicator dynamics are standard \cite{RN30}. The \emph{Fermi rule}, from \cite{RN43}, is explained momentarily. It considers agent $i$ playing $s_i$ and a randomly chosen neighbour playing $s_j$. The transition probability is defined as 
+Agent-based games allow for more specification of the update dynamics. As well as the replicator dynamics that generally characterise population games, there are alternate strategy update rules. Collated from \cite{RN43}, they are \emph{imitation of the best}, in which a small fraction of the population recreate the strategy of the highest ranked agent, \emph{local replicator dynamics}, which is replicator dynamics restricted to a neighbourhood of each agent, and the \emph{Fermi rule}. Imitation dynamics, from the same family as replicator dynamics, are often used for the growth of cultural phenomenon, as opposed to biological growth rates where replicator dynamics are standard \cite{RN30}.\\
+
+Agent-based replicator and imitation dynamics are presented in \cite{RN30}. The update process is synchronous, in that each agent updates at the same time. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates the switching rate $q_{i\to j}$, \\
+
+\begin{equation} \label{rep}
+q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
+
+Replicator dynamics correspond to $\alpha = 1$ and imitation dynamics correspond to $\alpha = 0$. It is simple to see that this replicator dynamics mirrors the population version \eqref{Replicator}, as the switching rate is proportional to the difference in payoffs. In this formulation, $\Delta$ scales the difference so that $0 \leq q_{i\to j} \leq 1$. Each agent then changes from strategy $i$ to strategy $j$ if $q_{i\to j} \geq R,$ $R  \sim \mathsf{U}(0,1)$. A strategy $i$ has an \emph{evolutionary advantage} over strategy $j$, denoted $j \prec i$, if $q_{j \to i} >q_{i \to j}$. The model given in \eqref{rep} is used as the basis for simulation in this thesis.    \\
+
+
+The \emph{Fermi rule}, from \cite{RN43}, is explained momentarily. It considers agent $i$ playing $s_i$ and a randomly chosen neighbour playing $s_j$. The transition probability is defined as 
 \begin{align*}
     \mathbb P(s_i \to s_j) = \frac{1}{1+\exp(-\beta(\pi_j - \pi_i))},
 \end{align*}
@@ -354,19 +355,11 @@ To iterate the importance of the specified update dynamics, Nau and Roos \cite{R
     \item R--WR: risky in the first round, and if it is a win then risky again, otherwise safe.
     \item R--WS: risky in the first round, and if it is a win then safe, otherwise risky.
 \end{itemize}
-Obviously these strategies all have the same expected value for $p=0.5$. The paper implemented agent-based replicator $(\alpha = 1)$ and imitation $(\alpha = 0)$ dynamics. After each round, every agent $i$ randomly chooses another agent $j$ from the population, and calculates the switching rate $q_{i\to j}$, \\
-
-\begin{equation} \label{rep}
-q_{i\to j} = \Bigg[ \frac{|\pi_j - \pi_i|}{\Delta} \Bigg]^\alpha \mathbbm{1}_{\{\pi_j>\pi_i\}}, \quad  0 \leq \alpha \leq 1.\end{equation} 
-
-In this formulation, $\Delta$ scales the difference so that $0 \leq q_{i\to j} \leq 1$, and $\Delta = 16$ in this two-stage lottery game. Each agent then changes from strategy $i$ to strategy $j$ if $q_{i\to j} \geq R,$ $R  \sim \mathsf{U}(0,1)$. A strategy $i$ has an \emph{evolutionary advantage} over strategy $j$, denoted $j \prec i$, if $q_{j \to i} >q_{i \to j}$.    \\
-
-
-Under replicator dynamics, the expected growth rate $\mathbb E[\pi_i - \pi_j] = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However under imitation dynamics, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,\\
+Obviously, these strategies all have the same expected value for $p=0.5$. Under the replicator dynamics given in \eqref{rep}, the expected growth rate $\mathbb E[\pi_i - \pi_j] = 0$ for all strategies $i,j$, so the initial equilibrium generally persists. This is supported by simulation \cite{RN30}. However, under imitation dynamics, the growth rate of a strategy is proportional to its probability of beating another strategy, rather than its expectation. Denote $W_i$ the event that the $i$th lottery is won, and $L_i$ its complement. So then,
 \begin{align*}
     \mathbb P(\textrm{R--WS}> \textrm{SS}) &= \mathbb P(W_1) = 0.5, \\
     \mathbb P(\textrm{SS}>\textrm{R--WS}) &= \mathbb P(L_1 \cap L_2) = 0.25, \\
-    \mathbb P(\textrm{R--WS} = \textrm{SS}) &= \mathbb P(L_1 \cap W_2) = 0.25.\\
+    \mathbb P(\textrm{R--WS} = \textrm{SS}) &= \mathbb P(L_1 \cap W_2) = 0.25.
 \end{align*}
 So R--WS is imitated twice as often as SS under pairwise comparison (in the case of a tie, the winner is chosen by a coin flip). The other combinations are not computed here, but one can verify that SS, RR, and R--WR should go extinct. This was verified under simulation, and is plotted in Figure \ref{Nau} from \cite{RN24}, which was a conference presentation before the paper \cite{RN30}. 
 \FloatBarrier
@@ -382,24 +375,24 @@ As early as 1984, Axelrod described an agent-based model for playing the repeate
 
  Huberman and Glance, 1993, claimed that a spatial grid was not a plausible model \cite{RN63}, because it relied on a global clock, known to all agents, to update their strategies collectively. In the case where strategies were updated \emph{asynchronously} --- iteratively picking an individual at random and then updating their strategy, the long-run equilibria was always defection. \\
  
- Fortunately, this was only true in a subset of the game parameter space. The field of EGT rapidly started to expand. The paper \cite{RN45} considered expanding from pairwise 2-player games to 3-player games on a hexagonal lattice, where each agent hosts one game with all neighbours, and also plays in games they are invited to. They also introduced the opportunity to punish defection. \cite{RN66} introduced the idea of a loner strategy, whereby any game involving a loner is cancelled and each player receives a small payoff. In  \cite{RN67}, the loner strategy was considered for a well-mixed population, and extended to regular lattices in \cite{RN66}. \\
+ Fortunately, this was only true in a subset of the game parameter space. The field of EGT rapidly started to expand. The paper \cite{RN45} considered expanding from pairwise 2-player games to 3-player games on a hexagonal lattice, where each agent hosts one game with all neighbours, and also plays in games they are invited to. They also introduced the opportunity to punish defection. \cite{RN66} introduced the idea of a loner strategy, whereby any game involving a loner is cancelled, and each player receives a small payoff. In  \cite{RN67}, the loner strategy was considered for a well-mixed population, and extended to regular lattices in \cite{RN66}. \\
  
- Around the same time, Barab\'{a}si and Albert published \emph{Emergence of Scaling in Random Networks} \cite{RN55} and Watts and Strogatz published \emph{Collective Dynamics of \say{Small-World} Networks} \cite{RN58}. These papers were to revolutionise models of social networks, and agent-based models were not immune. The next section explores the literature of random graphs as models for social networks. \\
+ Around the same time, Barab\'{a}si and Albert published \emph{Emergence of Scaling in Random Networks} \cite{RN55} and Watts and Strogatz published \emph{Collective Dynamics of \say{Small-World} Networks} \cite{RN58}. These papers were to revolutionise models of social networks, and agent-based models were not immune. The next section explores the literature of random graphs as models for social networks. 
  
  \section{Random Graphs as Models for Social Networks} \label{RG}
   The modern study of agent-based modelling requires an underlying graph structure with agents inhabiting nodes. The next section examines the literature of random graphs as models for social networks. First Erd\H{o}s--R\'enyi graphs are introduced as background for random graphs, then the history of random graphs is explored, leading to the development of random graphs as models for social networks. 
  
  \subsection{Erd\H{o}s--R\'enyi Graphs}
- The first random graph was proposed by Erd\H{o}s and R\'enyi at the end of the 1950s \cite{RN53}. In fact, two alternate models of a random graph were suggested. Firstly, they considered a set of vertices, enumerated $V = \{1,2,\dots,n\}$ and a fixed number of edges $M$. Then all possible graphs with $n$ vertices and $M$ edges were enumerated, and the random graph is chosen uniform randomly from this collection. This is called a $G(n,M)$ model. The second formulation, denoted $G(n,p)$ also requires the vertex set $V$, but edges are created independently. It is also called the Erd\H{o}s--R\'enyi--Gilbert model, after Gilbert who proposed this model independently \cite{RN64}. A parameter $p$ is given, and each vertex pair $(i,j)$ is independently connected by an edge with probability $p$ \cite{RN56}. The expectation for the number of edges in the $G(n,p)$ graph, $\X [E]$, is \\
+ The first random graph was proposed by Erd\H{o}s and R\'enyi at the end of the 1950s \cite{RN53}. In fact, two alternate models of a random graph were suggested. Firstly, they considered a set of vertices, enumerated $V = \{1,2,\dots,n\}$ and a fixed number of edges $M$. Then all possible graphs with $n$ vertices and $M$ edges were enumerated, and the random graph is chosen uniform randomly from this collection. This is called a $G(n,M)$ model. The second formulation, denoted $G(n,p)$ also requires the vertex set $V$, but edges are created independently. It is also called the Erd\H{o}s--R\'enyi--Gilbert model, after Gilbert, who proposed this model independently \cite{RN64}. A parameter $p$ is given, and each vertex pair $(i,j)$ is independently connected by an edge with probability $p$ \cite{RN56}. The expectation for the number of edges in the $G(n,p)$ graph, $\X [E]$, is 
  \begin{align*}
      \X [E] = p {n \choose 2} = p\frac{n(n-1)}{2}.
- \end{align*}The average degree, $\X [K]$ can be estimated as \\
+ \end{align*}The average degree, $\X [K]$ can be estimated as 
  \begin{align*}
      \X [K] = \frac{2}{n} \X [E] = p(n-1).
  \end{align*}
  Erd\H{o}s--R\'enyi graphs were developed as random graphs, not a model for social networks. As early as 1967, Davis, Leinhardt and others \cite{RN64} realised that real-world networks exhibited different characteristics to those observed in Erd\H{o}s--R\'enyi graphs. A triad, a complete subgraph of three nodes, is much more common in observed social networks than in Erd\H{o}s--R\'enyi graphs. Key characteristics of a graph are the degree distribution, $P(k) = \Pm [K=k]$, clustering coefficient, $C_\Delta$, and average shortest path length, $L$ \cite{RN53}. These are enumerated in the later section \ref{CGC}. \\
  
- Famously, one's Erd\H{o}s and Bacon numbers are indicators of low $L$ in real-world citation and filmography networks respectively. Erd\H{o}s and Reyni did not seek to model real-world networks, but mathematicians attempting to do so needed to develop more realistic models of real-world networks.\\
+ Famously, one's Erd\H{o}s and Bacon numbers are indicators of low $l$ in real-world citation and filmography networks respectively. Erd\H{o}s and Reyni did not seek to model real-world networks, but mathematicians attempting to do so needed to develop more realistic models of real-world networks.\\
  
  
  
@@ -407,19 +400,16 @@ As early as 1984, Axelrod described an agent-based model for playing the repeate
  \subsection{Small-World Networks}
 In 1998, Watts and Strogatz sought to model real-world networks more accurately than $G(n,p)$ graphs. They noticed that $G(n,p)$ graphs do not generate local clustering. Therefore their proposed model, designated here a \emph{small-world} model, seeks to achieve a more accurate clustering coefficient \cite{RN58}. The term small-world refers to the fact that the average shortest path length $L$ is very low relative to the number of nodes $N$. This was expounded in Watts' popular science book, \say{Six Degrees: The Science of a Connected Age} which popularised the Bacon number \cite{RN57}.   \\
 
-The algorithm to construct a small-world graph $\mathrm{WS}(n,\kappa,\beta)$ starts with a regular ring lattice with $n$ nodes, even mean degree $\kappa$ and each node connected to exactly $\kappa$ closest neighbours. Then for every node $i$, proceed to rewire each edge $j$ with probability $\beta$. That is, with probability $1-\beta$, it remains unaltered, and with probability $\beta$ the edge is deleted and replaced with an edge connecting $i$ and $l$, with $l$ chosen randomly amongst all nodes except for $i$ and $j$ \cite{RN58}. \\
+The algorithm to construct a small-world graph $\mathrm{WS}(n,\kappa,\beta)$ starts with a regular ring lattice with $n$ nodes, even mean degree $\kappa$ and each node connected to exactly $\kappa$ closest neighbours. Then for every node $i$, proceed to rewire each edge $j$ with probability $\beta$. That is, with probability $1-\beta$, it remains unaltered, and with probability $\beta$ the edge is deleted and replaced with an edge connecting $i$ and $j'$, with $j'$ chosen randomly amongst all nodes except for $i$ and $j$ \cite{RN58}. \\
 
 If $n \gg \kappa \gg \ln(n) \gg 1 $, then the graph will almost certainly be connected. Watts and Strogatz observed that the clustering coefficient only falls with high $\beta$, and this produces the small-world phenomenon. These characteristics are shown in Figure \ref{SWG}, from \cite{RN93}. In this case, the graph is parameterised by $p$ instead of $\beta$, and the characteristics are scaled by their theoretical maximum. The graph shows that there is a possible selection for $p$ with relatively high clustering coefficient and low average shortest path length.  \\
 \FloatBarrier
-\graphCap{SWG.png}{0.8}{Average Shortest Path Length and Clustering Coefficient of Small-World Graphs, parametrised by $p$ and scaled. From \cite{RN93}.}{SWG}
+\graphCap{SWG.png}{0.8}{Average shortest path length and clustering coefficient of small-world graphs, parameterised by $p$ and scaled. From \cite{RN93}.}{SWG}
 \FloatBarrier
 In the paper, the authors modelled the spread of an infectious disease on a small-world graph relative to a $G(n,p)$ graph, and demonstrated that the average number of time-steps to infect the whole graph decreased. As an extension, they also modelled the iterated PD on the graph, and used TFT as well as a mutant. They found the average contribution level decreasing in $\beta$ \cite{RN58}. \\
 
-Small-world graphs accurately modelled the clustering coefficient of real-world networks, however they did not follow the degree distribution of real-world networks. In fact, their degree distribution is the Dirac-delta function centered at $\kappa$, which creates a homogenous network, as opposed to the power-law distribution of real-world networks. Only a year later, Barab\'{a}si and Albert used preferential attachment to model the degree distribution of real-world networks. \\
- 
- 
- 
- 
+Small-world graphs accurately modelled the clustering coefficient of real-world networks, however they did not follow the degree distribution of real-world networks. In fact, their degree distribution is the Dirac-delta function centered at $\kappa$, which creates a homogenous network, as opposed to the power-law distribution of real-world networks. Only a year later, Barab\'{a}si and Albert used preferential attachment to model the degree distribution of real-world networks.
+
  
 \subsection{Preferential Attachment Model} \label{BA}
 While Watts--Strogatz rectified the low clustering coefficient of Erd\H{o}s--R\'enyi graphs, Barab\'{a}si and Albert developed a graph model that mimics the degree distribution of real-world graphs \cite{RN55}. Real-world graphs exhibit a scale-free power law degree distribution. Some examples are citation links and pages on the internet \cite{RN55}. According to \cite{RN56}, the original paper used erroneous data for their model of the internet, and in fact underestimated the likelihood of high-degree nodes on the internet. \\
@@ -428,7 +418,7 @@ There are two keys to a Barab\'{a}si--Albert $\mathrm{BA}(n,m)$ model. These are
 \begin{align*}
     p_i = \frac{K_i}{\sum_j K_j},
 \end{align*}
-where the sum is taken over all pre-existing nodes $j$. Remarkable to the BA model is that it seems to model the \emph{process} in which real-world networks are created, as well as the result \cite{RN55}. However the BA model does not perfectly represent real-world networks. In the generating process, the degree of an added node is fixed at $m$, and therefore each node has degree of at least $m$. This is an artifical minimum degree which does not correspond to real-world networks. \\
+where the sum is taken over all pre-existing nodes $j$. Remarkable to the BA model is that it seems to model the \emph{process} in which real-world networks are created, as well as the result \cite{RN55}. However, the BA model does not perfectly represent real-world networks. In the generating process, the degree of an added node is fixed at $m$, and therefore each node has degree of at least $m$. This is an artificial minimum degree which does not correspond to real-world networks. \\
 
 Barab\'{a}si, along with Bianconi, \cite{RN59} later published a paper that considers the fitness of a node, $\eta_i$, which can represent any attractive quality. Then the probability a new node is connected to node $i$ is 
 \begin{align*}
@@ -439,13 +429,13 @@ This is an example of the fitter-gets-richer phenomenon that quantitatively mode
 \subsection{Extensions}
 Since the development of the BA model, the idea of growth models has been explored. Antonioni and Tomassini \cite{RN51} used a growth model in two-dimensional unitary space to attain a higher clustering coefficient. The $n_0$ nodes are generated randomly in $[0.45,0.55]^2$, and then each additional node is generated randomly in $[0,1]^2$. Each additional node is connected to an existing node according to the BA algorithm with probability $\alpha$, or added to its closest Euclidean neighbour with probability $(1-\alpha)$. This generates a higher clustering coefficient than the original BA model \cite{RN51}.  An $\alpha$ of 0.1 is a good approximation for empirically observed networks. \\  
 
-Gabel and Redner \cite{RN60} questioned how an incoming node can \emph{see} the degree distribution of the whole graph to correctly \emph{calculate} the probabilities. Instead, they propose that each incoming node is randomly assigned to a target node, and it joins that target node with probability $1-r$, otherwise it joins the parent of the target node. This local growth model with fixed $r$ is equivalent to the BA model. If $r$ is a decreasing function of the parent's node, then sublinear preferential attachment is achieved, which is also found in empirical studies. Finally, they prove that superlinear preferential attachment is not possible under local redirection. This is evidence for the hypothesis that real-world graphs grow with agents only having local knowledge. Furthermore, it is more efficient to simulate network growth \cite{RN60}. 
+Gabel and Redner \cite{RN60} questioned how an incoming node can \emph{see} the degree distribution of the whole graph to correctly calculate the probabilities. Instead, they propose that each incoming node is randomly assigned to a target node, and it joins that target node with probability $1-r$, otherwise it joins the parent of the target node. This local growth model with fixed $r$ is equivalent to the BA model. If $r$ is a decreasing function of the parent's node, then sublinear preferential attachment is achieved, which is also found in empirical studies. Finally, they prove that superlinear preferential attachment is not possible under local redirection. This is evidence for the hypothesis that real-world graphs grow with agents only having local knowledge. Furthermore, it is more efficient to simulate network growth \cite{RN60}. 
 
 
 
 \subsection{Common Graph Characteristics} \label{CGC}
 
-There are three key characteristics of a graph that will be discussed. They are the degree distribution $\mathbb P(K_i = k)$, clustering coefficient $C_\Delta$, and average shortest path length $(L)$. The degree distribution is the probability that a randomly chosen node $i$ has degree $k$. The clustering coefficient $C_\Delta = n^{-1}\sum_{i=1}^n C_{\Delta_i}$, where each $C_{\Delta_i}$ is calculated as $$
+There are three key characteristics of a graph that will be discussed. They are the degree distribution $\mathbb P(K_i = k)$, clustering coefficient $C_\Delta$, and average shortest path length $L$. The degree distribution is the probability that a randomly chosen node $i$ has degree $k$. The clustering coefficient $C_\Delta = n^{-1}\sum_{i=1}^n C_{\Delta_i}$, where each $C_{\Delta_i}$ is calculated as $$
  C_{\Delta_i} = \frac{\hat{E_i}}{K_i(K_i-1)}$$ where $\hat{E_i}$ is the number of edges amongst neighbours of $i$. Finally, the average shortest path length is the average of every pair of nodes' minimum distance $D(i,j)$. This is $$D(i,j) = \min_{\text{paths  } i \to j} |\text{path}|,$$ $$L = {n\choose 2} ^{-1}\sum_{i=1, j=1, i \neq j}^{(n,n)} D(i,j). $$ The key results for $G(n,p)$, $\mathrm{WS}(n,\kappa,\beta)$, and $\mathrm{BA}(n,m)$ are summarised. \emph{Small-world} graphs are split into two cases, as $\beta \to 0$ and $\beta \to 1$ respectively. 
  
  \FloatBarrier
@@ -458,14 +448,15 @@ There are three key characteristics of a graph that will be discussed. They are 
 $G(n,p), \mathrm{WS}(n,\kappa,\beta \to 1)$ & ${{n-1}\choose k} p^k (1-p)^{n-1-k}$  & $C_\Delta = \frac{\kappa}{n-1}$  &  $ L\propto \frac{\ln n}{\ln \kappa}$ \\ \hline
 $\mathrm{WS}(n,\kappa,\beta \to 0)$ & $\delta_\kappa$& $C_\Delta \to \frac{3(\kappa-2)}{4(\kappa-1)}$& $L \propto \frac{n}{2\kappa}$  \\ \hline 
 %$WS(n,K,\beta \to 1)$ & TBA&  $C \to \frac{K}{n-1}$ &  $ l\propto \frac{\ln n}{\ln K}$ \\ \hline
-$\mathrm{BA}(n,m)$ & $\frac{2m(m+1)}{k(k+1)(k+2)} \propto k^{-3}$ & $C_\Delta = \frac{\ln(n)^2}{n}$ &$\lim_{n \to \infty}L \to \frac{\ln (n)}{\ln(\ln(n))} $ \\ \hline
+$\mathrm{BA}(n,m)$ & $ \propto k^{-3}$ & $C_\Delta = \frac{\ln(n)^2}{n}$ &$\lim_{n \to \infty}L \to \frac{\ln (n)}{\ln(\ln(n))} $ \\ \hline
 \end{tabular}
 \end{center}
-\caption{Common Graph Characteristics. Results for the $G(n,p)$, $\mathrm{WS}(n,\kappa,\beta)$, and $\mathrm{BA}(n,m)$ graphs come from \cite{RN53, RN58, RN94, RN95, RN96}. 
+\caption{Common graph characteristics. Results for the $G(n,p)$, $\mathrm{WS}(n,\kappa,\beta)$, and $\mathrm{BA}(n,m)$ graphs come from \cite{RN53, RN58, RN94, RN95, RN96}. 
 }
 \label{CGCG}
 \end{table}
 \FloatBarrier
+Table \ref{CGCG} illustrates the importance of the choice of parameter $\beta$ in the WS model. For $\beta \to 1$ and large $n$ relative to the mean degree, the clustering coefficient goes to 0. However, for $\beta \to 0$, the clustering coefficient remains high. However this comes at a sacrifice, because the average shortest path length requires the presence of these rewired links to remain low. It is also important that the clustering coefficient of a BA model is decreasing in $n$, and also goes to 0. These graphs represent different types of social networks. In a social network where links require some commitment, such as authoring a paper together, there are physical constraints on the size of a node that prevent a power-law degree distribution. For this reason, the WS model is better for that network. On the other hand, where popular nodes attract more connection, such as a citation network, the BA model is a stronger fit \cite{RN95}. 
 
 
  
@@ -473,7 +464,7 @@ $\mathrm{BA}(n,m)$ & $\frac{2m(m+1)}{k(k+1)(k+2)} \propto k^{-3}$ & $C_\Delta = 
  Now there is sufficient background to examine EGT on graphs. In particular, agent-based evolutionary games are examined on different graph models. The following section gives two simple results, then the current literature is explored. Some papers modify the stage game, whereas other papers explore variations on graph models, including graphs that vary over time. 
  \subsection{Simple Results} \label{Simple}
 
- Lemma \ref{connected} links the classical and evolutionary models of the linear public goods game. In the classical model, all agents play at once, and the only NE is full defection for $r<n$. The classical framework implicitly plays the game on a complete graph, as every agent interacts with all other agents. Lemma \ref{connected} shows that the same model, but with EGT update dynamics (replicator and imitation), also results in full defection. It is the confluence of EGT and a graph model that allows the growth of contribution. The graph models creates subgroups of contribution, which can locally influence defectors without having to support the whole population. Lemma \ref{connected} motivates the inclusion of random graphs into the model for EGT.\\
+ Lemma \ref{connected} links the classical and evolutionary models of the linear public goods game. In the classical model, all agents play at once, and the only NE is full defection for $r<n$. The classical framework implicitly plays the game on a complete graph, as every agent interacts with all other agents. Lemma \ref{connected} shows that the same model, but with EGT update dynamics (replicator and imitation), also results in full defection. It is the confluence of EGT and a graph model that allows the growth of contribution. The graph models create subgroups of contribution, which can locally influence defectors without having to support the whole population. Lemma \ref{connected} motivates the inclusion of random graphs into the model for EGT.
 
 \newtheorem{lemma_connected}[theorem]{Lemma} 
 \begin{lemma_connected}
@@ -483,13 +474,13 @@ Consider the payoff of a contributor on the complete graph in time period $t$, a
 
 Now consider the time to reach equilibrium. Denote $q_{n_c}$ the probability that a given cooperator $i$ changes to defection in a given generation. Then  $$q_{n_c} = \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) = \mathbb P(c_{\text{nbr},t} = 0)\mathbb P (c_{i,t+1} = 0 | c_{i,t} =1, c_{\text{nbr}, t}=0), $$ where $c_{\text{nbr},t}$ is the contribution of the randomly selected neighbour in the reproduction step. Each of these terms is calculable, \\
 \begin{align}  \label{lemma_p}
-    \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) &= \frac{n-n_c}{n} \min( \Bigg[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Bigg]^\alpha, 1)\\
-    &= \frac{n-n_c}{n} \min(\Bigg[ \frac{\tfrac{rn_c}{n} - \tfrac{rn_c}{n} +n}{\tfrac{rn_c}{n}} \Bigg]^\alpha, 1) \nonumber\\
-    &= \frac{n-n_c}{n}\min(\Bigg[ \frac{n^2}{rn_c} \Bigg]^\alpha,1) \nonumber\\ \nonumber
+    \mathbb P(c_{i,t+1} = 0 | c_{i,t} = 1) &= \frac{n-n_c}{n} \min\left( \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha, 1\right)\\
+    &= \frac{n-n_c}{n} \min\left(\Big[ \frac{\tfrac{rn_c}{n} - \tfrac{rn_c}{n} +n}{\tfrac{rn_c}{n}} \Big]^\alpha, 1\right) \nonumber\\
+    &= \frac{n-n_c}{n}\min\left(\Big[ \frac{n^2}{rn_c} \Big]^\alpha,1\right) \nonumber
 \end{align}
-For replicator dynamics, the parameter $\alpha = 1$, so the probability of a given agent changing strategies is $ q_{n_c} = \frac{n-n_c}{n}\min([ \frac{n^2}{rn_c} ],1)$. For imitation dynamics, $\alpha = 0$, and the probability becomes $q_{n_c} = \frac{n-n_c}{n}$. In the implementation described in \cite{RN30}, the transition probability $$\mathbb P (c_{i,t+1} = 0 | c_{i,t} =1, c_{\text{nbr}, t}=0) = \mathbb P (R \leq \Bigg[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Bigg]^\alpha), \quad R  \sim \mathsf{U}(0,1).$$ The Lottery game ensured $\pi_{i,t}\geq 0 \forall i,t$ and hence $ 0 \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha \leq 1$, so $\mathbb P (R \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha) = \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha$. However in the linear public goods game, it is possible for $\pi_{i,t}< 0$, and therefore $$\mathbb P (R \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha) = \min(\Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha, 1). $$ This explains the substitution in equation \eqref{lemma_p}.   \\
+For replicator dynamics, the parameter $\alpha = 1$, so the probability of a given agent changing strategies is $ q_{n_c} = \frac{n-n_c}{n}\min([ \frac{n^2}{rn_c} ],1)$. For imitation dynamics, $\alpha = 0$, and the probability becomes $q_{n_c} = \frac{n-n_c}{n}$. In the implementation described in \cite{RN30}, the transition probability $$\mathbb P (c_{i,t+1} = 0 | c_{i,t} =1, c_{\text{nbr}, t}=0) = \mathbb P (R \leq \Bigg[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Bigg]^\alpha), \quad R  \sim \mathsf{U}(0,1).$$ The lottery game ensured $\pi_{i,t}\geq 0 \forall i,t$ and hence $ 0 \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha \leq 1$, so $\mathbb P (R \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha) = \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha$. However in the linear public goods game, it is possible for $\pi_{i,t}< 0$, and therefore $$\mathbb P (R \leq \Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha) = \min(\Big[\frac{|\pi_{\text{nbr},t} - \pi_{i,t}|}{\Delta} \Big]^\alpha, 1). $$ This explains the substitution in equation \eqref{lemma_p}.   \\
 
-Finally, we gain some insight into the time to equilibrium. It is necessary to make the assumption that the timesteps are continuous, so that probability of two cooperators changing to defection in the same instant is 0. Under this assumption, the event that one of the contributors becomes a defector is a Poisson random variable, and the distribution of the time between events is an exponential random variable with parameter $q_{n_c}$. The distribution of the minimum of $n$ i.i.d exponential $q_{n_c}$ random variables is an exponential distribution with parameter $n_c q_{n_c}$. So the time for $n_c$ to decrease by 1, denoted $T_{{n_c},{n_{c-1}}}$, is an exponential random variable with parameter $n_c q_{n_c}$. Call $T_{n_c, 0}$ the time to equilibrium from the current level of cooperators $n_c$. 
+Finally, we gain some insight into the time to equilibrium. It is necessary to make the assumption that the timesteps are continuous, so that the probability of two cooperators changing to defection in the same instant is 0. Under this assumption, the event that one of the contributors becomes a defector is a Poisson random variable, and the distribution of the time between events is an exponential random variable with parameter $q_{n_c}$. The distribution of the minimum of $n$ i.i.d exponential $q_{n_c}$ random variables is an exponential distribution with parameter $n_c q_{n_c}$. So the time for $n_c$ to decrease by 1, denoted $T_{{n_c},{n_{c-1}}}$, is an exponential random variable with parameter $n_c q_{n_c}$. Call $T_{n_c, 0}$ the time to equilibrium from the current level of cooperators $n_c$. 
 \begin{align*}
     \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = 1}^{n_c} \mathbb E (T_{{i}, {i-1}}|n_c = i)\\
     &= \sum_{i = 1}^{n_c} \frac{1}{iq_i}\\
@@ -503,13 +494,14 @@ For imitation dynamics,
     \mathbb E (T_{n_c, 0} | n_c = n_c) &= \sum_{i = 1}^{n_c} \frac{n}{i(n-i)}. 
 \end{align*}
 
-When $i>\frac{n^2}{r}$, $\frac{r}{n(n-1)}>\frac{n}{i(n-1)}$, and therefore imitation dynamics achieves the equilibrium faster, as the respective $q_i$ is higher so there is faster rate of change from contribution to defection. It is also interesting to note that the time to equilibrium for imitation dynamics does not depend on the rate $r$ at all. \\
+When $i>\frac{n^2}{r}$, $\frac{r}{n(n-1)}>\frac{n}{i(n-1)}$, and therefore imitation dynamics achieves the equilibrium faster, as the respective $q_i$ is higher, so there is faster rate of change from contribution to defection. It is also interesting to note that the time to equilibrium for imitation dynamics does not depend on the rate $r$ at all. \\
 
 \end{proof}
 
-The next lemma, Lemma \ref{remark1}, investigates a lone defector in a $G(n,M)$ graph model. It shows that a network with one defector cannot immediately evolve to full contribution, even when full contribution is the NE. It links nicely with the paper \cite{RN48}, and the lemma is an argument for the bipartite networks mentioned in the paper. 
- \newtheorem{remark1}[theorem]{Lemma} \label{remark1}
-\begin{remark1}
+ 
+The next lemma, Lemma \ref{remark1}, investigates a lone defector in a $G(n,M)$ graph model. It shows that a network with one defector cannot immediately evolve to full contribution, even when full contribution is the NE. It links nicely with the paper \cite{RN48}, and the lemma is an argument for the bipartite networks mentioned in the paper. \\
+
+\begin{remark1} \label{remark1}
 For a $G(n,M)$ graph, with $r>m+1$, the NE is full contribution. However the model can never step from a lone defector to full contribution. Because the defector is a drain on their neighbouring cooperators, it is unable to see the maximum profit from contribution. 
 \end{remark1}
 \begin{proof}
@@ -525,24 +517,19 @@ The condition for the defector to change strategy is $\pi_C  - \pi_D>0$. Conside
     mr &>(m+1)^2+r\\
     r&>\frac{(m+1)^2}{m-1}
 \end{align*}
-This is a stricter condition than the hypothesis $r>m+1$, so the defector may not necessarily change. However changing would be the right decision, as their payoff becomes that of a full cooperator, $\pi_{F}$, $$ \pi_F = (m+1)\frac{(m+1)r}{m+1} - (m+1) = (m+1)(r-1). $$ This payoff is greater than $\pi_D$ for $r>m+1$. Furthermore, this shows that full contribution is a NE, as no player has a unilateral incentive to deviate from full contribution. The defector is unable to see the benefits of full contribution because all of their neighbours' profits are diminished by the defectors choice. \end{proof}
+This is a stricter condition than the hypothesis $r>m+1$, so the defector may not necessarily change. Yet changing would be the right decision, as their payoff becomes that of a full cooperator, $\pi_{F}$, $$ \pi_F = (m+1)\frac{(m+1)r}{m+1} - (m+1) = (m+1)(r-1). $$ This payoff is greater than $\pi_D$ for $r>m+1$. Furthermore, this shows that full contribution is a NE, as no player has a unilateral incentive to deviate from full contribution. The defector is unable to see the benefits of full contribution because all of their neighbours' profits are diminished by the defectors choice. \end{proof}
 
 
 
-The Lemma \ref{remark1} does not imply that no defector could ever switch to contribution in a $G(n,M)$ model with $r>m+1$. It is simple to contrive an example where a defector \emph{sees} a cooperator with higher profit. It simply requires that the defector is connected to a lot of other defectors, while the cooperator is supported by other cooperators. Full contribution may still be achieved, because the strategy changes are synchronous. Multiple defectors may all decide to switch at the same time, avoiding the lone defector problem from Lemma \ref{remark1}. The key implication from Lemma \ref{remark1} is the impediment to contribution as a result of the game network being the same as the update network. The defector only considers the payoffs of its neighbours when updating strategy, but the payoff of its neighbours have been negatively affected by the defectors strategy. In fact, this very problem is discussed in \cite{RN48}. The authors solution is to model two networks, one for game-playing and the other for update dynamics. This way, defectors can see the payoffs of cooperators whose games are not affected by the defector's choice. The authors in \cite{RN48} also argue that the choice of graph models should differ for the game-playing and update networks.   \\
+The Lemma \ref{remark1} does not imply that no defector could ever switch to contribution in a $G(n,M)$ model with $r>m+1$. It is simple to contrive an example where a defector \emph{sees} a cooperator with higher profit. It simply requires that the defector is connected to a lot of other defectors, while the cooperator is supported by other cooperators. Full contribution may still be achieved, because the strategy changes are synchronous. Multiple defectors may all decide to switch at the same time, avoiding the lone defector problem from Lemma \ref{remark1}. The key implication from Lemma \ref{remark1} is the impediment to contribution as a result of the game network being the same as the update network. The defector only considers the payoffs of its neighbours when updating strategy, but the payoff of its neighbours have been negatively affected by the defector's strategy. In fact, this very problem is discussed in \cite{RN48}. The author's solution is to model two networks, one for game-playing and the other for update dynamics. This way, defectors can see the payoffs of cooperators, whose games are not affected by the defector's choice. The authors in \cite{RN48} also argue that the choice of graph models should differ for the game-playing and update networks.   \\
 
-Furthermore, the above analysis does not extend to other graph models, because of the strict assumption that each node has the same degree. In a BA model, the defector may be connected to a cooperator of high degree, with all their neighbours also cooperating. This changes the solution to $\pi_C - \pi_D>0$. \\
-\FloatBarrier
+Furthermore, the above analysis does not extend to other graph models, because of the strict assumption that each node has the same degree. In a BA model, the defector may be connected to a cooperator of high degree, with all their neighbours also cooperating. This changes the solution to $\pi_C - \pi_D>0$. 
 
-
- 
-
- 
  \subsection{Optional Public Good Game on Varying Networks} 
  
   The intersection of random graphs and EGT has produced many recent papers. The following summaries represent a cross-section of EGT results.  \\
   
- In 2002, two papers by \cite{RN47, RN67} used mean-field theory as well as Monte Carlo simulations to model an optional PGG on a well-mixed population. An optional PGG allows players to contribute $c=1$, defect $c=0$, and play as a loner with $\pi_{3} = \sigma<r-1$. A random sample of size $N$ is selected, and the PGG is played with all non-loner players. This is an adaption of the standard PGG described in \ref{PGG}. The paper \cite{RN47} used replicator dynamics, as in \ref{Replicator}. Obviously, the corners of the simplex $\{e_c, e_d, e_l\}$, where $e_c, e_d, e_l$ correspond to the proportion of the population playing cooperate, defect, loner, respectively,  are unstable fixed points. In the notation of \eqref{Replicator}, these proportions would be denoted $\rho_c,\rho_d,\rho_l$. Furthermore, the replicator equations are transformed into a Hamiltonian system and a heteroclinical cycle (rock-paper-scissors) is observed on the boundary. For $r\leq 2$, the only fixed points are the corners of the simplex. This is demonstrated in Figure \ref{cycle1}. \\
+ In 2002, two papers \cite{RN47, RN67} used mean-field theory as well as Monte Carlo simulations to model an optional PGG on a well-mixed population. An optional PGG allows players to contribute $c=1$, defect $c=0$, and play as a loner with $\pi_{3} = \sigma<r-1$. A random sample of size $N$ is selected, and the PGG is played with all non-loner players. This is an adaption of the standard PGG described in \ref{PGG}. The paper \cite{RN47} used replicator dynamics, as in \ref{Replicator}. Obviously, the corners of the simplex $\{e_c, e_d, e_l\}$, where $e_c, e_d, e_l$ correspond to the proportion of the population playing cooperate, defect, loner, respectively,  are unstable fixed points. In the notation of \eqref{Replicator}, these proportions would be denoted $\rho_c,\rho_d,\rho_l$. Furthermore, the replicator equations are transformed into a Hamiltonian system and a heteroclinical cycle (rock-paper-scissors) is observed on the boundary. For $r\leq 2$, the only fixed points are the corners of the simplex. This is demonstrated in Figure \ref{cycle1}. \\
  \graphCap{cycle1.png}{0.8}{Optional PGG, $ N =5,r=1.8, \sigma = 0.5$, from \cite{RN47}. The corners of the simplex correspond to the whole population playing $c,d,l$ respectively. One can see that there is no interior fixed point, and all orbits converge to $e_l$. However $e_l$ is not stable, as one agent playing $c$ will receive higher payoff. } {cycle1}
  
  
@@ -553,14 +540,14 @@ Furthermore, the above analysis does not extend to other graph models, because o
  The mean-field theory is supported by Monte Carlo simulations in \cite{RN67}, first on a well-mixed population and then extended to a regular lattice. The regular lattice demonstrated higher proportions of contribution for a given $r$. This is evidence for the hypothesis that graph structure can influence the contribution level of a game. This paper initially considers replicator dynamics, and then imitation and best-response. Under best-response dynamics, the oscillations of the cycle were damped, as agents can move faster to a local equilibrium. This is shown in Figure \ref{cycle3}. \\
  
  \FloatBarrier
- \graphCap{cycle3.png}{1.4}{Optional PGG played with best response dynamics, from \cite{RN47}. $N=5, r=3, \sigma = 1$ \cite{RN67}. Best response dynamics allow for \emph{smarter} agents, and the interior stable point becomes an attractor. The dashed lines delineate the areas where each strategy dominates. }{cycle3}
+ \graphCap{cycle3.png}{1.4}{Optional PGG played with best response dynamics, from \cite{RN47}. $N=5, r=3, \sigma = 1$. Best response dynamics allow for \emph{smarter} agents, and the interior stable point becomes an attractor. The dashed lines delineate the areas where each strategy dominates. }{cycle3}
  \FloatBarrier
  
  
- The dependence on the social network is also noted in papers such as \cite{RN65}. It compared exponential and scale-free networks and was extended to small-world networks. \\
+ The dependence on the social network is also noted in papers such as \cite{RN65}. It compared exponential and scale-free networks and was extended to small-world networks. 
  
  \subsection{Efficiency-based Replicator Dynamics on BA Graphs}
- Weber and Porto \cite{RN77} applied a discrete version of replicator dynamics \eqref{Replicator} to BA graphs. However they argued that the standard assumption of accumulated payoffs is invalid on BA graphs, as the equations of motion are not invariant under affine transformation of the payoff function \cite{RN77}. This is because players have vastly different degrees, so their earnings per round may vary as a result of the degree and not necessarily strategy. Therefore the authors adapt the payoff function to $\hat{\pi_i} = K_i^{-1} \pi_i $ and apply replicator dynamics. Under this model, the \say{hubs} of the network are less able to support cooperation, and overall cooperation decreases. This vastly reduced the difference between scale-free and regular lattice networks in a pairwise NE's dilemma game. However this is only one particular model, and differences in cooperation due to network structure were demonstrated in \cite{RN62, RN44, RN43, RN28}.  \\
+ Weber and Porto \cite{RN77} applied a discrete version of replicator dynamics \eqref{Replicator} to BA graphs. However, they argued that the standard assumption of accumulated payoffs is invalid on BA graphs, as the equations of motion are not invariant under affine transformation of the payoff function \cite{RN77}. This is because players have vastly different degrees, so their earnings per round may vary as a result of the degree and not necessarily strategy. Therefore the authors adapt the payoff function to $\hat{\pi_i} = K_i^{-1} \pi_i $ and apply replicator dynamics. Under this model, the \say{hubs} of the network are less able to support cooperation, and overall cooperation decreases. This vastly reduced the difference between scale-free and regular lattice networks in a pairwise NE's dilemma game. However this is only one particular model, and differences in cooperation due to network structure were demonstrated in \cite{RN62, RN44, RN43, RN28}.  
  
  
  \subsection{Bipartite Graphs: Separating the Game and Update Networks }
@@ -570,7 +557,7 @@ Furthermore, the above analysis does not extend to other graph models, because o
  Pena and Rochat \cite{RN48} argued that bipartite graphs were a better model for PGG on graphs. They model two different variations of an $N$-player Prisoner's Dilemma (NPD). A \emph{conventional} NPD involves a fixed cost $c$ for every game that a cooperator plays in. A \emph{distributed} NPD charges the fixed cost per cooperator, who proportions it equally amongst all their games. As in a PGG, the total contribution is scaled by $r$ and distributed to all players equally. \\
  
  
- A bipartite graph consists of two sets of vertices, top vertices $T$ and bottom vertices $\bot$, as well as one set of undirected edges that connect elements of $T$ with elements of $\bot$. In their model, the bigraph $B$ consists of top vertices that represent games, and bottom vertices that represent players. This paper clearly separates the \emph{interaction} graph $G$ (who plays with who) and the \emph{replacement} graph $H$ (who competes with who). In general, games played on BA graphs assume equality between these two graphs, and the separation reduces overall contribution, because the replacement neighbourhood is much larger for the hubs.  \\
+ A bipartite graph consists of two sets of vertices, top vertices $T$ and bottom vertices $\bot$, as well as one set of undirected edges that connect elements of $T$ with elements of $\bot$. In their model, the bigraph $B$ consists of top vertices that represent games, and bottom vertices that represent players. This paper clearly separates the \emph{interaction} graph $G$ (who plays with whom) and the \emph{replacement} graph $H$ (who competes with whom). In general, games played on BA graphs assume equality between these two graphs, and the separation reduces overall contribution, because the replacement neighbourhood is much larger for the hubs.  \\
  
 When the replacement graph, $H$, is given by $G$ itself, called (OG) in Figure \ref{bigraph}, this is the traditional unigraph approach. Alternatively, $H$ can be found as the projection of $B$. The projection of $B$ creates a link between players for every game played by these two players. In this model, players who are second neighbours in $G$ may become neighbours in $H$. The \emph{unweighted projection} (UP) model creates a link if there exists a game in common for two players. In contrast, the \emph{unnormalised weighted projection}, (UWP), weights the link according to the number of games in common between two players. Finally, the \emph{normalised weighted projection}, (NWP), normalises the weight of a game according to its size such that $w_{ij} = \sum_k \frac{\delta_i^k\delta_j^k}{n_k}$, where $n_k$ is the number of players in game $k$, and $\delta_i^k$ is 1 if player $i$ plays in game $k$. \\
 
@@ -593,7 +580,7 @@ The results for this model are shown in Figure \ref{bigraph}. \\
 
 
 \subsection{Summary}
-This review covers the essential components of classical and evolutionary game theory. It begins with a survey of classical game theory, in Section \ref{CGT}. Section \ref{PD} and \ref{ToTC} are well-known 2- and $n$-player games from the literature. The first solution concept of the literature review; the NE of a game, is defined in Section \ref{NE} and provided for the games mentioned above. A game without a NE is also presented. Pareto optimality is also briefly discussed, before some flaws of classical game theory are mentioned at the end of Section \ref{CGT}.  These flaws are:\\
+This review covers the essential components of classical and evolutionary game theory. It begins with a survey of classical game theory, in Section \ref{CGT}. Section \ref{PD} and \ref{ToTC} are well-known 2- and $n$-player games from the literature. The first solution concept of the literature review; the NE of a game, is defined in Section \ref{NE} and provided for the games mentioned above. A game without a NE is also presented. Pareto optimality is also briefly discussed, before some flaws of classical game theory are mentioned at the end of Section \ref{CGT}.  These flaws are:
 
 \begin{itemize}
     \item The assumption of perfect rationality is a flaw, because perfect rationality is not observed in human experiments and models with this assumption do not reflect observed experiments. 
@@ -601,14 +588,14 @@ This review covers the essential components of classical and evolutionary game t
     \item  Finally, the NE solution concept is flawed, and Table \ref{SG} is a game that demonstrates an illogical NE.
     
 \end{itemize} 
-These flaws lead to the next section, EGT. EGT is split into two sections; Section \ref{EGT} focusses on \emph{population} games, ESS and the folk theorem of EGT. The advantage of ESS relative to NE is shown through the example games Table \ref{SG} and Table \ref{Chicken}. In Section \ref{IPD}, Axelrod's iterated PD is discussed. Finally, Section \ref{EGT} closes by demonstrating  that NE are a subset of ESS, and ESS are a subset of strict NE. This is called the folk theorem of EGT. \\
+These flaws lead to the next section, EGT. EGT is split into two sections; Section \ref{EGT} focuses on \emph{population} games, ESS and the folk theorem of EGT. The advantage of ESS relative to NE is shown through the example games in Table \ref{SG} and Table \ref{Chicken}. In Section \ref{IPD}, Axelrod's iterated PD is discussed. Finally, Section \ref{EGT} closes by demonstrating  that NE are a subset of ESS, and ESS are a subset of strict NE. This is called the folk theorem of EGT. \\
 
 EGT is also reviewed from an agent-based modelling perspective. Under this regime, agents are stationed at nodes of a graph and play the game with their graphical neighbours. Varying the graph characteristics can have an effect on the outcome. The advantages of agent-based modelling are the ability to extend models to further update dynamics, and to model agents on random graphs. Section \ref{ABM} gives a tour of alternative update dynamics used in modelling EGT. \\
 
 
 Section \ref{RG} explores the history and development of random graphs as models for social networks. The two common models are \emph{small-world} and BA models. They are the models for graphs used in EGT on networks, so it is important that their strengths and weaknesses are noted. This discussion occurs in Section \ref{RG}. Their limiting characteristics are presented in Table \ref{CGC}. Some extensions to these graphs are also presented. \\
 
-In the final section, Section \ref{EGToRG}, some simple results regarding EGT on graphs are presented, and then a selection of modern papers regarding EGT on random graphs are discussed. The common theme of these papers is that the graph structure influences the outcome of a game. In general, the average contribution level is measured as the dependent variable, and the relationship between average contribution and game structure, graph structure, and update dynamics are investigated. Also in this section EGT on bipartite graphs are discussed. This distinction separates the competition and strategy neighbourhood. These discussions provide avenue for further research and demonstrate the current frontier of research. \\
+In the final section, Section \ref{EGToRG}, some simple results regarding EGT on graphs are presented, and then a selection of modern papers regarding EGT on random graphs are discussed. The common theme of these papers is that the graph structure influences the outcome of a game. In general, the average contribution level is measured as the dependent variable, and the relationship between average contribution and game structure, graph structure, and update dynamics are investigated. Also in this section, EGT on bipartite graphs are discussed. This distinction separates the competition and strategy neighbourhood. These discussions provide avenues for further research and demonstrate the current frontier of research. \\
 
 
 
