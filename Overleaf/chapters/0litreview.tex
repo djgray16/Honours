@@ -42,7 +42,7 @@ Formally, this game is represented by players $\{1,2\}$, strategy sets $S_1 = S_
 \begin{align*}
     \pi_1& : S_1 \times S_2 \to \mathbb R, ~ \pi_2: S_1 \times S_2 \to \mathbb R\\
     \pi_1&(C,C) = -1,~ \pi_1(C,D) = -5,~ \pi_1(D,C) = 0,~ \pi_1(D,D) = -3.\\
-    \pi_2&(C,C) = -1,~ \pi_2(C,D) = 0,~ \pi_2(D,C) = -5,~ \pi_2(D,D) = -3.\\
+    \pi_2&(C,C) = -1,~ \pi_2(C,D) = 0,~ \pi_2(D,C) = -5,~ \pi_2(D,D) = -3.
 \end{align*}
 
 \subsection{Example: Public Good Game} \label{PGG} \label{ToTC}
@@ -246,7 +246,7 @@ This is decreasing in $\alpha$, so $\eqref{NE}$ only holds for $\alpha = 0$, whi
  Without loss of generality, suppose player 1 is playing a mixed strategy $\alpha^* \in (0,1)$. Their opponents are playing $\mathbf{s^{-i}}$, also mixed. For contradiction's sake, suppose there exist pure strategies $s_{j_1}^i, s_{j_2}^i$ such that $\alpha_{j_1}^i, \alpha_{j_2}^i >0$ and $\pi_i(s_{j_1}^i,\mathbf{s^{-i}}) > \pi_i(s_{j_2}^i,\mathbf{s^{-i}})$. Then the strategy modification of playing $s_{j_1}^i$ with probability $\alpha_{j_1}^i + \alpha_{j_2}^i$, and not playing $s_{j_2}^i$ yields a higher payoff. This is a contradiction, as the original strategy was a NE and satisfied \eqref{NE}. Hence any mixed strategy NE $(s^i,s^{-i})$ requires that $\pi_i(s_j^i, \mathbf{s^{-i}})$ is constant for all $s_j^i$ with $\alpha_j^i>0$. \halmos \\
 
 Now to solve for the mixed equilibrium of Table \ref{Chicken}. Once again, it suffices to check \eqref{NE} for player 1. From the lemma, the mixed strategy equilibrium requires $\pi_1(C,s^{-i}) = \pi_1(D,s^{-i})$. 
-Consider player 2 playing any $\alpha \in [0,1]$. \\
+Consider player 2 playing any $\alpha \in [0,1]$. 
 \begin{align*}
     \pi_1(C,\alpha C + (1-\alpha)D) &= \alpha (0) + (1-\alpha)(-1) = \alpha -1 \\
     \pi_1(D,\alpha C + (1-\alpha)D) &= \alpha (1) + (1-\alpha)(-20) = -20 + 21\alpha\\
@@ -268,7 +268,7 @@ As $2-1.95\beta> -20(1-\beta)^2$ for all $\beta \neq 0.95$, then condition \eqre
 
 
 \subsection{Replicator Dynamics}
-An evolutionary game requires a strategy update rule. Depending on the model, this may be stochastic, and a variety of rules have been formulated. Taylor and Jonker, 1978, introduced \emph{replicator dynamics}, and it is the pre-eminent update rule for biological models. Given a homogenous population with infinite size and $|S| = n$ ($n$ possible strategies), playing a strategy profile $s$, with proportion $\rho_i$ playing strategy $s_i$, then the rate of change of that proportion is given by: \\
+An evolutionary game requires a strategy update rule. Depending on the model, this may be stochastic, and a variety of rules have been formulated. Taylor and Jonker, 1978, introduced \emph{replicator dynamics}, and it is the pre-eminent update rule for biological models. Given a homogenous population with infinite size and $|S| = n$ ($n$ possible strategies), playing a strategy profile $s$, with proportion $\rho_i$ playing strategy $s_i$, then the rate of change of that proportion is given by: 
 \begin{align} \label{Replicator}
     \dot{\rho_i} \propto \rho_i(\pi(s_i, s) - \pi(s, s) ) \qquad\forall i = 1, \dots, n.
 \end{align}
@@ -302,7 +302,7 @@ In some cases, replicator dynamics can be solved analytically using mean-field t
 where the constants have been normalised as follows: $r_i = \pi(s_i,s_n) - \pi(s_n,s_n)$ and $c_{ij} = \pi(s_i,s_j) - \pi(s_n,s_j)$. \\
 
 
-This theorem allows the mathematical analysis of Lotka--Volterra models to be applied to game theory. Except for the paper \cite{RN75}, population games do not consider the network structure that dictates the interaction between agents. Population games assume either a complete graph \cite{RN67}, or random uniform sampling across the agents \cite{RN47}. The 2008 paper by Dunia \cite{RN75} demonstrates the link between stochastic dominance of a graph and mean-field approximations on the \emph{tragedy of the commons} game. \\
+The folk theorem allows the mathematical analysis of Lotka--Volterra models to be applied to game theory. Except for the paper \cite{RN75}, population games do not consider the network structure that dictates the interaction between agents. Population games assume either a complete graph \cite{RN67}, or random uniform sampling across the agents \cite{RN47}. The 2008 paper by Dunia \cite{RN75} demonstrates the link between stochastic dominance of a graph and mean-field approximations on the \emph{tragedy of the commons} game. \\
 
 Mean-field theory fails to capture certain key elements of evolutionary game theory. Firstly, the assumption of infinite population size affects the dynamics of games. Secondly, population games neglect the network on which agents interact. In the last 20 years, this has become a crucial specification of a model. \\
 
@@ -363,7 +363,7 @@ Obviously, these strategies all have the same expected value for $p=0.5$. Under 
 \end{align*}
 So R--WS is imitated twice as often as SS under pairwise comparison (in the case of a tie, the winner is chosen by a coin flip). The other combinations are not computed here, but one can verify that SS, RR, and R--WR should go extinct. This was verified under simulation, and is plotted in Figure \ref{Nau} from \cite{RN24}, which was a conference presentation before the paper \cite{RN30}. 
 \FloatBarrier
-\graphCap{Nau.png}{1}{Imitation Dynamics of Two--Stage Lottery Game, from \cite{RN24}.}{Nau} 
+\graphCap{Nau.png}{1}{Imitation dynamics of a two--stage lottery game, from \cite{RN24}.}{Nau} 
 \FloatBarrier
 
 In the paper \cite{RN30}, the authors proved that R--WS is an ESS. In fact, for the risky lottery with $p \neq 0.5$, R--WS is an ESS against the expected value maximising strategy for a range of $p$. This example is replicated and extended in Section \ref{Lottery_Me}. \\
@@ -412,7 +412,7 @@ Small-world graphs accurately modelled the clustering coefficient of real-world 
 
  
 \subsection{Preferential Attachment Model} \label{BA}
-While Watts--Strogatz rectified the low clustering coefficient of Erd\H{o}s--R\'enyi graphs, Barab\'{a}si and Albert developed a graph model that mimics the degree distribution of real-world graphs \cite{RN55}. Real-world graphs exhibit a scale-free power law degree distribution. Some examples are citation links and pages on the internet \cite{RN55}. According to \cite{RN56}, the original paper used erroneous data for their model of the internet, and in fact underestimated the likelihood of high-degree nodes on the internet. \\
+While Watts--Strogatz rectified the low clustering coefficient of Erd\H{o}s--R\'enyi graphs, Barab\'{a}si and Albert developed a graph model that mimics the degree distribution of real-world graphs \cite{RN55}. Real-world graphs exhibit a scale-free power-law degree distribution. Some examples are citation links and pages on the internet \cite{RN55}. According to \cite{RN56}, the original paper used erroneous data for their model of the internet, and in fact underestimated the likelihood of high-degree nodes on the internet. \\
 
 There are two keys to a Barab\'{a}si--Albert $\mathrm{BA}(n,m)$ model. These are preferential attachment, and network growth. The algorithm begins with $n_0$ fully connected nodes, and new nodes are added iteratively. Each added node is connected to $m<n_0$ nodes, with a probability proportional to the degree of each node, $K_i$. The probability that the node being added is connected to existing node $i$, $p_i$, is
 \begin{align*}
@@ -579,7 +579,7 @@ The results for this model are shown in Figure \ref{bigraph}. \\
 
 
 
-\subsection{Summary}
+\section{Summary}
 This review covers the essential components of classical and evolutionary game theory. It begins with a survey of classical game theory, in Section \ref{CGT}. Section \ref{PD} and \ref{ToTC} are well-known 2- and $n$-player games from the literature. The first solution concept of the literature review; the NE of a game, is defined in Section \ref{NE} and provided for the games mentioned above. A game without a NE is also presented. Pareto optimality is also briefly discussed, before some flaws of classical game theory are mentioned at the end of Section \ref{CGT}.  These flaws are:
 
 \begin{itemize}

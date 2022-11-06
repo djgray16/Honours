@@ -13,7 +13,7 @@ It is enforced that each player contributes a constant $c_i$ to each group. The 
 
 Each agent's initial contribution is randomly chosen from the set $C$. The choice set qualitatively emulates a lab experiment, where players are given tokens and choose how many tokens to contribute. \\
 
-The agents' update rule is simple. If they receive, from the common pools, at least as much as they contribute, they are \emph{satisfied}. That is, an agent is \emph{satisfied} when $\sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|} - g_i c_i\geq g_i c_i$. In this case, they increase their contribution by 0.25 with probability 0.5, otherwise remain unchanged. If they are \emph{unsatisfied}, their contribution always decreases by 0.25. Obviously, an agent playing $c_i =1$ cannot increase their contribution, and similarly an agent playing $c_i=0$ cannot decrease their contribution. This model does not claim to simulate evolutionary dynamics, instead it intends to replicate results observed in human trials. 
+The agents' update rule is simple. If they receive, from the common pools, at least as much as they contribute, they are \emph{satisfied}. That is, an agent is \emph{satisfied} when $\sum_{j=1}^{g_i} \sum_{k=1}^{|N_j|} \frac{rc_k}{|N_j|} - g_i c_i\geq g_i c_i$. In this case, they increase their contribution by 0.25 with probability 0.5, otherwise remain unchanged. If they are \emph{unsatisfied}, their contribution always decreases by 0.25. Obviously, an agent playing $c_i =1$ cannot increase their contribution, and similarly an agent playing $c_i=0$ cannot decrease their contribution. This model does not claim to simulate evolutionary dynamics; instead it intends to replicate results observed in human trials. 
 
 
 \section{Network Structure}
@@ -24,6 +24,7 @@ The graph is initialised with a clique of $m+1$ nodes distributed in $[0.45, 0.5
 The paper \cite{RN51} compares graphs built using this model to real-world graphs, and finds it exhibits the common features for a social network. Relative to a Barab\'{a}si--Albert model, the clustering coefficient is higher due to the spatial dimension. It also preserves the right-skewed degree distribution and low path lengths. \\
 
 This network model serves as the structure for the game in \cite{RN49}, with agents stationed at nodes. For each figure, the simulation has parameters $N=500, m = 6, T=100$, where $T$ represents the number of trials for each parameter combination. The plotted series represents the mean taken over all $T$ trials. In \cite{RN49}, Tomassini and Antonioni also used $N=500, m = 6$. 
+\newpage
 
 \section{Results Comparison}
 The results obtained by simulation were compared to the results reported in the paper \cite{RN49}. The comparison is shown in Figure \ref{comp0}. \\

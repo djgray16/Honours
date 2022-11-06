@@ -103,9 +103,7 @@ Similarly, for $p=0.55$, the expectation--maximising strategy is RR, but R--WS a
 In \cite{RN30}, plots for $p=0.3, 0.7$ were also shown, however the expectation--maximising strategies win out quickly, so they are not included here. It is notable that in Figure \ref{lotteryp4_me}, there are some fluctuations that occur before stability. This is investigated further in Chapter \ref{lottery_robust}.
 
 \subsection{Extension: Deterministic Model}
-The lottery game is stochastic, as the payoff of each round is a random variable. However, the next section models the lottery game with discreet difference equations, and compares the results to the stochastic model. \\
-
-Under the $p=0.4$ regime, the probability distribution for each strategy is calculated. 
+The lottery game is stochastic, as the payoff of each round is a random variable. However, the next section models the lottery game with discreet difference equations, and compares the results to the stochastic model. Under the $p=0.4$ regime, the probability distribution for each strategy is calculated. 
  \begin{align*}
  \mathbb P_{\text{SS}}(x = \pi)  &= \mathbbm{1}_{\pi = 8}, \\
  \mathbb P_{\text{RR}}(x = \pi)  &= \begin{cases} 0.36 \quad \pi = 0 \\
@@ -123,7 +121,7 @@ Under the $p=0.4$ regime, the probability distribution for each strategy is calc
     \end{cases}, \\
     \mathbb P_{\text{R--WR}}(x = \pi)  &= \begin{cases} 0.6 \quad \pi = 4 \\
     0.24 \quad \pi =8 \\
-    0.16 \quad \pi = 16\\
+    0.16 \quad \pi = 16
     \end{cases}, 
 \end{align*}
 Under imitation dynamics, a strategy $i$ has an evolutionary advantage over $j$, if $\mathbb P(\pi_i > \pi_j) > \mathbb P(\pi_i < \pi_j)$. In the $p=0.4$ case, RS $\prec$ SS $\prec$ R--WS $\prec$ RS, which is a cycle. However, the magnitude of the evolutionary advantage also has an effect. In Figure \ref{lotteryp4_me}, the strategy SS eliminates RS much faster than RS can eliminate R--WS, so SS temporarily grows, and then succumbs to R--WS. \\
@@ -159,13 +157,13 @@ The effect of extinction also affects the robustness of results. Some trials may
 \begin{figure}[!h]
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/ODE_lottery.pdf}
-    \caption{Reproduction of \ref{ODE_lottery}. Deterministic Simulation of the $p=0.4$, Imitation Dynamics Model. }
+    \caption{Reproduction of \ref{ODE_lottery}. Deterministic simulation of the $p=0.4$, imitation dynamics model. }
     \label{lotteryODE}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=1.1\textwidth]{images/lotteryp4_me_quantiles_empirical.pdf}
-    \caption{Empirical 2.5\% and 97.5\% Quantiles of the stochastic $p=0.4$, Imitation Dynamics Model. }
+    \caption{Empirical 2.5\% and 97.5\% quantiles of the stochastic $p=0.4$, imitation dynamics model. }
     \label{lotteryp4_me_emp}
   \end{subfigure}
   \caption{The strategies SS, RR, SR, RS, R--WR, R--WS are represented by blue circles, orange stars, green crosses, red pentagons, brown diamonds, and purple squares respectively. The initial cycle is mirrored in the stochastic simulation, however the extinction effects perturb the predicted cycle. The quantile plots show that some samples achieve a second cycle.} \label{lottery_ODE_emp}
@@ -196,7 +194,7 @@ Then the effect of targeted mean degree $m$ is examined for RRG and BA models. B
 
 
 \subsection{Results}
-These results examine the effect of graph model on contribution. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in much slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore, the number of generations has been extended to 25 000, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher contribution than WS, RRG models. This trend continues for $2.5 \leq r \leq 6$. It appears that graph models with a power law degree size distribution induce higher contribution. 
+These results examine the effect of graph model on contribution. For consistency, the WS model has parameter $p=0.1$ and the TAG model has parameter $\alpha = 0.3$, which aligns with Chapter \ref{TA}. Replicator dynamics result in much slower convergence than the satisfaction model in Chapter \ref{TA}. Therefore, the number of generations has been extended to 25 000, so that equilibrium is observed. Figure \ref{replicator_low} shows the TAG and BA model inducing higher contribution than WS, RRG models. This trend continues for $2.5 \leq r \leq 6$. It appears that graph models with a power-law degree size distribution induce higher contribution. 
 \FloatBarrier
 \graphCap{Rep_low_gtype_superlong.pdf}{0.8}{Comparing graph models: replicator dynamics. Trend for $r \in \{4.0, 4.25, 4.5, 4.75\}$. In each graph, the blue circles, orange stars, green crosses, and red pentagons correspond to the WS model, TAG model, BA model, and RRG model respectively. It appears that the BA model induces the highest contribution, then the TAG, followed by WS and RRG respectively. Observed contribution correlates with degree size variance. }{replicator_low} 
 \FloatBarrier
@@ -210,12 +208,12 @@ In a low $r$ regime, the variance of degree size of the graph positively correla
 
 There is insufficient information to determine if the clustering coefficient $C_\Delta$ influences contribution, as the graph models with highest $C_\Delta$ perform very differently. Therefore, it will need to be tested in isolation. It is tested under two different graph models. 
 
-\subsection{Isolating the Effect of Clustering Coefficient: Power Law Degree Size Distribution}
-To test the hypothesis that the average clustering coefficient $C_\Delta$ does not impact contribution, the \verb+power_law+ model was used to create another graph model, denoted PL. It induces a degree distribution with power law shape, but the parameter $p$ dictates the clustering coefficient. After each node is connected, the parameter $p$ determines the probability that the next link joins two neighbours, completing the triangle. Two degree histograms are plotted below, which emphasise the degree size distribution. \\
+\subsection{Isolating the Effect of Clustering Coefficient: Power-law Degree Size Distribution}
+To test the hypothesis that the average clustering coefficient $C_\Delta$ does not impact contribution, the \verb+power_law+ function in \verb+networkx+ was used to create another graph model, denoted PL. It induces a degree distribution with power-law shape, but the parameter $p$ dictates the clustering coefficient. After each node is connected, the parameter $p$ determines the probability that the next link joins two neighbours, completing the triangle. Two degree histograms are plotted below, which emphasise the degree size distribution. \\
 \FloatBarrier
-\graphCap{PL01BA.pdf}{0.7}{Comparison of power law graph with BA model, $p=0.1$. The degree histograms are similar, so the only difference is the clustering coefficient.}{PL01BA}
+\graphCap{PL01BA.pdf}{0.7}{Comparison of power-law graph with BA model, $p=0.1$. The degree histograms are similar, so the only difference is the clustering coefficient.}{PL01BA}
 \FloatBarrier
-\graphCap{PL05BA.pdf}{0.7}{Comparison of power law graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
+\graphCap{PL05BA.pdf}{0.7}{Comparison of power-law graph with BA model, $p=0.5$. The degree histograms are similar, so the only difference is the clustering  coefficient.}{PL05BA}
 \FloatBarrier
 The summary statistics are also reported, with parameter $N = 500$ and targeted mean degree $m=6$. Both $C_\Delta$ and degree variance increase with respect to $p$. From Table \ref{graph_stats}, the BA model reports $l=3.24, C_\Delta = 0.05$, and a degree variance of 40.80. The major difference between a BA and PL model is $C_\Delta$, but the degree variance is also different and must be regarded.   \\
 \FloatBarrier
@@ -233,7 +231,7 @@ PL: $p=0.5$         & 5.96           & 3.26                         & 0.30      
 \caption{Computed characteristics for PL graph, varying cluster parameter $p$. The characteristics were computed over 100 samples of each graph, and then averaged. In each case, the targeted mean degree $m$ was set to 6. } \label{graph_stats_PL}
 \end{center}
 \end{table}
-The PL model was tested under a replicator dynamics regime for a range of $r$, and the results are plotted in Figures \ref{power_p_low} and \ref{power_p_med}. Because equilibrium is observed in each graph, the number of steps is set to $10 000$. 
+The PL model was tested under a replicator dynamics regime for a range of $r$, and the results are plotted in Figures \ref{power_p_low} and \ref{power_p_med}. Because equilibrium is observed in each graph, the number of steps is set to 10 000. 
 \FloatBarrier
 \graphCap{Rep_power_p_low.pdf}{0.8}{The effect of clustering $p$, PL model, replicator dynamics. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to $p\in\{0.1,0.2,0.3,0.4,0.5\}$ respectively. The observed trend is that higher $p$, and hence higher $C_\Delta$, leads to marginally higher contribution.}{power_p_low}
 \FloatBarrier
@@ -277,7 +275,7 @@ Another interesting phenomenon is the time to equilibrium. Out of the four graph
 
 
 \subsection{The Effect of Mean Degree: RRG}
-The initial experiments indicated that graphs with a power law degree distribution induced higher contribution. Although all models had the same targeted mean degree, the BA and TAG consist of many nodes with low degree, and  small number of nodes with very high degree. It is of interest to isolate the effect of higher degree on contribution. To do this, a family of RRG are sampled, and the mean degree is varied between 4 and 12. Because equilibrium is quickly observed, the number of steps is set to $10 000$.  \\
+The initial experiments indicated that graphs with a power-law degree distribution induced higher contribution. Although all models had the same targeted mean degree, the BA and TAG consist of many nodes with low degree, and  small number of nodes with very high degree. It is of interest to isolate the effect of higher degree on contribution. To do this, a family of RRG are sampled, and the mean degree is varied between 4 and 12. Because equilibrium is quickly observed, the number of steps is set to 10 000.  \\
 
 \graphCap{Rep_graph_m_RRG_med.pdf}{0.8}{The effect of mean degree, RRG model. In each graph, the blue circles, orange stars, green crosses, red pentagons, and purple squares correspond to the mean degree $m \in \{4,6,8,10,12\}$ respectively. An increase in $m$ results in lower mean contribution.  }{graph_m_med} \FloatBarrier
 
@@ -288,7 +286,7 @@ The plots above dissect the effect of increasing average degree across the whole
 
 Under a RRG regime, when $r>m+1$, full contribution is an ESS. This is because every game consists of $m+1$ players, and if $r>m+1$, then contribution, regardless of the contribution of other players, is more profitable than defection and should spread. This explains why the blue circles achieve full contribution. Conditions of full contribution are discussed further in Lemma \ref{remark1}, in Chapter \ref{EGToRG}. \\
 
-The results from this test indicate that the trend observed in Figure \ref{replicator_low} is not due to the power--law graphs having some nodes with higher degree, but must be explained in a different manner. Perhaps it is due to the BA graph consisting of many nodes with low degree. These results can also be tested on a BA model. 
+The results from this test indicate that the trend observed in Figure \ref{replicator_low} is not due to the power-law graphs having some nodes with higher degree, but must be explained in a different manner. Perhaps it is due to the BA graph consisting of many nodes with low degree. These results can also be tested on a BA model. 
 
 \subsection{The Effect of Mean Degree: BA Model}
 \FloatBarrier
@@ -356,7 +354,6 @@ This experiment seeks to stratify the contribution level of each node according 
 \end{figure} 
 \FloatBarrier
 
-
 These figures demonstrate a non-linear relationship between node size and mean equilibrium contribution. The higher nodes are incentivised to defect, as their gain from defection can be very high. However, this gain is only realised when the other nodes are cooperating. In general, lower degree nodes enforce more conformity, and tend to $c=0$ or $c=1$.
 
 \subsection{Summary}
@@ -364,5 +361,5 @@ Four graph models were examined under replicator dynamics, and the results are p
 
 Firstly, the effect of $C_\Delta$ and degree variance were examined for both the PL family, and also the WS family of models. It was not possible to isolate the individual effects of degree variance, or $C_\Delta$. In both models, degree variance correlated positively with mean contribution, whereas increasing $C_\Delta$ reduced contribution for the WS model, but increased contribution for the PL model. At this stage, the correlation should be attributed to degree variance. \\
 
-Then the effect of targeted mean degree $m$ was examined. This produced strong results across both the BA and RRG models, demonstrating that mean degree is negatively correlated to contribution level. This gives some suggestion for the trends observed in Figures \ref{replicator_low}, \ref{replicator_medium}, and \ref{replicator_high}. Because the BA and TAG model have a power-law degree size distribution with the same mean degree $m$ as the WS, RRG models, they necessarily have a lot of nodes with degree less than $m$. These nodes cooperate more often than their higher degree size counterparts, so induce higher mean contribution. Finally, the equilibrium contribution level was stratified by degree in a BA model. It appears that low-degree nodes induce conformity, and contributions tend to 0 in a low-$r$ environment and 1 in a high-$r$ environment.  
+Secondly, the effect of targeted mean degree $m$ was examined. This produced strong results across both the BA and RRG models, demonstrating that mean degree is negatively correlated to contribution level. This gives some suggestion for the trends observed in Figures \ref{replicator_low}, \ref{replicator_medium}, and \ref{replicator_high}. Because the BA and TAG model have a power-law degree size distribution with the same mean degree $m$ as the WS, RRG models, they necessarily have a lot of nodes with degree less than $m$. These nodes cooperate more often than their higher degree size counterparts, so induce higher mean contribution. Finally, the equilibrium contribution level was stratified by degree in a BA model. It appears that low-degree nodes induce conformity, and contributions tend to 0 in a low-$r$ environment and 1 in a high-$r$ environment.  
 
